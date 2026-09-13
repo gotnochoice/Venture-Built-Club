@@ -55,7 +55,11 @@
     z-index: 0;
   }
   .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .hero h1 { font-size: clamp(40px, 5.5vw, 64px); font-weight: 900; line-height: 1.15; max-width: 900px; margin-bottom: 28px; font-family: 'Montserrat', sans-serif; text-shadow: 0 3px 12px rgba(10,10,10,0.5), 0 1px 3px rgba(10,10,10,0.3); letter-spacing: -0.02em; }
+  .hero h1 { font-size: clamp(40px, 5.5vw, 64px); font-weight: 500; line-height: 1.15; max-width: 900px; margin-bottom: 28px; font-family: 'Montserrat', sans-serif; text-shadow: 0 3px 12px rgba(10,10,10,0.5), 0 1px 3px rgba(10,10,10,0.3); letter-spacing: -0.02em; animation: typewriter 2.5s steps(60, end) 0.3s forwards; opacity: 0; }
+  @keyframes typewriter {
+    from { opacity: 0; width: 0; }
+    to { opacity: 1; width: 100%; }
+  }
   .hero p.lede { font-size: 18px; color: rgba(255,255,255,0.98); max-width: 680px; margin-bottom: 40px; line-height: 1.7; font-family: 'Montserrat', sans-serif; font-weight: 500; text-shadow: 0 2px 6px rgba(10,10,10,0.4); }
   .hero-cta-row { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; align-items: center; }
   .btn-primary { background: var(--bright); color: var(--black); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 16px; display: inline-block; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; }
@@ -75,10 +79,10 @@
   .statbar h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: 700; margin-bottom: 12px; font-family: 'Montserrat', sans-serif; line-height: 1.2; color: var(--black); }
   .statbar-sub { font-size: 15px; color: var(--steel); max-width: 600px; margin: 0 auto 48px; font-family: 'Montserrat', sans-serif; line-height: 1.6; }
   .statbar-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
-  .statbar-item { max-width: 180px; padding: 24px 16px; border-radius: 12px; background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .statbar-item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(15,61,46,0.15); }
-  .statbar-num { font-size: 40px; font-weight: 800; color: var(--bright); margin-bottom: 12px; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
-  .statbar-label { font-size: 13.5px; color: var(--steel); line-height: 1.7; font-family: 'Montserrat', sans-serif; }
+  .statbar-item { max-width: none; padding: 32px 24px; border-radius: 0; background: transparent; backdrop-filter: none; transition: transform 0.3s ease; text-align: center; }
+  .statbar-item:hover { transform: translateY(-2px); }
+  .statbar-num { font-size: clamp(36px, 4vw, 56px); font-weight: 700; color: var(--bright); margin-bottom: 8px; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
+  .statbar-label { font-size: 14px; color: var(--steel); line-height: 1.5; font-family: 'Montserrat', sans-serif; font-weight: 500; }
 
   /* WHAT WE DO (StartX-style photo + bullets) */
   .whatwedo { padding: 60px 0; }
@@ -258,27 +262,19 @@
     <div class="statbar-row">
       <div class="statbar-item">
         <div class="statbar-num">$675M+</div>
-        <div class="statbar-label">Combined raised across Flutterwave, Moniepoint, Reliance Health, Chowdeck, Nomba, and more</div>
+        <div class="statbar-label">Raised by OAU founders</div>
       </div>
       <div class="statbar-item">
         <div class="statbar-num">#1</div>
-        <div class="statbar-label">In West Africa for million-dollar startup founders</div>
+        <div class="statbar-label">In West Africa for million-dollar founders</div>
       </div>
       <div class="statbar-item">
         <div class="statbar-num">36</div>
-        <div class="statbar-label">Startup CEOs from OAU, per Africa: The Big Deal</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">12+</div>
-        <div class="statbar-label">Great Ife alumni founders of million-dollar startups, and counting</div>
+        <div class="statbar-label">Startup CEOs from OAU</div>
       </div>
       <div class="statbar-item">
         <div class="statbar-num">2</div>
         <div class="statbar-label">African fintech unicorn founders</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">12+</div>
-        <div class="statbar-label">Notable companies built by Great Ife alumni, and counting</div>
       </div>
     </div>
   </div>
