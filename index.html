@@ -61,6 +61,8 @@
     10% { opacity: 1; }
     100% { width: 100%; opacity: 1; }
   }
+  .typewriter-heading { animation: typewriter 2.5s steps(50, end) forwards; }
+  .isforyou .typewriter-heading { animation: typewriter 2.5s steps(50, end) 0.2s forwards; }
   .hero p.lede { font-size: 18px; color: rgba(255,255,255,0.98); max-width: 680px; margin-bottom: 40px; line-height: 1.7; font-family: 'Montserrat', sans-serif; font-weight: 500; text-shadow: 0 2px 6px rgba(10,10,10,0.4); }
   .hero-cta-row { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; align-items: center; }
   .btn-primary { background: var(--bright); color: var(--black); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 800; font-size: 16px; display: inline-block; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; }
@@ -263,7 +265,7 @@
     <p class="statbar-sub">Venture Built exists because Obafemi Awolowo University already produces exceptional founders.</p>
     <div class="statbar-row">
       <div class="statbar-item">
-        <div class="statbar-num">675M+</div>
+        <div class="statbar-num">$675M+</div>
         <div class="statbar-label">Raised by OAU founders</div>
       </div>
       <div class="statbar-item">
@@ -351,7 +353,7 @@
 
 <section class="isforyou reveal">
   <div class="wrap">
-    <h2>Venture Built Is for You If</h2>
+    <h2 class="typewriter-heading">Venture Built Is for You If...</h2>
     <ul class="check-list isforyou-list">
       <li>You hold real conviction in the problem you want to solve, and the persistence to keep working on it even when it's hard.</li>
       <li>You're already building something, or you're genuinely ready to start, not just thinking about it someday.</li>
