@@ -34,11 +34,12 @@
 
   /* HERO */
   .hero {
-    background:
-      linear-gradient(135deg, rgba(15,61,46,0.3) 0%, rgba(15,61,46,0.6) 100%),
-      var(--forest);
+    background-image:
+      linear-gradient(135deg, rgba(15,61,46,0.45) 0%, rgba(15,61,46,0.55) 100%),
+      url('/images/hero/oau-campus.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     color: var(--white);
     position: relative;
     overflow: hidden;
@@ -48,26 +49,21 @@
     justify-content: center;
   }
   .hero::before {
-    content: "[ Photo: OAU campus, Ile-Ife ]";
+    content: "";
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.28);
-    font-size: 13px;
     z-index: 0;
   }
   .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
-  .hero h1 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 800; line-height: 1.18; max-width: 800px; margin-bottom: 22px; font-family: 'Montserrat', sans-serif; }
-  .hero p.lede { font-size: 16px; color: rgba(255,255,255,0.8); max-width: 620px; margin-bottom: 36px; line-height: 1.75; font-family: 'Montserrat', sans-serif; }
+  .hero h1 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 800; line-height: 1.18; max-width: 800px; margin-bottom: 22px; font-family: 'Montserrat', sans-serif; text-shadow: 0 2px 8px rgba(10,10,10,0.35); }
+  .hero p.lede { font-size: 16px; color: rgba(255,255,255,0.95); max-width: 620px; margin-bottom: 36px; line-height: 1.75; font-family: 'Montserrat', sans-serif; text-shadow: 0 1px 4px rgba(10,10,10,0.25); }
   .hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-  .btn-primary { background: var(--bright); color: var(--black); padding: 14px 28px; border-radius: 40px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: 'Montserrat', sans-serif; }
-  .btn-primary:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 24px rgba(62,189,121,0.35); }
-  .btn-secondary { border: 1.5px solid rgba(255,255,255,0.5); color: var(--white); padding: 13px 27px; border-radius: 40px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; transition: transform 0.2s ease, background 0.2s ease; font-family: 'Montserrat', sans-serif; }
-  .btn-secondary:hover { transform: translateY(-2px); background: rgba(255,255,255,0.1); }
-  .hero-facts { display: flex; gap: 36px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--line-dark); }
-  .hero-fact { font-size: 13px; color: rgba(255,255,255,0.6); font-family: 'Montserrat', sans-serif; }
+  .btn-primary { background: var(--bright); color: var(--black); padding: 14px 28px; border-radius: 40px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: 'Montserrat', sans-serif; box-shadow: 0 8px 16px rgba(10,10,10,0.25); }
+  .btn-primary:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 12px 28px rgba(62,189,121,0.4), 0 8px 16px rgba(10,10,10,0.3); }
+  .btn-secondary { border: 1.5px solid rgba(255,255,255,0.8); color: var(--white); padding: 13px 27px; border-radius: 40px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; font-family: 'Montserrat', sans-serif; box-shadow: 0 4px 12px rgba(10,10,10,0.2); }
+  .btn-secondary:hover { transform: translateY(-2px); background: rgba(255,255,255,0.15); border-color: var(--white); }
+  .hero-facts { display: flex; gap: 36px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.2); }
+  .hero-fact { font-size: 13px; color: rgba(255,255,255,0.85); font-family: 'Montserrat', sans-serif; text-shadow: 0 1px 3px rgba(10,10,10,0.2); }
   .hero-fact b { display: block; color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 2px; font-family: 'Montserrat', sans-serif; }
 
   /* ABOUT */
