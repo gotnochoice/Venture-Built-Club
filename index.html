@@ -186,13 +186,18 @@
   .isforyou-list li { font-size: 15px; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
 
   /* FAQ */
-  .faq { padding: 60px 0; background: #F7F8F6; }
-  .faq .section-label { font-size: 12px; color: var(--steel); font-weight: 700; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; }
-  .faq h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: 40px; font-family: 'Montserrat', sans-serif; line-height: 1.2; color: var(--black); }
-  .faq-item { border-bottom: 1px solid var(--line-light); padding: 20px 0; transition: padding-left 0.25s ease; }
-  .faq-item:hover { padding-left: 8px; }
-  .faq-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; color: var(--black); }
-  .faq-item p { font-size: 14px; color: #3A4A44; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
+  .faq { padding: 80px 0; background: #F7F8F6; }
+  .faq .section-label { font-size: 12px; color: var(--steel); font-weight: 700; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; text-align: center; }
+  .faq h2 { font-size: clamp(32px, 3.5vw, 44px); font-weight: 800; margin-bottom: 60px; text-align: center; font-family: 'Montserrat', sans-serif; line-height: 1.2; color: var(--black); letter-spacing: -0.015em; }
+  .faq-container { max-width: 800px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--line-light); padding: 28px 0; cursor: pointer; transition: all 0.25s ease; }
+  .faq-item:hover h3 { color: var(--forest); }
+  .faq-toggle { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 0; font-family: 'Montserrat', sans-serif; color: var(--black); transition: color 0.25s ease; }
+  .faq-arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; font-size: 18px; color: var(--forest); transition: transform 0.3s ease; flex-shrink: 0; }
+  .faq-item.active .faq-arrow { transform: rotate(180deg); }
+  .faq-item p { font-size: 14.5px; color: #3A4A44; line-height: 1.7; font-family: 'Montserrat', sans-serif; margin-top: 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease; }
+  .faq-item.active p { max-height: 500px; opacity: 1; margin-top: 20px; }
 
   /* TEAM */
   .team { padding: 60px 0; }
@@ -403,21 +408,35 @@
   <div class="wrap">
     <div class="section-label">Questions</div>
     <h2>Frequently asked questions</h2>
-    <div class="faq-item">
-      <h3>Do I need to already have a startup idea?</h3>
-      <p>No. Coming with a rough idea, or even just curiosity about becoming a builder, is a great place to start. What matters is that you're ready to actually put in the work once you're in.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Do I need to know how to code?</h3>
-      <p>No. Venture Built is open to every department. If you can't build the technical side yourself, the Co-Builders space is exactly where you find someone who can.</p>
-    </div>
-    <div class="faq-item">
-      <h3>What if I don't get in this time around?</h3>
-      <p>You're welcome to apply again next cohort. We'd rather you come back with more clarity than not apply at all.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Does Venture Built invest in my startup?</h3>
-      <p>No. We don't fund or take equity in member startups. Our job is to prepare you and connect ready teams to programs and investors who do.</p>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-toggle">
+          <h3>Do I need to already have a startup idea?</h3>
+          <span class="faq-arrow">^</span>
+        </div>
+        <p>No. Coming with a rough idea, or even just curiosity about becoming a builder, is a great place to start. What matters is that you're ready to actually put in the work once you're in.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-toggle">
+          <h3>Do I need to know how to code?</h3>
+          <span class="faq-arrow">^</span>
+        </div>
+        <p>No. Venture Built is open to every department. If you can't build the technical side yourself, the Co-Builders space is exactly where you find someone who can.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-toggle">
+          <h3>What if I don't get in this time around?</h3>
+          <span class="faq-arrow">^</span>
+        </div>
+        <p>You're welcome to apply again next cohort. We'd rather you come back with more clarity than not apply at all.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-toggle">
+          <h3>Does Venture Built invest in my startup?</h3>
+          <span class="faq-arrow">^</span>
+        </div>
+        <p>No. We don't fund or take equity in member startups. Our job is to prepare you and connect ready teams to programs and investors who do.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -516,6 +535,13 @@
 
   document.querySelectorAll('.statbar-num').forEach(el => {
     statObserver.observe(el);
+  });
+
+  // FAQ collapsible functionality
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-toggle').addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
   });
 </script>
 
