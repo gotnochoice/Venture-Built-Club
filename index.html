@@ -498,6 +498,22 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
 
+  // Typewriter animation for heading
+  const typewriterHeading = document.querySelector('.isforyou .typewriter-heading');
+  if (typewriterHeading) {
+    const typewriterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          typewriterHeading.style.animation = 'none';
+          setTimeout(() => {
+            typewriterHeading.style.animation = 'typewriter 3s steps(35, end) forwards';
+          }, 10);
+        }
+      });
+    }, { threshold: 0.5 });
+    typewriterObserver.observe(typewriterHeading);
+  }
+
   // Counter animations for stats
   function animateValue(element, start, end, duration) {
     let startTimestamp = null;
