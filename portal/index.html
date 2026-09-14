@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Venture Built Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-black: #0A0A0A;
+    --color-forest: #0F3D2E;
+    --color-white: #FFFFFF;
+    --color-bright: #3EBD79;
+    --color-steel: #6B7268;
+    --color-gray-100: #F9FAFB;
+    --color-gray-200: #F3F4F6;
+    --text-primary: #0A0A0A;
+    --text-secondary: #6B7268;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --font-family: 'Montserrat', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-family); background: var(--color-gray-100); color: var(--text-primary); }
+
+  .portal-layout { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--color-forest); color: var(--color-white); padding: var(--spacing-2xl); position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .sidebar-header { font-size: 18px; font-weight: 700; margin-bottom: var(--spacing-2xl); }
+  .sidebar-nav { display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .sidebar-item { padding: var(--spacing-lg) var(--spacing-md); border-radius: 8px; cursor: pointer; transition: background 0.2s; font-size: 14px; font-weight: 500; text-decoration: none; color: rgba(255,255,255,0.8); }
+  .sidebar-item:hover, .sidebar-item.active { background: rgba(62,189,121,0.2); color: var(--color-white); }
+  .sidebar-divider { height: 1px; background: rgba(255,255,255,0.1); margin: var(--spacing-lg) 0; }
+  .sidebar-logout { margin-top: auto; padding-top: var(--spacing-xl); border-top: 1px solid rgba(255,255,255,0.1); }
+
+  /* MAIN CONTENT */
+  .main-content { padding: var(--spacing-2xl); overflow-y: auto; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-2xl); }
+  .header h1 { font-size: 32px; font-weight: 700; }
+  .user-info { text-align: right; }
+  .user-name { font-weight: 600; }
+  .user-email { font-size: 12px; color: var(--text-secondary); }
+
+  /* CARDS */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); }
+  .card { background: var(--color-white); border-radius: 12px; padding: var(--spacing-xl); box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.12); }
+  .card-title { font-size: 14px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: var(--spacing-sm); }
+  .card-value { font-size: 32px; font-weight: 700; color: var(--color-forest); margin-bottom: var(--spacing-sm); }
+  .card-description { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* SECTIONS */
+  .section { margin-bottom: var(--spacing-3xl); }
+  .section-title { font-size: 20px; font-weight: 700; margin-bottom: var(--spacing-xl); }
+  .section-content { background: var(--color-white); border-radius: 12px; padding: var(--spacing-xl); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+  /* LIST */
+  .list-item { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-lg); border-bottom: 1px solid var(--color-gray-200); }
+  .list-item:last-child { border-bottom: none; }
+  .list-item-content h3 { font-size: 15px; font-weight: 600; margin-bottom: var(--spacing-sm); }
+  .list-item-content p { font-size: 13px; color: var(--text-secondary); }
+  .list-item-action { font-size: 12px; background: var(--color-bright); color: var(--text-primary); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: 600; border: none; }
+
+  /* BUTTONS */
+  .btn { padding: var(--spacing-lg) var(--spacing-xl); border-radius: 8px; font-weight: 600; border: none; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+  .btn-primary { background: var(--color-bright); color: var(--text-primary); }
+  .btn-primary:hover { background: #2DA863; }
+  .btn-secondary { background: var(--color-gray-200); color: var(--text-primary); }
+  .btn-secondary:hover { background: #E5E7EB; }
+
+  /* LOGIN SCREEN */
+  .login-container { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); }
+  .login-box { background: var(--color-white); border-radius: 16px; padding: var(--spacing-2xl); width: 100%; max-width: 400px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .login-box h1 { font-size: 28px; font-weight: 700; margin-bottom: var(--spacing-md); text-align: center; }
+  .login-box p { text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-2xl); font-size: 14px; }
+  .form-group { margin-bottom: var(--spacing-xl); }
+  .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: var(--spacing-sm); }
+  .form-group input { width: 100%; padding: var(--spacing-lg); border: 1px solid #E5E7EB; border-radius: 8px; font-size: 14px; font-family: var(--font-family); }
+  .form-group input:focus { outline: none; border-color: var(--color-bright); box-shadow: 0 0 0 3px rgba(62,189,121,0.1); }
+  .login-btn { width: 100%; padding: var(--spacing-lg); background: var(--color-bright); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 15px; }
+  .login-btn:hover { background: #2DA863; }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .portal-layout { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; left: -250px; top: 0; height: 100vh; z-index: 100; transition: left 0.3s; }
+    .sidebar.open { left: 0; }
+    .main-content { padding: var(--spacing-lg); }
+    .header { flex-direction: column; align-items: flex-start; gap: var(--spacing-lg); }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-container">
+  <div class="login-box">
+    <h1>Venture Built</h1>
+    <p>Sign in to your member account</p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="login-btn">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- PORTAL DASHBOARD -->
+<div id="portalScreen" class="hidden">
+  <div class="portal-layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-header">Venture Built</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-item active" data-section="dashboard">📊 Dashboard</a>
+        <a href="#" class="sidebar-item" data-section="directory">👥 Member Directory</a>
+        <a href="#" class="sidebar-item" data-section="events">📅 Events & Sessions</a>
+        <a href="#" class="sidebar-item" data-section="resources">📚 Resources</a>
+        <a href="#" class="sidebar-item" data-section="cobuilders">🤝 Co-Builders</a>
+        <a href="#" class="sidebar-item" data-section="progress">✓ Progress Track</a>
+      </nav>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-logout">
+        <a href="#" class="sidebar-item" id="logoutBtn">← Log Out</a>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+      <!-- HEADER -->
+      <div class="header">
+        <h1>Welcome Back!</h1>
+        <div class="user-info">
+          <div class="user-name" id="userName">Guest</div>
+          <div class="user-email" id="userEmail">user@example.com</div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD SECTION -->
+      <div id="dashboardSection" class="section">
+        <!-- QUICK STATS -->
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-title">Next Session</div>
+            <div class="card-value" id="nextSessionDate">Friday</div>
+            <div class="card-description">Masterclass: Idea Validation</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Co-Builder Requests</div>
+            <div class="card-value" id="coBuilderCount">2</div>
+            <div class="card-description">Pending collaboration requests</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Progress Completed</div>
+            <div class="card-value" id="progressPercent">45%</div>
+            <div class="card-description">Of your learning path</div>
+          </div>
+        </div>
+
+        <!-- UPCOMING EVENTS -->
+        <div class="section">
+          <h2 class="section-title">📅 Upcoming Sessions</h2>
+          <div class="section-content">
+            <div class="list-item">
+              <div class="list-item-content">
+                <h3>Idea Validation Masterclass</h3>
+                <p>Friday, 2:00 PM • Online</p>
+              </div>
+              <button class="list-item-action">RSVP</button>
+            </div>
+            <div class="list-item">
+              <div class="list-item-content">
+                <h3>Pitch Practice Session</h3>
+                <p>Monday, 5:00 PM • In-person</p>
+              </div>
+              <button class="list-item-action">RSVP</button>
+            </div>
+            <div class="list-item">
+              <div class="list-item-content">
+                <h3>Founder Q&A with Founder</h3>
+                <p>Next Wednesday, 3:00 PM • Online</p>
+              </div>
+              <button class="list-item-action">RSVP</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CO-BUILDER REQUESTS -->
+        <div class="section">
+          <h2 class="section-title">🤝 Co-Builder Requests</h2>
+          <div class="section-content">
+            <div class="list-item">
+              <div class="list-item-content">
+                <h3>Chioma Okafor</h3>
+                <p>Looking for: Product Designer • Skills: UI/UX, Figma</p>
+              </div>
+              <button class="list-item-action">VIEW</button>
+            </div>
+            <div class="list-item">
+              <div class="list-item-content">
+                <h3>Tunde Adeyemi</h3>
+                <p>Seeking: Frontend Developer • Skills: React, Node.js</p>
+              </div>
+              <button class="list-item-action">VIEW</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIRECTORY SECTION -->
+      <div id="directorySection" class="section hidden">
+        <h2 class="section-title">👥 Member Directory</h2>
+        <div class="section-content">
+          <input type="text" placeholder="Search members by name, skills, or department..." style="width: 100%; padding: var(--spacing-lg); border: 1px solid #E5E7EB; border-radius: 8px; margin-bottom: var(--spacing-xl); font-family: var(--font-family);">
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Chioma Okafor</h3>
+              <p>Product Design • 300L Computer Science</p>
+            </div>
+            <button class="list-item-action">CONNECT</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Tunde Adeyemi</h3>
+              <p>Full-stack Dev • 200L Engineering</p>
+            </div>
+            <button class="list-item-action">CONNECT</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Zainab Mohammed</h3>
+              <p>Business Strategy • 400L Economics</p>
+            </div>
+            <button class="list-item-action">CONNECT</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS SECTION -->
+      <div id="eventsSection" class="section hidden">
+        <h2 class="section-title">📅 Events & Sessions</h2>
+        <div class="section-content">
+          <div style="margin-bottom: var(--spacing-xl);">
+            <button class="btn btn-primary">Upcoming</button>
+            <button class="btn btn-secondary" style="margin-left: var(--spacing-sm);">Past Sessions</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Masterclass: Idea Validation</h3>
+              <p>Friday, 2:00 PM • Speaker: Sarah Chen (Ex-YC)</p>
+            </div>
+            <button class="list-item-action">RSVP</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Pitch Practice with Mentors</h3>
+              <p>Monday, 5:00 PM • 1-on-1 feedback sessions</p>
+            </div>
+            <button class="list-item-action">RSVP</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESOURCES SECTION -->
+      <div id="resourcesSection" class="section hidden">
+        <h2 class="section-title">📚 Resources Library</h2>
+        <div class="section-content">
+          <div style="margin-bottom: var(--spacing-xl);">
+            <button class="btn btn-primary">All</button>
+            <button class="btn btn-secondary" style="margin-left: var(--spacing-sm);">Recordings</button>
+            <button class="btn btn-secondary" style="margin-left: var(--spacing-sm);">Templates</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Lean Canvas Template</h3>
+              <p>Business Model Planning • PDF</p>
+            </div>
+            <button class="list-item-action">DOWNLOAD</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Session Recording: Fundraising 101</h3>
+              <p>Video • Duration: 45 mins</p>
+            </div>
+            <button class="list-item-action">WATCH</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Pitch Deck Best Practices</h3>
+              <p>Slide Deck • Presentation Guide</p>
+            </div>
+            <button class="list-item-action">VIEW</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CO-BUILDERS SECTION -->
+      <div id="cobuildersSection" class="section hidden">
+        <h2 class="section-title">🤝 Co-Builders Network</h2>
+        <div class="section-content">
+          <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">Find co-builders who complement your skills and vision.</p>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Chioma Okafor</h3>
+              <p>Skills: Product Design, Figma, Wireframing | Building: EdTech app</p>
+            </div>
+            <button class="list-item-action">REQUEST</button>
+          </div>
+          <div class="list-item">
+            <div class="list-item-content">
+              <h3>Tunde Adeyemi</h3>
+              <p>Skills: React, Node.js, APIs | Looking for: Designer</p>
+            </div>
+            <button class="list-item-action">REQUEST</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROGRESS SECTION -->
+      <div id="progressSection" class="section hidden">
+        <h2 class="section-title">✓ Learning Progress</h2>
+        <div class="section-content">
+          <div style="margin-bottom: var(--spacing-xl);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+              <span>Overall Progress</span>
+              <span style="font-weight: 700;">45%</span>
+            </div>
+            <div style="background: #E5E7EB; height: 8px; border-radius: 4px; overflow: hidden;">
+              <div style="background: var(--color-bright); height: 100%; width: 45%;"></div>
+            </div>
+          </div>
+          <div class="list-item" style="flex-direction: column; align-items: flex-start;">
+            <h3>✓ Module 1: Business Fundamentals</h3>
+            <p style="margin: var(--spacing-sm) 0;">Completed 3 of 5 lessons</p>
+          </div>
+          <div class="list-item" style="flex-direction: column; align-items: flex-start;">
+            <h3>⊗ Module 2: Market Research</h3>
+            <p style="margin: var(--spacing-sm) 0;">Start when ready</p>
+          </div>
+          <div class="list-item" style="flex-direction: column; align-items: flex-start;">
+            <h3>○ Module 3: Product Development</h3>
+            <p style="margin: var(--spacing-sm) 0;">Unlock after Module 2</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API_URL = 'https://your-vercel-domain.vercel.app/api'; // Update after deployment
+  let currentUser = null;
+
+  // LOGIN LOGIC
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        currentUser = data.user;
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        showPortal();
+      } else {
+        alert('Login failed: ' + data.error);
+      }
+    } catch (error) {
+      alert('Login error: ' + error.message);
+    }
+  });
+
+  // SHOW PORTAL
+  function showPortal() {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('portalScreen').classList.remove('hidden');
+    document.getElementById('userName').textContent = currentUser.firstName + ' ' + currentUser.lastName;
+    document.getElementById('userEmail').textContent = currentUser.email;
+  }
+
+  // SIDEBAR NAVIGATION
+  document.querySelectorAll('.sidebar-item[data-section]').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      const section = item.dataset.section;
+      document.querySelectorAll('[id$="Section"]').forEach(s => s.classList.add('hidden'));
+      document.getElementById(section + 'Section').classList.remove('hidden');
+    });
+  });
+
+  // LOGOUT
+  document.getElementById('logoutBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    location.reload();
+  });
+
+  // CHECK IF LOGGED IN ON LOAD
+  window.addEventListener('load', () => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      currentUser = JSON.parse(user);
+      showPortal();
+    }
+  });
+</script>
+
+</body>
+</html>
