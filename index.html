@@ -119,10 +119,11 @@
   .hero {
     background-image:
       linear-gradient(135deg, rgba(15,61,46,0.35) 0%, rgba(15,61,46,0.45) 100%),
-      url('/images/hero/Landscape_of_Obafemi_Awolowo_University.png');
+      url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-white);
     position: relative;
     overflow: hidden;
@@ -130,6 +131,7 @@
     display: grid;
     place-items: center;
     padding: var(--spacing-4xl) var(--spacing-2xl);
+    will-change: background-image;
   }
   .hero::before {
     content: "";
@@ -323,7 +325,7 @@
   .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); }
   .vision-mission-image {
     aspect-ratio: 4/3;
-    background-image: url('/images/hero/Landscape_of_Obafemi_Awolowo_University.png');
+    background-image: url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg');
     background-size: cover;
     background-position: center;
     border-radius: var(--radius-lg);
