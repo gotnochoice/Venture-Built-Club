@@ -24,7 +24,7 @@
   a { color: inherit; }
 
   /* NAV */
-  nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 32px; max-width: 1080px; margin: 0 auto; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 26px 32px; max-width: 100%; margin: 0 auto; position: sticky; top: 0; background: var(--white); z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
   .logo { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; }
   .logo span { color: var(--bright); }
   .nav-links { display: flex; gap: 30px; }
@@ -526,9 +526,10 @@
 
         if (text.includes('$')) {
           numericValue = 675;
-          entry.target.textContent = '$' + numericValue + 'M+';
-          animateValue(entry.target, 0, numericValue, 2000);
-          entry.target.innerHTML = '<span>$</span><span style="font-weight:800;">' + numericValue + '</span><span>M+</span>';
+          const valueSpan = entry.target.querySelector('.stat-value');
+          if (valueSpan) {
+            animateValue(valueSpan, 0, numericValue, 2000);
+          }
         } else if (text.includes('#')) {
           entry.target.textContent = '#1';
         } else {
