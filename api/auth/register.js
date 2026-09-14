@@ -45,6 +45,6 @@ module.exports = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    respondError(res, 500, 'Registration failed');
+    respondError(res, 500, `Registration failed: ${error.message}`);
   }
 };
