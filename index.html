@@ -645,59 +645,6 @@
     typewriterObserver.observe(typewriterHeading);
   }
 
-  // Counter animations for stats
-  function animateValue(element, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const value = Math.floor(progress * (end - start) + start);
-      element.textContent = value;
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        element.textContent = end;
-      }
-    };
-    window.requestAnimationFrame(step);
-  }
-
-  const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.animated) {
-        entry.target.dataset.animated = 'true';
-        const text = entry.target.textContent.trim();
-        let displayText = text;
-        let numericValue = 0;
-
-        if (text.includes('$')) {
-          numericValue = 675;
-          const valueSpan = entry.target.querySelector('.stat-value');
-          if (valueSpan) {
-            animateValue(valueSpan, 0, numericValue, 2000);
-          }
-        } else if (text.includes('#')) {
-          entry.target.textContent = '#1';
-        } else {
-          const match = text.match(/\d+/);
-          if (match) {
-            numericValue = parseInt(match[0]);
-            const prefix = text.substring(0, match.index);
-            const suffix = text.substring(match.index + match[0].length);
-            animateValue(entry.target, 0, numericValue, 1800);
-            setTimeout(() => {
-              entry.target.textContent = prefix + numericValue + suffix;
-            }, 1800);
-          }
-        }
-        statObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.statbar-num').forEach(el => {
-    statObserver.observe(el);
-  });
 
   // FAQ collapsible functionality
   document.querySelectorAll('.faq-item').forEach(item => {
