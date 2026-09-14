@@ -495,20 +495,17 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
 
-  // Typewriter animation for heading - reset on scroll back into view
+  // Typewriter animation for heading - trigger every time it comes into view
   const typewriterHeading = document.querySelector('.isforyou .typewriter-heading');
   if (typewriterHeading) {
-    let hasPlayed = false;
     const typewriterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && hasPlayed) {
-          // Reset animation when scrolling back into view
+        if (entry.isIntersecting) {
+          // Reset and replay animation when element comes into view
           typewriterHeading.style.animation = 'none';
           setTimeout(() => {
             typewriterHeading.style.animation = 'typewriter 3s steps(35, end) forwards';
           }, 10);
-        } else if (entry.isIntersecting && !hasPlayed) {
-          hasPlayed = true;
         }
       });
     }, { threshold: 0.5 });
