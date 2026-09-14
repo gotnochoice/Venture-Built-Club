@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg">
 <style>
   :root {
     /* Primary Colors */
@@ -237,6 +238,7 @@
     color: rgba(255,255,255,0.35);
     font-size: var(--font-size-xs);
     transition: transform var(--transition-normal);
+    background-attachment: scroll;
   }
   .whatwedo-photo:hover { transform: scale(1.02); }
 
@@ -383,11 +385,16 @@
     body { font-size: var(--font-size-sm); }
     .wrap { padding: 0 var(--spacing-lg); }
 
-    /* Hero */
-    .hero { height: 65vh; padding: var(--spacing-md); }
-    .hero h1 { font-size: clamp(24px, 5.5vw, 32px); padding: var(--spacing-xl) var(--spacing-md); }
-    .hero p.lede { font-size: var(--font-size-xs); margin-top: -8px; max-width: 100%; }
-    .hero-cta-row { gap: var(--spacing-sm); margin-top: var(--spacing-xl); }
+    /* Hero - Mobile Optimized */
+    .hero {
+      height: 60vh;
+      padding: var(--spacing-md);
+      background-attachment: scroll;
+      background-size: cover;
+    }
+    .hero h1 { font-size: clamp(22px, 5vw, 28px); padding: var(--spacing-lg) var(--spacing-md); line-height: 1.3; }
+    .hero p.lede { font-size: 13px; margin-top: -6px; max-width: 100%; line-height: 1.4; }
+    .hero-cta-row { gap: var(--spacing-sm); margin-top: var(--spacing-lg); }
 
     /* Navigation */
     .nav-links { display: none; }
