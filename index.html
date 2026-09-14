@@ -196,18 +196,19 @@
   .isforyou-list li { font-size: 15px; line-height: 1.6; font-family: 'Montserrat', sans-serif; }
 
   /* FAQ */
-  .faq { padding: 80px 0; background: #F7F8F6; }
-  .faq .section-label { font-size: 12px; color: var(--steel); font-weight: 700; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; text-align: center; }
-  .faq h2 { font-size: clamp(32px, 3.5vw, 44px); font-weight: 800; margin-bottom: 60px; text-align: center; font-family: 'Montserrat', sans-serif; line-height: 1.2; color: var(--black); letter-spacing: -0.015em; }
-  .faq-container { max-width: 800px; margin: 0 auto; }
-  .faq-item { border-bottom: 1px solid var(--line-light); padding: 28px 0; cursor: pointer; transition: all 0.25s ease; }
+  .faq { padding: 100px 0; background: var(--white); }
+  .faq .section-label { font-size: 12px; color: var(--steel); font-weight: 700; margin-bottom: 12px; font-family: 'Montserrat', sans-serif; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+  .faq h2 { font-size: clamp(36px, 4vw, 48px); font-weight: 700; margin-bottom: 70px; text-align: center; font-family: 'Montserrat', sans-serif; line-height: 1.2; color: var(--black); letter-spacing: -0.015em; }
+  .faq-container { max-width: 900px; margin: 0 auto; }
+  .faq-item { background: #FFFFFF; border: 1px solid #E8EBE9; border-radius: 8px; padding: 32px; margin-bottom: 20px; cursor: pointer; transition: all 0.3s ease; }
+  .faq-item:hover { box-shadow: 0 8px 24px rgba(15,61,46,0.08); border-color: var(--bright); }
+  .faq-toggle { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .faq-item h3 { font-size: 17px; font-weight: 700; margin-bottom: 0; font-family: 'Montserrat', sans-serif; color: var(--black); transition: color 0.25s ease; }
   .faq-item:hover h3 { color: var(--forest); }
-  .faq-toggle { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .faq-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 0; font-family: 'Montserrat', sans-serif; color: var(--black); transition: color 0.25s ease; }
-  .faq-arrow { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; font-size: 18px; color: var(--forest); transition: transform 0.3s ease; flex-shrink: 0; }
-  .faq-item.active .faq-arrow { transform: rotate(180deg); }
-  .faq-item p { font-size: 14.5px; color: #3A4A44; line-height: 1.7; font-family: 'Montserrat', sans-serif; margin-top: 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease; }
-  .faq-item.active p { max-height: 500px; opacity: 1; margin-top: 20px; }
+  .faq-arrow { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; font-size: 20px; color: var(--forest); transition: transform 0.3s ease; flex-shrink: 0; background: rgba(15,61,46,0.08); border-radius: 50%; }
+  .faq-item.active .faq-arrow { transform: rotate(180deg); background: rgba(62,189,121,0.12); }
+  .faq-item p { font-size: 15px; color: #3A4A44; line-height: 1.75; font-family: 'Montserrat', sans-serif; margin-top: 20px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease; }
+  .faq-item.active p { max-height: 600px; opacity: 1; margin-top: 20px; }
 
   /* TEAM */
   .team { padding: 60px 0; }
