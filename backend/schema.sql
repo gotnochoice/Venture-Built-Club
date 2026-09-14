@@ -120,7 +120,7 @@ CREATE TABLE alumni_profiles (
   user_id UUID NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
   graduation_year INTEGER,
   current_company VARCHAR(255),
-  current_role VARCHAR(255),
+  role_title VARCHAR(255),
   venture_outcome VARCHAR(255), -- Still building, Acquired, Closed, Pivoted, etc
   willing_to_mentor BOOLEAN DEFAULT false,
   contact_info TEXT,
