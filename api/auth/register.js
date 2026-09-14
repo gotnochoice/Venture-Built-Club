@@ -1,8 +1,10 @@
 const { getPool } = require('../lib/db');
-const { generateToken, hashPassword, respondError, respondSuccess } = require('../lib/auth');
+const { generateToken, hashPassword, respondError, respondSuccess, applyCors } = require('../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = async (req, res) => {
+  if (applyCors(req, res)) return;
+
   if (req.method !== 'POST') {
     return respondError(res, 405, 'Method not allowed');
   }

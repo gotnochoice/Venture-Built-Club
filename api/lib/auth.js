@@ -32,4 +32,21 @@ function respondSuccess(res, status, data) {
   res.status(status).json(data);
 }
 
-module.exports = { verifyToken, generateToken, hashPassword, verifyPassword, respondError, respondSuccess };
+// Allows the API to be called from any Vercel deployment URL for this
+// project (production domain, preview deployments, git-branch aliases),
+// not just one hardcoded origin. Returns true if the request was a CORS
+// preflight (OPTIONS) that has already been fully handled - callers
+// should return immediately in that case.
+function applyCors(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end();
+    return true;
+  }
+  return false;
+}
+
+module.exports = { verifyToken, generateToken, hashPassword, verifyPassword, respondError, respondSuccess, applyCors };

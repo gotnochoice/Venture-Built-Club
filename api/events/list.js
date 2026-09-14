@@ -1,7 +1,9 @@
 const { getPool } = require('../lib/db');
-const { respondError, respondSuccess } = require('../lib/auth');
+const { respondError, respondSuccess, applyCors } = require('../lib/auth');
 
 module.exports = async (req, res) => {
+  if (applyCors(req, res)) return;
+
   if (req.method !== 'GET') {
     return respondError(res, 405, 'Method not allowed');
   }
