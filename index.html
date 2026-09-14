@@ -316,10 +316,18 @@
 
   /* VISION & MISSION */
   .vision-mission { padding: var(--spacing-5xl) 0; background: var(--color-white); }
-  .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); }
-  .vision-mission-item { text-align: center; }
-  .vision-mission-item h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-forest); }
-  .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); max-width: 500px; margin: 0 auto; }
+  .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
+  .vision-mission-content { display: flex; flex-direction: column; gap: var(--spacing-3xl); }
+  .vision-mission-item { }
+  .vision-mission-item h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--text-primary); }
+  .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); }
+  .vision-mission-image {
+    aspect-ratio: 4/3;
+    background-image: url('/images/hero/Landscape_of_Obafemi_Awolowo_University.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg);
+  }
 
   /* FAQ */
   .faq { padding: var(--spacing-6xl) 0; background: linear-gradient(135deg, #F7F8F6 0%, #FFFFFF 100%); }
@@ -409,14 +417,17 @@
 <section class="vision-mission reveal">
   <div class="wrap">
     <div class="vision-mission-grid">
-      <div class="vision-mission-item">
-        <h3>Vision</h3>
-        <p>To create a campus where every exceptional student innovator can build the next set of unicorns in Africa.</p>
+      <div class="vision-mission-content">
+        <div class="vision-mission-item">
+          <h3>Vision</h3>
+          <p>To create a campus where every exceptional student innovator can build the next set of unicorns in Africa.</p>
+        </div>
+        <div class="vision-mission-item">
+          <h3>Mission</h3>
+          <p>To adequately close the knowledge gap in building venture-backable startups, connecting and building an ecosystem that creates a robust platform for developing co-builders.</p>
+        </div>
       </div>
-      <div class="vision-mission-item">
-        <h3>Mission</h3>
-        <p>To adequately close the knowledge gap in building venture-backable startups, connecting and building an ecosystem that creates a robust platform for developing co-builders.</p>
-      </div>
+      <div class="vision-mission-image"></div>
     </div>
   </div>
 </section>
