@@ -380,15 +380,50 @@
   }
 
   @media (max-width: 760px) {
-    .hero { height: 70vh; padding: var(--spacing-md); }
-    .hero h1 { font-size: clamp(28px, 6vw, 36px); }
+    body { font-size: var(--font-size-sm); }
+    .wrap { padding: 0 var(--spacing-lg); }
+
+    /* Hero */
+    .hero { height: 65vh; padding: var(--spacing-md); }
+    .hero h1 { font-size: clamp(24px, 5.5vw, 32px); padding: var(--spacing-xl) var(--spacing-md); }
+    .hero p.lede { font-size: var(--font-size-xs); margin-top: -8px; max-width: 100%; }
+    .hero-cta-row { gap: var(--spacing-sm); margin-top: var(--spacing-xl); }
+
+    /* Navigation */
+    .nav-links { display: none; }
+    nav { padding: var(--spacing-sm) var(--spacing-lg); }
+    .logo { font-size: var(--font-size-base); }
+
+    /* Buttons */
+    .btn-primary, .btn-secondary { width: 100%; padding: var(--spacing-md) var(--spacing-lg); font-size: var(--font-size-sm); }
+    .btn-primary:active, .btn-secondary:active { transform: scale(0.98); }
+
+    /* Sections */
     .benefit-row, .benefit-row.reverse .benefit-visual { grid-template-columns: 1fr; order: unset; }
     .who-split, .stat-row, .join-steps, .join-steps-detailed, .whofor-grid, .statbar-row, .whatwedo-grid, .vision-mission-grid { grid-template-columns: 1fr; }
-    .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; }
+
+    /* Headings */
+    .statbar h2, .values h2, .isforyou h2, .vision-mission-item h3 { font-size: clamp(20px, 5vw, 28px); margin-bottom: var(--spacing-md); }
+
+    /* Spacing */
+    .statbar { padding: var(--spacing-4xl) 0; }
+    .values { padding: var(--spacing-4xl) 0; }
+    .whatwedo { padding: var(--spacing-4xl) 0; }
+    .isforyou { padding: var(--spacing-4xl) 0; }
+    .vision-mission { padding: var(--spacing-4xl) 0; }
+
+    /* Cards and Lists */
+    .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
     .join-step-card, .join-selected-card { max-width: 100%; }
-    .statbar-row { flex-direction: column; align-items: center; gap: var(--spacing-2xl); }
+    .statbar-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
+    .statbar-item { padding: var(--spacing-2xl) var(--spacing-lg); }
     .values-row { flex-direction: column; align-items: center; }
-    .nav-links { display: none; }
+    .team .wrap { flex-direction: column; gap: var(--spacing-xl); }
+    .team-card { max-width: 100%; }
+
+    /* Vision Mission */
+    .vision-mission-content { gap: var(--spacing-2xl); }
+    .vision-mission-item p { font-size: var(--font-size-sm); }
   }
 </style>
 </head>
