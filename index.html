@@ -314,6 +314,13 @@
   .isforyou-list { max-width: 760px; margin: 0 auto; }
   .isforyou-list li { font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
 
+  /* VISION & MISSION */
+  .vision-mission { padding: var(--spacing-5xl) 0; background: var(--color-white); }
+  .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); }
+  .vision-mission-item { text-align: center; }
+  .vision-mission-item h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-forest); }
+  .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); max-width: 500px; margin: 0 auto; }
+
   /* FAQ */
   .faq { padding: var(--spacing-6xl) 0; background: linear-gradient(135deg, #F7F8F6 0%, #FFFFFF 100%); }
   .faq .section-label { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); text-align: center; text-transform: uppercase; letter-spacing: 2px; }
@@ -366,7 +373,7 @@
     .hero { height: 70vh; padding: var(--spacing-md); }
     .hero h1 { font-size: clamp(28px, 6vw, 36px); }
     .benefit-row, .benefit-row.reverse .benefit-visual { grid-template-columns: 1fr; order: unset; }
-    .who-split, .stat-row, .join-steps, .join-steps-detailed, .whofor-grid, .statbar-row, .whatwedo-grid { grid-template-columns: 1fr; }
+    .who-split, .stat-row, .join-steps, .join-steps-detailed, .whofor-grid, .statbar-row, .whatwedo-grid, .vision-mission-grid { grid-template-columns: 1fr; }
     .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; }
     .join-step-card, .join-selected-card { max-width: 100%; }
     .statbar-row { flex-direction: column; align-items: center; gap: var(--spacing-2xl); }
@@ -395,6 +402,21 @@
     <div class="hero-cta-row">
       <a href="#join" class="btn-primary">Apply Now</a>
       <a href="#" class="btn-secondary">Log In</a>
+    </div>
+  </div>
+</section>
+
+<section class="vision-mission reveal">
+  <div class="wrap">
+    <div class="vision-mission-grid">
+      <div class="vision-mission-item">
+        <h3>Vision</h3>
+        <p>To create a campus where every exceptional student innovator can build the next set of unicorns in Africa.</p>
+      </div>
+      <div class="vision-mission-item">
+        <h3>Mission</h3>
+        <p>To adequately close the knowledge gap in building venture-backable startups, connecting and building an ecosystem that creates a robust platform for developing co-builders.</p>
+      </div>
     </div>
   </div>
 </section>
