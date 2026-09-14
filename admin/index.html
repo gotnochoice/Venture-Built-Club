@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Venture Built Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo:#281398; --indigo-light:#2F32D5; --indigo-tint:#EEEAFB;
+    --orange:#FB961F; --orange-light:#FFC876;
+    --ink:#1A1330; --slate:#5B5870; --slate-light:#8B87A0;
+    --paper:#FFFFFF; --paper-2:#F7F5F0; --border:#E7E4DC;
+    --r-btn:8px; --r-card:12px;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-body); background: var(--paper-2); color: var(--ink); }
+  .hidden { display: none !important; }
+
+  /* LOGIN */
+  .login-shell { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .login-card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-card); padding: 40px; width: 100%; max-width: 380px; }
+  .login-kicker { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+  .login-card h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .login-card > p { color: var(--slate); font-size: 14px; margin-bottom: 28px; }
+  .field-group { margin-bottom: 18px; }
+  .field-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; }
+  .field-group input { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--r-btn); font-size: 14px; font-family: var(--font-body); background: var(--paper-2); }
+  .field-group input:focus { outline: none; border-color: var(--indigo-light); background: var(--paper); box-shadow: 0 0 0 3px var(--indigo-tint); }
+  .btn-primary { width: 100%; padding: 13px; background: var(--indigo); color: var(--paper); border: none; border-radius: var(--r-btn); font-weight: 700; font-size: 14.5px; cursor: pointer; font-family: var(--font-body); transition: background 0.15s; }
+  .btn-primary:hover { background: var(--indigo-light); }
+  .form-error { background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: var(--r-btn); padding: 10px 14px; font-size: 13px; margin-bottom: 16px; }
+
+  /* SHELL */
+  .topbar { background: var(--indigo); color: var(--paper); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .topbar-brand { font-size: 15px; font-weight: 800; letter-spacing: -0.2px; }
+  .topbar-brand span { color: var(--orange-light); }
+  .topbar-user { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+  .btn-logout { background: rgba(255,255,255,0.12); color: var(--paper); border: none; padding: 8px 14px; border-radius: var(--r-btn); font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+  .btn-logout:hover { background: rgba(255,255,255,0.2); }
+
+  .board-wrap { padding: 28px; max-width: 1400px; margin: 0 auto; }
+  .board-header { margin-bottom: 24px; }
+  .board-header h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .board-header p { color: var(--slate); font-size: 13.5px; }
+
+  .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
+  .column { background: var(--paper-2); border-radius: var(--r-card); padding: 14px; min-height: 200px; }
+  .column-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 0 4px; }
+  .column-step { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--indigo); }
+  .column-title { font-size: 13.5px; font-weight: 700; }
+  .column-count { margin-left: auto; font-size: 12px; color: var(--slate-light); font-weight: 600; background: var(--paper); border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px; }
+
+  .app-card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-btn); padding: 14px; margin-bottom: 10px; cursor: pointer; transition: box-shadow 0.15s, border-color 0.15s; }
+  .app-card:hover { box-shadow: 0 4px 14px rgba(40,19,152,0.10); border-color: var(--indigo-light); }
+  .app-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .app-card .meta { font-size: 11.5px; color: var(--slate-light); margin-bottom: 8px; }
+  .app-card .snippet { font-size: 12.5px; color: var(--slate); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .empty-column { text-align: center; padding: 24px 8px; color: var(--slate-light); font-size: 12.5px; }
+
+  /* MODAL */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(26,19,48,0.5); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 200; }
+  .modal { background: var(--paper); border-radius: var(--r-card); max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 32px; }
+  .modal-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .modal-top h2 { font-size: 20px; font-weight: 800; }
+  .modal-close { background: none; border: none; cursor: pointer; color: var(--slate); padding: 4px; }
+  .detail-row { margin-bottom: 16px; }
+  .detail-label { font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--orange); margin-bottom: 5px; }
+  .detail-value { font-size: 14px; line-height: 1.55; color: var(--ink); }
+  .detail-value a { color: var(--indigo-light); }
+  .stage-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; margin-bottom: 20px; }
+  .stage-btn { padding: 9px 15px; border-radius: 999px; font-size: 12.5px; font-weight: 700; border: 1.5px solid var(--border); background: var(--paper-2); color: var(--slate); cursor: pointer; transition: all 0.15s; }
+  .stage-btn.active { background: var(--indigo); border-color: var(--indigo); color: var(--paper); }
+  .stage-btn:hover:not(.active) { border-color: var(--indigo-light); color: var(--indigo); }
+  .notes-textarea { width: 100%; min-height: 80px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--r-btn); font-size: 13.5px; font-family: var(--font-body); background: var(--paper-2); resize: vertical; }
+  .notes-textarea:focus { outline: none; border-color: var(--indigo-light); background: var(--paper); }
+  .btn-save { margin-top: 14px; padding: 11px 20px; background: var(--orange); color: var(--ink); border: none; border-radius: var(--r-btn); font-weight: 700; font-size: 13.5px; cursor: pointer; font-family: var(--font-body); }
+  .btn-save:hover { background: var(--orange-light); }
+
+  @media (max-width: 1000px) {
+    .board { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .board { grid-template-columns: 1fr; }
+    .board-wrap { padding: 16px; }
+    .topbar { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-shell">
+  <div class="login-card">
+    <div class="login-kicker">Venture Built Club</div>
+    <h1>Admin sign in</h1>
+    <p>Recruitment pipeline access only.</p>
+    <div id="loginError" class="form-error hidden"></div>
+    <form id="loginForm">
+      <div class="field-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="admin@example.com" required>
+      </div>
+      <div class="field-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-primary">Sign In</button>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardScreen" class="hidden">
+  <div class="topbar">
+    <div class="topbar-brand">Venture Built <span>Admin</span></div>
+    <div class="topbar-user">
+      <span id="adminName">Admin</span>
+      <button class="btn-logout" id="logoutBtn">Log Out</button>
+    </div>
+  </div>
+
+  <div class="board-wrap">
+    <div class="board-header">
+      <h1>Recruitment Pipeline</h1>
+      <p>Review applications and move them through each stage.</p>
+    </div>
+
+    <div class="board">
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">01</span>
+          <span class="column-title">Applied</span>
+          <span class="column-count" id="count-applied">0</span>
+        </div>
+        <div id="col-applied"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">02</span>
+          <span class="column-title">Interview</span>
+          <span class="column-count" id="count-interview">0</span>
+        </div>
+        <div id="col-interview"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">03</span>
+          <span class="column-title">Accepted</span>
+          <span class="column-count" id="count-accepted">0</span>
+        </div>
+        <div id="col-accepted"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">04</span>
+          <span class="column-title">Rejected</span>
+          <span class="column-count" id="count-rejected">0</span>
+        </div>
+        <div id="col-rejected"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div id="modalBackdrop" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-top">
+      <h2 id="modalName">—</h2>
+      <button class="modal-close" id="modalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Contact</div>
+      <div class="detail-value" id="modalContact">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Department / Level</div>
+      <div class="detail-value" id="modalDept">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">What they're building</div>
+      <div class="detail-value" id="modalBuilding">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Conviction</div>
+      <div class="detail-value" id="modalConviction">—</div>
+    </div>
+    <div class="detail-row" id="modalTeamRow">
+      <div class="detail-label">Team</div>
+      <div class="detail-value" id="modalTeam">—</div>
+    </div>
+    <div class="detail-row" id="modalLinkRow">
+      <div class="detail-label">Portfolio Link</div>
+      <div class="detail-value" id="modalLink">—</div>
+    </div>
+
+    <div class="detail-label">Move to stage</div>
+    <div class="stage-buttons" id="stageButtons">
+      <button class="stage-btn" data-stage="applied">Applied</button>
+      <button class="stage-btn" data-stage="interview">Interview</button>
+      <button class="stage-btn" data-stage="accepted">Accepted</button>
+      <button class="stage-btn" data-stage="rejected">Rejected</button>
+    </div>
+
+    <div class="detail-label">Internal Notes</div>
+    <textarea class="notes-textarea" id="modalNotes" placeholder="Notes visible only to admins..."></textarea>
+    <button class="btn-save" id="saveBtn">Save Changes</button>
+  </div>
+</div>
+
+<script>
+  const API_URL = 'https://venture-built-club.vercel.app/api';
+  let applications = [];
+  let currentAppId = null;
+  let currentStage = null;
+
+  function showError(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.classList.remove('hidden');
+  }
+  function hideError(id) {
+    document.getElementById(id).classList.add('hidden');
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideError('loginError');
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        if (data.user.role !== 'admin') {
+          showError('loginError', 'This account does not have admin access.');
+          return;
+        }
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('adminUser', JSON.stringify(data.user));
+        showDashboard(data.user);
+      } else {
+        showError('loginError', data.error || 'Login failed');
+      }
+    } catch (error) {
+      showError('loginError', 'Could not reach the server. Please try again.');
+    }
+  });
+
+  function showDashboard(user) {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('dashboardScreen').classList.remove('hidden');
+    document.getElementById('adminName').textContent = `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.email;
+    loadApplications();
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
+    location.reload();
+  });
+
+  async function loadApplications() {
+    const token = localStorage.getItem('adminToken');
+    try {
+      const response = await fetch(`${API_URL}/admin/applications/list`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        applications = data.data;
+        renderBoard();
+      }
+    } catch (error) {
+      console.error('Failed to load applications', error);
+    }
+  }
+
+  function renderBoard() {
+    const stages = ['applied', 'interview', 'accepted', 'rejected'];
+    stages.forEach(stage => {
+      const col = document.getElementById(`col-${stage}`);
+      const items = applications.filter(a => a.stage === stage);
+      document.getElementById(`count-${stage}`).textContent = items.length;
+
+      if (items.length === 0) {
+        col.innerHTML = '<div class="empty-column">No applications</div>';
+        return;
+      }
+
+      col.innerHTML = items.map(app => `
+        <div class="app-card" data-id="${app.id}">
+          <h3>${escapeHtml(app.full_name)}</h3>
+          <div class="meta">${escapeHtml(app.department || 'No department')}${app.year_level ? ' · ' + escapeHtml(app.year_level) : ''}</div>
+          <div class="snippet">${escapeHtml(app.what_building)}</div>
+        </div>
+      `).join('');
+    });
+
+    document.querySelectorAll('.app-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card.dataset.id));
+    });
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function openModal(id) {
+    const app = applications.find(a => a.id === id);
+    if (!app) return;
+    currentAppId = id;
+    currentStage = app.stage;
+
+    document.getElementById('modalName').textContent = app.full_name;
+    document.getElementById('modalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('modalDept').textContent = `${app.department || '—'}${app.year_level ? ' · ' + app.year_level : ''}`;
+    document.getElementById('modalBuilding').textContent = app.what_building;
+    document.getElementById('modalConviction').textContent = app.conviction;
+
+    if (app.team_info) {
+      document.getElementById('modalTeamRow').classList.remove('hidden');
+      document.getElementById('modalTeam').textContent = app.team_info;
+    } else {
+      document.getElementById('modalTeamRow').classList.add('hidden');
+    }
+
+    if (app.portfolio_link) {
+      document.getElementById('modalLinkRow').classList.remove('hidden');
+      document.getElementById('modalLink').innerHTML = `<a href="${escapeHtml(app.portfolio_link)}" target="_blank" rel="noopener">${escapeHtml(app.portfolio_link)}</a>`;
+    } else {
+      document.getElementById('modalLinkRow').classList.add('hidden');
+    }
+
+    document.getElementById('modalNotes').value = app.internal_notes || '';
+
+    document.querySelectorAll('.stage-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.stage === app.stage);
+    });
+
+    document.getElementById('modalBackdrop').classList.remove('hidden');
+  }
+
+  document.getElementById('modalClose').addEventListener('click', () => {
+    document.getElementById('modalBackdrop').classList.add('hidden');
+  });
+
+  document.querySelectorAll('.stage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentStage = btn.dataset.stage;
+      document.querySelectorAll('.stage-btn').forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
+
+  document.getElementById('saveBtn').addEventListener('click', async () => {
+    const token = localStorage.getItem('adminToken');
+    const notes = document.getElementById('modalNotes').value;
+
+    try {
+      const response = await fetch(`${API_URL}/admin/applications/update`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ id: currentAppId, stage: currentStage, internalNotes: notes })
+      });
+
+      if (response.ok) {
+        document.getElementById('modalBackdrop').classList.add('hidden');
+        loadApplications();
+      }
+    } catch (error) {
+      console.error('Failed to save', error);
+    }
+  });
+
+  window.addEventListener('load', () => {
+    const user = localStorage.getItem('adminUser');
+    if (user) {
+      showDashboard(JSON.parse(user));
+    }
+  });
+</script>
+
+</body>
+</html>

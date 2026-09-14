@@ -139,6 +139,24 @@ CREATE TABLE admin_logs (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Applications (recruitment pipeline - prospective members applying to join)
+CREATE TABLE applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  department VARCHAR(100),
+  year_level VARCHAR(50),
+  what_building TEXT NOT NULL,
+  conviction TEXT NOT NULL,
+  team_info TEXT,
+  portfolio_link VARCHAR(500),
+  stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
+  internal_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_profiles_user_id ON profiles(user_id);
@@ -150,3 +168,5 @@ CREATE INDEX idx_co_builder_requests_status ON co_builder_requests(status);
 CREATE INDEX idx_co_builder_requests_receiver ON co_builder_requests(receiver_id);
 CREATE INDEX idx_resources_pillar ON resources(pillar);
 CREATE INDEX idx_admin_logs_admin_id ON admin_logs(admin_id);
+CREATE INDEX idx_applications_stage ON applications(stage);
+CREATE INDEX idx_applications_email ON applications(email);
