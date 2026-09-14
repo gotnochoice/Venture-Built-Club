@@ -46,6 +46,6 @@ module.exports = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    respondError(res, 500, `Login failed: ${error.message}`);
+    respondError(res, 500, 'Login failed');
   }
 };
