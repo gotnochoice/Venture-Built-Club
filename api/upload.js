@@ -23,9 +23,16 @@ module.exports = async (req, res) => {
       return respondError(res, 400, 'File is too large. Please upload a file under 4MB.');
     }
 
+    // Verify the actual file content is a PDF (magic bytes), not just the
+    // client-supplied contentType/filename, which can be spoofed.
+    const isPdf = buffer.length >= 5 && buffer.subarray(0, 5).toString('ascii') === '%PDF-';
+    if (!isPdf) {
+      return respondError(res, 400, 'Only PDF files are accepted.');
+    }
+
     const blob = await put(filename, buffer, {
       access: 'public',
-      contentType: contentType || 'application/octet-stream',
+      contentType: 'application/pdf',
       addRandomSuffix: true,
     });
 

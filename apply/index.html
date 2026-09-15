@@ -216,16 +216,16 @@
 
           <label class="file-upload" id="cvUploadBox" for="cvFile" style="margin-bottom: 12px;">
             <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-            <span class="file-upload-text"><strong>CV / Portfolio</strong> — click to upload (.pdf, .doc, .docx) <span class="hint">required</span></span>
+            <span class="file-upload-text"><strong>CV / Portfolio</strong> — click to upload (PDF only) <span class="hint">required</span></span>
           </label>
-          <input type="file" id="cvFile" accept=".pdf,.doc,.docx" required>
+          <input type="file" id="cvFile" accept="application/pdf" required>
           <div class="file-status hidden" id="cvStatus"></div>
 
           <label class="file-upload" id="deckUploadBox" for="deckFile" style="margin-top: 14px;">
             <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-            <span class="file-upload-text"><strong>Pitch Deck</strong> — click to upload (.pdf, .ppt, .pptx) <span class="hint">optional</span></span>
+            <span class="file-upload-text"><strong>Pitch Deck</strong> — click to upload (PDF only) <span class="hint">optional</span></span>
           </label>
-          <input type="file" id="deckFile" accept=".pdf,.ppt,.pptx">
+          <input type="file" id="deckFile" accept="application/pdf">
           <div class="file-status hidden" id="deckStatus"></div>
         </div>
       </div>
@@ -387,6 +387,13 @@
     statusEl.classList.remove('hidden', 'success', 'error');
     statusEl.classList.add('uploading');
     statusEl.textContent = 'Uploading...';
+
+    if (file.type !== 'application/pdf') {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Only PDF files are accepted.';
+      throw new Error(`${file.name} must be a PDF file.`);
+    }
 
     if (file.size > 4 * 1024 * 1024) {
       statusEl.classList.remove('uploading');
