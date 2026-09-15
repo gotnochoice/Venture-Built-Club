@@ -69,6 +69,15 @@
   .success-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
   .success-card p { color: var(--slate); font-size: 14.5px; max-width: 380px; margin: 0 auto; }
 
+  .intro-notice { background: var(--indigo); color: #fff; border-radius: var(--r-card); padding: 28px 32px; margin-bottom: 32px; }
+  .intro-notice .notice-label { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--orange-light); margin-bottom: 12px; }
+  .intro-notice p { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.9); margin-bottom: 14px; }
+  .intro-notice p:last-child { margin-bottom: 0; }
+  .intro-notice strong { color: #fff; }
+
+  .q-label { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
+  .q-number { font-family: var(--font-mono); color: var(--orange); margin-right: 6px; }
+
   .hidden { display: none !important; }
 
   @media (max-width: 640px) {
@@ -85,13 +94,19 @@
   <h1>Tell us what you're <span class="underline-word">building<svg viewBox="0 0 160 12"><path d="M2 8 Q 80 2, 158 8"/></svg></span>.</h1>
   <p class="lede">No polished pitch deck required. We're looking for real conviction, not perfect answers.</p>
 
+  <div class="intro-notice">
+    <div class="notice-label">Before you apply</div>
+    <p>Venture Built only accepts the top 1% of applicants. We're not looking for generic answers, and we can tell when a response was written by AI instead of by you. Put real thought into every question, it's the difference between getting in and getting overlooked.</p>
+    <p>As a member, you'll be learning directly from top OAU alumni founders who've gone on to raise thousands to millions of dollars for their startups. This club is for the best, so give us your best.</p>
+  </div>
+
   <div class="card" id="formCard">
     <div id="formError" class="form-error hidden"></div>
     <form id="applyForm">
-      <div class="step-label">01 — About you</div>
+      <div class="step-label">01 — Basic Info</div>
       <div class="field-row">
         <div class="field-group">
-          <label for="fullName">Full Name</label>
+          <label for="fullName">Name</label>
           <input type="text" id="fullName" placeholder="Ada Lovelace" required>
         </div>
         <div class="field-group">
@@ -101,37 +116,47 @@
       </div>
       <div class="field-row">
         <div class="field-group">
-          <label for="phone">Phone Number <span class="hint">optional</span></label>
-          <input type="tel" id="phone" placeholder="+234...">
+          <label for="department">Department</label>
+          <input type="text" id="department" placeholder="Computer Science" required>
         </div>
         <div class="field-group">
-          <label for="department">Department</label>
-          <input type="text" id="department" placeholder="Computer Science">
+          <label for="level">Level</label>
+          <input type="text" id="level" placeholder="100L, 300L, Masters..." required>
         </div>
-      </div>
-      <div class="field-group">
-        <label for="yearLevel">Year / Level</label>
-        <input type="text" id="yearLevel" placeholder="300L">
       </div>
 
       <div class="section-divider"></div>
 
-      <div class="step-label">02 — What you're building</div>
+      <div class="step-label">02 — Tell Us About You</div>
+
       <div class="field-group">
-        <label for="whatBuilding">What are you building, or what do you want to start building?</label>
-        <textarea id="whatBuilding" placeholder="Be specific. An idea, a prototype, a piece of research — whatever stage you're at." required></textarea>
+        <div class="q-label"><span class="q-number">01</span>Who are you, and what do you bring that isn't obvious from your CV?</div>
+        <textarea id="whoAreYou" required></textarea>
       </div>
+
       <div class="field-group">
-        <label for="conviction">Why this problem? What's your conviction here?</label>
-        <textarea id="conviction" placeholder="Tell us why you're the person to work on this, even if it's early." required></textarea>
+        <div class="q-label"><span class="q-number">02</span>What are you building, or want to build? Tell us why it matters, and why you're the one to build it.</div>
+        <textarea id="whatBuilding" required></textarea>
       </div>
+
       <div class="field-group">
-        <label for="teamInfo">Are you building solo or with a team? <span class="hint">optional</span></label>
-        <input type="text" id="teamInfo" placeholder="Solo, or names/roles of co-founders">
+        <div class="q-label"><span class="q-number">03</span>If you're not building yet, what about the startup world pulls you in, and what do you want to learn here? <span class="hint">if applicable</span></div>
+        <textarea id="startupPull"></textarea>
       </div>
+
       <div class="field-group">
-        <label for="portfolioLink">Link to your work <span class="hint">optional</span></label>
-        <input type="url" id="portfolioLink" placeholder="Prototype, deck, research doc, GitHub — anything">
+        <div class="q-label"><span class="q-number">04</span>What's a problem you can't stop thinking about, and why?</div>
+        <textarea id="persistentProblem" required></textarea>
+      </div>
+
+      <div class="field-group">
+        <div class="q-label"><span class="q-number">05</span>In your own words, what is Venture Built, and what do you hope to gain from being a member?</div>
+        <textarea id="whatIsVentureBuilt" required></textarea>
+      </div>
+
+      <div class="field-group">
+        <div class="q-label"><span class="q-number">06</span>Share your CV or portfolio, and a pitch deck if you have one. <span class="hint">optional</span></div>
+        <textarea id="portfolioLinks" placeholder="Paste links (Google Drive, GitHub, Notion, etc.)"></textarea>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
@@ -161,13 +186,14 @@
     const payload = {
       fullName: document.getElementById('fullName').value,
       email: document.getElementById('email').value,
-      phone: document.getElementById('phone').value,
       department: document.getElementById('department').value,
-      yearLevel: document.getElementById('yearLevel').value,
+      level: document.getElementById('level').value,
+      whoAreYou: document.getElementById('whoAreYou').value,
       whatBuilding: document.getElementById('whatBuilding').value,
-      conviction: document.getElementById('conviction').value,
-      teamInfo: document.getElementById('teamInfo').value,
-      portfolioLink: document.getElementById('portfolioLink').value,
+      startupPull: document.getElementById('startupPull').value,
+      persistentProblem: document.getElementById('persistentProblem').value,
+      whatIsVentureBuilt: document.getElementById('whatIsVentureBuilt').value,
+      portfolioLinks: document.getElementById('portfolioLinks').value,
     };
 
     try {

@@ -10,19 +10,22 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { fullName, email, phone, department, yearLevel, whatBuilding, conviction, teamInfo, portfolioLink } = req.body;
+    const {
+      fullName, email, department, level,
+      whoAreYou, whatBuilding, startupPull, persistentProblem, whatIsVentureBuilt, portfolioLinks
+    } = req.body;
 
-    if (!fullName || !email || !whatBuilding || !conviction) {
-      return respondError(res, 400, 'Name, email, what you\'re building, and your conviction are required');
+    if (!fullName || !email || !department || !level || !whoAreYou || !whatBuilding || !persistentProblem || !whatIsVentureBuilt) {
+      return respondError(res, 400, 'Please fill in all required fields');
     }
 
     const applicationId = uuidv4();
     const pool = getPool();
 
     await pool.query(
-      `INSERT INTO applications (id, full_name, email, phone, department, year_level, what_building, conviction, team_info, portfolio_link)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-      [applicationId, fullName, email, phone || null, department || null, yearLevel || null, whatBuilding, conviction, teamInfo || null, portfolioLink || null]
+      `INSERT INTO applications (id, full_name, email, department, level, who_are_you, what_building, startup_pull, persistent_problem, what_is_venture_built, portfolio_links)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+      [applicationId, fullName, email, department, level, whoAreYou, whatBuilding, startupPull || null, persistentProblem, whatIsVentureBuilt, portfolioLinks || null]
     );
 
     respondSuccess(res, 201, {

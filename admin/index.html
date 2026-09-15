@@ -186,19 +186,27 @@
       <div class="detail-value" id="modalDept">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">What they're building</div>
-      <div class="detail-value" id="modalBuilding">—</div>
+      <div class="detail-label">01 — Who are you, and what do you bring that isn't obvious from your CV?</div>
+      <div class="detail-value" id="modalWhoAreYou">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">Conviction</div>
-      <div class="detail-value" id="modalConviction">—</div>
+      <div class="detail-label">02 — What are you building, or want to build?</div>
+      <div class="detail-value" id="modalBuilding">—</div>
     </div>
-    <div class="detail-row" id="modalTeamRow">
-      <div class="detail-label">Team</div>
-      <div class="detail-value" id="modalTeam">—</div>
+    <div class="detail-row" id="modalPullRow">
+      <div class="detail-label">03 — What pulls you into the startup world?</div>
+      <div class="detail-value" id="modalPull">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">04 — What's a problem you can't stop thinking about?</div>
+      <div class="detail-value" id="modalProblem">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">05 — What is Venture Built, and what do you hope to gain?</div>
+      <div class="detail-value" id="modalVBC">—</div>
     </div>
     <div class="detail-row" id="modalLinkRow">
-      <div class="detail-label">Portfolio Link</div>
+      <div class="detail-label">06 — CV / Portfolio / Pitch Deck</div>
       <div class="detail-value" id="modalLink">—</div>
     </div>
 
@@ -305,7 +313,7 @@
       col.innerHTML = items.map(app => `
         <div class="app-card" data-id="${app.id}">
           <h3>${escapeHtml(app.full_name)}</h3>
-          <div class="meta">${escapeHtml(app.department || 'No department')}${app.year_level ? ' · ' + escapeHtml(app.year_level) : ''}</div>
+          <div class="meta">${escapeHtml(app.department || 'No department')}${app.level ? ' · ' + escapeHtml(app.level) : ''}</div>
           <div class="snippet">${escapeHtml(app.what_building)}</div>
         </div>
       `).join('');
@@ -329,21 +337,23 @@
     currentStage = app.stage;
 
     document.getElementById('modalName').textContent = app.full_name;
-    document.getElementById('modalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
-    document.getElementById('modalDept').textContent = `${app.department || '—'}${app.year_level ? ' · ' + app.year_level : ''}`;
+    document.getElementById('modalContact').textContent = app.email;
+    document.getElementById('modalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
+    document.getElementById('modalWhoAreYou').textContent = app.who_are_you;
     document.getElementById('modalBuilding').textContent = app.what_building;
-    document.getElementById('modalConviction').textContent = app.conviction;
+    document.getElementById('modalProblem').textContent = app.persistent_problem;
+    document.getElementById('modalVBC').textContent = app.what_is_venture_built;
 
-    if (app.team_info) {
-      document.getElementById('modalTeamRow').classList.remove('hidden');
-      document.getElementById('modalTeam').textContent = app.team_info;
+    if (app.startup_pull) {
+      document.getElementById('modalPullRow').classList.remove('hidden');
+      document.getElementById('modalPull').textContent = app.startup_pull;
     } else {
-      document.getElementById('modalTeamRow').classList.add('hidden');
+      document.getElementById('modalPullRow').classList.add('hidden');
     }
 
-    if (app.portfolio_link) {
+    if (app.portfolio_links) {
       document.getElementById('modalLinkRow').classList.remove('hidden');
-      document.getElementById('modalLink').innerHTML = `<a href="${escapeHtml(app.portfolio_link)}" target="_blank" rel="noopener">${escapeHtml(app.portfolio_link)}</a>`;
+      document.getElementById('modalLink').textContent = app.portfolio_links;
     } else {
       document.getElementById('modalLinkRow').classList.add('hidden');
     }
