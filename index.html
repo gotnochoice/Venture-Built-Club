@@ -216,6 +216,10 @@
   }
   .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
   .btn-secondary:active { transform: scale(0.98); }
+  /* Hero buttons stay at the medium size rather than scaling to the largest tier - reads as too big sitting side-by-side in the hero */
+  @media (min-width: 768px) {
+    .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary { padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-base); }
+  }
   .hero-facts { display: flex; gap: var(--spacing-4xl); flex-wrap: wrap; padding-top: var(--spacing-3xl); border-top: 1px solid rgba(255,255,255,0.2); }
   .hero-fact { font-size: var(--font-size-xs); color: rgba(255,255,255,0.85); font-family: var(--font-family); text-shadow: 0 1px 3px rgba(10,10,10,0.2); }
   .hero-fact b { display: block; color: var(--color-white); font-size: var(--font-size-base); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xs); font-family: var(--font-family); }
