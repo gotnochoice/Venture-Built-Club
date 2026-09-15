@@ -23,6 +23,12 @@ module.exports = async (req, res) => {
         !persistentProblem || !whatIsVentureBuilt || !cvUrl || !roleFitReason) {
       return respondError(res, 400, 'Please fill in all required fields');
     }
+    if (!Array.isArray(meetingDays) || meetingDays.length === 0) {
+      return respondError(res, 400, 'Please select at least one day for the weekly meeting');
+    }
+    if (!meetingTime) {
+      return respondError(res, 400, 'Please provide a meeting time');
+    }
 
     const applicationId = uuidv4();
     const pool = getPool();

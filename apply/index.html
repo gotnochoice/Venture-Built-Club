@@ -316,7 +316,7 @@
         </div>
         <div class="field-group">
           <label for="meetingTime">What time works best?</label>
-          <input type="text" id="meetingTime" placeholder="e.g. 5:00 PM">
+          <input type="text" id="meetingTime" placeholder="e.g. 5:00 PM" required>
         </div>
 
         <div class="section-divider"></div>
@@ -430,9 +430,15 @@
     try {
       const cvFile = document.getElementById('cvFile').files[0];
       const deckFile = document.getElementById('deckFile').files[0];
+      const meetingDays = Array.from(document.querySelectorAll('.day-chip input:checked')).map(el => el.value);
+      const commitHours = document.querySelector('input[name="commitHours"]:checked');
+      const comfortPitch = document.querySelector('input[name="comfortPitch"]:checked');
 
       if (!cvFile) {
         throw new Error('Please upload your CV or portfolio.');
+      }
+      if (meetingDays.length === 0) {
+        throw new Error('Please select at least one day that works for the weekly meeting.');
       }
 
       btn.textContent = 'Uploading files...';
@@ -440,10 +446,6 @@
       const pitchDeckUrl = deckFile ? await uploadFile(deckFile, 'deckStatus') : null;
 
       btn.textContent = 'Submitting...';
-
-      const meetingDays = Array.from(document.querySelectorAll('.day-chip input:checked')).map(el => el.value);
-      const commitHours = document.querySelector('input[name="commitHours"]:checked');
-      const comfortPitch = document.querySelector('input[name="comfortPitch"]:checked');
 
       const payload = {
         fullName: document.getElementById('fullName').value,
