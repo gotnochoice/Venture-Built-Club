@@ -21,26 +21,54 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font); background: #F7F8F6; color: #2A332F; line-height: 1.6; }
 
-  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 100px; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 100px; }
 
-  h1 { font-size: clamp(28px, 4.5vw, 38px); font-weight: 800; color: var(--black); line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em; }
-  .lede { font-size: 15.5px; color: var(--steel); max-width: 560px; margin-bottom: 32px; }
-
-  .notice-card {
-    background: var(--white); border-left: 4px solid var(--bright); border-radius: 8px;
-    padding: 24px 28px; margin-bottom: 40px; box-shadow: 0 2px 8px rgba(10,10,10,0.05);
+  .page-head { text-align: center; margin-bottom: 40px; }
+  .page-kicker {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--bright-dark); background: rgba(62,189,121,0.1); padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
   }
-  .notice-card .notice-title { font-weight: 800; font-size: 16px; color: var(--black); margin-bottom: 10px; }
-  .notice-card p { font-size: 14px; color: #2A332F; margin-bottom: 12px; line-height: 1.65; }
+  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; color: var(--black); line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .lede { font-size: 15.5px; color: var(--steel); max-width: 480px; margin: 0 auto; }
+
+  /* PROGRESS RAIL */
+  .progress-rail { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; padding: 0 4px; }
+  .progress-step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; }
+  .progress-step::before {
+    content: ""; position: absolute; top: 13px; left: -50%; width: 100%; height: 2px; background: var(--border); z-index: 0;
+  }
+  .progress-step:first-child::before { display: none; }
+  .progress-dot {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--white); border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700; color: var(--steel);
+    position: relative; z-index: 1; transition: all 0.2s;
+  }
+  .progress-step.active .progress-dot { background: var(--forest); border-color: var(--forest); color: var(--white); }
+  .progress-step.active::before { background: var(--forest); }
+  .progress-label { font-size: 11px; font-weight: 600; color: var(--steel); text-align: center; line-height: 1.3; }
+  .progress-step.active .progress-label { color: var(--forest); }
+
+  /* NOTICE - the "gate" moment, reuses the dark surface from hero/portal login */
+  .notice-card {
+    background: linear-gradient(135deg, var(--forest) 0%, #163f30 100%); color: var(--white);
+    border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; box-shadow: 0 12px 32px rgba(15,61,46,0.18);
+  }
+  .notice-card .notice-title { font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--bright); margin-bottom: 14px; }
+  .notice-card p { font-size: 14px; color: rgba(255,255,255,0.88); margin-bottom: 14px; line-height: 1.65; }
   .notice-card p:last-child { margin-bottom: 0; }
 
   .card {
-    background: var(--white); border-radius: 12px; padding: 32px;
-    box-shadow: 0 2px 10px rgba(10,10,10,0.06); margin-bottom: 24px;
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(10,10,10,0.04); margin-bottom: 20px;
   }
 
-  .section-heading { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 6px; }
-  .section-sub { font-size: 13.5px; color: var(--steel); margin-bottom: 22px; font-style: italic; }
+  .section-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .section-badge {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(15,61,46,0.08); color: var(--forest);
+    display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 800; flex-shrink: 0;
+  }
+  .section-heading { font-size: 19px; font-weight: 800; color: var(--black); }
+  .section-sub { font-size: 13.5px; color: var(--steel); margin-bottom: 22px; font-style: italic; margin-left: 40px; }
 
   .field-group { margin-bottom: 20px; }
   .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
@@ -116,18 +144,43 @@
   .hidden { display: none !important; }
 
   @media (max-width: 640px) {
-    .wrap { padding: 32px 16px 72px; }
+    .wrap { padding: 40px 16px 72px; }
     .card { padding: 20px; }
     .field-row { grid-template-columns: 1fr; }
     .checkbox-grid { grid-template-columns: 1fr; }
+    .progress-label { display: none; }
+    .progress-step { gap: 0; }
+    .notice-card { padding: 22px 20px; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrap">
-  <h1>Apply to Venture Built Club</h1>
-  <p class="lede">No polished pitch deck required. We're looking for real conviction, not perfect answers.</p>
+  <div class="page-head">
+    <span class="page-kicker">Cohort Applications Open</span>
+    <h1>Apply to Venture Built Club</h1>
+    <p class="lede">No polished pitch deck required. We're looking for real conviction, not perfect answers.</p>
+  </div>
+
+  <div class="progress-rail">
+    <div class="progress-step active">
+      <div class="progress-dot">01</div>
+      <div class="progress-label">About You</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">02</div>
+      <div class="progress-label">Questions</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">03</div>
+      <div class="progress-label">What You Bring</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">04</div>
+      <div class="progress-label">Availability</div>
+    </div>
+  </div>
 
   <div class="notice-card">
     <div class="notice-title">Before you apply</div>
@@ -141,7 +194,7 @@
     <form id="applyForm">
       <!-- SECTION 1: ABOUT YOU -->
       <div class="card">
-        <div class="section-heading">About You</div>
+        <div class="section-title-row"><div class="section-badge">01</div><div class="section-heading">About You</div></div>
         <div class="field-row">
           <div class="field-group">
             <label for="fullName">Name</label>
@@ -179,7 +232,7 @@
 
       <!-- SECTION 2: APPLICATION QUESTIONS -->
       <div class="card">
-        <div class="section-heading">Application Questions</div>
+        <div class="section-title-row"><div class="section-badge">02</div><div class="section-heading">Application Questions</div></div>
 
         <div class="field-group">
           <div class="q-label">1. Who are you, and what do you bring that isn't obvious from your CV?</div>
@@ -232,7 +285,7 @@
 
       <!-- SECTION 3: WHAT YOU BRING -->
       <div class="card">
-        <div class="section-heading">What You Bring</div>
+        <div class="section-title-row"><div class="section-badge">03</div><div class="section-heading">What You Bring</div></div>
         <div class="section-sub">Every member is expected to give back to the club, not just receive from it.</div>
 
         <div class="field-group">
@@ -300,7 +353,7 @@
 
       <!-- SECTION 4: AVAILABILITY & COMMITMENT -->
       <div class="card">
-        <div class="section-heading">Availability & Commitment</div>
+        <div class="section-title-row"><div class="section-badge">04</div><div class="section-heading">Availability & Commitment</div></div>
 
         <div class="field-group">
           <label>What day works best for you for our weekly meeting?</label>
