@@ -144,14 +144,31 @@ CREATE TABLE applications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
   department VARCHAR(100) NOT NULL,
   level VARCHAR(50) NOT NULL,
+
   who_are_you TEXT NOT NULL,
   what_building TEXT NOT NULL,
   startup_pull TEXT,
   persistent_problem TEXT NOT NULL,
   what_is_venture_built TEXT NOT NULL,
-  portfolio_links TEXT,
+  cv_url VARCHAR(500) NOT NULL,
+  pitch_deck_url VARCHAR(500),
+
+  club_skills TEXT[],
+  club_skills_other TEXT,
+  builder_skills TEXT[],
+  builder_skills_other TEXT,
+  role_fit VARCHAR(50),
+  role_fit_other TEXT,
+  role_fit_reason TEXT NOT NULL,
+
+  meeting_days TEXT[],
+  meeting_time VARCHAR(100),
+  can_commit_hours BOOLEAN,
+  comfortable_pitching BOOLEAN,
+
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
   internal_notes TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

@@ -205,9 +205,25 @@
       <div class="detail-label">05 — What is Venture Built, and what do you hope to gain?</div>
       <div class="detail-value" id="modalVBC">—</div>
     </div>
-    <div class="detail-row" id="modalLinkRow">
-      <div class="detail-label">06 — CV / Portfolio / Pitch Deck</div>
-      <div class="detail-value" id="modalLink">—</div>
+    <div class="detail-row">
+      <div class="detail-label">06 — Files</div>
+      <div class="detail-value" id="modalFiles">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Skills for the Club</div>
+      <div class="detail-value" id="modalClubSkills">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Builder Skills</div>
+      <div class="detail-value" id="modalBuilderSkills">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Role Fit</div>
+      <div class="detail-value" id="modalRoleFit">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Availability & Commitment</div>
+      <div class="detail-value" id="modalAvailability">—</div>
     </div>
 
     <div class="detail-label">Move to stage</div>
@@ -337,7 +353,7 @@
     currentStage = app.stage;
 
     document.getElementById('modalName').textContent = app.full_name;
-    document.getElementById('modalContact').textContent = app.email;
+    document.getElementById('modalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
     document.getElementById('modalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('modalWhoAreYou').textContent = app.who_are_you;
     document.getElementById('modalBuilding').textContent = app.what_building;
@@ -351,12 +367,30 @@
       document.getElementById('modalPullRow').classList.add('hidden');
     }
 
-    if (app.portfolio_links) {
-      document.getElementById('modalLinkRow').classList.remove('hidden');
-      document.getElementById('modalLink').textContent = app.portfolio_links;
-    } else {
-      document.getElementById('modalLinkRow').classList.add('hidden');
-    }
+    const fileLinks = [];
+    if (app.cv_url) fileLinks.push(`<a href="${escapeHtml(app.cv_url)}" target="_blank" rel="noopener">CV / Portfolio</a>`);
+    if (app.pitch_deck_url) fileLinks.push(`<a href="${escapeHtml(app.pitch_deck_url)}" target="_blank" rel="noopener">Pitch Deck</a>`);
+    document.getElementById('modalFiles').innerHTML = fileLinks.length ? fileLinks.join(' &nbsp;·&nbsp; ') : '—';
+
+    const clubSkills = [...(app.club_skills || [])];
+    if (app.club_skills_other) clubSkills.push(app.club_skills_other + ' (other)');
+    document.getElementById('modalClubSkills').textContent = clubSkills.length ? clubSkills.join(', ') : '—';
+
+    const builderSkills = [...(app.builder_skills || [])];
+    if (app.builder_skills_other) builderSkills.push(app.builder_skills_other + ' (other)');
+    document.getElementById('modalBuilderSkills').textContent = builderSkills.length ? builderSkills.join(', ') : '—';
+
+    const roleLabel = app.role_fit === 'Other' ? (app.role_fit_other || 'Other') : app.role_fit;
+    document.getElementById('modalRoleFit').textContent = roleLabel
+      ? `${roleLabel} — ${app.role_fit_reason || ''}`
+      : (app.role_fit_reason || '—');
+
+    const availabilityParts = [];
+    if (app.meeting_days && app.meeting_days.length) availabilityParts.push(app.meeting_days.join(', '));
+    if (app.meeting_time) availabilityParts.push(app.meeting_time);
+    availabilityParts.push(`Can commit ~2hrs/week: ${app.can_commit_hours === true ? 'Yes' : app.can_commit_hours === false ? 'No' : '—'}`);
+    availabilityParts.push(`Comfortable pitching: ${app.comfortable_pitching === true ? 'Yes' : app.comfortable_pitching === false ? 'No' : '—'}`);
+    document.getElementById('modalAvailability').textContent = availabilityParts.join(' · ');
 
     document.getElementById('modalNotes').value = app.internal_notes || '';
 

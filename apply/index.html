@@ -6,157 +6,336 @@
 <title>Apply — Venture Built Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --indigo:#281398; --indigo-light:#2F32D5; --indigo-tint:#EEEAFB;
-    --orange:#FB961F; --orange-light:#FFC876;
-    --ink:#1A1330; --slate:#5B5870; --slate-light:#8B87A0;
-    --paper:#FFFFFF; --paper-2:#F7F5F0; --border:#E7E4DC;
-    --r-btn:8px; --r-card:12px;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    --black: #0A0A0A;
+    --forest: #0F3D2E;
+    --white: #FFFFFF;
+    --steel: #6B7268;
+    --bright: #3EBD79;
+    --bright-dark: #2DA863;
+    --border: #E5E7EB;
+    --font: 'Montserrat', sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-body); background: var(--paper-2); color: var(--ink); line-height: 1.5; }
+  body { font-family: var(--font); background: #F7F8F6; color: #2A332F; line-height: 1.6; }
 
-  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 100px; }
 
-  .kicker { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  h1 { font-size: clamp(28px, 4.5vw, 38px); font-weight: 800; color: var(--black); line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .lede { font-size: 15.5px; color: var(--steel); max-width: 560px; margin-bottom: 32px; }
 
-  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 16px; }
-  .underline-word { position: relative; display: inline-block; color: var(--indigo); }
-  .underline-word svg { position: absolute; left: 0; bottom: -6px; width: 100%; height: 12px; overflow: visible; }
-  .underline-word path {
-    stroke: var(--orange); stroke-width: 4; fill: none; stroke-linecap: round;
-    stroke-dasharray: 220; stroke-dashoffset: 220;
-    animation: draw 0.9s 0.3s ease-out forwards;
+  .notice-card {
+    background: var(--white); border-left: 4px solid var(--bright); border-radius: 8px;
+    padding: 24px 28px; margin-bottom: 40px; box-shadow: 0 2px 8px rgba(10,10,10,0.05);
   }
-  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .notice-card .notice-title { font-weight: 800; font-size: 16px; color: var(--black); margin-bottom: 10px; }
+  .notice-card p { font-size: 14px; color: #2A332F; margin-bottom: 12px; line-height: 1.65; }
+  .notice-card p:last-child { margin-bottom: 0; }
 
-  .lede { font-size: 16px; color: var(--slate); max-width: 540px; margin-bottom: 48px; }
-
-  .card { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-card); padding: 40px; }
-
-  .field-group { margin-bottom: 24px; }
-  .field-group label { display: block; font-size: 13.5px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
-  .field-group .hint { font-size: 12.5px; color: var(--slate-light); font-weight: 400; margin-left: 6px; }
-  .field-group input, .field-group textarea {
-    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--r-btn);
-    font-size: 14.5px; font-family: var(--font-body); background: var(--paper-2); color: var(--ink);
-    transition: border-color 0.15s, background 0.15s;
+  .card {
+    background: var(--white); border-radius: 12px; padding: 32px;
+    box-shadow: 0 2px 10px rgba(10,10,10,0.06); margin-bottom: 24px;
   }
-  .field-group input::placeholder, .field-group textarea::placeholder { color: var(--slate-light); }
-  .field-group input:focus, .field-group textarea:focus { outline: none; border-color: var(--indigo-light); background: var(--paper); box-shadow: 0 0 0 3px var(--indigo-tint); }
-  .field-group textarea { resize: vertical; min-height: 90px; }
+
+  .section-heading { font-size: 20px; font-weight: 800; color: var(--black); margin-bottom: 6px; }
+  .section-sub { font-size: 13.5px; color: var(--steel); margin-bottom: 22px; font-style: italic; }
+
+  .field-group { margin-bottom: 20px; }
+  .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
+  .field-group .hint { font-weight: 400; color: var(--steel); font-size: 12.5px; }
+  .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"],
+  .field-group select, .field-group textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 14.5px; font-family: var(--font); background: #FAFBFA; color: var(--black);
+  }
+  .field-group textarea { min-height: 90px; resize: vertical; }
+  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+    outline: none; border-color: var(--bright); background: var(--white); box-shadow: 0 0 0 3px rgba(62,189,121,0.12);
+  }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .q-counter { font-size: 12px; color: var(--steel); margin-top: 6px; }
 
-  .step-label { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--indigo); margin-bottom: 6px; }
-  .section-divider { height: 1px; background: var(--border); margin: 32px 0; }
+  .file-upload {
+    border: 1.5px dashed var(--border); border-radius: 8px; padding: 18px; background: #FAFBFA;
+    display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+  }
+  .file-upload:hover { border-color: var(--bright); background: rgba(62,189,121,0.04); }
+  .file-upload input[type="file"] { display: none; }
+  .file-upload-icon { color: var(--bright); flex-shrink: 0; }
+  .file-upload-text { font-size: 13.5px; color: var(--steel); }
+  .file-upload-text strong { color: var(--black); }
+  .file-upload.has-file { border-style: solid; border-color: var(--bright); }
+  .file-status { font-size: 12.5px; margin-top: 8px; }
+  .file-status.uploading { color: var(--steel); }
+  .file-status.success { color: var(--bright-dark); font-weight: 600; }
+  .file-status.error { color: #B91C1C; font-weight: 600; }
+
+  .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-bottom: 14px; }
+  .checkbox-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: #2A332F; cursor: pointer; }
+  .checkbox-item input { margin-top: 3px; accent-color: var(--bright); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+
+  .radio-row { display: flex; gap: 20px; }
+  .radio-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .radio-item input { accent-color: var(--bright); width: 17px; height: 17px; cursor: pointer; }
+
+  .day-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .day-chip { position: relative; }
+  .day-chip input { position: absolute; opacity: 0; }
+  .day-chip label {
+    display: inline-block; padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 40px;
+    font-size: 13px; font-weight: 600; color: var(--steel); cursor: pointer; transition: all 0.15s;
+  }
+  .day-chip input:checked + label { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+  .section-divider { height: 1px; background: var(--border); margin: 28px 0; }
 
   .btn-submit {
-    width: 100%; padding: 15px; background: var(--orange); color: var(--ink); border: none; border-radius: var(--r-btn);
-    font-weight: 700; font-size: 15px; cursor: pointer; transition: background 0.15s, transform 0.1s; font-family: var(--font-body);
+    width: 100%; padding: 16px; background: var(--bright); color: var(--black); border: none; border-radius: 40px;
+    font-weight: 700; font-size: 15.5px; cursor: pointer; font-family: var(--font);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s; box-shadow: 0 8px 20px rgba(62,189,121,0.3);
   }
-  .btn-submit:hover { background: var(--orange-light); }
+  .btn-submit:hover { background: var(--bright-dark); box-shadow: 0 10px 24px rgba(62,189,121,0.4); }
   .btn-submit:active { transform: scale(0.99); }
-  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  .form-error { background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: var(--r-btn); padding: 12px 16px; font-size: 13.5px; margin-bottom: 20px; }
+  .form-error {
+    background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 8px;
+    padding: 12px 16px; font-size: 13.5px; margin-bottom: 20px;
+  }
 
   .success-card { text-align: center; padding: 56px 40px; }
-  .success-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--indigo-tint); color: var(--indigo); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-  .success-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
-  .success-card p { color: var(--slate); font-size: 14.5px; max-width: 380px; margin: 0 auto; }
-
-  .intro-notice { background: var(--indigo); color: #fff; border-radius: var(--r-card); padding: 28px 32px; margin-bottom: 32px; }
-  .intro-notice .notice-label { font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--orange-light); margin-bottom: 12px; }
-  .intro-notice p { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.9); margin-bottom: 14px; }
-  .intro-notice p:last-child { margin-bottom: 0; }
-  .intro-notice strong { color: #fff; }
-
-  .q-label { font-size: 14px; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
-  .q-number { font-family: var(--font-mono); color: var(--orange); margin-right: 6px; }
+  .success-icon {
+    width: 60px; height: 60px; border-radius: 50%; background: rgba(62,189,121,0.12); color: var(--bright-dark);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+  }
+  .success-card h2 { font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 10px; }
+  .success-card p { color: var(--steel); font-size: 14.5px; max-width: 380px; margin: 0 auto; }
 
   .hidden { display: none !important; }
 
   @media (max-width: 640px) {
-    .wrap { padding: 40px 16px 64px; }
-    .card { padding: 24px; }
+    .wrap { padding: 32px 16px 72px; }
+    .card { padding: 20px; }
     .field-row { grid-template-columns: 1fr; }
+    .checkbox-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrap">
-  <div class="kicker">Venture Built Club — Application</div>
-  <h1>Tell us what you're <span class="underline-word">building<svg viewBox="0 0 160 12"><path d="M2 8 Q 80 2, 158 8"/></svg></span>.</h1>
+  <h1>Apply to Venture Built Club</h1>
   <p class="lede">No polished pitch deck required. We're looking for real conviction, not perfect answers.</p>
 
-  <div class="intro-notice">
-    <div class="notice-label">Before you apply</div>
+  <div class="notice-card">
+    <div class="notice-title">Before you apply</div>
     <p>Venture Built only accepts the top 1% of applicants. We're not looking for generic answers, and we can tell when a response was written by AI instead of by you. Put real thought into every question, it's the difference between getting in and getting overlooked.</p>
     <p>As a member, you'll be learning directly from top OAU alumni founders who've gone on to raise thousands to millions of dollars for their startups. This club is for the best, so give us your best.</p>
   </div>
 
-  <div class="card" id="formCard">
+  <div id="formWrap">
     <div id="formError" class="form-error hidden"></div>
+
     <form id="applyForm">
-      <div class="step-label">01 — Basic Info</div>
-      <div class="field-row">
-        <div class="field-group">
-          <label for="fullName">Name</label>
-          <input type="text" id="fullName" placeholder="Ada Lovelace" required>
+      <!-- SECTION 1: ABOUT YOU -->
+      <div class="card">
+        <div class="section-heading">About You</div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="fullName">Name</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div class="field-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
         </div>
-        <div class="field-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" placeholder="you@example.com" required>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field-group">
-          <label for="department">Department</label>
-          <input type="text" id="department" placeholder="Computer Science" required>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+234..." required>
+          </div>
+          <div class="field-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" required>
+          </div>
         </div>
         <div class="field-group">
           <label for="level">Level</label>
-          <input type="text" id="level" placeholder="100L, 300L, Masters..." required>
+          <select id="level" required>
+            <option value="" disabled selected>Select your level</option>
+            <option value="100L">100L</option>
+            <option value="200L">200L</option>
+            <option value="300L">300L</option>
+            <option value="400L">400L</option>
+            <option value="500L">500L</option>
+            <option value="Masters">Masters</option>
+            <option value="PhD">PhD</option>
+          </select>
         </div>
       </div>
 
-      <div class="section-divider"></div>
+      <!-- SECTION 2: APPLICATION QUESTIONS -->
+      <div class="card">
+        <div class="section-heading">Application Questions</div>
 
-      <div class="step-label">02 — Tell Us About You</div>
+        <div class="field-group">
+          <div class="q-label">1. Who are you, and what do you bring that isn't obvious from your CV?</div>
+          <textarea id="whoAreYou" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">01</span>Who are you, and what do you bring that isn't obvious from your CV?</div>
-        <textarea id="whoAreYou" required></textarea>
+        <div class="field-group">
+          <div class="q-label">2. What are you building, or want to build? Tell us why it matters, and why you're the one to build it.</div>
+          <textarea id="whatBuilding" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">3. If you're not building yet, what about the startup world pulls you in, and what do you want to learn here? <span class="hint">if applicable</span></div>
+          <textarea id="startupPull"></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">4. What's a problem you can't stop thinking about, and why?</div>
+          <textarea id="persistentProblem" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">5. In your own words, what is Venture Built, and what do you hope to gain from being a member?</div>
+          <textarea id="whatIsVentureBuilt" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">6. Share your CV or portfolio, and a pitch deck if you have one.</div>
+
+          <label class="file-upload" id="cvUploadBox" for="cvFile" style="margin-bottom: 12px;">
+            <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <span class="file-upload-text"><strong>CV / Portfolio</strong> — click to upload (.pdf, .doc, .docx) <span class="hint">required</span></span>
+          </label>
+          <input type="file" id="cvFile" accept=".pdf,.doc,.docx" required>
+          <div class="file-status hidden" id="cvStatus"></div>
+
+          <label class="file-upload" id="deckUploadBox" for="deckFile" style="margin-top: 14px;">
+            <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <span class="file-upload-text"><strong>Pitch Deck</strong> — click to upload (.pdf, .ppt, .pptx) <span class="hint">optional</span></span>
+          </label>
+          <input type="file" id="deckFile" accept=".pdf,.ppt,.pptx">
+          <div class="file-status hidden" id="deckStatus"></div>
+        </div>
       </div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">02</span>What are you building, or want to build? Tell us why it matters, and why you're the one to build it.</div>
-        <textarea id="whatBuilding" required></textarea>
+      <!-- SECTION 3: WHAT YOU BRING -->
+      <div class="card">
+        <div class="section-heading">What You Bring</div>
+        <div class="section-sub">Every member is expected to give back to the club, not just receive from it.</div>
+
+        <div class="field-group">
+          <label>Skills you can contribute to the club</label>
+          <div class="checkbox-grid" id="clubSkillsGrid">
+            <label class="checkbox-item"><input type="checkbox" value="Social media management">Social media management</label>
+            <label class="checkbox-item"><input type="checkbox" value="Web design">Web design</label>
+            <label class="checkbox-item"><input type="checkbox" value="Graphic design">Graphic design</label>
+            <label class="checkbox-item"><input type="checkbox" value="Content writing / copywriting">Content writing / copywriting</label>
+            <label class="checkbox-item"><input type="checkbox" value="Community management">Community management</label>
+            <label class="checkbox-item"><input type="checkbox" value="Event hosting / planning">Event hosting / planning</label>
+            <label class="checkbox-item"><input type="checkbox" value="Video editing">Video editing</label>
+            <label class="checkbox-item"><input type="checkbox" value="Photography">Photography</label>
+            <label class="checkbox-item"><input type="checkbox" value="Public speaking / hosting sessions">Public speaking / hosting sessions</label>
+            <label class="checkbox-item"><input type="checkbox" value="Partnerships & sponsorship outreach">Partnerships & sponsorship outreach</label>
+            <label class="checkbox-item"><input type="checkbox" value="Finance / bookkeeping">Finance / bookkeeping</label>
+            <label class="checkbox-item"><input type="checkbox" value="Logistics & operations">Logistics & operations</label>
+          </div>
+          <input type="text" id="clubSkillsOther" placeholder="Other (please specify)">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="field-group">
+          <label>Your builder skills</label>
+          <div class="checkbox-grid" id="builderSkillsGrid">
+            <label class="checkbox-item"><input type="checkbox" value="Software development">Software development</label>
+            <label class="checkbox-item"><input type="checkbox" value="Product design / UI-UX">Product design / UI-UX</label>
+            <label class="checkbox-item"><input type="checkbox" value="Data analysis">Data analysis</label>
+            <label class="checkbox-item"><input type="checkbox" value="Sales / business development">Sales / business development</label>
+            <label class="checkbox-item"><input type="checkbox" value="Marketing & growth">Marketing & growth</label>
+            <label class="checkbox-item"><input type="checkbox" value="Finance / accounting">Finance / accounting</label>
+            <label class="checkbox-item"><input type="checkbox" value="Legal / regulatory">Legal / regulatory</label>
+            <label class="checkbox-item"><input type="checkbox" value="Engineering">Engineering</label>
+            <label class="checkbox-item"><input type="checkbox" value="Research">Research</label>
+            <label class="checkbox-item"><input type="checkbox" value="Operations / supply chain">Operations / supply chain</label>
+            <label class="checkbox-item"><input type="checkbox" value="Fundraising / pitching">Fundraising / pitching</label>
+          </div>
+          <input type="text" id="builderSkillsOther" placeholder="Other (please specify)">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="field-group">
+          <label for="roleFit">Which role best fits you?</label>
+          <select id="roleFit">
+            <option value="" disabled selected>Select a role</option>
+            <option value="CEO">CEO</option>
+            <option value="CPO">CPO</option>
+            <option value="CFO">CFO</option>
+            <option value="COO">COO</option>
+            <option value="CTO">CTO</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field-group hidden" id="roleFitOtherGroup">
+          <label for="roleFitOther">Please specify</label>
+          <input type="text" id="roleFitOther">
+        </div>
+        <div class="field-group">
+          <label for="roleFitReason">Why this role?</label>
+          <textarea id="roleFitReason" required></textarea>
+        </div>
       </div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">03</span>If you're not building yet, what about the startup world pulls you in, and what do you want to learn here? <span class="hint">if applicable</span></div>
-        <textarea id="startupPull"></textarea>
-      </div>
+      <!-- SECTION 4: AVAILABILITY & COMMITMENT -->
+      <div class="card">
+        <div class="section-heading">Availability & Commitment</div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">04</span>What's a problem you can't stop thinking about, and why?</div>
-        <textarea id="persistentProblem" required></textarea>
-      </div>
+        <div class="field-group">
+          <label>What day works best for you for our weekly meeting?</label>
+          <div class="day-row">
+            <span class="day-chip"><input type="checkbox" id="day-mon" value="Monday"><label for="day-mon">Mon</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-tue" value="Tuesday"><label for="day-tue">Tue</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-wed" value="Wednesday"><label for="day-wed">Wed</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-thu" value="Thursday"><label for="day-thu">Thu</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-fri" value="Friday"><label for="day-fri">Fri</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-sat" value="Saturday"><label for="day-sat">Sat</label></span>
+            <span class="day-chip"><input type="checkbox" id="day-sun" value="Sunday"><label for="day-sun">Sun</label></span>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="meetingTime">What time works best?</label>
+          <input type="text" id="meetingTime" placeholder="e.g. 5:00 PM">
+        </div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">05</span>In your own words, what is Venture Built, and what do you hope to gain from being a member?</div>
-        <textarea id="whatIsVentureBuilt" required></textarea>
-      </div>
+        <div class="section-divider"></div>
 
-      <div class="field-group">
-        <div class="q-label"><span class="q-number">06</span>Share your CV or portfolio, and a pitch deck if you have one. <span class="hint">optional</span></div>
-        <textarea id="portfolioLinks" placeholder="Paste links (Google Drive, GitHub, Notion, etc.)"></textarea>
+        <div class="field-group">
+          <label>Can you commit to roughly 2 hours of online classes during the week?</label>
+          <div class="radio-row">
+            <label class="radio-item"><input type="radio" name="commitHours" value="yes" required>Yes</label>
+            <label class="radio-item"><input type="radio" name="commitHours" value="no">No</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label>Are you comfortable participating in pitches and similar events?</label>
+          <div class="radio-row">
+            <label class="radio-item"><input type="radio" name="comfortPitch" value="yes" required>Yes</label>
+            <label class="radio-item"><input type="radio" name="comfortPitch" value="no">No</label>
+          </div>
+        </div>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
@@ -165,15 +344,81 @@
 
   <div class="card success-card hidden" id="successCard">
     <div class="success-icon">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
     </div>
     <h2>Application received</h2>
-    <p>We'll review it and reach out by email if you're moving to the interview stage. No need to follow up — we read every application.</p>
+    <p>Thanks for applying. We review every application carefully — you'll hear from us soon.</p>
   </div>
 </div>
 
 <script>
   const API_URL = 'https://venture-built-club.vercel.app/api';
+
+  // Role fit "Other" toggle
+  document.getElementById('roleFit').addEventListener('change', (e) => {
+    document.getElementById('roleFitOtherGroup').classList.toggle('hidden', e.target.value !== 'Other');
+  });
+
+  // File upload visual feedback
+  function setupFileBox(inputId, boxId) {
+    const input = document.getElementById(inputId);
+    const box = document.getElementById(boxId);
+    input.addEventListener('change', () => {
+      if (input.files.length > 0) {
+        box.classList.add('has-file');
+        box.querySelector('.file-upload-text').innerHTML = `<strong>${input.files[0].name}</strong> selected — click to change`;
+      }
+    });
+  }
+  setupFileBox('cvFile', 'cvUploadBox');
+  setupFileBox('deckFile', 'deckUploadBox');
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadFile(file, statusElId) {
+    const statusEl = document.getElementById(statusElId);
+    statusEl.classList.remove('hidden', 'success', 'error');
+    statusEl.classList.add('uploading');
+    statusEl.textContent = 'Uploading...';
+
+    if (file.size > 4 * 1024 * 1024) {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = 'File is too large. Please keep it under 4MB.';
+      throw new Error('File too large');
+    }
+
+    const dataBase64 = await fileToBase64(file);
+    const response = await fetch(`${API_URL}/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: file.name, contentType: file.type, dataBase64 })
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = data.error || 'Upload failed';
+      throw new Error(data.error || 'Upload failed');
+    }
+
+    statusEl.classList.remove('uploading');
+    statusEl.classList.add('success');
+    statusEl.textContent = 'Uploaded';
+    return data.url;
+  }
+
+  function getCheckedValues(gridId) {
+    return Array.from(document.querySelectorAll(`#${gridId} input:checked`)).map(el => el.value);
+  }
 
   document.getElementById('applyForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -181,22 +426,50 @@
     const btn = document.getElementById('submitBtn');
     errEl.classList.add('hidden');
     btn.disabled = true;
-    btn.textContent = 'Submitting...';
-
-    const payload = {
-      fullName: document.getElementById('fullName').value,
-      email: document.getElementById('email').value,
-      department: document.getElementById('department').value,
-      level: document.getElementById('level').value,
-      whoAreYou: document.getElementById('whoAreYou').value,
-      whatBuilding: document.getElementById('whatBuilding').value,
-      startupPull: document.getElementById('startupPull').value,
-      persistentProblem: document.getElementById('persistentProblem').value,
-      whatIsVentureBuilt: document.getElementById('whatIsVentureBuilt').value,
-      portfolioLinks: document.getElementById('portfolioLinks').value,
-    };
 
     try {
+      const cvFile = document.getElementById('cvFile').files[0];
+      const deckFile = document.getElementById('deckFile').files[0];
+
+      if (!cvFile) {
+        throw new Error('Please upload your CV or portfolio.');
+      }
+
+      btn.textContent = 'Uploading files...';
+      const cvUrl = await uploadFile(cvFile, 'cvStatus');
+      const pitchDeckUrl = deckFile ? await uploadFile(deckFile, 'deckStatus') : null;
+
+      btn.textContent = 'Submitting...';
+
+      const meetingDays = Array.from(document.querySelectorAll('.day-chip input:checked')).map(el => el.value);
+      const commitHours = document.querySelector('input[name="commitHours"]:checked');
+      const comfortPitch = document.querySelector('input[name="comfortPitch"]:checked');
+
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        department: document.getElementById('department').value,
+        level: document.getElementById('level').value,
+        whoAreYou: document.getElementById('whoAreYou').value,
+        whatBuilding: document.getElementById('whatBuilding').value,
+        startupPull: document.getElementById('startupPull').value,
+        persistentProblem: document.getElementById('persistentProblem').value,
+        whatIsVentureBuilt: document.getElementById('whatIsVentureBuilt').value,
+        cvUrl, pitchDeckUrl,
+        clubSkills: getCheckedValues('clubSkillsGrid'),
+        clubSkillsOther: document.getElementById('clubSkillsOther').value,
+        builderSkills: getCheckedValues('builderSkillsGrid'),
+        builderSkillsOther: document.getElementById('builderSkillsOther').value,
+        roleFit: document.getElementById('roleFit').value,
+        roleFitOther: document.getElementById('roleFitOther').value,
+        roleFitReason: document.getElementById('roleFitReason').value,
+        meetingDays,
+        meetingTime: document.getElementById('meetingTime').value,
+        canCommitHours: commitHours ? commitHours.value === 'yes' : null,
+        comfortablePitching: comfortPitch ? comfortPitch.value === 'yes' : null,
+      };
+
       const response = await fetch(`${API_URL}/applications/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -205,17 +478,16 @@
       const data = await response.json();
 
       if (response.ok) {
-        document.getElementById('formCard').classList.add('hidden');
+        document.getElementById('formWrap').classList.add('hidden');
         document.getElementById('successCard').classList.remove('hidden');
       } else {
-        errEl.textContent = data.error || 'Something went wrong. Please try again.';
-        errEl.classList.remove('hidden');
-        btn.disabled = false;
-        btn.textContent = 'Submit Application';
+        throw new Error(data.error || 'Something went wrong. Please try again.');
       }
     } catch (error) {
-      errEl.textContent = 'Could not reach the server. Please try again.';
+      errEl.textContent = error.message || 'Could not reach the server. Please try again.';
       errEl.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
       btn.disabled = false;
       btn.textContent = 'Submit Application';
     }
