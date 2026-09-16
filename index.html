@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="/images/hero/oau-campus.jpg">
 <style>
   :root {
     --color-black: #0A0A0A;
@@ -122,14 +121,7 @@
 
   /* HERO */
   .hero {
-    background-color: #0F3D2E;
-    background-image:
-      linear-gradient(135deg, rgba(10,10,10,0.55) 0%, rgba(15,61,46,0.6) 100%),
-      url('/images/hero/oau-campus.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%);
     color: var(--color-white);
     position: relative;
     overflow: hidden;
@@ -221,7 +213,7 @@
     body { font-size: var(--font-size-sm); line-height: 1.5; }
     .wrap { padding: 0 var(--spacing-lg); max-width: 100%; }
 
-    .hero { min-height: 72vh; padding: var(--spacing-4xl) var(--spacing-lg); background-attachment: scroll; }
+    .hero { min-height: 72vh; padding: var(--spacing-4xl) var(--spacing-lg); }
     .hero-cta-row { flex-direction: column; width: 100%; }
     .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary { width: 100%; text-align: center; }
 
