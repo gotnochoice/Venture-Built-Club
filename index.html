@@ -144,14 +144,15 @@
     color: var(--color-white);
     position: relative;
     overflow: hidden;
-    min-height: 68vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: var(--spacing-5xl) 0;
+    padding: var(--spacing-4xl) 0;
   }
-  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; }
+  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
   .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
-  .hero p.lede { font-size: var(--font-size-sm); color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: var(--spacing-2xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  .hero p.lede { font-size: var(--font-size-sm); color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: var(--spacing-md); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  .hero p.lede:last-of-type { margin-bottom: var(--spacing-2xl); }
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-base); } }
   .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: flex-start; align-items: center; }
   .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary, .hero-cta-row .btn-tertiary { border-radius: 4px; padding: var(--spacing-lg) var(--spacing-2xl); }
@@ -257,7 +258,7 @@
     body { font-size: var(--font-size-sm); line-height: 1.5; }
     .wrap { padding: 0 var(--spacing-lg); max-width: 100%; }
 
-    .hero { min-height: 60vh; padding: var(--spacing-3xl) 0; }
+    .hero { min-height: 100vh; padding: var(--spacing-3xl) 0; }
     .hero-cta-row { flex-direction: column; width: 100%; }
     .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary, .hero-cta-row .btn-tertiary { width: 100%; text-align: center; }
 
@@ -317,7 +318,8 @@
 <section class="hero">
   <div class="wrap">
     <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
-    <p class="lede">We are the best community for ambitious student builders across Africa. 16 weeks to build, backed by a community that pushes you further, no equity, no fees. We connect our best teams to the mentors and partners who can take it further.</p>
+    <p class="lede">We are the best community for ambitious student builders across Africa.</p>
+    <p class="lede">16 weeks to build, backed by a community that pushes you further, no equity, no fees. We connect our best teams to the mentors and partners who can take it further.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
       <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
