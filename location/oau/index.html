@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Venture Built Club</title>
+<title>Venture Built @ OAU</title>
+<meta name="description" content="Venture Built at Obafemi Awolowo University turns Great Ife's most driven builders into venture-ready founders. No funding required, no experience needed.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg">
 <style>
   :root {
-    /* Primary Colors */
     --color-black: #0A0A0A;
     --color-forest: #0F3D2E;
     --color-forest-light: #1A5C42;
@@ -20,7 +20,6 @@
     --color-bright-dark: #2DA863;
     --color-bright-light: #60D18F;
 
-    /* Neutral Colors */
     --color-steel: #6B7268;
     --color-gray-100: #F9FAFB;
     --color-gray-200: #F3F4F6;
@@ -29,12 +28,10 @@
     --color-gray-500: #9CA3AF;
     --color-gray-600: #6B7280;
 
-    /* Text Colors */
     --text-primary: #0A0A0A;
     --text-secondary: #6B7268;
     --text-muted: #9CA3AF;
 
-    /* Spacing Scale */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 12px;
@@ -46,7 +43,6 @@
     --spacing-5xl: 60px;
     --spacing-6xl: 80px;
 
-    /* Typography */
     --font-family: 'Montserrat', sans-serif;
     --font-size-xs: 12px;
     --font-size-sm: 14px;
@@ -64,14 +60,12 @@
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
 
-    /* Line Heights */
     --line-height-tight: 1.15;
     --line-height-snug: 1.2;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.65;
     --line-height-loose: 1.8;
 
-    /* Shadows */
     --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -79,7 +73,6 @@
     --shadow-xl: 0 12px 32px rgba(15, 61, 46, 0.12);
     --shadow-2xl: 0 16px 40px rgba(10, 10, 10, 0.15);
 
-    /* Border Radius */
     --radius-xs: 4px;
     --radius-sm: 6px;
     --radius-md: 8px;
@@ -87,19 +80,9 @@
     --radius-xl: 16px;
     --radius-full: 50px;
 
-    /* Transitions */
     --transition-fast: 0.15s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
-
-    /* Legacy vars for compatibility */
-    --black: var(--color-black);
-    --forest: var(--color-forest);
-    --white: var(--color-white);
-    --steel: var(--color-steel);
-    --bright: var(--color-bright);
-    --line-dark: rgba(255,255,255,0.10);
-    --line-light: rgba(10,10,10,0.09);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: var(--font-family); background: var(--color-white); color: var(--text-primary); line-height: var(--line-height-normal); }
@@ -108,21 +91,20 @@
   a { color: inherit; }
 
   /* NAV */
-  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); max-width: 100%; margin: 0 auto; position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
-  .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); gap: var(--spacing-xl); }
+  .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); white-space: nowrap; }
   .logo span { color: var(--color-bright); }
-  .nav-links { display: flex; gap: var(--spacing-3xl); }
+  .nav-links { display: flex; gap: var(--spacing-2xl); flex: 1; }
   .nav-links a { text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); }
-  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); transition: all var(--transition-fast); display: inline-block; box-shadow: 0 8px 20px rgba(62,189,121,0.4); }
+  .nav-links a.back-link { color: var(--text-secondary); }
+  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); transition: all var(--transition-fast); display: inline-block; box-shadow: 0 8px 20px rgba(62,189,121,0.4); white-space: nowrap; }
   .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(62,189,121,0.5); }
   .nav-cta:active { transform: scale(0.96); }
 
-  /* Mobile Menu Icon */
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); align-items: center; justify-content: center; }
   .mobile-menu-btn:active { transform: scale(0.9); }
   .mobile-menu-btn .hidden { display: none !important; }
 
-  /* Mobile Nav Dropdown Panel */
   .mobile-nav-panel {
     display: none;
     background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%);
@@ -130,20 +112,33 @@
     max-height: 0;
     transition: max-height 0.3s ease;
   }
-  .mobile-nav-panel.open { max-height: 480px; }
+  .mobile-nav-panel.open { max-height: 560px; }
   .mobile-nav-panel a {
     display: block; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl);
     border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family);
   }
   .mobile-nav-cta-row { display: flex; flex-direction: column; gap: var(--spacing-md); padding: var(--spacing-xl) var(--spacing-2xl); }
-  .mobile-nav-cta-row .btn-primary, .mobile-nav-cta-row .btn-secondary { width: 100%; }
+  .mobile-nav-cta-row .btn-primary { width: 100%; }
+
+  /* BUTTONS */
+  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary { border: 2px solid rgba(255,255,255,0.9); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
+  .btn-secondary:active { transform: scale(0.98); }
+  .btn-secondary[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .btn-secondary[disabled]:hover { transform: none; background: transparent; }
+  .btn-tertiary { border: 1.5px solid rgba(255,255,255,0.5); background: transparent; color: rgba(255,255,255,0.9); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-base); display: inline-block; transition: border-color var(--transition-fast), color var(--transition-fast); font-family: var(--font-family); }
+  .btn-tertiary:hover { border-color: var(--color-white); color: var(--color-white); }
+  .cta-footer .btn-secondary { border-color: rgba(255,255,255,0.9); }
 
   /* HERO */
   .hero {
     background-color: #5A7A6F;
     background-image:
-      linear-gradient(135deg, rgba(15,61,46,0.35) 0%, rgba(15,61,46,0.45) 100%),
+      linear-gradient(135deg, rgba(15,61,46,0.45) 0%, rgba(15,61,46,0.55) 100%),
       url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg');
     background-size: cover;
     background-position: center;
@@ -152,220 +147,75 @@
     color: var(--color-white);
     position: relative;
     overflow: hidden;
-    height: 100vh;
+    min-height: 92vh;
     display: grid;
     place-items: center;
-    padding: var(--spacing-4xl) var(--spacing-2xl);
+    padding: var(--spacing-6xl) var(--spacing-2xl);
   }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; width: 95%; max-width: 100%; }
-  .hero h1 { font-size: var(--font-size-base); font-weight: var(--font-weight-bold); line-height: 1.2; max-width: 900px; margin-bottom: 0px; font-family: var(--font-family); letter-spacing: -0.02em; padding: var(--spacing-2xl) var(--spacing-3xl); display: inline-block; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-  @media (min-width: 640px) {
-    .hero h1 { font-size: var(--font-size-2xl); padding: var(--spacing-2xl) var(--spacing-4xl); }
-  }
-  @media (min-width: 768px) {
-    .hero h1 { font-size: var(--font-size-4xl); padding: var(--spacing-3xl) var(--spacing-5xl); }
-  }
-  @media (min-width: 1024px) {
-    .hero h1 { font-size: 48px; padding: var(--spacing-4xl) var(--spacing-6xl); }
-  }
-  @media (min-width: 1280px) {
-    .hero h1 { font-size: 56px; padding: var(--spacing-4xl) var(--spacing-6xl); }
-  }
-  @keyframes typewriter {
-    0% { width: 0; opacity: 0; }
-    10% { opacity: 1; }
-    100% { width: 100%; opacity: 1; }
-  }
-  .typewriter-heading { animation: typewriter 2.5s steps(50, end) forwards; max-width: 100%; display: inline-block; overflow: hidden; white-space: nowrap; }
-  .isforyou .typewriter-heading { animation: typewriter 3s steps(35, end) forwards; max-width: 900px; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-forest); padding-right: var(--spacing-md); }
-  .hero p.lede { font-size: var(--font-size-xs); color: rgba(255,255,255,0.8); max-width: 680px; margin-bottom: var(--spacing-sm); margin-top: -12px; line-height: var(--line-height-normal); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
-  @media (min-width: 640px) {
-    .hero p.lede { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
-  }
-  @media (min-width: 768px) {
-    .hero p.lede { font-size: var(--font-size-xl); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-sm); }
-  }
-  .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; align-items: center; flex-direction: column; margin-top: var(--spacing-lg); }
-  @media (min-width: 640px) {
-    .hero-cta-row { flex-direction: row; gap: var(--spacing-lg); margin-top: var(--spacing-2xl); }
-  }
-  @media (min-width: 768px) {
-    .hero-cta-row { gap: var(--spacing-xl); margin-top: var(--spacing-3xl); }
-  }
-  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; width: 100%; text-align: center; }
-  @media (min-width: 640px) {
-    .btn-primary { width: auto; padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-base); }
-  }
-  @media (min-width: 768px) {
-    .btn-primary { padding: var(--spacing-lg) var(--spacing-4xl); font-size: var(--font-size-lg); }
-  }
-  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
-  .btn-primary:active { transform: scale(0.98); }
-  .btn-secondary { border: 2px solid rgba(255,255,255,0.9); color: var(--color-white); padding: var(--spacing-md) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); display: inline-block; transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; width: 100%; text-align: center; }
-  @media (min-width: 640px) {
-    .btn-secondary { width: auto; padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-base); }
-  }
-  @media (min-width: 768px) {
-    .btn-secondary { padding: var(--spacing-lg) var(--spacing-4xl); font-size: var(--font-size-lg); }
-  }
-  .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
-  .btn-secondary:active { transform: scale(0.98); }
-  /* Hero buttons stay at the medium size rather than scaling to the largest tier - reads as too big sitting side-by-side in the hero */
-  @media (min-width: 768px) {
-    .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary { padding: var(--spacing-lg) var(--spacing-2xl); font-size: var(--font-size-base); }
-  }
-  .hero-facts { display: flex; gap: var(--spacing-4xl); flex-wrap: wrap; padding-top: var(--spacing-3xl); border-top: 1px solid rgba(255,255,255,0.2); }
-  .hero-fact { font-size: var(--font-size-xs); color: rgba(255,255,255,0.85); font-family: var(--font-family); text-shadow: 0 1px 3px rgba(10,10,10,0.2); }
-  .hero-fact b { display: block; color: var(--color-white); font-size: var(--font-size-base); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xs); font-family: var(--font-family); }
+  .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; width: 95%; max-width: 900px; }
+  .hero .eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-xl); }
+  .hero h1 { font-size: 30px; font-weight: var(--font-weight-bold); line-height: 1.15; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.02em; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  @media (min-width: 640px) { .hero h1 { font-size: 42px; } }
+  @media (min-width: 1024px) { .hero h1 { font-size: 54px; } }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.85); max-width: 680px; margin-bottom: var(--spacing-3xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-lg); } }
+  .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; align-items: center; }
 
-  /* ABOUT */
-  .about { padding: var(--spacing-5xl) 0 var(--spacing-lg); }
-  .about p { font-size: 15.5px; color: #2A332F; max-width: 760px; margin-bottom: var(--spacing-lg); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  /* MISSION / PLAIN PROSE BLOCKS */
+  .plain-block { padding: var(--spacing-6xl) 0; text-align: center; }
+  .plain-block h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); max-width: 760px; margin-left: auto; margin-right: auto; }
+  .plain-block p { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .plain-block.alt { background: #F7F8F6; }
 
-  /* STAT BAR (StartX-style) */
-  .statbar { padding: var(--spacing-6xl) 0; text-align: center; border-bottom: none; background: var(--color-white); }
-  .statbar h2 { font-size: clamp(32px, 3.8vw, 48px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
-  .statbar-sub { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-6xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-regular); }
-  .statbar-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-lg); max-width: 1400px; margin: 0 auto; align-items: stretch; }
-  .statbar-item { padding: var(--spacing-3xl) var(--spacing-xl); border-radius: var(--radius-md); background: var(--color-white); border: 1px solid #E8EBE9; border-top: 3px solid rgba(15,61,46,0.3); transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; position: relative; }
-  .statbar-item:first-child { background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%); border-color: #1D4ED8; border-top-color: #1D4ED8; }
-  .statbar-item:first-child .statbar-num { color: var(--color-white); }
-  .statbar-item:first-child .statbar-label { color: rgba(255,255,255,0.9); }
-  .statbar-item:nth-child(2) { border-top-color: rgba(62,189,121,0.35); }
-  .statbar-item:nth-child(3) { border-top-color: rgba(15,61,46,0.3); }
-  .statbar-item:nth-child(4) { border-top-color: rgba(62,189,121,0.35); }
-  .statbar-item:nth-child(5) { border-top-color: rgba(15,61,46,0.3); }
-  .statbar-item:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(15,61,46,0.1); }
-  .statbar-num { font-size: clamp(44px, 5.5vw, 60px); font-weight: var(--font-weight-bold); color: var(--color-forest); margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.015em; display: flex; align-items: baseline; justify-content: center; gap: var(--spacing-xs); }
-  .stat-prefix { font-size: 0.75em; font-weight: var(--font-weight-bold); }
-  .stat-value { font-size: 1em; font-weight: var(--font-weight-bold); }
-  .stat-suffix { font-size: 0.7em; font-weight: var(--font-weight-bold); }
-  .statbar-label { font-size: var(--font-size-sm); color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-medium); }
+  /* WHAT WE DO (text-only) */
+  .whatwedo { padding: var(--spacing-6xl) 0; }
+  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl) var(--spacing-5xl); max-width: 920px; margin: 0 auto; }
+  .whatwedo-block h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); line-height: var(--line-height-snug); }
+  .whatwedo-block p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
 
-  /* WHAT WE DO (StartX-style photo + bullets) */
-  .whatwedo { padding: var(--spacing-5xl) 0; }
-  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whatwedo-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 640px; margin-left: auto; margin-right: auto; }
-  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
-  .whatwedo-photo {
-    aspect-ratio: 4/3;
-    background: var(--color-forest);
-    background-image: url('/images/content/what-we-do.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.35);
-    font-size: var(--font-size-xs);
-    transition: transform var(--transition-normal);
-    background-attachment: scroll;
-  }
-  .whatwedo-photo:hover { transform: scale(1.02); }
-
-  /* HOW TO JOIN (full-width, breathable layout) */
-  .how-to-join { padding: var(--spacing-5xl) 0; background: transparent; }
-  .how-to-join h2.intro { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .join-intro { font-size: var(--font-size-base); color: var(--text-secondary); margin: 0 auto var(--spacing-4xl); line-height: var(--line-height-normal); text-align: center; max-width: 600px; font-family: var(--font-family); }
-
-  .join-steps-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); flex-wrap: wrap; }
-  .join-step-card {
-    flex: 1; max-width: 280px; text-align: center;
-    background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl) var(--spacing-xl);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  }
-  .join-step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,61,46,0.12); }
-  .join-circle {
-    width: 48px; height: 48px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright);
-    display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest);
-    font-size: var(--font-size-xl); margin: 0 auto var(--spacing-lg); font-family: var(--font-family);
-  }
-  .join-step-card p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-
-  .join-selected-intro { font-size: 16.5px; font-weight: var(--font-weight-bold); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); }
-  .join-selected-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); }
-  .join-selected-card {
-    flex: 1; max-width: 300px; font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed);
-    border-left: 2px solid var(--color-bright); padding-left: var(--spacing-lg); font-family: var(--font-family);
-  }
-
-  .join-cta-wrap { text-align: center; }
-  .join-cta-line { font-size: 16.5px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
-  .btn-solid { display: inline-block; background: var(--color-bright); color: var(--text-primary); padding: 13px 26px; border-radius: 40px; text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); }
-  .btn-solid:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 24px rgba(62,189,121,0.35); }
-
-  /* WHO FOR */
-  .whofor { padding: var(--spacing-5xl) 0; background: #F7F8F6; }
+  /* WHO FOR (text-only, two cards) */
+  .whofor { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
   .whofor h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whofor-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 600px; margin-left: auto; margin-right: auto; }
-  .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
-  .whofor-photo {
-    aspect-ratio: 4/3;
-    background: var(--color-forest);
-    background-image: url('/images/content/why-join-us.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.35);
-    font-size: var(--font-size-xs);
-    transition: transform var(--transition-normal);
-  }
-  .whofor-photo:hover { transform: scale(1.02); }
-  .check-list { list-style: none; }
-  .check-list li { font-size: 15.5px; color: #2A332F; padding-left: 26px; position: relative; margin-bottom: var(--spacing-lg); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-medium); transition: transform var(--transition-fast); font-family: var(--font-family); }
-  .check-list li:hover { transform: translateX(4px); }
-  .check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-forest); font-weight: var(--font-weight-extrabold); font-family: var(--font-family); }
+  .whofor-intro { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin: 0 auto var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); max-width: 680px; }
+  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 860px; margin: 0 auto; }
+  .audience-card { background: var(--color-white); border-left: 3px solid var(--color-bright); border-radius: var(--radius-sm); padding: var(--spacing-2xl); font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .audience-card b { color: var(--color-forest); }
 
-  /* VALUES (StartX-style) */
-  .values { padding: var(--spacing-5xl) 0; text-align: center; border-bottom: 1px solid var(--line-light); }
-  .values h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .values-row { display: flex; justify-content: center; gap: var(--spacing-4xl); flex-wrap: wrap; }
-  .value-item { max-width: 260px; }
-  .value-icon {
-    width: 72px; height: 72px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--color-forest);
-    transition: transform var(--transition-normal), background var(--transition-normal);
-  }
-  .value-item:hover .value-icon { transform: scale(1.1); background: rgba(62,189,121,0.08); }
-  .value-item h3 { font-size: 17px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); }
-  .value-item p { font-size: 14.5px; color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  /* APPLICATION PROCESS */
+  .process { padding: var(--spacing-6xl) 0; }
+  .process h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .process-row { display: flex; justify-content: center; gap: var(--spacing-2xl); flex-wrap: wrap; }
+  .process-card { flex: 1; max-width: 300px; text-align: center; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl) var(--spacing-xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
+  .process-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,61,46,0.12); }
+  .process-card.pending { background: #F1F2EF; }
+  .process-circle { width: 48px; height: 48px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest); font-size: var(--font-size-xl); margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
+  .process-card h3 { font-size: 16.5px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-sm); font-family: var(--font-family); color: var(--text-primary); }
+  .process-card p { font-size: 14.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .process-card.pending p { color: var(--text-muted); font-style: italic; }
 
-  /* IS FOR YOU (delta-v style, fuller self-check) */
-  .isforyou { padding: var(--spacing-5xl) 0; background: #F7F8F6; }
-  .isforyou h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .isforyou-list { max-width: 760px; margin: 0 auto; }
-  .isforyou-list li { font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
+  /* TRACK RECORD (real stats) */
+  .trackrecord { padding: var(--spacing-6xl) 0; text-align: center; background: var(--color-white); }
+  .trackrecord h2 { font-size: clamp(32px, 3.8vw, 48px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
+  .trackrecord-sub { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto var(--spacing-5xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-regular); }
+  .trackrecord-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--spacing-lg); max-width: 1200px; margin: 0 auto var(--spacing-2xl); align-items: stretch; }
+  .trackrecord-item { padding: var(--spacing-xl) var(--spacing-md); border-radius: var(--radius-md); background: var(--color-white); border: 1px solid #E8EBE9; border-top: 3px solid rgba(62,189,121,0.35); transition: transform var(--transition-normal), box-shadow var(--transition-normal); text-align: center; }
+  .trackrecord-item:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(15,61,46,0.1); }
+  .trackrecord-num { font-size: clamp(26px, 2.6vw, 34px); font-weight: var(--font-weight-bold); color: var(--color-forest); margin-bottom: var(--spacing-sm); font-family: var(--font-family); letter-spacing: -0.01em; }
+  .trackrecord-label { font-size: 12.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-medium); }
+  .trackrecord-note { font-size: var(--font-size-sm); color: var(--text-muted); font-style: italic; max-width: 640px; margin: 0 auto; font-family: var(--font-family); line-height: var(--line-height-relaxed); }
 
-  /* VISION & MISSION */
-  .vision-mission { padding: var(--spacing-5xl) 0; background: var(--color-white); }
-  .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
-  .vision-mission-content { display: flex; flex-direction: column; gap: var(--spacing-3xl); }
-  .vision-mission-item { }
-  .vision-mission-item h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--text-primary); }
-  .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); }
-  .vision-mission-image {
-    aspect-ratio: 4/3;
-    background-image: url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: var(--radius-lg);
-  }
+  /* PLACEHOLDER SECTIONS */
+  .placeholder-section { padding: var(--spacing-5xl) 0; }
+  .placeholder-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1.5px dashed var(--color-gray-400); border-radius: var(--radius-lg); padding: var(--spacing-3xl) var(--spacing-2xl); }
+  .placeholder-tag { display: inline-block; font-size: 11px; font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-bright-dark); background: rgba(62,189,121,0.1); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin-bottom: var(--spacing-lg); }
+  .placeholder-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--text-primary); }
+  .placeholder-card p { font-size: var(--font-size-base); color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
 
   /* FAQ */
   .faq { padding: var(--spacing-6xl) 0; background: linear-gradient(135deg, #F7F8F6 0%, #FFFFFF 100%); }
   .faq .section-label { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-  .faq h2 { font-size: clamp(36px, 4vw, 52px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-6xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
+  .faq h2 { font-size: clamp(32px, 4vw, 48px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-5xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
   .faq-container { max-width: 920px; margin: 0 auto; }
   .faq-item { background: var(--color-white); border: 1px solid #E0E5E2; border-radius: var(--radius-lg); padding: var(--spacing-3xl); margin-bottom: var(--spacing-xl); cursor: pointer; transition: all var(--transition-normal); box-shadow: var(--shadow-xs); }
   .faq-item:hover { box-shadow: var(--shadow-lg); border-color: var(--color-bright); background: #FAFBFA; }
@@ -381,54 +231,45 @@
   .faq-item.active p { max-height: 800px; opacity: 1; margin-top: var(--spacing-xl); }
 
   /* TEAM */
-  .team { padding: var(--spacing-5xl) 0; }
-  .team .section-label { font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); }
-  .team h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .team .wrap { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; }
-  .team-card {
-    display: flex; gap: var(--spacing-lg); align-items: flex-start; flex: 1; min-width: 300px; max-width: 380px;
-    background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl);
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  }
+  .team { padding: var(--spacing-6xl) 0; }
+  .team .section-label { font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .team h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); text-align: center; }
+  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; }
+  .team-card { display: flex; gap: var(--spacing-lg); align-items: flex-start; flex: 1; min-width: 300px; max-width: 380px; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
   .team-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(10,10,10,0.08); }
+  .team-card.more { align-items: center; justify-content: center; border: 1.5px dashed var(--color-gray-400); background: transparent; text-align: center; }
+  .team-card.more p { font-size: 14.5px; color: var(--text-muted); font-style: italic; font-family: var(--font-family); }
   .team-avatar { width: 64px; height: 64px; border-radius: var(--radius-full); background: var(--color-forest); flex-shrink: 0; }
   .team-card h3 { font-size: 16.5px; font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs); font-family: var(--font-family); }
   .team-card .role { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md); font-family: var(--font-family); }
-  .team-card p { font-size: 14.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .team-card p { font-size: 14.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); font-style: italic; }
 
   /* CTA FOOTER */
   .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
   .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md); max-width: 480px; margin-left: auto; margin-right: auto; font-family: var(--font-family); line-height: var(--line-height-snug); }
-  .cta-footer p { color: rgba(255,255,255,0.7); margin-bottom: var(--spacing-xl); max-width: 440px; margin-left: auto; margin-right: auto; font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
+  .cta-footer p { color: rgba(255,255,255,0.7); margin-bottom: var(--spacing-xl); max-width: 460px; margin-left: auto; margin-right: auto; font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
+  .cta-footer-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; }
 
   footer { padding: var(--spacing-xl) 0; display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); flex-wrap: wrap; gap: var(--spacing-md); font-family: var(--font-family); }
 
-  /* SCROLL REVEAL */
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 
+  @media (max-width: 900px) {
+    .trackrecord-row { grid-template-columns: repeat(3, 1fr); }
+  }
+
   @media (max-width: 760px) {
     body { font-size: var(--font-size-sm); line-height: 1.5; }
     .wrap { padding: 0 var(--spacing-lg); max-width: 100%; }
 
-    /* Hero - Mobile Optimized */
-    .hero {
-      height: 60vh;
-      padding: var(--spacing-md);
-      background-attachment: scroll;
-      background-size: cover !important;
-      background-image:
-        linear-gradient(135deg, rgba(15,61,46,0.35) 0%, rgba(15,61,46,0.45) 100%),
-        url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg') !important;
-    }
-    .hero h1 { font-size: clamp(22px, 5vw, 28px); padding: var(--spacing-lg) var(--spacing-md); line-height: 1.3; }
-    .hero p.lede { font-size: 13px; margin-top: -6px; max-width: 100%; line-height: 1.4; }
-    .hero-cta-row { display: none; }
+    .hero { min-height: 72vh; padding: var(--spacing-4xl) var(--spacing-lg); background-attachment: scroll; }
+    .hero-cta-row { flex-direction: column; width: 100%; }
+    .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary, .hero-cta-row .btn-tertiary { width: 100%; text-align: center; }
 
-    /* Navigation */
     nav {
       padding: var(--spacing-md) var(--spacing-lg);
       box-shadow: 0 4px 12px rgba(15,61,46,0.25);
@@ -437,56 +278,33 @@
     .mobile-nav-panel { display: block; }
     .logo { font-size: var(--font-size-base); color: var(--color-white); }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
     .mobile-menu-btn { display: flex; }
-    .nav-cta { padding: var(--spacing-md) var(--spacing-lg); font-size: var(--font-size-sm); }
 
-    /* Buttons - Bold and Prominent */
-    .btn-primary, .btn-secondary { width: 100%; padding: var(--spacing-xl) var(--spacing-2xl); font-size: var(--font-size-base); font-weight: var(--font-weight-bold); border-radius: 50px; border: none; }
-    .btn-primary { background: var(--color-bright); color: var(--text-primary); box-shadow: 0 10px 28px rgba(62,189,121,0.4); }
-    .btn-primary:hover { box-shadow: 0 14px 32px rgba(62,189,121,0.5); }
-    .btn-secondary { background: transparent; color: var(--color-white); border: 2.5px solid var(--color-white); box-shadow: 0 6px 16px rgba(255,255,255,0.15); }
-    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-    .btn-primary:active, .btn-secondary:active { transform: scale(0.94); }
-
-    /* Sections */
-    .benefit-row, .benefit-row.reverse .benefit-visual { grid-template-columns: 1fr; order: unset; }
-    .who-split, .stat-row, .join-steps, .join-steps-detailed, .whofor-grid, .statbar-row, .whatwedo-grid, .vision-mission-grid { grid-template-columns: 1fr; }
-
-    /* Headings */
-    .statbar h2, .values h2, .isforyou h2, .vision-mission-item h3 { font-size: clamp(20px, 5vw, 28px); margin-bottom: var(--spacing-md); }
-
-    /* Spacing */
-    .statbar { padding: var(--spacing-4xl) 0; }
-    .values { padding: var(--spacing-4xl) 0; }
-    .whatwedo { padding: var(--spacing-4xl) 0; }
-    .isforyou { padding: var(--spacing-4xl) 0; }
-    .vision-mission { padding: var(--spacing-4xl) 0; }
-
-    /* Cards and Lists */
-    .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
-    .join-step-card, .join-selected-card { max-width: 100%; }
-    .statbar-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
-    .statbar-item { padding: var(--spacing-2xl) var(--spacing-lg); }
-    .values-row { flex-direction: column; align-items: center; }
-    .team .wrap { flex-direction: column; gap: var(--spacing-xl); }
+    .whatwedo-grid, .audience-grid { grid-template-columns: 1fr; }
+    .process-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
+    .process-card { max-width: 100%; }
+    .trackrecord-row { grid-template-columns: 1fr; }
+    .team-row { flex-direction: column; align-items: center; }
     .team-card { max-width: 100%; }
-
-    /* Vision Mission */
-    .vision-mission-content { gap: var(--spacing-2xl); }
-    .vision-mission-item p { font-size: var(--font-size-sm); }
+    .cta-footer-row { flex-direction: column; align-items: center; }
+    .cta-footer-row .btn-primary, .cta-footer-row .btn-secondary { width: 100%; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Venture Built <span>Club</span></div>
+  <div class="logo">Venture Built <span>@ OAU</span></div>
   <div class="nav-links">
-    <a href="#program">What we do</a>
-    <a href="#join">How to join</a>
+    <a href="#program">What We Do</a>
+    <a href="#track-record">Track Record</a>
+    <a href="#join">How to Join</a>
     <a href="#faq">FAQ</a>
     <a href="#team">Team</a>
+    <a href="/" class="back-link">All Chapters</a>
   </div>
+  <a href="/apply" class="nav-cta">Apply to join</a>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
     <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     <svg class="icon-close hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -494,70 +312,26 @@
 </nav>
 
 <div class="mobile-nav-panel" id="mobileNavPanel">
-  <a href="#program">What we do</a>
-  <a href="#join">How to join</a>
+  <a href="#program">What We Do</a>
+  <a href="#track-record">Track Record</a>
+  <a href="#join">How to Join</a>
   <a href="#faq">FAQ</a>
   <a href="#team">Team</a>
+  <a href="/">All Chapters</a>
   <div class="mobile-nav-cta-row">
-    <a href="/apply" class="btn-primary">Apply Now</a>
-    <a href="/portal" class="btn-secondary">Log In to eHub</a>
+    <a href="/apply" class="btn-primary">Apply to join</a>
   </div>
 </div>
 
 <section class="hero">
   <div class="wrap">
+    <div class="eyebrow">Great Ife's founding chapter</div>
     <h1>Where Great Ife's Next Unicorn Founders Are Built</h1>
-    <p class="lede">A student-run club for OAU's most ambitious builders. No funding required, no experience needed.</p>
+    <p class="lede">We turn Great Ife's most driven builders into venture-ready founders. A selective, student-run community at Obafemi Awolowo University, no funding required, no experience needed.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
-      <a href="/portal" class="btn-secondary">Log In to eHub</a>
-    </div>
-  </div>
-</section>
-
-<section class="vision-mission reveal">
-  <div class="wrap">
-    <div class="vision-mission-grid">
-      <div class="vision-mission-content">
-        <div class="vision-mission-item">
-          <h3>Vision</h3>
-          <p>To create a campus where every exceptional student innovator can build the next set of unicorns in Africa.</p>
-        </div>
-        <div class="vision-mission-item">
-          <h3>Mission</h3>
-          <p>To adequately close the knowledge gap in building venture-backable startups, connecting and building an ecosystem that creates a robust platform for developing co-builders.</p>
-        </div>
-      </div>
-      <div class="vision-mission-image"></div>
-    </div>
-  </div>
-</section>
-
-<section class="statbar reveal">
-  <div class="wrap">
-    <h2>Great Ife's Top Founders</h2>
-    <p class="statbar-sub">Venture Built exists because Obafemi Awolowo University already produces exceptional founders.</p>
-    <div class="statbar-row">
-      <div class="statbar-item">
-        <div class="statbar-num"><span class="stat-prefix">$</span><span class="stat-value">675</span><span class="stat-suffix">M+</span></div>
-        <div class="statbar-label">Combined raised across Flutterwave, Moniepoint, Reliance Health, Chowdeck, Nomba, and more</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">#1</div>
-        <div class="statbar-label">In West Africa for million-dollar startup founders</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">36</div>
-        <div class="statbar-label">Startup CEOs from OAU, per Africa: The Big Deal</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">2</div>
-        <div class="statbar-label">African fintech unicorn founders</div>
-      </div>
-      <div class="statbar-item">
-        <div class="statbar-num">12+</div>
-        <div class="statbar-label">Notable companies built by Great Ife alumni, and counting</div>
-      </div>
+      <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+      <a href="/portal" class="btn-tertiary">Log In</a>
     </div>
   </div>
 </section>
@@ -565,16 +339,22 @@
 <section class="whatwedo reveal" id="program">
   <div class="wrap">
     <h2>What We Do</h2>
-    <p class="whatwedo-sub">We make exceptional student builders ready for the real world of startup building, help you break down your own business model, and connect you with the best co-builders on campus.</p>
     <div class="whatwedo-grid">
-      <div class="whatwedo-photo"></div>
-      <div class="whatwedo-content">
-        <ul class="check-list">
-          <li>Weekly masterclasses covering the full startup journey, idea validation to fundraising, and the hard truths in building</li>
-          <li>Find the co-builder who complements what you can't do yourself through eHub, our co-building platform</li>
-          <li>Hackathons and pitch days that push you to ship, building toward one flagship event a year</li>
-          <li>Once your team is ready, we connect you to the right mentors and partners who can take it further</li>
-        </ul>
+      <div class="whatwedo-block">
+        <h3>Learn what makes a business venture-backable</h3>
+        <p>Every two weeks, we break down what it actually takes, idea validation to fundraising, taught by club leadership and guest founders joining virtually from across the ecosystem.</p>
+      </div>
+      <div class="whatwedo-block">
+        <h3>Find the co-builder who completes you</h3>
+        <p>Through eHub, our co-building space, list what you're working on and what you need, no cold directory, just people finding each other.</p>
+      </div>
+      <div class="whatwedo-block">
+        <h3>Build toward something real</h3>
+        <p>Team pitches every two weeks, a monthly Demo Day, and one flagship pitch event closing out each 4-month cohort.</p>
+      </div>
+      <div class="whatwedo-block">
+        <h3>Get connected once you're ready</h3>
+        <p>We don't fund or take equity. Once your team is ready, we connect you to the mentors and partners who can take it further.</p>
       </div>
     </div>
   </div>
@@ -582,97 +362,102 @@
 
 <section class="whofor reveal">
   <div class="wrap">
-    <h2>Why Join Us</h2>
-    <p class="whofor-sub">Here's what being part of the club actually gets you.</p>
-    <div class="whofor-grid">
-      <div class="whofor-photo"></div>
-      <div class="whofor-content">
-        <ul class="check-list">
-          <li>No fees or equity required to join</li>
-          <li>Mentorship and networking events with real founders and operators</li>
-          <li>Access to vetted mentors and grants</li>
-          <li>Peer-to-peer learning with people building alongside you</li>
-          <li>Specialized resources by industry</li>
-          <li>A growing network of OAU alumni founders</li>
-        </ul>
+    <h2>Who Is Venture Built For?</h2>
+    <p class="whofor-intro">Open to every department and level, undergraduate or Masters. We don't filter by skill set, whether your edge is engineering, business, marketing, or design. What we're looking for is vision: people who've genuinely started thinking through a problem worth solving, and have the conviction to build it.</p>
+    <div class="audience-grid">
+      <div class="audience-card"><b>Apply as an individual</b> if you have an idea but no team yet, eHub exists so you can find people to build with.</div>
+      <div class="audience-card"><b>Apply as a team</b> if you're already two or more working on something together.</div>
+    </div>
+  </div>
+</section>
+
+<section class="process reveal" id="join">
+  <div class="wrap">
+    <h2>The Application Process</h2>
+    <div class="process-row">
+      <div class="process-card">
+        <div class="process-circle">1</div>
+        <h3>Application</h3>
+        <p>Tell us why you want to build, or if you're not building yet, what about the startup world genuinely pulls you in. Put real thought into your answers, we're reading for conviction and insight, not a polished AI draft, and we can tell the difference.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-circle">2</div>
+        <h3>Screening Interview</h3>
+        <p>A call with our team if we think you have what it takes. We're listening for conviction you can defend.</p>
+      </div>
+      <div class="process-card pending">
+        <div class="process-circle">3</div>
+        <h3>Second Interview</h3>
+        <p>Details on this step are being finalized.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="values reveal">
+<section class="plain-block reveal">
   <div class="wrap">
-    <h2>Our Values Fuel Every Session</h2>
-    <div class="values-row">
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 10v3M9 15l-2 1.5M15 15l2 1.5"/></svg>
-        </div>
-        <h3>Community</h3>
-        <p>This isn't a solo sport. Finding people to build with is the whole point of Co-Builders.</p>
+    <h2>The Cohort</h2>
+    <p>Each cohort runs for one full semester, about four months, with an intake of roughly 50 members. Every two weeks: a masterclass session and team pitches, sometimes taught by a guest founder joining virtually. In between: eHub, the WhatsApp community, and milestones tailored to where each team actually is. Once a month: a bigger Demo Day. At the end: one flagship pitch event where the whole cohort presents what they've built.</p>
+  </div>
+</section>
+
+<section class="plain-block alt reveal">
+  <div class="wrap">
+    <h2>The Terms</h2>
+    <p>Venture Built does not take equity and does not charge fees to join. We don't invest in or fund member startups directly. Our job is to prepare you and connect ready teams to the mentors, grants, and partners who can take it further.</p>
+  </div>
+</section>
+
+<section class="trackrecord reveal" id="track-record">
+  <div class="wrap">
+    <h2>Great Ife's Top Founders</h2>
+    <p class="trackrecord-sub">Venture Built exists because Obafemi Awolowo University already produces exceptional founders, and we believe there's an even bigger trajectory ahead.</p>
+    <div class="trackrecord-row">
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">$620M+</div>
+        <div class="trackrecord-label">Combined raised across Flutterwave, Moniepoint, Reliance Health, Chowdeck, Nomba, and more</div>
       </div>
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
-        </div>
-        <h3>YOU-First</h3>
-        <p>This is about bringing out the best version of you, regardless of your current stage of knowledge. It's about people with real conviction and something to prove.</p>
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">#1</div>
+        <div class="trackrecord-label">In West Africa for million-dollar startup founders</div>
       </div>
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>
-        </div>
-        <h3>Learning</h3>
-        <p>You're here to learn. Absorb everything, network with everyone, and make the most of the opportunity in front of you.</p>
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">36</div>
+        <div class="trackrecord-label">Startup CEOs from OAU, per Africa: The Big Deal</div>
       </div>
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">12+</div>
+        <div class="trackrecord-label">Great Ife alumni founders of million-dollar startups, and counting</div>
+      </div>
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">2</div>
+        <div class="trackrecord-label">African fintech unicorn founders</div>
+      </div>
+      <div class="trackrecord-item">
+        <div class="trackrecord-num">12+</div>
+        <div class="trackrecord-label">Notable companies built by Great Ife alumni, and counting</div>
+      </div>
+    </div>
+    <p class="trackrecord-note">These are OAU's own alumni achievements, the standard Venture Built exists to help the next generation reach.</p>
+  </div>
+</section>
+
+<section class="placeholder-section reveal">
+  <div class="wrap">
+    <div class="placeholder-card">
+      <span class="placeholder-tag">Coming soon</span>
+      <h3>Real stories, coming soon</h3>
+      <p>This is where founder stories and quotes from actual Venture Built members will go, once our first cohort completes the program.</p>
     </div>
   </div>
 </section>
 
-<section class="isforyou reveal">
+<section class="placeholder-section reveal">
   <div class="wrap">
-    <h2 class="typewriter-heading">Who This Is For</h2>
-    <ul class="check-list isforyou-list">
-      <li>You hold real conviction in the problem you want to solve, and the persistence to keep working on it even when it's hard.</li>
-      <li>You're already building something, or you're genuinely ready to start, not just thinking about it someday.</li>
-      <li>You're willing to put in real time every week, not just show up once and disappear.</li>
-      <li>You have an early idea, prototype, or piece of research you could show and talk through, even if it's rough.</li>
-      <li>You have a founding team with complementary skills, or you're a driven solo builder who can show us why you deserve a place in this cohort.</li>
-      <li>You're curious about the startup world and want real exposure to it, even if you're not building yet.</li>
-    </ul>
-  </div>
-</section>
-
-<section class="how-to-join reveal" id="join">
-  <div class="wrap">
-    <h2 class="intro">How to Join Venture Built</h2>
-    <p class="join-intro">We provide you with mentorship, resources, and tools to kickstart your startup journey and sustain its growth.</p>
-
-    <div class="join-steps-row">
-      <div class="join-step-card">
-        <div class="join-circle">1</div>
-        <p><b>Apply</b> with real conviction, not a polished AI draft</p>
-      </div>
-      <div class="join-step-card">
-        <div class="join-circle">2</div>
-        <p><b>Interview</b> with our team, we're listening for conviction you can defend</p>
-      </div>
-      <div class="join-step-card">
-        <div class="join-circle">3</div>
-        <p><b>Join us</b> for your first session</p>
-      </div>
-    </div>
-
-    <p class="join-selected-intro">If you're selected to join Venture Built, you'll:</p>
-    <div class="join-selected-row">
-      <div class="join-selected-card">Gain access to a pool of exceptional co-builders, screened for skill and character</div>
-      <div class="join-selected-card">Attend weekly masterclasses to kickstart or sharpen your idea or product</div>
-      <div class="join-selected-card">Take part in club events like pitch days and hackathons, alongside mentors and partners</div>
-    </div>
-
-    <div class="join-cta-wrap">
-      <p class="join-cta-line">Are you ready to take the first step?</p>
-      <a href="/apply" class="btn-solid">Apply Now</a>
+    <div class="placeholder-card">
+      <span class="placeholder-tag">Coming soon</span>
+      <h3>What Great Ife's next cohort will build</h3>
+      <p>This is where the ventures built by Venture Built's own alumni will be showcased, once our first cohort graduates.</p>
     </div>
   </div>
 </section>
@@ -717,18 +502,18 @@
 <section class="team reveal" id="team">
   <div class="wrap">
     <div class="section-label">Advisors</div>
-    <div class="team-card">
-      <div class="team-avatar"></div>
-      <div>
-        <h3>Prof. Ishaya Gambo</h3>
-        <div class="role">Professor Faculty of Computing Science and Engineering</div>
+    <h2>Meet the Team</h2>
+    <div class="team-row">
+      <div class="team-card">
+        <div class="team-avatar"></div>
+        <div>
+          <h3>Prof. Ishaya Gambo</h3>
+          <div class="role">Partner Advisor</div>
+          <p>"Prof. Gambo has agreed to head Venture Built as its first partner advisor, lending credibility and unlocking access to departments and faculty resources as the club grows."</p>
+        </div>
       </div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar"></div>
-      <div>
-        <h3>Adam (Olatunji) Muritala</h3>
-        <div class="role">Professor of Mechanical Engineering Obafemi Awolowo University</div>
+      <div class="team-card more">
+        <p>More advisors joining soon</p>
       </div>
     </div>
   </div>
@@ -738,19 +523,21 @@
   <div class="wrap">
     <h2>Building something? You don't have to figure it out alone.</h2>
     <p>Applications for the first cohort are opening soon. No prior startup experience required, just the drive to build something real.</p>
-    <a href="/apply" class="btn-primary">Apply to join</a>
+    <div class="cta-footer-row">
+      <a href="/apply" class="btn-primary">Apply Now</a>
+      <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+    </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
-    <span>Venture Built Club</span>
+    <span>Venture Built</span>
     <span>Obafemi Awolowo University, Ile-Ife</span>
   </div>
 </footer>
 
 <script>
-  // Mobile hamburger menu toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileNavPanel = document.getElementById('mobileNavPanel');
   if (mobileMenuBtn && mobileNavPanel) {
@@ -770,7 +557,6 @@
     });
   }
 
-  // Scroll reveal animations
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -782,25 +568,6 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
 
-  // Typewriter animation for heading - trigger every time it comes into view
-  const typewriterHeading = document.querySelector('.isforyou .typewriter-heading');
-  if (typewriterHeading) {
-    const typewriterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Reset and replay animation when element comes into view
-          typewriterHeading.style.animation = 'none';
-          setTimeout(() => {
-            typewriterHeading.style.animation = 'typewriter 3s steps(35, end) forwards';
-          }, 10);
-        }
-      });
-    }, { threshold: 0.5 });
-    typewriterObserver.observe(typewriterHeading);
-  }
-
-
-  // FAQ collapsible functionality
   document.querySelectorAll('.faq-item').forEach(item => {
     item.querySelector('.faq-toggle').addEventListener('click', () => {
       item.classList.toggle('active');
