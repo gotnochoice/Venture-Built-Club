@@ -146,33 +146,43 @@
   }
   .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; width: 95%; max-width: 900px; }
   .hero .eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-xl); }
-  .hero h1 { font-size: 30px; font-weight: var(--font-weight-bold); line-height: 1.15; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.02em; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
-  @media (min-width: 640px) { .hero h1 { font-size: 42px; } }
-  @media (min-width: 1024px) { .hero h1 { font-size: 54px; } }
+  .hero h1 { font-size: 32px; font-weight: var(--font-weight-extrabold); line-height: 1.08; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.01em; text-transform: uppercase; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  @media (min-width: 640px) { .hero h1 { font-size: 48px; } }
+  @media (min-width: 1024px) { .hero h1 { font-size: 66px; } }
   .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.85); max-width: 680px; margin-bottom: var(--spacing-3xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-lg); } }
   .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; align-items: center; }
+
+  /* FULL-BLEED BANNER (abstract, no photography available) */
+  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest-lighter) 0%, var(--color-forest) 100%); }
+  .bleed-banner svg { width: 100%; height: 100%; display: block; }
+
+  /* BENEFIT GRID (What We Do, photo-card style) */
+  .benefit-section { padding: var(--spacing-6xl) 0; }
+  .benefit-section h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); }
+  .benefit-rule { width: 40px; height: 3px; background: var(--color-bright); margin-bottom: var(--spacing-lg); }
+  .benefit-card h3 { text-transform: uppercase; font-size: 14px; letter-spacing: 0.02em; font-weight: var(--font-weight-extrabold); color: var(--text-primary); margin-bottom: var(--spacing-lg); line-height: 1.3; font-family: var(--font-family); }
+  .benefit-photo { aspect-ratio: 4/3; border-radius: var(--radius-sm); margin-bottom: var(--spacing-lg); display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
+  .benefit-photo svg { width: 38%; height: 38%; color: rgba(255,255,255,0.9); }
+  .benefit-card p { font-size: 13.5px; color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+
+  /* STATEMENT (Who Is This For, bold full-bleed page) */
+  .statement { background: var(--color-black); color: var(--color-white); padding: var(--spacing-6xl) 0; text-align: center; }
+  .statement h2 { font-size: clamp(32px, 5vw, 54px); text-transform: uppercase; font-weight: var(--font-weight-extrabold); letter-spacing: -0.01em; margin-bottom: var(--spacing-2xl); line-height: 1.1; font-family: var(--font-family); }
+  .statement > .wrap > p { font-size: var(--font-size-lg); color: rgba(255,255,255,0.75); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .audience-detail-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl); max-width: 860px; margin: var(--spacing-5xl) auto 0; text-align: left; }
+  .audience-detail { border-top: 2px solid var(--color-bright); padding-top: var(--spacing-xl); }
+  .audience-detail h3 { text-transform: uppercase; font-size: var(--font-size-sm); letter-spacing: 0.08em; color: var(--color-bright-light); margin-bottom: var(--spacing-md); font-weight: var(--font-weight-extrabold); font-family: var(--font-family); }
+  .audience-detail .question { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-sm); font-family: var(--font-family); }
+  .audience-detail .status { font-size: 12.5px; color: rgba(255,255,255,0.5); margin-bottom: var(--spacing-lg); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: 0.03em; font-family: var(--font-family); }
+  .audience-detail p.body { font-size: 14.5px; color: rgba(255,255,255,0.75); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
 
   /* MISSION / PLAIN PROSE BLOCKS */
   .plain-block { padding: var(--spacing-6xl) 0; text-align: center; }
   .plain-block h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); max-width: 760px; margin-left: auto; margin-right: auto; }
   .plain-block p { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
   .plain-block.alt { background: #F7F8F6; }
-
-  /* WHAT WE DO (text-only) */
-  .whatwedo { padding: var(--spacing-6xl) 0; }
-  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl) var(--spacing-5xl); max-width: 920px; margin: 0 auto; }
-  .whatwedo-block h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); line-height: var(--line-height-snug); }
-  .whatwedo-block p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-
-  /* WHO FOR (text-only, two cards) */
-  .whofor { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
-  .whofor h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whofor-intro { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin: 0 auto var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); max-width: 680px; }
-  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 860px; margin: 0 auto; }
-  .audience-card { background: var(--color-white); border-left: 3px solid var(--color-bright); border-radius: var(--radius-sm); padding: var(--spacing-2xl); font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .audience-card b { color: var(--color-forest); }
 
   /* APPLICATION PROCESS */
   .process { padding: var(--spacing-6xl) 0; }
@@ -259,7 +269,8 @@
     .nav-cta { display: none; }
     .mobile-menu-btn { display: flex; }
 
-    .whatwedo-grid, .audience-grid { grid-template-columns: 1fr; }
+    .benefit-grid { grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl) var(--spacing-xl); }
+    .audience-detail-row { grid-template-columns: 1fr; gap: var(--spacing-2xl); }
     .process-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
     .process-card { max-width: 100%; }
     .team-row { flex-direction: column; align-items: center; }
@@ -299,8 +310,8 @@
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow">Student-built. Campus by campus.</div>
-    <h1>Where Africa's Next Unicorn Founders Are Built</h1>
-    <p class="lede">We turn Africa's most driven student builders into venture-ready founders. Over one 4-month cohort, we teach the fundamentals of building a venture-backable business, connect you with the best co-builders through eHub, and get you in front of the mentors and partners who can take it further.</p>
+    <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
+    <p class="lede">We are the best place for Africa's most driven student builders. Four months to build, surrounded by outliers, supported by mentors who've built and backed companies themselves. No funding required, no experience needed.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
       <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
@@ -309,37 +320,76 @@
   </div>
 </section>
 
-<section class="whatwedo reveal" id="program">
+<div class="bleed-banner" aria-hidden="true">
+  <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="1200" height="300" fill="none"/>
+    <g fill="#0A2A1F" opacity="0.55">
+      <rect x="20" y="160" width="70" height="140"/>
+      <rect x="110" y="110" width="55" height="190"/>
+      <rect x="180" y="190" width="90" height="110"/>
+      <rect x="290" y="70" width="60" height="230"/>
+      <rect x="365" y="150" width="80" height="150"/>
+      <rect x="460" y="40" width="50" height="260"/>
+      <rect x="525" y="130" width="100" height="170"/>
+      <rect x="640" y="95" width="65" height="205"/>
+      <rect x="720" y="170" width="85" height="130"/>
+      <rect x="820" y="60" width="55" height="240"/>
+      <rect x="890" y="140" width="95" height="160"/>
+      <rect x="1000" y="105" width="60" height="195"/>
+      <rect x="1075" y="180" width="105" height="120"/>
+    </g>
+  </svg>
+</div>
+
+<section class="benefit-section reveal" id="program">
   <div class="wrap">
     <h2>What We Do</h2>
-    <div class="whatwedo-grid">
-      <div class="whatwedo-block">
-        <h3>Learn what makes a business venture-backable</h3>
-        <p>Every two weeks, we break down what it actually takes, idea validation to fundraising, taught by club leadership and guest founders joining virtually from across the ecosystem.</p>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="benefit-rule"></div>
+        <h3>Learn What's Venture-Backable</h3>
+        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg></div>
+        <p>Every two weeks, we break down what it actually takes, idea validation to fundraising, taught by club leadership and guest founders joining virtually.</p>
       </div>
-      <div class="whatwedo-block">
-        <h3>Find the co-builder who completes you</h3>
+      <div class="benefit-card">
+        <div class="benefit-rule"></div>
+        <h3>Find Your Co-Builder</h3>
+        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="3.2"/><circle cx="17" cy="15" r="3.2"/><path d="M6.3 18.5C7 16.6 8.6 15.3 10.6 15.3M13.4 8.6C15.4 8.6 17 9.9 17.7 11.8"/></svg></div>
         <p>Through eHub, our co-building space, list what you're working on and what you need, no cold directory, just people finding each other.</p>
       </div>
-      <div class="whatwedo-block">
-        <h3>Build toward something real</h3>
+      <div class="benefit-card">
+        <div class="benefit-rule"></div>
+        <h3>Build Toward Something Real</h3>
+        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
         <p>Team pitches every two weeks, a monthly Demo Day, and one flagship pitch event closing out each 4-month cohort.</p>
       </div>
-      <div class="whatwedo-block">
-        <h3>Get connected once you're ready</h3>
+      <div class="benefit-card">
+        <div class="benefit-rule"></div>
+        <h3>Get Connected When Ready</h3>
+        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8V6a3 3 0 00-6 0v2M5 8h14l-1 12H6L5 8z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <p>We don't fund or take equity. Once your team is ready, we connect you to the mentors and partners who can take it further.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="whofor reveal">
+<section class="statement reveal">
   <div class="wrap">
     <h2>Who Is Venture Built For?</h2>
-    <p class="whofor-intro">Open to every department and level, undergraduate or Masters. We don't filter by skill set, whether your edge is engineering, business, marketing, or design. What we're looking for is vision: people who've genuinely started thinking through a problem worth solving, and have the conviction to build it.</p>
-    <div class="audience-grid">
-      <div class="audience-card"><b>Apply as an individual</b> if you have an idea but no team yet, eHub exists so you can find people to build with.</div>
-      <div class="audience-card"><b>Apply as a team</b> if you're already two or more working on something together.</div>
+    <p>Open to every department and level, undergraduate or Masters. We don't filter by skill set, whether your edge is engineering, business, marketing, or design. What we're looking for is vision: people who've genuinely started thinking through a problem worth solving, and have the conviction to build it.</p>
+    <div class="audience-detail-row">
+      <div class="audience-detail">
+        <h3>Individuals</h3>
+        <div class="question">Have an idea but no team yet?</div>
+        <div class="status">Applications opening soon</div>
+        <p class="body">eHub exists so you can find people to build with. Come in with conviction about a problem worth solving, and we'll help you find who completes you.</p>
+      </div>
+      <div class="audience-detail">
+        <h3>Teams</h3>
+        <div class="question">Already two or more building together?</div>
+        <div class="status">Applications opening soon</div>
+        <p class="body">Apply as a team if you're already working on something together. We'll sharpen what you've got and connect you to the mentors who can take it further.</p>
+      </div>
     </div>
   </div>
 </section>
