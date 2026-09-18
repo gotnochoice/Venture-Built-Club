@@ -56,24 +56,20 @@
   .btn-secondary { border: 2px solid var(--color-gray-400); background: transparent; color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); font-weight: 600; font-size: 15px; display: inline-block; }
   .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
 
-  .page-header { background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%); color: var(--color-white); padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-5xl); text-align: center; }
-  .page-header .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-lg); }
-  .page-header h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; margin-bottom: var(--spacing-lg); }
-  .page-header p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 340px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
+  .bleed-banner svg { width: 100%; height: 100%; display: block; }
 
   .content-section { padding: var(--spacing-6xl) 0; text-align: center; }
+  .content-section h1 { font-size: clamp(30px, 4vw, 44px); margin-bottom: var(--spacing-xl); }
   .content-section p { font-size: 17px; color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-lg); line-height: 1.7; }
+  .explore-link { color: var(--color-bright-dark); font-weight: 700; text-decoration: none; }
+  .explore-link:hover { text-decoration: underline; }
 
   .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-2xl); max-width: 960px; margin: var(--spacing-4xl) auto 0; }
   .offer-card { text-align: left; padding: var(--spacing-2xl); background: var(--color-gray-100); border-radius: var(--radius-lg); }
   .offer-card h3 { font-size: 16px; color: var(--color-forest); margin-bottom: var(--spacing-sm); }
   .offer-card p { font-size: 13.5px; color: #2A332F; line-height: 1.6; margin: 0; text-align: left; }
 
-  .placeholder-section { padding: var(--spacing-5xl) 0; background: #F7F8F6; }
-  .placeholder-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1.5px dashed var(--color-gray-400); border-radius: var(--radius-lg); padding: var(--spacing-3xl) var(--spacing-2xl); background: var(--color-white); }
-  .placeholder-tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-bright-dark); background: rgba(62,189,121,0.1); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin-bottom: var(--spacing-lg); }
-  .placeholder-card h3 { font-size: 18px; margin-bottom: var(--spacing-md); }
-  .placeholder-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin: 0; }
 
   .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
   .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
@@ -125,14 +121,30 @@
   <a href="/portal">Log In</a>
 </div>
 
-<header class="page-header">
-  <div class="eyebrow">Community</div>
-  <h1>Our Community</h1>
-  <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and shared masterclasses, builders find teammates, sharpen ideas, and push each other further.</p>
-</header>
+<div class="bleed-banner" aria-hidden="true">
+  <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#0A2A1F" opacity="0.55">
+      <rect x="20" y="160" width="70" height="140"/>
+      <rect x="110" y="110" width="55" height="190"/>
+      <rect x="180" y="190" width="90" height="110"/>
+      <rect x="290" y="70" width="60" height="230"/>
+      <rect x="365" y="150" width="80" height="150"/>
+      <rect x="460" y="40" width="50" height="260"/>
+      <rect x="525" y="130" width="100" height="170"/>
+      <rect x="640" y="95" width="65" height="205"/>
+      <rect x="720" y="170" width="85" height="130"/>
+      <rect x="820" y="60" width="55" height="240"/>
+      <rect x="890" y="140" width="95" height="160"/>
+      <rect x="1000" y="105" width="60" height="195"/>
+      <rect x="1075" y="180" width="105" height="120"/>
+    </g>
+  </svg>
+</div>
 
 <section class="content-section">
   <div class="wrap">
+    <h1>Our Community</h1>
+    <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and biweekly masterclasses, our members share feedback, sharpen ideas, and find the co-builder who completes them. We're just getting started, real numbers on our community will go here once we have them to share. <a href="/locations" class="explore-link">Explore where we're building &rarr;</a></p>
     <div class="offer-grid">
       <div class="offer-card">
         <h3>eHub</h3>
@@ -146,16 +158,6 @@
         <h3>Demo Days</h3>
         <p>A monthly chance to show what you and your peers have built, and get real feedback from people who've been there.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="placeholder-section">
-  <div class="wrap">
-    <div class="placeholder-card">
-      <span class="placeholder-tag">Coming soon</span>
-      <h3>Our community, growing</h3>
-      <p>We're just getting started. Real numbers on our builder community will go here once we have them to share.</p>
     </div>
   </div>
 </section>
