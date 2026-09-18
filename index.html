@@ -126,11 +126,11 @@
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
   .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
   .btn-primary:active { transform: scale(0.98); }
-  .btn-secondary { border: 2px solid rgba(255,255,255,0.9); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
-  .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
+  .btn-secondary { border: none; background: var(--color-white); color: var(--color-forest); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .btn-secondary:hover { transform: scale(1.02); box-shadow: 0 10px 24px rgba(255,255,255,0.25); }
   .btn-secondary:active { transform: scale(0.98); }
-  .btn-secondary[disabled] { opacity: 0.45; cursor: not-allowed; }
-  .btn-secondary[disabled]:hover { transform: none; background: transparent; }
+  .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary[disabled]:hover { transform: none; box-shadow: none; }
   .btn-tertiary { border: 1.5px solid rgba(255,255,255,0.5); background: transparent; color: rgba(255,255,255,0.9); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-base); display: inline-block; transition: border-color var(--transition-fast), color var(--transition-fast); font-family: var(--font-family); cursor: pointer; }
   .btn-tertiary:hover { border-color: var(--color-white); color: var(--color-white); }
   .btn-tertiary[disabled] { opacity: 0.45; cursor: not-allowed; }
@@ -140,26 +140,25 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%);
+    background: linear-gradient(160deg, #04140E 0%, #0A2A1F 45%, var(--color-forest) 100%);
     color: var(--color-white);
     position: relative;
     overflow: hidden;
     min-height: 92vh;
-    display: grid;
-    place-items: center;
+    display: flex;
+    align-items: center;
     padding: var(--spacing-6xl) var(--spacing-2xl);
   }
-  .hero > .wrap { position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; width: 95%; max-width: 900px; }
-  .hero .eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-xl); }
-  .hero h1 { font-size: 32px; font-weight: var(--font-weight-extrabold); line-height: 1.08; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.01em; text-transform: uppercase; text-shadow: 0 2px 12px rgba(0,0,0,0.3); }
+  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 760px; }
+  .hero h1 { font-size: 32px; font-weight: var(--font-weight-extrabold); line-height: 1.08; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.01em; text-transform: uppercase; }
   @media (min-width: 640px) { .hero h1 { font-size: 48px; } }
-  @media (min-width: 1024px) { .hero h1 { font-size: 66px; } }
-  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.85); max-width: 680px; margin-bottom: var(--spacing-3xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  @media (min-width: 1024px) { .hero h1 { font-size: 64px; } }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 640px; margin-bottom: var(--spacing-3xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-lg); } }
-  .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; align-items: center; }
+  .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: flex-start; align-items: center; }
 
   /* FULL-BLEED BANNER (abstract, no photography available) */
-  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest-lighter) 0%, var(--color-forest) 100%); }
+  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
   .bleed-banner svg { width: 100%; height: 100%; display: block; }
 
   /* BENEFIT GRID (What We Do, photo-card style) */
@@ -318,7 +317,6 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Student-built. Campus by campus.</div>
     <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
     <p class="lede">We are the best community for ambitious student builders across Africa. 16 weeks to build, backed by a community that pushes you further, no equity, no fees. We connect our best teams to the mentors and partners who can take it further.</p>
     <div class="hero-cta-row">
