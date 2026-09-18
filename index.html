@@ -161,15 +161,13 @@
   .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
   .bleed-banner svg { width: 100%; height: 100%; display: block; }
 
-  /* BENEFIT GRID (What We Do, photo-card style) */
+  /* WHAT WE DO (numbered list) */
   .benefit-section { padding: var(--spacing-6xl) 0; }
   .benefit-section h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .benefit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); }
-  .benefit-rule { width: 40px; height: 3px; background: var(--color-bright); margin-bottom: var(--spacing-lg); }
-  .benefit-card h3 { text-transform: uppercase; font-size: 14px; letter-spacing: 0.02em; font-weight: var(--font-weight-extrabold); color: var(--text-primary); margin-bottom: var(--spacing-lg); line-height: 1.3; font-family: var(--font-family); }
-  .benefit-photo { aspect-ratio: 4/3; border-radius: var(--radius-sm); margin-bottom: var(--spacing-lg); display: flex; align-items: center; justify-content: center; background: linear-gradient(160deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
-  .benefit-photo svg { width: 38%; height: 38%; color: rgba(255,255,255,0.9); }
-  .benefit-card p { font-size: 13.5px; color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .numbered-list { list-style: none; max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--spacing-xl); }
+  .numbered-item { display: flex; gap: var(--spacing-lg); align-items: flex-start; }
+  .numbered-item .num { flex-shrink: 0; width: 36px; height: 36px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest); font-size: var(--font-size-sm); font-family: var(--font-family); }
+  .numbered-item p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); margin: 0; font-family: var(--font-family); }
 
   /* STATEMENT (Who Is This For, bold full-bleed page) */
   .statement { background: var(--color-black); color: var(--color-white); padding: var(--spacing-6xl) 0; text-align: center; }
@@ -272,7 +270,6 @@
     .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
 
-    .benefit-grid { grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl) var(--spacing-xl); }
     .audience-detail-row { grid-template-columns: 1fr; gap: var(--spacing-2xl); }
     .process-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
     .process-card { max-width: 100%; }
@@ -351,32 +348,13 @@
 <section class="benefit-section reveal" id="program">
   <div class="wrap">
     <h2>What We Do</h2>
-    <div class="benefit-grid">
-      <div class="benefit-card">
-        <div class="benefit-rule"></div>
-        <h3>Learn What's Venture-Backable</h3>
-        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg></div>
-        <p>Every two weeks, we break down what it actually takes, idea validation to fundraising, taught by club leadership and guest founders joining virtually.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-rule"></div>
-        <h3>Find Your Co-Builder</h3>
-        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="3.2"/><circle cx="17" cy="15" r="3.2"/><path d="M6.3 18.5C7 16.6 8.6 15.3 10.6 15.3M13.4 8.6C15.4 8.6 17 9.9 17.7 11.8"/></svg></div>
-        <p>Through eHub, our co-building space, list what you're working on and what you need, no cold directory, just people finding each other.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-rule"></div>
-        <h3>Build Toward Something Real</h3>
-        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg></div>
-        <p>Team pitches every two weeks, a monthly Demo Day, and one flagship pitch event closing out each 4-month cohort.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-rule"></div>
-        <h3>Get Connected When Ready</h3>
-        <div class="benefit-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 8V6a3 3 0 00-6 0v2M5 8h14l-1 12H6L5 8z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <p>We don't fund or take equity. Once your team is ready, we connect you to the mentors and partners who can take it further.</p>
-      </div>
-    </div>
+    <ol class="numbered-list">
+      <li class="numbered-item"><span class="num">1</span><p>Bi-weekly masterclasses on what makes a business fundable, taught by club leadership and guest founders.</p></li>
+      <li class="numbered-item"><span class="num">2</span><p>Build within a community that pushes you further, share feedback, ideas, and momentum, and naturally meet the co-builder who completes you along the way.</p></li>
+      <li class="numbered-item"><span class="num">3</span><p>Team pitches every two weeks, sharpening your story as you build.</p></li>
+      <li class="numbered-item"><span class="num">4</span><p>One flagship pitch day and exhibition to close it out.</p></li>
+      <li class="numbered-item"><span class="num">5</span><p>No equity, no fees. We connect our best teams to mentors and partners.</p></li>
+    </ol>
   </div>
 </section>
 
