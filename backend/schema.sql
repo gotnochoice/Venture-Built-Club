@@ -175,6 +175,27 @@ CREATE TABLE applications (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Partner Inquiries (mentors, funders, and organizations wanting to get involved)
+CREATE TABLE partner_inquiries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  organization_name VARCHAR(255) NOT NULL,
+  role_title VARCHAR(255) NOT NULL,
+
+  help_types TEXT[] NOT NULL,
+  help_types_other TEXT,
+
+  agreed_to_communications BOOLEAN NOT NULL DEFAULT false,
+  agreed_to_data_storage BOOLEAN NOT NULL DEFAULT false,
+
+  status VARCHAR(50) DEFAULT 'new', -- new, contacted, partnered, declined
+  internal_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_profiles_user_id ON profiles(user_id);
@@ -188,3 +209,5 @@ CREATE INDEX idx_resources_pillar ON resources(pillar);
 CREATE INDEX idx_admin_logs_admin_id ON admin_logs(admin_id);
 CREATE INDEX idx_applications_stage ON applications(stage);
 CREATE INDEX idx_applications_email ON applications(email);
+CREATE INDEX idx_partner_inquiries_status ON partner_inquiries(status);
+CREATE INDEX idx_partner_inquiries_email ON partner_inquiries(email);

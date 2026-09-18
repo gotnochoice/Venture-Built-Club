@@ -242,7 +242,15 @@
   .cta-footer-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; }
   .cta-footer .btn-secondary { border-color: rgba(255,255,255,0.9); }
 
-  footer { padding: var(--spacing-xl) 0; display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); flex-wrap: wrap; gap: var(--spacing-md); font-family: var(--font-family); }
+  footer { padding: var(--spacing-4xl) 0 var(--spacing-xl); background: var(--color-gray-100); font-family: var(--font-family); }
+  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); flex-wrap: wrap; }
+  .footer-brand { max-width: 260px; }
+  .footer-brand .logo { display: inline-block; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .footer-col h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
+  .footer-col a { display: block; font-size: 14px; color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
+  .footer-col a:hover { color: var(--color-forest); }
+  .footer-bottom { margin-top: var(--spacing-3xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--color-gray-300); font-size: 12.5px; color: var(--text-muted); }
 
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -272,6 +280,7 @@
     .process-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
     .process-card { max-width: 100%; }
     .team-row { flex-direction: column; align-items: center; }
+    .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
     .team-card { max-width: 100%; }
     .cta-footer-row { flex-direction: column; align-items: center; }
     .cta-footer-row .btn-primary, .cta-footer-row .btn-secondary { width: 100%; }
@@ -520,9 +529,27 @@
 </section>
 
 <footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
-    <span>Venture Built</span>
-    <span>Africa, starting at Obafemi Awolowo University</span>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Venture <span>Built</span></div>
+        <p>Student-led venture building chapters on Africa's top campuses, starting at Obafemi Awolowo University.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Overview</h4>
+        <a href="/locations">Locations</a>
+        <a href="/resources">Resources</a>
+        <a href="/community">Community</a>
+        <a href="/partners">Partners</a>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/portal">Log In</a>
+        <a href="/apply">Apply to Join</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Venture Built — Africa, starting at Obafemi Awolowo University</div>
   </div>
 </footer>
 

@@ -61,21 +61,62 @@
   .page-header h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; margin-bottom: var(--spacing-lg); }
   .page-header p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 660px; margin: 0 auto; line-height: 1.6; }
 
-  .content-section { padding: var(--spacing-6xl) 0; text-align: center; }
-  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-2xl); max-width: 960px; margin: 0 auto; }
-  .offer-card { text-align: left; padding: var(--spacing-2xl); background: var(--color-gray-100); border-radius: var(--radius-lg); }
-  .offer-card h3 { font-size: 16px; color: var(--color-forest); margin-bottom: var(--spacing-sm); }
-  .offer-card p { font-size: 13.5px; color: #2A332F; line-height: 1.6; margin: 0; }
+  .content-section { padding: var(--spacing-6xl) 0; }
+  .content-section .section-label, .connect-section .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-bright-dark); text-align: center; margin-bottom: var(--spacing-md); }
+  .content-section h2, .connect-section h2 { font-size: clamp(26px, 3.2vw, 38px); text-align: center; margin-bottom: var(--spacing-lg); }
+  .content-section .section-intro, .connect-section .section-intro { font-size: 16px; color: var(--text-secondary); text-align: center; max-width: 620px; margin: 0 auto var(--spacing-4xl); line-height: 1.65; }
 
-  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; padding: var(--spacing-6xl) 0 var(--spacing-5xl); }
+  .involve-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 900px; margin: 0 auto; }
+  .involve-card { text-align: left; padding: var(--spacing-2xl); border-top: 3px solid var(--color-bright); background: var(--color-gray-100); border-radius: var(--radius-sm); }
+  .involve-num { font-size: 44px; font-weight: 800; color: var(--color-gray-300); line-height: 1; margin-bottom: var(--spacing-md); font-family: Georgia, serif; }
+  .involve-card h3 { font-size: 19px; color: var(--color-forest); margin-bottom: var(--spacing-sm); font-family: Georgia, serif; }
+  .involve-card p { font-size: 14px; color: #2A332F; line-height: 1.65; margin: 0; }
+  .involve-card p em { color: var(--text-muted); }
+
+  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; padding: 0 0 var(--spacing-5xl); }
   .team-card.more { align-items: center; justify-content: center; border: 1.5px dashed var(--color-gray-400); background: transparent; text-align: center; padding: var(--spacing-3xl); border-radius: var(--radius-lg); max-width: 420px; }
   .team-card.more p { font-size: 14.5px; color: var(--text-muted); font-style: italic; margin: 0; }
+
+  .connect-section { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
+  .connect-form { max-width: 640px; margin: var(--spacing-4xl) auto 0; background: var(--color-white); border-radius: var(--radius-lg); padding: var(--spacing-3xl); box-shadow: var(--shadow-sm, 0 2px 8px rgba(10,10,10,0.06)); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
+  .field { margin-bottom: var(--spacing-lg); text-align: left; }
+  .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: var(--spacing-xs); color: var(--text-primary); }
+  .field input[type="text"], .field input[type="email"] {
+    width: 100%; padding: var(--spacing-md) var(--spacing-lg); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-sm);
+    font-size: 14.5px; font-family: var(--font-family); color: var(--text-primary);
+  }
+  .field input:focus { outline: none; border-color: var(--color-bright); }
+  .field-hint { font-size: 12px; color: var(--text-muted); margin-top: var(--spacing-xs); }
+  .help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm) var(--spacing-lg); }
+  .help-option { display: flex; align-items: flex-start; gap: var(--spacing-sm); font-size: 14px; color: #2A332F; }
+  .help-option input { margin-top: 3px; }
+  .consent-block { border-top: 1px solid var(--color-gray-300); margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); }
+  .consent-block p { font-size: 12.5px; color: var(--text-muted); margin-bottom: var(--spacing-md); line-height: 1.6; }
+  .consent-option { display: flex; align-items: flex-start; gap: var(--spacing-sm); font-size: 13px; color: #2A332F; margin-bottom: var(--spacing-md); }
+  .consent-option input { margin-top: 3px; }
+  .form-error { display: none; color: #B3261E; font-size: 13.5px; margin-bottom: var(--spacing-lg); background: #FDEDEC; border-radius: var(--radius-sm); padding: var(--spacing-md); }
+  .form-error.visible { display: block; }
+  .connect-success { display: none; text-align: center; max-width: 640px; margin: var(--spacing-4xl) auto 0; background: var(--color-white); border-radius: var(--radius-lg); padding: var(--spacing-4xl) var(--spacing-2xl); }
+  .connect-success.visible { display: block; }
+  .connect-success h3 { font-size: 22px; margin-bottom: var(--spacing-md); color: var(--color-forest); }
+  .connect-success p { font-size: 15px; color: var(--text-secondary); }
+  .connect-form button[type="submit"] { width: 100%; margin-top: var(--spacing-sm); }
+  .connect-form button[disabled] { opacity: 0.6; cursor: not-allowed; }
 
   .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
   .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
   .cta-footer p { color: rgba(255,255,255,0.7); margin: 0 auto var(--spacing-xl); max-width: 460px; font-size: 15px; line-height: 1.5; }
 
-  footer { padding: var(--spacing-xl) var(--spacing-2xl); display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); flex-wrap: wrap; gap: var(--spacing-md); }
+  footer { padding: var(--spacing-4xl) var(--spacing-2xl) var(--spacing-xl); background: #F7F8F6; }
+  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; }
+  .footer-brand { max-width: 260px; }
+  .footer-brand .logo { display: inline-block; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .footer-col h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
+  .footer-col a { display: block; font-size: 14px; color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
+  .footer-col a:hover { color: var(--color-forest); }
+  .footer-bottom { max-width: 1080px; margin: var(--spacing-3xl) auto 0; padding-top: var(--spacing-lg); border-top: 1px solid var(--color-gray-300); font-size: 12.5px; color: var(--text-muted); }
 
   @media (max-width: 760px) {
     .wrap { padding: 0 var(--spacing-lg); }
@@ -84,7 +125,10 @@
     .mobile-nav-panel { display: block; }
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
-    .offer-grid { grid-template-columns: 1fr; }
+    .involve-list { grid-template-columns: 1fr; }
+    .field-row, .help-grid { grid-template-columns: 1fr; }
+    .connect-form { padding: var(--spacing-2xl) var(--spacing-lg); }
+    .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
 </style>
 </head>
@@ -126,16 +170,27 @@
 
 <section class="content-section">
   <div class="wrap">
-    <div class="offer-grid">
-      <div class="offer-card">
+    <div class="section-label">Ways to Get Involved</div>
+    <h2>Find your role in the ecosystem</h2>
+    <p class="section-intro">Whether you can give an hour a month or want to open real doors for ready teams, there's a place for you at Venture Built.</p>
+    <div class="involve-list">
+      <div class="involve-card">
+        <div class="involve-num">01</div>
         <h3>Teach a Masterclass</h3>
         <p>Join virtually to walk our members through a piece of the startup journey, idea validation to fundraising, from your own experience.</p>
       </div>
-      <div class="offer-card">
-        <h3>Open Office Hours</h3>
-        <p>Give ready teams direct time with you once they've got something worth showing, no pitch decks required upfront.</p>
+      <div class="involve-card">
+        <div class="involve-num">02</div>
+        <h3>Fundraising Mentorship</h3>
+        <p>Support ready teams preparing to raise, through pitch coaching and Demo Day judging. <em>(Upon eligibility and interest.)</em></p>
       </div>
-      <div class="offer-card">
+      <div class="involve-card">
+        <div class="involve-num">03</div>
+        <h3>Provide Grants or Funding</h3>
+        <p>Venture Built doesn't take equity or fees itself, but if you fund or grant to early-stage African founders, we'll introduce you to teams once they're ready.</p>
+      </div>
+      <div class="involve-card">
+        <div class="involve-num">04</div>
         <h3>Back a Demo Day</h3>
         <p>Show up at a monthly Demo Day or our flagship pitch event and see what Great Ife's next builders are putting together.</p>
       </div>
@@ -149,17 +204,94 @@
   </div>
 </section>
 
-<section class="cta-footer">
+<section class="connect-section" id="connect">
   <div class="wrap">
-    <h2>Want to partner with us?</h2>
-    <p>If you want to support builders early, whether as a mentor, a grant provider, or a company opening doors, we'd like to hear from you.</p>
-    <button class="btn-secondary" disabled title="Coming soon">Get in Touch</button>
+    <div class="section-label">Get Started</div>
+    <h2>Connect With Our Founders</h2>
+    <p class="section-intro">Want to support Africa's next generation of founders? Let's get in touch.</p>
+
+    <form class="connect-form" id="partnerForm">
+      <div class="form-error" id="formError"></div>
+      <div class="field-row">
+        <div class="field">
+          <label for="firstName">First Name*</label>
+          <input type="text" id="firstName" required>
+        </div>
+        <div class="field">
+          <label for="lastName">Last Name*</label>
+          <input type="text" id="lastName" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email*</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="field">
+        <label for="organizationName">Organization Name*</label>
+        <input type="text" id="organizationName" required>
+      </div>
+      <div class="field">
+        <label for="roleTitle">Role / Title*</label>
+        <input type="text" id="roleTitle" required>
+      </div>
+      <div class="field">
+        <label>How Would You Like to Help?*</label>
+        <div class="help-grid" id="helpGrid">
+          <label class="help-option"><input type="checkbox" value="Teach a masterclass"> Teach a masterclass</label>
+          <label class="help-option"><input type="checkbox" value="Fundraising mentorship"> Fundraising mentorship</label>
+          <label class="help-option"><input type="checkbox" value="Provide grants or funding"> Provide grants or funding</label>
+          <label class="help-option"><input type="checkbox" value="Back a Demo Day"> Back a Demo Day</label>
+        </div>
+        <div class="field" style="margin-top: var(--spacing-md);">
+          <input type="text" id="helpOther" placeholder="Other (optional)">
+        </div>
+      </div>
+
+      <div class="consent-block">
+        <p>By sharing your contact information you agree to receive updates, news, and event invitations from Venture Built.</p>
+        <label class="consent-option">
+          <input type="checkbox" id="agreedToCommunications" required>
+          I agree to receive communications from Venture Built.*
+        </label>
+        <p>If you consent to Venture Built storing your personal data, please tick the checkbox below.</p>
+        <label class="consent-option">
+          <input type="checkbox" id="agreedToDataStorage" required>
+          I agree to allow Venture Built to store and process my personal data.*
+        </label>
+      </div>
+
+      <button type="submit" class="btn-primary" id="submitBtn">Submit</button>
+    </form>
+
+    <div class="connect-success" id="connectSuccess">
+      <h3>Thanks for reaching out</h3>
+      <p>We've got your details and will be in touch once we're ready to connect.</p>
+    </div>
   </div>
 </section>
 
 <footer>
-  <span>Venture Built</span>
-  <span>Africa, starting at Obafemi Awolowo University</span>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo">Venture <span>Built</span></a>
+      <p>Student-led venture building chapters on Africa's top campuses, starting at Obafemi Awolowo University.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Overview</h4>
+      <a href="/">Home</a>
+      <a href="/locations">Locations</a>
+      <a href="/resources">Resources</a>
+      <a href="/community">Community</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="/portal">Log In</a>
+      <a href="/apply">Apply to Join</a>
+      <a href="/partners">Partners</a>
+      <a href="#connect">Get in Touch</a>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">Venture Built — Africa, starting at Obafemi Awolowo University</div>
 </footer>
 
 <script>
@@ -179,6 +311,68 @@
         mobileMenuBtn.querySelector('.icon-burger').classList.remove('hidden');
         mobileMenuBtn.querySelector('.icon-close').classList.add('hidden');
       });
+    });
+  }
+
+  const API_URL = '/api';
+  const partnerForm = document.getElementById('partnerForm');
+  const formError = document.getElementById('formError');
+  const connectSuccess = document.getElementById('connectSuccess');
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (partnerForm) {
+    partnerForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formError.classList.remove('visible');
+
+      const helpTypes = Array.from(document.querySelectorAll('#helpGrid input:checked')).map(el => el.value);
+      const helpOther = document.getElementById('helpOther').value.trim();
+      if (helpOther) helpTypes.push(helpOther);
+
+      if (helpTypes.length === 0) {
+        formError.textContent = 'Please select at least one way you would like to help.';
+        formError.classList.add('visible');
+        window.scrollTo({ top: partnerForm.offsetTop - 100, behavior: 'smooth' });
+        return;
+      }
+
+      const payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        organizationName: document.getElementById('organizationName').value.trim(),
+        roleTitle: document.getElementById('roleTitle').value.trim(),
+        helpTypes,
+        helpTypesOther: helpOther || null,
+        agreedToCommunications: document.getElementById('agreedToCommunications').checked,
+        agreedToDataStorage: document.getElementById('agreedToDataStorage').checked,
+      };
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch(`${API_URL}/partners/submit`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+
+        if (response.ok) {
+          partnerForm.style.display = 'none';
+          connectSuccess.classList.add('visible');
+        } else {
+          throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+      } catch (error) {
+        formError.textContent = error.message || 'Could not reach the server. Please try again.';
+        formError.classList.add('visible');
+        window.scrollTo({ top: partnerForm.offsetTop - 100, behavior: 'smooth' });
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+      }
     });
   }
 </script>

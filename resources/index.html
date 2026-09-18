@@ -75,7 +75,15 @@
   .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
   .cta-footer p { color: rgba(255,255,255,0.7); margin: 0 auto var(--spacing-xl); max-width: 460px; font-size: 15px; line-height: 1.5; }
 
-  footer { padding: var(--spacing-xl) var(--spacing-2xl); display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); flex-wrap: wrap; gap: var(--spacing-md); }
+  footer { padding: var(--spacing-4xl) var(--spacing-2xl) var(--spacing-xl); background: var(--color-gray-100); }
+  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; }
+  .footer-brand { max-width: 260px; }
+  .footer-brand .logo { display: inline-block; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .footer-col h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
+  .footer-col a { display: block; font-size: 14px; color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
+  .footer-col a:hover { color: var(--color-forest); }
+  .footer-bottom { max-width: 1080px; margin: var(--spacing-3xl) auto 0; padding-top: var(--spacing-lg); border-top: 1px solid var(--color-gray-300); font-size: 12.5px; color: var(--text-muted); }
 
   @media (max-width: 760px) {
     .wrap { padding: 0 var(--spacing-lg); }
@@ -85,6 +93,7 @@
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
     .resource-grid { grid-template-columns: 1fr; }
+    .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
 </style>
 </head>
@@ -166,8 +175,26 @@
 </section>
 
 <footer>
-  <span>Venture Built</span>
-  <span>Africa, starting at Obafemi Awolowo University</span>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo">Venture <span>Built</span></a>
+      <p>Student-led venture building chapters on Africa's top campuses, starting at Obafemi Awolowo University.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Overview</h4>
+      <a href="/">Home</a>
+      <a href="/locations">Locations</a>
+      <a href="/resources">Resources</a>
+      <a href="/community">Community</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="/portal">Log In</a>
+      <a href="/apply">Apply to Join</a>
+      <a href="/partners">Partners</a>
+    </div>
+  </div>
+  <div class="footer-bottom wrap">Venture Built — Africa, starting at Obafemi Awolowo University</div>
 </footer>
 
 <script>
