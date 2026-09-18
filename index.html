@@ -153,7 +153,8 @@
   .hero h1 { font-size: clamp(30px, 6vw, 58px); font-weight: var(--font-weight-extrabold); line-height: 1.1; margin-bottom: var(--spacing-xl); font-family: var(--font-family); letter-spacing: -0.01em; text-transform: uppercase; }
   .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 640px; margin-bottom: var(--spacing-3xl); line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-regular); }
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-lg); } }
-  .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: flex-start; align-items: center; }
+  .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: flex-start; align-items: center; }
+  .hero-cta-row .btn-primary, .hero-cta-row .btn-secondary, .hero-cta-row .btn-tertiary { border-radius: 4px; padding: var(--spacing-lg) var(--spacing-2xl); }
 
   /* FULL-BLEED BANNER (abstract, no photography available) */
   .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
