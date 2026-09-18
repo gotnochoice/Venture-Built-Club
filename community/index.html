@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — Venture Built</title>
+<meta name="description" content="Venture Built's community of student builders, growing one campus at a time through eHub and shared masterclasses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-black: #0A0A0A;
+    --color-forest: #0F3D2E;
+    --color-forest-light: #1A5C42;
+    --color-forest-lighter: #2A7A5C;
+    --color-white: #FFFFFF;
+    --color-bright: #3EBD79;
+    --color-bright-dark: #2DA863;
+    --color-bright-light: #60D18F;
+    --color-gray-100: #F9FAFB;
+    --color-gray-300: #E5E7EB;
+    --color-gray-400: #D1D5DC;
+    --text-primary: #0A0A0A;
+    --text-secondary: #6B7268;
+    --text-muted: #9CA3AF;
+    --font-family: 'Montserrat', sans-serif;
+    --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 12px; --spacing-lg: 16px;
+    --spacing-xl: 24px; --spacing-2xl: 32px; --spacing-3xl: 40px; --spacing-4xl: 48px;
+    --spacing-5xl: 60px; --spacing-6xl: 80px;
+    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-full: 50px;
+    --transition-fast: 0.15s ease; --transition-normal: 0.3s ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-family); background: var(--color-white); color: var(--text-primary); line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--font-family); font-weight: 700; letter-spacing: -0.01em; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
+  a { color: inherit; }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
+  .logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--text-primary); }
+  .logo span { color: var(--color-bright); }
+  .nav-links { display: flex; gap: var(--spacing-3xl); }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .nav-cta-row { display: flex; align-items: center; gap: var(--spacing-md); }
+  .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color var(--transition-fast), background var(--transition-fast); }
+  .nav-login:hover { border-color: var(--color-forest); background: var(--color-gray-100); }
+  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: 14px; font-weight: 700; box-shadow: 0 8px 20px rgba(62,189,121,0.4); }
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); }
+  .mobile-menu-btn .hidden { display: none !important; }
+  .mobile-nav-panel { display: none; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+  .mobile-nav-panel.open { max-height: 480px; }
+  .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .mobile-nav-cta-row { padding: var(--spacing-xl) var(--spacing-2xl); }
+  .mobile-nav-cta-row .btn-primary { width: 100%; }
+
+  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; }
+  .btn-secondary { border: 2px solid var(--color-gray-400); background: transparent; color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); font-weight: 600; font-size: 15px; display: inline-block; }
+  .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+  .page-header { background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%); color: var(--color-white); padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-5xl); text-align: center; }
+  .page-header .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-lg); }
+  .page-header h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; margin-bottom: var(--spacing-lg); }
+  .page-header p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+  .content-section { padding: var(--spacing-6xl) 0; text-align: center; }
+  .content-section p { font-size: 17px; color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-lg); line-height: 1.7; }
+
+  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-2xl); max-width: 960px; margin: var(--spacing-4xl) auto 0; }
+  .offer-card { text-align: left; padding: var(--spacing-2xl); background: var(--color-gray-100); border-radius: var(--radius-lg); }
+  .offer-card h3 { font-size: 16px; color: var(--color-forest); margin-bottom: var(--spacing-sm); }
+  .offer-card p { font-size: 13.5px; color: #2A332F; line-height: 1.6; margin: 0; text-align: left; }
+
+  .placeholder-section { padding: var(--spacing-5xl) 0; background: #F7F8F6; }
+  .placeholder-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1.5px dashed var(--color-gray-400); border-radius: var(--radius-lg); padding: var(--spacing-3xl) var(--spacing-2xl); background: var(--color-white); }
+  .placeholder-tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-bright-dark); background: rgba(62,189,121,0.1); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin-bottom: var(--spacing-lg); }
+  .placeholder-card h3 { font-size: 18px; margin-bottom: var(--spacing-md); }
+  .placeholder-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; margin: 0; }
+
+  .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
+  .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
+  .cta-footer p { color: rgba(255,255,255,0.7); margin: 0 auto var(--spacing-xl); max-width: 460px; font-size: 15px; line-height: 1.5; }
+  .cta-footer-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; }
+
+  footer { padding: var(--spacing-xl) var(--spacing-2xl); display: flex; justify-content: space-between; font-size: 13.5px; color: var(--text-secondary); flex-wrap: wrap; gap: var(--spacing-md); }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 var(--spacing-lg); }
+    nav { padding: var(--spacing-md) var(--spacing-lg); box-shadow: 0 4px 12px rgba(15,61,46,0.25); background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); }
+    .mobile-nav-panel { display: block; }
+    .logo { color: var(--color-white); }
+    .nav-links, .nav-cta-row { display: none; }
+    .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+    .offer-grid { grid-template-columns: 1fr; }
+    .cta-footer-row { flex-direction: column; align-items: center; }
+    .cta-footer-row .btn-primary, .cta-footer-row .btn-secondary { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">Venture <span>Built</span></a>
+  <div class="nav-links">
+    <a href="/locations">Locations</a>
+    <a href="/resources">Resources</a>
+    <a href="/community">Community</a>
+    <a href="/partners">Partners</a>
+  </div>
+  <div class="nav-cta-row">
+    <a href="/portal" class="nav-login">Log In</a>
+    <a href="/apply" class="nav-cta">Apply to join</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+    <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <svg class="icon-close hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</nav>
+
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <a href="/locations">Locations</a>
+  <a href="/resources">Resources</a>
+  <a href="/community">Community</a>
+  <a href="/partners">Partners</a>
+  <a href="/portal">Log In</a>
+  <div class="mobile-nav-cta-row">
+    <a href="/apply" class="btn-primary">Apply to join</a>
+  </div>
+</div>
+
+<header class="page-header">
+  <div class="eyebrow">Community</div>
+  <h1>Our Community</h1>
+  <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and shared masterclasses, builders find teammates, sharpen ideas, and push each other further.</p>
+</header>
+
+<section class="content-section">
+  <div class="wrap">
+    <div class="offer-grid">
+      <div class="offer-card">
+        <h3>eHub</h3>
+        <p>List what you're working on and what you need. No cold directory, just people finding each other and building together.</p>
+      </div>
+      <div class="offer-card">
+        <h3>Masterclasses</h3>
+        <p>Biweekly sessions on what it actually takes to build a venture-backable business, taught by club leadership and guest founders.</p>
+      </div>
+      <div class="offer-card">
+        <h3>Demo Days</h3>
+        <p>A monthly chance to show what you and your peers have built, and get real feedback from people who've been there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="placeholder-section">
+  <div class="wrap">
+    <div class="placeholder-card">
+      <span class="placeholder-tag">Coming soon</span>
+      <h3>Our community, growing</h3>
+      <p>We're just getting started. Real numbers on our builder community will go here once we have them to share.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-footer">
+  <div class="wrap">
+    <h2>Want in?</h2>
+    <p>Apply to a cohort, or join our WhatsApp community once it opens, to meet builders across Africa.</p>
+    <div class="cta-footer-row">
+      <a href="/apply" class="btn-primary">Apply Now</a>
+      <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Venture Built</span>
+  <span>Africa, starting at Obafemi Awolowo University</span>
+</footer>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavPanel = document.getElementById('mobileNavPanel');
+  if (mobileMenuBtn && mobileNavPanel) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileNavPanel.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.querySelector('.icon-burger').classList.toggle('hidden', isOpen);
+      mobileMenuBtn.querySelector('.icon-close').classList.toggle('hidden', !isOpen);
+    });
+    mobileNavPanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavPanel.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.querySelector('.icon-burger').classList.remove('hidden');
+        mobileMenuBtn.querySelector('.icon-close').classList.add('hidden');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
