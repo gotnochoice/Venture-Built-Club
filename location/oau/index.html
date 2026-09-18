@@ -171,32 +171,94 @@
   .plain-block p { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
   .plain-block.alt { background: #F7F8F6; }
 
-  /* WHAT WE DO (text-only) */
+  /* WHAT WE DO (photo + bullets) */
   .whatwedo { padding: var(--spacing-6xl) 0; }
-  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-4xl) var(--spacing-5xl); max-width: 920px; margin: 0 auto; }
-  .whatwedo-block h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); line-height: var(--line-height-snug); }
-  .whatwedo-block p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .whatwedo-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 640px; margin-left: auto; margin-right: auto; }
+  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
+  .whatwedo-photo {
+    aspect-ratio: 4/3;
+    background: var(--color-forest);
+    background-image: url('/images/content/what-we-do.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-normal);
+  }
+  .whatwedo-photo:hover { transform: scale(1.02); }
 
-  /* WHO FOR (text-only, two cards) */
+  /* WHY JOIN US (photo + bullets) */
   .whofor { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
   .whofor h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whofor-intro { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin: 0 auto var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); max-width: 680px; }
-  .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 860px; margin: 0 auto; }
-  .audience-card { background: var(--color-white); border-left: 3px solid var(--color-bright); border-radius: var(--radius-sm); padding: var(--spacing-2xl); font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .audience-card b { color: var(--color-forest); }
+  .whofor-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 600px; margin-left: auto; margin-right: auto; }
+  .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
+  .whofor-photo {
+    aspect-ratio: 4/3;
+    background: var(--color-forest);
+    background-image: url('/images/content/why-join-us.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-md);
+    transition: transform var(--transition-normal);
+  }
+  .whofor-photo:hover { transform: scale(1.02); }
+  .check-list { list-style: none; }
+  .check-list li { font-size: 15.5px; color: #2A332F; padding-left: 26px; position: relative; margin-bottom: var(--spacing-lg); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-medium); transition: transform var(--transition-fast); font-family: var(--font-family); }
+  .check-list li:hover { transform: translateX(4px); }
+  .check-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--color-forest); font-weight: var(--font-weight-extrabold); font-family: var(--font-family); }
 
-  /* APPLICATION PROCESS */
-  .process { padding: var(--spacing-6xl) 0; }
-  .process h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .process-row { display: flex; justify-content: center; gap: var(--spacing-2xl); flex-wrap: wrap; }
-  .process-card { flex: 1; max-width: 300px; text-align: center; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl) var(--spacing-xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
-  .process-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,61,46,0.12); }
-  .process-card.pending { background: #F1F2EF; }
-  .process-circle { width: 48px; height: 48px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest); font-size: var(--font-size-xl); margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
-  .process-card h3 { font-size: 16.5px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-sm); font-family: var(--font-family); color: var(--text-primary); }
-  .process-card p { font-size: 14.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .process-card.pending p { color: var(--text-muted); font-style: italic; }
+  /* VALUES */
+  .values { padding: var(--spacing-6xl) 0; text-align: center; }
+  .values h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .values-row { display: flex; justify-content: center; gap: var(--spacing-4xl); flex-wrap: wrap; }
+  .value-item { max-width: 260px; }
+  .value-icon {
+    width: 72px; height: 72px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--color-forest);
+    transition: transform var(--transition-normal), background var(--transition-normal);
+  }
+  .value-item:hover .value-icon { transform: scale(1.1); background: rgba(62,189,121,0.08); }
+  .value-item h3 { font-size: 17px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); }
+  .value-item p { font-size: 14.5px; color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+
+  /* IS FOR YOU */
+  .isforyou { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
+  .isforyou h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .isforyou-list { max-width: 760px; margin: 0 auto; }
+  .isforyou-list li { font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
+  @keyframes typewriter { 0% { width: 0; opacity: 0; } 10% { opacity: 1; } 100% { width: 100%; opacity: 1; } }
+  .typewriter-heading { animation: typewriter 2.5s steps(50, end) forwards; max-width: 100%; display: inline-block; overflow: hidden; white-space: nowrap; }
+  .isforyou .typewriter-heading { animation: typewriter 3s steps(35, end) forwards; max-width: 900px; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-forest); padding-right: var(--spacing-md); }
+
+  /* VISION & MISSION */
+  .vision-mission { padding: var(--spacing-6xl) 0; background: var(--color-white); }
+  .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
+  .vision-mission-content { display: flex; flex-direction: column; gap: var(--spacing-3xl); }
+  .vision-mission-item h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--text-primary); }
+  .vision-mission-item p { font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: var(--text-secondary); font-family: var(--font-family); }
+  .vision-mission-image {
+    aspect-ratio: 4/3;
+    background-image: url('/images/hero/Landscape_of_Obafemi_Awolowo_University.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg);
+  }
+
+  /* HOW TO JOIN */
+  .how-to-join { padding: var(--spacing-6xl) 0; }
+  .how-to-join h2.intro { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
+  .join-intro { font-size: var(--font-size-base); color: var(--text-secondary); margin: 0 auto var(--spacing-4xl); line-height: var(--line-height-normal); text-align: center; max-width: 600px; font-family: var(--font-family); }
+  .join-steps-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); flex-wrap: wrap; }
+  .join-step-card { flex: 1; max-width: 280px; text-align: center; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl) var(--spacing-xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
+  .join-step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,61,46,0.12); }
+  .join-circle { width: 48px; height: 48px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest); font-size: var(--font-size-xl); margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
+  .join-step-card p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .join-selected-intro { font-size: 16.5px; font-weight: var(--font-weight-bold); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); }
+  .join-selected-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); flex-wrap: wrap; }
+  .join-selected-card { flex: 1; max-width: 300px; font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); border-left: 2px solid var(--color-bright); padding-left: var(--spacing-lg); font-family: var(--font-family); }
+  .join-cta-wrap { text-align: center; }
+  .join-cta-line { font-size: 16.5px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
 
   /* TRACK RECORD (real stats) */
   .trackrecord { padding: var(--spacing-6xl) 0; text-align: center; background: var(--color-white); }
@@ -241,8 +303,6 @@
   .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; }
   .team-card { display: flex; gap: var(--spacing-lg); align-items: flex-start; flex: 1; min-width: 300px; max-width: 380px; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
   .team-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(10,10,10,0.08); }
-  .team-card.more { align-items: center; justify-content: center; border: 1.5px dashed var(--color-gray-400); background: transparent; text-align: center; }
-  .team-card.more p { font-size: 14.5px; color: var(--text-muted); font-style: italic; font-family: var(--font-family); }
   .team-avatar { width: 64px; height: 64px; border-radius: var(--radius-full); background: var(--color-forest); flex-shrink: 0; }
   .team-card h3 { font-size: 16.5px; font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs); font-family: var(--font-family); }
   .team-card .role { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md); font-family: var(--font-family); }
@@ -285,9 +345,10 @@
     .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
 
-    .whatwedo-grid, .audience-grid { grid-template-columns: 1fr; }
-    .process-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
-    .process-card { max-width: 100%; }
+    .whatwedo-grid, .whofor-grid, .vision-mission-grid { grid-template-columns: 1fr; }
+    .values-row { flex-direction: column; align-items: center; }
+    .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
+    .join-step-card, .join-selected-card { max-width: 100%; }
     .trackrecord-row { grid-template-columns: 1fr; }
     .team-row { flex-direction: column; align-items: center; }
     .team-card { max-width: 100%; }
@@ -340,75 +401,21 @@
   </div>
 </section>
 
-<section class="whatwedo reveal" id="program">
+<section class="vision-mission reveal">
   <div class="wrap">
-    <h2>What We Do</h2>
-    <div class="whatwedo-grid">
-      <div class="whatwedo-block">
-        <h3>Learn what makes a business venture-backable</h3>
-        <p>Every two weeks, we break down what it actually takes, idea validation to fundraising, taught by club leadership and guest founders joining virtually from across the ecosystem.</p>
+    <div class="vision-mission-grid">
+      <div class="vision-mission-content">
+        <div class="vision-mission-item">
+          <h3>Vision</h3>
+          <p>To create a campus where every exceptional student innovator can build the next set of unicorns in Africa.</p>
+        </div>
+        <div class="vision-mission-item">
+          <h3>Mission</h3>
+          <p>To adequately close the knowledge gap in building venture-backable startups, connecting and building an ecosystem that creates a robust platform for developing co-builders.</p>
+        </div>
       </div>
-      <div class="whatwedo-block">
-        <h3>Find the co-builder who completes you</h3>
-        <p>Through eHub, our co-building space, list what you're working on and what you need, no cold directory, just people finding each other.</p>
-      </div>
-      <div class="whatwedo-block">
-        <h3>Build toward something real</h3>
-        <p>Team pitches every two weeks, a monthly Demo Day, and one flagship pitch event closing out each 4-month cohort.</p>
-      </div>
-      <div class="whatwedo-block">
-        <h3>Get connected once you're ready</h3>
-        <p>We don't fund or take equity. Once your team is ready, we connect you to the mentors and partners who can take it further.</p>
-      </div>
+      <div class="vision-mission-image"></div>
     </div>
-  </div>
-</section>
-
-<section class="whofor reveal">
-  <div class="wrap">
-    <h2>Who Is Venture Built For?</h2>
-    <p class="whofor-intro">Open to every department and level, undergraduate or Masters. We don't filter by skill set, whether your edge is engineering, business, marketing, or design. What we're looking for is vision: people who've genuinely started thinking through a problem worth solving, and have the conviction to build it.</p>
-    <div class="audience-grid">
-      <div class="audience-card"><b>Apply as an individual</b> if you have an idea but no team yet, eHub exists so you can find people to build with.</div>
-      <div class="audience-card"><b>Apply as a team</b> if you're already two or more working on something together.</div>
-    </div>
-  </div>
-</section>
-
-<section class="process reveal" id="join">
-  <div class="wrap">
-    <h2>The Application Process</h2>
-    <div class="process-row">
-      <div class="process-card">
-        <div class="process-circle">1</div>
-        <h3>Application</h3>
-        <p>Tell us why you want to build, or if you're not building yet, what about the startup world genuinely pulls you in. Put real thought into your answers, we're reading for conviction and insight, not a polished AI draft, and we can tell the difference.</p>
-      </div>
-      <div class="process-card">
-        <div class="process-circle">2</div>
-        <h3>Screening Interview</h3>
-        <p>A call with our team if we think you have what it takes. We're listening for conviction you can defend.</p>
-      </div>
-      <div class="process-card pending">
-        <div class="process-circle">3</div>
-        <h3>Second Interview</h3>
-        <p>Details on this step are being finalized.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="plain-block reveal">
-  <div class="wrap">
-    <h2>The Cohort</h2>
-    <p>Each cohort runs for one full semester, about four months, with an intake of roughly 50 members. Every two weeks: a masterclass session and team pitches, sometimes taught by a guest founder joining virtually. In between: eHub, the WhatsApp community, and milestones tailored to where each team actually is. Once a month: a bigger Demo Day. At the end: one flagship pitch event where the whole cohort presents what they've built.</p>
-  </div>
-</section>
-
-<section class="plain-block alt reveal">
-  <div class="wrap">
-    <h2>The Terms</h2>
-    <p>Venture Built does not take equity and does not charge fees to join. We don't invest in or fund member startups directly. Our job is to prepare you and connect ready teams to the mentors, grants, and partners who can take it further.</p>
   </div>
 </section>
 
@@ -443,6 +450,135 @@
       </div>
     </div>
     <p class="trackrecord-note">These are OAU's own alumni achievements, the standard Venture Built exists to help the next generation reach.</p>
+  </div>
+</section>
+
+<section class="whatwedo reveal" id="program">
+  <div class="wrap">
+    <h2>What We Do</h2>
+    <p class="whatwedo-sub">We make exceptional student builders ready for the real world of startup building, help you break down your own business model, and connect you with the best co-builders on campus.</p>
+    <div class="whatwedo-grid">
+      <div class="whatwedo-photo"></div>
+      <div class="whatwedo-content">
+        <ul class="check-list">
+          <li>Weekly masterclasses covering the full startup journey, idea validation to fundraising, and the hard truths in building</li>
+          <li>Find the co-builder who complements what you can't do yourself through eHub, our co-building platform</li>
+          <li>Hackathons and pitch days that push you to ship, building toward one flagship event a year</li>
+          <li>Once your team is ready, we connect you to the right mentors and partners who can take it further</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="whofor reveal">
+  <div class="wrap">
+    <h2>Why Join Us</h2>
+    <p class="whofor-sub">Here's what being part of the club actually gets you.</p>
+    <div class="whofor-grid">
+      <div class="whofor-photo"></div>
+      <div class="whofor-content">
+        <ul class="check-list">
+          <li>No fees or equity required to join</li>
+          <li>Mentorship and networking events with real founders and operators</li>
+          <li>Access to vetted mentors and grants</li>
+          <li>Peer-to-peer learning with people building alongside you</li>
+          <li>Specialized resources by industry</li>
+          <li>A growing network of OAU alumni founders</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values reveal">
+  <div class="wrap">
+    <h2>Our Values Fuel Every Session</h2>
+    <div class="values-row">
+      <div class="value-item">
+        <div class="value-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 10v3M9 15l-2 1.5M15 15l2 1.5"/></svg>
+        </div>
+        <h3>Community</h3>
+        <p>This isn't a solo sport. Finding people to build with is the whole point of Co-Builders.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
+        </div>
+        <h3>YOU-First</h3>
+        <p>This is about bringing out the best version of you, regardless of your current stage of knowledge. It's about people with real conviction and something to prove.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>
+        </div>
+        <h3>Learning</h3>
+        <p>You're here to learn. Absorb everything, network with everyone, and make the most of the opportunity in front of you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="isforyou reveal">
+  <div class="wrap">
+    <h2 class="typewriter-heading">Who This Is For</h2>
+    <ul class="check-list isforyou-list">
+      <li>You hold real conviction in the problem you want to solve, and the persistence to keep working on it even when it's hard.</li>
+      <li>You're already building something, or you're genuinely ready to start, not just thinking about it someday.</li>
+      <li>You're willing to put in real time every week, not just show up once and disappear.</li>
+      <li>You have an early idea, prototype, or piece of research you could show and talk through, even if it's rough.</li>
+      <li>You have a founding team with complementary skills, or you're a driven solo builder who can show us why you deserve a place in this cohort.</li>
+      <li>You're curious about the startup world and want real exposure to it, even if you're not building yet.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="how-to-join reveal" id="join">
+  <div class="wrap">
+    <h2 class="intro">How to Join Venture Built</h2>
+    <p class="join-intro">We provide you with mentorship, resources, and tools to kickstart your startup journey and sustain its growth.</p>
+
+    <div class="join-steps-row">
+      <div class="join-step-card">
+        <div class="join-circle">1</div>
+        <p><b>Application</b> with real conviction, not a polished AI draft</p>
+      </div>
+      <div class="join-step-card">
+        <div class="join-circle">2</div>
+        <p><b>Screening Interview</b> with our team, we're listening for conviction you can defend</p>
+      </div>
+      <div class="join-step-card">
+        <div class="join-circle">3</div>
+        <p><b>Offer</b> if you're a fit, you'll get an offer to join, then details for your first session</p>
+      </div>
+    </div>
+
+    <p class="join-selected-intro">If you're selected to join Venture Built, you'll:</p>
+    <div class="join-selected-row">
+      <div class="join-selected-card">Gain access to a pool of exceptional co-builders, screened for skill and character</div>
+      <div class="join-selected-card">Attend weekly masterclasses to kickstart or sharpen your idea or product</div>
+      <div class="join-selected-card">Take part in club events like pitch days and hackathons, alongside mentors and partners</div>
+    </div>
+
+    <div class="join-cta-wrap">
+      <p class="join-cta-line">Are you ready to take the first step?</p>
+      <a href="/apply" class="btn-solid">Apply Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="plain-block reveal">
+  <div class="wrap">
+    <h2>The Cohort</h2>
+    <p>Each cohort runs for one full semester, about four months, with an intake of roughly 50 members. Every two weeks: a masterclass session and team pitches, sometimes taught by a guest founder joining virtually. In between: eHub, the WhatsApp community, and milestones tailored to where each team actually is. Once a month: a bigger Demo Day. At the end: one flagship pitch event where the whole cohort presents what they've built.</p>
+  </div>
+</section>
+
+<section class="plain-block alt reveal">
+  <div class="wrap">
+    <h2>The Terms</h2>
+    <p>Venture Built does not take equity and does not charge fees to join. We don't invest in or fund member startups directly. Our job is to prepare you and connect ready teams to the mentors, grants, and partners who can take it further.</p>
   </div>
 </section>
 
@@ -512,12 +648,15 @@
         <div class="team-avatar"></div>
         <div>
           <h3>Prof. Ishaya Gambo</h3>
-          <div class="role">Partner Advisor</div>
-          <p>"Prof. Gambo has agreed to head Venture Built as its first partner advisor, lending credibility and unlocking access to departments and faculty resources as the club grows."</p>
+          <div class="role">Professor Faculty of Computing Science and Engineering</div>
         </div>
       </div>
-      <div class="team-card more">
-        <p>More advisors joining soon</p>
+      <div class="team-card">
+        <div class="team-avatar"></div>
+        <div>
+          <h3>Adam (Olatunji) Muritala</h3>
+          <div class="role">Professor of Mechanical Engineering Obafemi Awolowo University</div>
+        </div>
       </div>
     </div>
   </div>
@@ -571,6 +710,21 @@
     });
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
+
+  const typewriterHeading = document.querySelector('.isforyou .typewriter-heading');
+  if (typewriterHeading) {
+    const typewriterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          typewriterHeading.style.animation = 'none';
+          setTimeout(() => {
+            typewriterHeading.style.animation = 'typewriter 3s steps(35, end) forwards';
+          }, 10);
+        }
+      });
+    }, { threshold: 0.5 });
+    typewriterObserver.observe(typewriterHeading);
+  }
 
   document.querySelectorAll('.faq-item').forEach(item => {
     item.querySelector('.faq-toggle').addEventListener('click', () => {
