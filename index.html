@@ -122,6 +122,8 @@
 
   /* BUTTONS */
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
+  .btn-primary[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+  .btn-primary[disabled]:hover { transform: none; }
   .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
   .btn-primary:active { transform: scale(0.98); }
   .btn-secondary { border: none; background: var(--color-white); color: var(--color-forest); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
@@ -201,6 +203,14 @@
   .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
   .ps-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
+
+  /* COMMUNITY CTA (after How to Join) */
+  .community-cta { padding: var(--spacing-6xl) 0; background: var(--color-white); }
+  .community-card { max-width: 700px; margin: 0 auto; text-align: center; background: #F3F9F5; border: 1px solid #DCEEE3; border-radius: var(--radius-xl); padding: var(--spacing-5xl) var(--spacing-3xl); }
+  .community-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .community-card h2 { font-size: clamp(24px, 3vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); line-height: 1.35; color: var(--text-primary); font-family: var(--font-family); }
+  .community-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 540px; margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
+  .community-card .btn-primary { margin-top: var(--spacing-lg); }
 
   /* PLACEHOLDER SECTIONS */
   .placeholder-section { padding: var(--spacing-5xl) 0; }
@@ -444,6 +454,18 @@
         <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
       </div>
       <div class="tab-panel-photo"><span>Photo</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="community-cta reveal" id="community">
+  <div class="wrap">
+    <div class="community-card">
+      <span class="community-label">Community</span>
+      <h2>Not in the cohort? You can still be part of Venture Built.</h2>
+      <p>Our community is open to ambitious students across schools who want to learn, connect and stay active in the startup ecosystem.</p>
+      <p>Whether you're not ready to apply yet, didn't make the cohort, or simply want to meet other students building and exploring ideas, there's a place for you here.</p>
+      <button class="btn-primary" disabled title="Coming soon">Join the Venture Built Community on WhatsApp</button>
     </div>
   </div>
 </section>
