@@ -164,6 +164,8 @@
   .who-we-are h2 { font-size: clamp(28px, 3.2vw, 40px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
   .who-we-are p { font-size: 16px; color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
   .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: 17px; margin-top: var(--spacing-sm); }
+  .who-we-are p.who-we-are-emphasis + p.who-we-are-emphasis { margin-top: 0; }
+  .who-we-are p.who-we-are-emphasis:has(+ p.who-we-are-emphasis) { margin-bottom: 0; }
 
 
   /* MISSION / PLAIN PROSE BLOCKS */
@@ -364,8 +366,9 @@
     <p>Venture Built is a club for ambitious students who want to build. Not just any company, but one with the potential to become venture-backable.</p>
     <p>We bring together students with the ambition to build the next generation of great African startups and give them the knowledge, environment and people to push their ideas further.</p>
     <p>Learn what it takes to build a stronger product. Test your ideas. Challenge your assumptions. Build alongside people who push you to build better.</p>
-    <p>Our flagship 16-week cohort is intense, hands-on and built around one thing:</p>
+    <p>Our flagship 16-week cohort is intense, hands-on and built around two things:</p>
     <p class="who-we-are-emphasis">Building.</p>
+    <p class="who-we-are-emphasis">Understanding the venture ecosystem.</p>
   </div>
 </section>
 
