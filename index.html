@@ -160,10 +160,10 @@
   .bleed-banner svg { width: 100%; height: 100%; display: block; }
 
   /* WHO WE ARE (centered statement page, matching Antler's "Who Is Antler For?") */
-  .who-we-are { padding: var(--spacing-6xl) 0; text-align: center; }
-  .who-we-are h2 { font-size: clamp(34px, 5.5vw, 58px); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: -0.01em; margin: 0 auto var(--spacing-3xl); line-height: 1.1; color: var(--text-primary); max-width: 900px; font-family: var(--font-family); text-align: center; }
-  .who-we-are p { font-size: 16px; color: var(--text-secondary); line-height: 1.75; max-width: 700px; margin: 0 auto var(--spacing-xl); font-family: var(--font-family); text-align: center; }
-  .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-extrabold); color: var(--text-primary); font-size: 19px; }
+  .who-we-are { padding: var(--spacing-5xl) 0; text-align: center; }
+  .who-we-are h2 { font-size: clamp(28px, 3.2vw, 40px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: 16px; color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: 17px; margin-top: var(--spacing-sm); }
 
 
   /* MISSION / PLAIN PROSE BLOCKS */
@@ -174,17 +174,17 @@
 
   /* HOW TO JOIN (Antler-style full-width tabs + photo card) */
   .process { padding: var(--spacing-6xl) 0; }
-  .tab-nav-full { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-gray-300); margin-bottom: var(--spacing-3xl); }
-  .tab-btn-full { text-align: left; background: none; border: none; border-bottom: 3px solid transparent; margin-bottom: -1px; padding: var(--spacing-lg) var(--spacing-md) var(--spacing-lg) 0; font-size: var(--font-size-2xl); font-weight: var(--font-weight-semibold); color: var(--text-muted); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast); }
+  .tab-nav-full { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-gray-300); margin-bottom: var(--spacing-4xl); }
+  .tab-btn-full { text-align: left; background: none; border: none; border-bottom: 4px solid transparent; margin-bottom: -1px; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl) 0; font-size: clamp(18px, 1.8vw, 24px); font-weight: var(--font-weight-bold); color: var(--color-gray-400); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast); }
   .tab-btn-full:hover { color: var(--text-primary); }
-  .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--text-primary); }
-  .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; background: #F0EAE0; border-radius: var(--radius-lg); overflow: hidden; align-items: stretch; }
+  .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--color-bright); }
+  .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; background: #F1EBE0; border-radius: var(--radius-xl); overflow: hidden; align-items: stretch; box-shadow: var(--shadow-lg); min-height: 460px; }
   .tab-panel-card.active { display: grid; }
-  .tab-panel-content { padding: var(--spacing-4xl); display: flex; flex-direction: column; justify-content: center; }
-  .tab-panel-content h3 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); color: var(--text-primary); }
-  .tab-panel-content p { font-size: var(--font-size-lg); color: #3A3A38; line-height: var(--line-height-relaxed); font-family: var(--font-family); margin-bottom: var(--spacing-lg); }
+  .tab-panel-content { padding: var(--spacing-6xl); display: flex; flex-direction: column; justify-content: center; }
+  .tab-panel-content h3 { font-size: clamp(34px, 4vw, 52px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-2xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
+  .tab-panel-content p { font-size: 15px; color: #4A453D; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
   .tab-panel-content p:last-child { margin-bottom: 0; }
-  .tab-panel-photo { background: #E3DBCB; min-height: 360px; display: flex; align-items: center; justify-content: center; }
+  .tab-panel-photo { background: #E3DBCB; min-height: 460px; display: flex; align-items: center; justify-content: center; }
   .tab-panel-photo span { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 1.5px; text-transform: uppercase; color: #A89E8C; }
 
   /* PLACEHOLDER SECTIONS */
