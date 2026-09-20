@@ -150,6 +150,8 @@
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
   .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
   .btn-primary:active { transform: scale(0.98); }
+  .btn-primary[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+  .btn-primary[disabled]:hover { transform: none; }
   .btn-secondary { border: 2px solid rgba(255,255,255,0.9); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
   .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
   .btn-secondary:active { transform: scale(0.98); }
@@ -188,72 +190,6 @@
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-lg); } }
   .hero-cta-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; align-items: center; }
 
-  /* MISSION / PLAIN PROSE BLOCKS */
-  .plain-block { padding: var(--spacing-6xl) 0; text-align: center; }
-  .plain-block h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); max-width: 760px; margin-left: auto; margin-right: auto; }
-  .plain-block p { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .plain-block.alt { background: #F7F8F6; }
-
-  /* WHAT WE DO (photo + bullets) */
-  .whatwedo { padding: var(--spacing-6xl) 0; }
-  .whatwedo h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whatwedo-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 640px; margin-left: auto; margin-right: auto; }
-  .whatwedo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
-  .whatwedo-photo {
-    aspect-ratio: 4/3;
-    background: var(--color-forest);
-    background-image: url('/images/content/what-we-do.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: var(--radius-md);
-    transition: transform var(--transition-normal);
-  }
-  .whatwedo-photo:hover { transform: scale(1.02); }
-
-  /* WHY JOIN US (photo + bullets) */
-  .whofor { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
-  .whofor h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .whofor-sub { font-size: var(--font-size-base); color: var(--text-secondary); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-normal); max-width: 600px; margin-left: auto; margin-right: auto; }
-  .whofor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
-  .whofor-photo {
-    aspect-ratio: 4/3;
-    background: var(--color-forest);
-    background-image: url('/images/content/why-join-us.jpg');
-    background-size: cover;
-    background-position: center;
-    border-radius: var(--radius-md);
-    transition: transform var(--transition-normal);
-  }
-  .whofor-photo:hover { transform: scale(1.02); }
-  .check-list { list-style: none; }
-  .check-list li { font-size: 15.5px; color: #2A332F; padding-left: 26px; position: relative; margin-bottom: var(--spacing-lg); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-medium); transition: transform var(--transition-fast); font-family: var(--font-family); }
-  .check-list li:hover { transform: translateX(4px); }
-  .check-list li::before { content: "\2713"; position: absolute; left: 0; color: var(--color-forest); font-weight: var(--font-weight-extrabold); font-family: var(--font-family); }
-
-  /* VALUES */
-  .values { padding: var(--spacing-6xl) 0; text-align: center; }
-  .values h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-4xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .values-row { display: flex; justify-content: center; gap: var(--spacing-4xl); flex-wrap: wrap; }
-  .value-item { max-width: 260px; }
-  .value-icon {
-    width: 72px; height: 72px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto var(--spacing-lg); color: var(--color-forest);
-    transition: transform var(--transition-normal), background var(--transition-normal);
-  }
-  .value-item:hover .value-icon { transform: scale(1.1); background: rgba(62,189,121,0.08); }
-  .value-item h3 { font-size: 17px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); color: var(--color-forest); font-family: var(--font-family); }
-  .value-item p { font-size: 14.5px; color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-
-  /* IS FOR YOU */
-  .isforyou { padding: var(--spacing-6xl) 0; background: #F7F8F6; }
-  .isforyou h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .isforyou-list { max-width: 760px; margin: 0 auto; }
-  .isforyou-list li { font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
-  @keyframes typewriter { 0% { width: 0; opacity: 0; } 10% { opacity: 1; } 100% { width: 100%; opacity: 1; } }
-  .typewriter-heading { animation: typewriter 2.5s steps(50, end) forwards; max-width: 100%; display: inline-block; overflow: hidden; white-space: nowrap; }
-  .isforyou .typewriter-heading { animation: typewriter 3s steps(35, end) forwards; max-width: 900px; display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid var(--color-forest); padding-right: var(--spacing-md); }
-
   /* VISION & MISSION */
   .vision-mission { padding: var(--spacing-6xl) 0; background: var(--color-white); }
   .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-5xl); align-items: center; }
@@ -268,73 +204,51 @@
     border-radius: var(--radius-lg);
   }
 
-  /* HOW TO JOIN */
-  .how-to-join { padding: var(--spacing-6xl) 0; }
-  .how-to-join h2.intro { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); }
-  .join-intro { font-size: var(--font-size-base); color: var(--text-secondary); margin: 0 auto var(--spacing-4xl); line-height: var(--line-height-normal); text-align: center; max-width: 600px; font-family: var(--font-family); }
-  .join-steps-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); flex-wrap: wrap; }
-  .join-step-card { flex: 1; max-width: 280px; text-align: center; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl) var(--spacing-xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
-  .join-step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,61,46,0.12); }
-  .join-circle { width: 48px; height: 48px; border-radius: var(--radius-full); border: 1.5px solid var(--color-bright); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); color: var(--color-forest); font-size: var(--font-size-xl); margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
-  .join-step-card p { font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .join-selected-intro { font-size: 16.5px; font-weight: var(--font-weight-bold); text-align: center; margin-bottom: var(--spacing-3xl); font-family: var(--font-family); }
-  .join-selected-row { display: flex; justify-content: center; gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl); flex-wrap: wrap; }
-  .join-selected-card { flex: 1; max-width: 300px; font-size: 15.5px; color: #2A332F; line-height: var(--line-height-relaxed); border-left: 2px solid var(--color-bright); padding-left: var(--spacing-lg); font-family: var(--font-family); }
-  .join-cta-wrap { text-align: center; }
-  .join-cta-line { font-size: 16.5px; font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  /* WHO WE ARE (centered statement page, matching Antler's "Who Is Antler For?") */
+  .who-we-are { padding: var(--spacing-5xl) 0; text-align: center; }
+  .who-we-are h2 { font-size: clamp(28px, 3.2vw, 40px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: 16px; color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .who-we-are p.who-we-are-lead-in { margin-bottom: 0; }
+  .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: 17px; margin-top: 0; }
 
-  /* TRACK RECORD (real stats) */
-  .trackrecord { padding: var(--spacing-6xl) 0; text-align: center; background: var(--color-white); }
-  .trackrecord h2 { font-size: clamp(32px, 3.8vw, 48px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
-  .trackrecord-sub { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto var(--spacing-5xl); font-family: var(--font-family); line-height: var(--line-height-relaxed); font-weight: var(--font-weight-regular); }
-  .trackrecord-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--spacing-lg); max-width: 1200px; margin: 0 auto var(--spacing-2xl); align-items: stretch; }
-  .trackrecord-item { padding: var(--spacing-xl) var(--spacing-md); border-radius: var(--radius-md); background: var(--color-white); border: 1px solid #E8EBE9; border-top: 3px solid rgba(62,189,121,0.35); transition: transform var(--transition-normal), box-shadow var(--transition-normal); text-align: center; }
-  .trackrecord-item:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(15,61,46,0.1); }
-  .trackrecord-num { font-size: clamp(26px, 2.6vw, 34px); font-weight: var(--font-weight-bold); color: var(--color-forest); margin-bottom: var(--spacing-sm); font-family: var(--font-family); letter-spacing: -0.01em; }
-  .trackrecord-label { font-size: 12.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); font-weight: var(--font-weight-medium); }
+  /* PROGRAM STRUCTURE (full-bleed dark break section) */
+  .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
+  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); position: relative; }
+  .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .ps-header h2 { font-size: clamp(30px, 4vw, 46px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
+  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--spacing-5xl); position: relative; }
+  .ps-card { background: #04140E; padding: var(--spacing-2xl) var(--spacing-xl); transition: background var(--transition-normal); }
+  .ps-card:hover { background: rgba(62,189,121,0.06); }
+  .ps-num { display: block; font-size: 13px; font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-xl); letter-spacing: 1.5px; font-family: var(--font-family); }
+  .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
+  .ps-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
 
-  /* PLACEHOLDER SECTIONS */
-  .placeholder-section { padding: var(--spacing-5xl) 0; }
-  .placeholder-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1.5px dashed var(--color-gray-400); border-radius: var(--radius-lg); padding: var(--spacing-3xl) var(--spacing-2xl); }
-  .placeholder-tag { display: inline-block; font-size: 11px; font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-bright-dark); background: rgba(62,189,121,0.1); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin-bottom: var(--spacing-lg); }
-  .placeholder-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--text-primary); }
-  .placeholder-card p { font-size: var(--font-size-base); color: var(--text-secondary); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
+  /* HOW TO JOIN (Antler-style full-width tabs + photo card) */
+  .process { padding: var(--spacing-6xl) 0; }
+  .tab-nav-full { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-gray-300); margin-bottom: var(--spacing-4xl); }
+  .tab-btn-full { text-align: left; background: none; border: none; border-bottom: 4px solid transparent; margin-bottom: -1px; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl) 0; font-size: clamp(18px, 1.8vw, 24px); font-weight: var(--font-weight-bold); color: var(--color-gray-400); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast); }
+  .tab-btn-full:hover { color: var(--text-primary); }
+  .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--color-bright); }
+  .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); background: #EEF6F1; border-radius: var(--radius-xl); align-items: stretch; box-shadow: var(--shadow-lg); min-height: 460px; padding: var(--spacing-2xl); }
+  .tab-panel-card.active { display: grid; }
+  .tab-panel-content { padding: var(--spacing-3xl) var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
+  .tab-panel-content h3 { font-size: clamp(34px, 4vw, 52px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-2xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
+  .tab-panel-content p { font-size: 15px; color: #445048; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
+  .tab-panel-content p:last-child { margin-bottom: 0; }
+  .tab-panel-photo { background: #DBEBE1; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; }
+  .tab-panel-photo span { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 1.5px; text-transform: uppercase; color: #8FA99B; }
 
-  /* FAQ */
-  .faq { padding: var(--spacing-6xl) 0; background: linear-gradient(135deg, #F7F8F6 0%, #FFFFFF 100%); }
-  .faq .section-label { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg); font-family: var(--font-family); text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-  .faq h2 { font-size: clamp(32px, 4vw, 48px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-5xl); text-align: center; font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); letter-spacing: -0.015em; }
-  .faq-container { max-width: 920px; margin: 0 auto; }
-  .faq-item { background: var(--color-white); border: 1px solid #E0E5E2; border-radius: var(--radius-lg); padding: var(--spacing-3xl); margin-bottom: var(--spacing-xl); cursor: pointer; transition: all var(--transition-normal); box-shadow: var(--shadow-xs); }
-  .faq-item:hover { box-shadow: var(--shadow-lg); border-color: var(--color-bright); background: #FAFBFA; }
-  .faq-item.active { background: rgba(62,189,121,0.06); border-color: var(--color-bright); box-shadow: 0 8px 24px rgba(62,189,121,0.15); }
-  .faq-toggle { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--spacing-xl); }
-  .faq-item h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); margin-bottom: 0; font-family: var(--font-family); color: var(--text-primary); transition: color var(--transition-normal); line-height: var(--line-height-normal); }
-  .faq-item:hover h3 { color: var(--color-forest); }
-  .faq-item.active h3 { color: var(--color-forest); }
-  .faq-arrow { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; font-size: 20px; color: var(--color-white); transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background var(--transition-normal); flex-shrink: 0; background: var(--color-forest); border-radius: var(--radius-full); font-weight: var(--font-weight-bold); }
-  .faq-item:hover .faq-arrow { background: var(--color-bright); transform: scale(1.1); }
-  .faq-item.active .faq-arrow { transform: rotate(180deg) scale(1.1); background: var(--color-bright); }
-  .faq-item p { font-size: var(--font-size-lg); color: #3A4A44; line-height: var(--line-height-loose); font-family: var(--font-family); margin-top: var(--spacing-xl); max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease; font-weight: var(--font-weight-regular); }
-  .faq-item.active p { max-height: 800px; opacity: 1; margin-top: var(--spacing-xl); }
-
-  /* TEAM */
-  .team { padding: var(--spacing-6xl) 0; }
-  .team .section-label { font-size: var(--font-size-sm); color: var(--text-secondary); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-md); font-family: var(--font-family); text-align: center; }
-  .team h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-3xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); text-align: center; }
-  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; }
-  .team-card { display: flex; gap: var(--spacing-lg); align-items: flex-start; flex: 1; min-width: 300px; max-width: 380px; background: #F7F8F6; border-radius: var(--radius-lg); padding: var(--spacing-2xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
-  .team-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px rgba(10,10,10,0.08); }
-  .team-avatar { width: 64px; height: 64px; border-radius: var(--radius-full); background: var(--color-forest); flex-shrink: 0; }
-  .team-card h3 { font-size: 16.5px; font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xs); font-family: var(--font-family); }
-  .team-card .role { font-size: var(--font-size-xs); color: var(--color-bright); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md); font-family: var(--font-family); }
-  .team-card p { font-size: 14.5px; color: #3A4A44; line-height: var(--line-height-relaxed); font-family: var(--font-family); font-style: italic; }
-
-  /* CTA FOOTER */
-  .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
-  .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md); max-width: 480px; margin-left: auto; margin-right: auto; font-family: var(--font-family); line-height: var(--line-height-snug); }
-  .cta-footer p { color: rgba(255,255,255,0.7); margin-bottom: var(--spacing-xl); max-width: 460px; margin-left: auto; margin-right: auto; font-size: var(--font-size-base); line-height: var(--line-height-normal); font-family: var(--font-family); }
-  .cta-footer-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; }
+  /* COMMUNITY CTA (after How to Join) */
+  .community-cta { padding: var(--spacing-6xl) 0; background: #04140E; color: var(--color-white); }
+  .community-cta-wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--spacing-4xl); align-items: center; }
+  .community-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .community-cta-content h2 { font-size: clamp(26px, 3.2vw, 36px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); line-height: 1.3; color: var(--color-white); font-family: var(--font-family); }
+  .community-cta-content p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px; margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .community-cta-content .btn-primary { margin-top: var(--spacing-lg); }
+  .community-cta-icon { display: flex; align-items: center; justify-content: center; }
+  .community-cta-icon svg { color: rgba(62,189,121,0.35); }
 
   footer { padding: var(--spacing-4xl) 0 var(--spacing-xl); background: var(--color-gray-100); font-family: var(--font-family); }
   .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); flex-wrap: wrap; }
@@ -374,16 +288,19 @@
     .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
 
-    .whatwedo-grid, .whofor-grid, .vision-mission-grid { grid-template-columns: 1fr; }
-    .values-row { flex-direction: column; align-items: center; }
-    .join-steps-row, .join-selected-row { flex-direction: column; align-items: center; gap: var(--spacing-xl); }
-    .join-step-card, .join-selected-card { max-width: 100%; }
-    .trackrecord-row { grid-template-columns: 1fr; }
-    .team-row { flex-direction: column; align-items: center; }
+    .vision-mission-grid { grid-template-columns: 1fr; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
-    .team-card { max-width: 100%; }
-    .cta-footer-row { flex-direction: column; align-items: center; }
-    .cta-footer-row .btn-primary, .cta-footer-row .btn-secondary { width: 100%; }
+
+    .tab-nav-full { grid-template-columns: 1fr; }
+    .tab-btn-full { text-align: center; font-size: var(--font-size-lg); border-bottom: none; border-left: 3px solid transparent; padding: var(--spacing-md); }
+    .tab-btn-full.active { border-left-color: var(--text-primary); background: var(--color-gray-100); }
+    .tab-panel-card.active { grid-template-columns: 1fr; }
+    .tab-panel-photo { min-height: 220px; }
+    .ps-grid { grid-template-columns: 1fr; }
+    .community-cta-wrap { grid-template-columns: 1fr; text-align: center; }
+    .community-cta-content p { margin-left: auto; margin-right: auto; }
+    .community-cta-icon { order: -1; }
+    .community-cta-icon svg { width: 100px; height: 100px; }
   }
 </style>
 </head>
@@ -447,7 +364,6 @@
   <div class="wrap">
     <div class="eyebrow">Great Ife's founding chapter</div>
     <h1>Where Great Ife's Next<br>Unicorn Founders Are Built</h1>
-    <p class="lede">We are the best community for ambitious student builders at Obafemi Awolowo University.</p>
     <p class="lede">16 weeks to build, backed by a community that pushes you further. No equity. No fees. We connect our best teams to the mentors and partners who can take it further.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
@@ -475,259 +391,112 @@
   </div>
 </section>
 
-<section class="trackrecord reveal" id="track-record">
+<section class="who-we-are reveal" id="who-we-are">
   <div class="wrap">
-    <h2>Great Ife's Top Founders</h2>
-    <p class="trackrecord-sub">Venture Built exists because Obafemi Awolowo University already produces exceptional founders, and we believe there's an even bigger trajectory ahead.</p>
-    <div class="trackrecord-row">
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">$620M+</div>
-        <div class="trackrecord-label">Combined raised across Flutterwave, Moniepoint, Reliance Health, Chowdeck, Nomba, and more</div>
-      </div>
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">#1</div>
-        <div class="trackrecord-label">In West Africa for million-dollar startup founders</div>
-      </div>
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">36</div>
-        <div class="trackrecord-label">Startup CEOs from OAU, per Africa: The Big Deal</div>
-      </div>
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">12+</div>
-        <div class="trackrecord-label">Great Ife alumni founders of million-dollar startups, and counting</div>
-      </div>
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">2</div>
-        <div class="trackrecord-label">African fintech unicorn founders</div>
-      </div>
-      <div class="trackrecord-item">
-        <div class="trackrecord-num">12+</div>
-        <div class="trackrecord-label">Notable companies built by Great Ife alumni, and counting</div>
-      </div>
-    </div>
+    <h2>Who We Are</h2>
+    <p>We are the best community for ambitious student builders at Obafemi Awolowo University.</p>
+    <p>We bring together students with the ambition to build the next generation of great African startups and give them the knowledge, environment and people to push their ideas further.</p>
+    <p>Learn what it takes to build a stronger product. Test your ideas. Challenge your assumptions. Build alongside people who push you to build better.</p>
+    <p class="who-we-are-lead-in">Our flagship 16-week cohort is intense, hands-on and built around two things:</p>
+    <p class="who-we-are-emphasis">Building. Understanding the venture ecosystem.</p>
   </div>
 </section>
 
-<section class="whatwedo reveal" id="program">
+<section class="who-we-are reveal" id="who-is-it-for">
   <div class="wrap">
-    <h2>What We Do</h2>
-    <p class="whatwedo-sub">We take you through an intense 16-week building journey designed to help you understand what it takes to build a real startup and navigate the ecosystem around it.</p>
-    <div class="whatwedo-grid">
-      <div class="whatwedo-photo"></div>
-      <div class="whatwedo-content">
-        <ul class="check-list">
-          <li>Learn from founders, operators, investors and experts through practical masterclasses</li>
-          <li>Turn ideas into products, test them with real users, and iterate as you build</li>
-          <li>Build alongside ambitious students, exchange feedback and ideas, and find people to build with</li>
-          <li>Pitch your progress throughout the cohort and sharpen your thinking and storytelling</li>
-          <li>Bring it all together at Demo Day and pitch what you've built to founders, investors, operators and ecosystem leaders</li>
-        </ul>
-      </div>
-    </div>
+    <h2>Who Is It For?</h2>
+    <p>Venture Built is for ambitious students who want to build something bigger than themselves.</p>
+    <p>You might have an idea.<br>You might have a problem you want to solve.<br>You might have a product already.<br>Or you might simply know you want to build.</p>
+    <p>You can apply <strong>with a team or on your own.</strong></p>
+    <p>You don't need a finished startup. You don't need a co-founder.</p>
+    <p class="who-we-are-emphasis">You just need the ambition, the drive to go all in, and the hunger to learn.</p>
   </div>
 </section>
 
-<section class="whofor reveal">
+<section class="program-structure reveal" id="program-structure">
   <div class="wrap">
-    <h2>Why Join Us</h2>
-    <p class="whofor-sub">Venture Built gives you more than a 16-week programme. It gives you a community, an environment to build in, and a window into the ecosystem you're building for.</p>
-    <div class="whofor-grid">
-      <div class="whofor-photo"></div>
-      <div class="whofor-content">
-        <ul class="check-list">
-          <li>Build with ambitious students from across schools and backgrounds</li>
-          <li>Learn how founders build, how investors think, and how the venture ecosystem works</li>
-          <li>Meet founders, operators, investors and other people building across the ecosystem</li>
-          <li>Find potential co-builders, collaborators and people who challenge you to build better</li>
-          <li>Stay connected to the Venture Built community beyond the cohort</li>
-          <li>The strongest teams get deeper connections to mentors and partners after the cohort</li>
-        </ul>
-      </div>
+    <div class="ps-header">
+      <span class="ps-label">Program Structure</span>
+      <h2>16 weeks. One intense building journey.</h2>
+      <p class="ps-intro">Learn the fundamentals. Test your ideas. Build. Iterate. Pitch.</p>
     </div>
-  </div>
-</section>
-
-<section class="values reveal">
-  <div class="wrap">
-    <h2>Our Values Fuel Every Session</h2>
-    <div class="values-row">
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3"/><circle cx="5" cy="17" r="2.2"/><circle cx="19" cy="17" r="2.2"/><path d="M12 10v3M9 15l-2 1.5M15 15l2 1.5"/></svg>
-        </div>
+    <div class="ps-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
+        <h3>Masterclasses</h3>
+        <p>Practical sessions led by founders, operators, investors and experts across the venture ecosystem.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
+        <h3>Build</h3>
+        <p>Turn ideas into products. Talk to users. Test assumptions. Keep improving.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
         <h3>Community</h3>
-        <p>This isn't a solo sport. Finding people to build with is the whole point of Co-Builders.</p>
+        <p>Build alongside ambitious students. Find people to build with. Learn from each other.</p>
       </div>
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>
-        </div>
-        <h3>YOU-First</h3>
-        <p>This is about bringing out the best version of you, regardless of your current stage of knowledge. It's about people with real conviction and something to prove.</p>
+      <div class="ps-card">
+        <span class="ps-num">04</span>
+        <h3>Demo Day</h3>
+        <p>Bring it all together. Pitch what you've built to founders, investors, operators and ecosystem leaders.</p>
       </div>
-      <div class="value-item">
-        <div class="value-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg>
-        </div>
-        <h3>Learning</h3>
-        <p>You're here to learn. Absorb everything, network with everyone, and make the most of the opportunity in front of you.</p>
+    </div>
+    <p class="ps-closing">The goal isn't just to teach you how to build. It's to help you understand the ecosystem around building, including how investors think and how the venture world works.</p>
+  </div>
+</section>
+
+<section class="process reveal" id="join">
+  <div class="wrap">
+    <div class="tab-nav-full">
+      <button class="tab-btn-full active" data-tab="apply">Apply</button>
+      <button class="tab-btn-full" data-tab="interview">Interview</button>
+      <button class="tab-btn-full" data-tab="in">You're In</button>
+    </div>
+
+    <div class="tab-panel-card active" data-panel="apply">
+      <div class="tab-panel-content">
+        <h3>Application</h3>
+        <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
+        <p>Put real thought into your answers, we can tell when a response wasn't written by you. Please include your CV so we can properly review your application.</p>
       </div>
+      <div class="tab-panel-photo"><span>Photo</span></div>
+    </div>
+
+    <div class="tab-panel-card" data-panel="interview">
+      <div class="tab-panel-content">
+        <h3>Interview</h3>
+        <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
+      </div>
+      <div class="tab-panel-photo"><span>Photo</span></div>
+    </div>
+
+    <div class="tab-panel-card" data-panel="in">
+      <div class="tab-panel-content">
+        <h3>You're In</h3>
+        <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
+      </div>
+      <div class="tab-panel-photo"><span>Photo</span></div>
     </div>
   </div>
 </section>
 
-<section class="isforyou reveal">
-  <div class="wrap">
-    <h2 class="typewriter-heading">Who This Is For</h2>
-    <ul class="check-list isforyou-list">
-      <li>You hold real conviction in the problem you want to solve, and the persistence to keep working on it even when it's hard.</li>
-      <li>You're already building something, or you're genuinely ready to start, not just thinking about it someday.</li>
-      <li>You're willing to put in real time every week, not just show up once and disappear.</li>
-      <li>You have an early idea, prototype, or piece of research you could show and talk through, even if it's rough.</li>
-      <li>You have a founding team with complementary skills, or you're a driven solo builder who can show us why you deserve a place in this cohort.</li>
-      <li>You're curious about the startup world and want real exposure to it, even if you're not building yet.</li>
-    </ul>
-  </div>
-</section>
-
-<section class="how-to-join reveal" id="join">
-  <div class="wrap">
-    <h2 class="intro">How to Join Venture Built</h2>
-    <p class="join-intro">We provide you with mentorship, resources, and tools to kickstart your startup journey and sustain its growth.</p>
-
-    <div class="join-steps-row">
-      <div class="join-step-card">
-        <div class="join-circle">1</div>
-        <p><b>Application</b> with real conviction, not a polished AI draft</p>
-      </div>
-      <div class="join-step-card">
-        <div class="join-circle">2</div>
-        <p><b>Screening Interview</b> with our team, we're listening for conviction you can defend</p>
-      </div>
-      <div class="join-step-card">
-        <div class="join-circle">3</div>
-        <p><b>Offer</b> if you're a fit, you'll get an offer to join, then details for your first session</p>
-      </div>
+<section class="community-cta reveal" id="community">
+  <div class="wrap community-cta-wrap">
+    <div class="community-cta-content">
+      <span class="community-label">Community</span>
+      <h2>Not in the cohort? You can still be part of Venture Built.</h2>
+      <p>Our community is open to ambitious students across schools who want to learn, connect and stay active in the startup ecosystem.</p>
+      <p>Whether you're not ready to apply yet, didn't make the cohort, or simply want to meet other students building and exploring ideas, there's a place for you here.</p>
+      <button class="btn-primary" disabled title="Coming soon">Join the Venture Built Community on WhatsApp</button>
     </div>
-
-    <p class="join-selected-intro">If you're selected to join Venture Built, you'll:</p>
-    <div class="join-selected-row">
-      <div class="join-selected-card">Gain access to a pool of exceptional co-builders, screened for skill and character</div>
-      <div class="join-selected-card">Attend weekly masterclasses to kickstart or sharpen your idea or product</div>
-      <div class="join-selected-card">Take part in club events like pitch days and hackathons, alongside mentors and partners</div>
-    </div>
-
-    <div class="join-cta-wrap">
-      <p class="join-cta-line">Are you ready to take the first step?</p>
-      <a href="/apply" class="btn-solid">Apply Now</a>
-    </div>
-  </div>
-</section>
-
-<section class="plain-block reveal">
-  <div class="wrap">
-    <h2>The Cohort</h2>
-    <p>Each cohort runs for one full semester, about four months, with an intake of roughly 50 members. Every two weeks: a masterclass session and team pitches, sometimes taught by a guest founder joining virtually. In between: eHub, the WhatsApp community, and milestones tailored to where each team actually is. Once a month: a bigger Demo Day. At the end: one flagship pitch event where the whole cohort presents what they've built.</p>
-  </div>
-</section>
-
-<section class="plain-block alt reveal">
-  <div class="wrap">
-    <h2>The Terms</h2>
-    <p>Venture Built does not take equity and does not charge fees to join. We don't invest in or fund member startups directly. Our job is to prepare you and connect ready teams to the mentors, grants, and partners who can take it further.</p>
-  </div>
-</section>
-
-<!--
-<section class="placeholder-section reveal">
-  <div class="wrap">
-    <div class="placeholder-card">
-      <span class="placeholder-tag">Coming soon</span>
-      <h3>Real stories, coming soon</h3>
-      <p>This is where founder stories and quotes from actual Venture Built members will go, once our first cohort completes the program.</p>
-    </div>
-  </div>
-</section>
-
-<section class="placeholder-section reveal">
-  <div class="wrap">
-    <div class="placeholder-card">
-      <span class="placeholder-tag">Coming soon</span>
-      <h3>What Great Ife's next cohort will build</h3>
-      <p>This is where the ventures built by Venture Built's own alumni will be showcased, once our first cohort graduates.</p>
-    </div>
-  </div>
-</section>
--->
-
-
-<section class="faq reveal" id="faq">
-  <div class="wrap">
-    <div class="section-label">Questions</div>
-    <h2>Frequently asked questions</h2>
-    <div class="faq-container">
-      <div class="faq-item">
-        <div class="faq-toggle">
-          <h3>Do I need to already have a startup idea?</h3>
-          <span class="faq-arrow">^</span>
-        </div>
-        <p>No. Coming with a rough idea, or even just curiosity about becoming a builder, is a great place to start. What matters is that you're ready to actually put in the work once you're in.</p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-toggle">
-          <h3>Do I need to know how to code?</h3>
-          <span class="faq-arrow">^</span>
-        </div>
-        <p>No. Venture Built is open to every department. If you can't build the technical side yourself, the Co-Builders space is exactly where you find someone who can.</p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-toggle">
-          <h3>What if I don't get in this time around?</h3>
-          <span class="faq-arrow">^</span>
-        </div>
-        <p>You're welcome to apply again next cohort. We'd rather you come back with more clarity than not apply at all.</p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-toggle">
-          <h3>Does Venture Built invest in my startup?</h3>
-          <span class="faq-arrow">^</span>
-        </div>
-        <p>No. We don't fund or take equity in member startups. Our job is to prepare you and connect ready teams to programs and investors who do.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="team reveal" id="team">
-  <div class="wrap">
-    <div class="section-label">Advisors</div>
-    <h2>Meet the Team</h2>
-    <div class="team-row">
-      <div class="team-card">
-        <div class="team-avatar"></div>
-        <div>
-          <h3>Prof. Ishaya Gambo</h3>
-          <div class="role">Professor Faculty of Computing Science and Engineering</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar"></div>
-        <div>
-          <h3>Adam (Olatunji) Muritala</h3>
-          <div class="role">Professor of Mechanical Engineering Obafemi Awolowo University</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="cta-footer reveal">
-  <div class="wrap">
-    <h2>Building something? You don't have to figure it out alone.</h2>
-    <p>Applications for the first cohort are opening soon. No prior startup experience required, just the drive to build something real.</p>
-    <div class="cta-footer-row">
-      <a href="/apply" class="btn-primary">Apply Now</a>
-      <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+    <div class="community-cta-icon">
+      <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        <circle cx="8.5" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+        <circle cx="12" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+        <circle cx="15.5" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -750,7 +519,7 @@
         <h4>Quick Links</h4>
         <a href="/portal">Log In</a>
         <a href="/apply">Apply to Join</a>
-        <a href="#faq">FAQ</a>
+        <a href="/#faq">FAQ</a>
       </div>
     </div>
     <div class="footer-bottom">Venture Built — Obafemi Awolowo University, Ile-Ife</div>
@@ -810,24 +579,11 @@
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
 
-  const typewriterHeading = document.querySelector('.isforyou .typewriter-heading');
-  if (typewriterHeading) {
-    const typewriterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          typewriterHeading.style.animation = 'none';
-          setTimeout(() => {
-            typewriterHeading.style.animation = 'typewriter 3s steps(35, end) forwards';
-          }, 10);
-        }
-      });
-    }, { threshold: 0.5 });
-    typewriterObserver.observe(typewriterHeading);
-  }
-
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.querySelector('.faq-toggle').addEventListener('click', () => {
-      item.classList.toggle('active');
+  document.querySelectorAll('.tab-btn-full').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn-full').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.tab-panel-card').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
     });
   });
 </script>
