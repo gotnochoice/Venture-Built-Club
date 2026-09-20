@@ -40,8 +40,20 @@
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
   .logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
   .logo span { color: var(--color-bright); }
-  .nav-links { display: flex; gap: var(--spacing-3xl); }
+  .nav-links { display: flex; align-items: center; gap: var(--spacing-3xl); }
   .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-trigger { display: flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; }
+  .nav-dropdown-trigger svg { transition: transform 0.15s ease; }
+  .nav-dropdown:hover .nav-dropdown-trigger svg, .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
+  .nav-dropdown-panel { position: absolute; top: calc(100% + 20px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 260px; background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); box-shadow: 0 16px 40px rgba(10,10,10,0.14); padding: var(--spacing-xl); opacity: 0; visibility: hidden; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease; z-index: 200; }
+  .nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown.open .nav-dropdown-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .nav-dropdown-group { margin-bottom: var(--spacing-lg); }
+  .nav-dropdown-group:last-child { margin-bottom: 0; }
+  .nav-dropdown-group-title { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: var(--spacing-sm); }
+  .nav-dropdown-link { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); text-decoration: none; padding: var(--spacing-sm) 0; }
+  .nav-dropdown-link:hover { color: var(--color-bright-dark); }
+  .nav-dropdown-link.disabled { color: var(--text-muted); cursor: default; }
   .nav-cta-row { display: flex; align-items: center; gap: var(--spacing-md); }
   .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color var(--transition-fast), background var(--transition-fast); }
   .nav-login:hover { border-color: var(--color-forest); background: var(--color-gray-100); }
@@ -49,8 +61,16 @@
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); }
   .mobile-menu-btn .hidden { display: none !important; }
   .mobile-nav-panel { display: none; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
-  .mobile-nav-panel.open { max-height: 480px; }
+  .mobile-nav-panel.open { max-height: 700px; }
   .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .mobile-nav-accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
+  .mobile-nav-accordion-trigger svg { transition: transform 0.15s ease; }
+  .mobile-nav-accordion.open .mobile-nav-accordion-trigger svg { transform: rotate(180deg); }
+  .mobile-nav-accordion-panel { max-height: 0; overflow: hidden; background: rgba(0,0,0,0.15); transition: max-height 0.3s ease; }
+  .mobile-nav-accordion.open .mobile-nav-accordion-panel { max-height: 220px; }
+  .mobile-nav-accordion-label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: var(--spacing-md) var(--spacing-2xl) var(--spacing-xs); }
+  .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: var(--spacing-sm) var(--spacing-2xl); border-bottom: none; }
+  .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
 
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; }
   .btn-secondary { border: 2px solid var(--color-gray-400); background: transparent; color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); font-weight: 600; font-size: 15px; display: inline-block; }
@@ -106,7 +126,22 @@
   <a href="/" class="logo">Venture <span>Built</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/locations">Locations</a>
+    <div class="nav-dropdown" id="locationsDropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false">
+        Locations
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Nigeria</span>
+          <a href="/location/oau" class="nav-dropdown-link">Obafemi Awolowo University</a>
+        </div>
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Coming Soon</span>
+          <span class="nav-dropdown-link disabled">Your Campus</span>
+        </div>
+      </div>
+    </div>
     <a href="/resources">Resources</a>
     <a href="/community">Community</a>
     <a href="/partners">Partners</a>
@@ -123,7 +158,18 @@
 
 <div class="mobile-nav-panel" id="mobileNavPanel">
   <a href="/">Home</a>
-  <a href="/locations">Locations</a>
+  <div class="mobile-nav-accordion">
+    <button class="mobile-nav-accordion-trigger" aria-expanded="false">
+      Locations
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="mobile-nav-accordion-panel">
+      <span class="mobile-nav-accordion-label">Nigeria</span>
+      <a href="/location/oau">Obafemi Awolowo University</a>
+      <span class="mobile-nav-accordion-label">Coming Soon</span>
+      <span class="mobile-nav-accordion-link disabled">Your Campus</span>
+    </div>
+  </div>
   <a href="/resources">Resources</a>
   <a href="/community">Community</a>
   <a href="/partners">Partners</a>
@@ -153,7 +199,7 @@
 <section class="content-section">
   <div class="wrap">
     <h1>Our Community</h1>
-    <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and biweekly masterclasses, our members share feedback, sharpen ideas, and find the co-builder who completes them. We're just getting started, real numbers on our community will go here once we have them to share. <a href="/locations" class="explore-link">Explore where we're building &rarr;</a></p>
+    <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and biweekly masterclasses, our members share feedback, sharpen ideas, and find the co-builder who completes them. We're just getting started, real numbers on our community will go here once we have them to share. <a href="/location/oau" class="explore-link">Explore where we're building &rarr;</a></p>
     <div class="offer-grid">
       <div class="offer-card">
         <h3>eHub</h3>
@@ -191,7 +237,7 @@
     <div class="footer-col">
       <h4>Overview</h4>
       <a href="/">Home</a>
-      <a href="/locations">Locations</a>
+      <a href="/location/oau">OAU Chapter</a>
       <a href="/resources">Resources</a>
       <a href="/community">Community</a>
     </div>
@@ -224,6 +270,28 @@
       });
     });
   }
+
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    const trigger = dd.querySelector('.nav-dropdown-trigger');
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dd.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach(dd => {
+      dd.classList.remove('open');
+      dd.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.querySelectorAll('.mobile-nav-accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const wrap = trigger.closest('.mobile-nav-accordion');
+      const isOpen = wrap.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
 </script>
 
 </body>

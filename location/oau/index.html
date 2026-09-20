@@ -94,8 +94,20 @@
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); gap: var(--spacing-xl); }
   .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); white-space: nowrap; text-decoration: none; }
   .logo span { color: var(--color-bright); }
-  .nav-links { display: flex; gap: var(--spacing-2xl); flex: 1; }
+  .nav-links { display: flex; align-items: center; gap: var(--spacing-2xl); flex: 1; }
   .nav-links a { text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-trigger { display: flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); cursor: pointer; }
+  .nav-dropdown-trigger svg { transition: transform var(--transition-fast); }
+  .nav-dropdown:hover .nav-dropdown-trigger svg, .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
+  .nav-dropdown-panel { position: absolute; top: calc(100% + 20px); left: 0; min-width: 260px; background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); box-shadow: 0 16px 40px rgba(10,10,10,0.14); padding: var(--spacing-xl); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast); z-index: 200; }
+  .nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown.open .nav-dropdown-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-dropdown-group { margin-bottom: var(--spacing-lg); }
+  .nav-dropdown-group:last-child { margin-bottom: 0; }
+  .nav-dropdown-group-title { display: block; font-size: 11px; font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: var(--spacing-sm); font-family: var(--font-family); }
+  .nav-dropdown-link { display: block; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-primary); text-decoration: none; padding: var(--spacing-sm) 0; font-family: var(--font-family); }
+  .nav-dropdown-link:hover { color: var(--color-bright-dark); }
+  .nav-dropdown-link.disabled { color: var(--text-muted); cursor: default; }
   .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); transition: all var(--transition-fast); display: inline-block; box-shadow: 0 8px 20px rgba(62,189,121,0.4); white-space: nowrap; }
   .nav-cta-row { display: flex; align-items: center; gap: var(--spacing-md); }
   .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); transition: border-color var(--transition-fast), background var(--transition-fast); display: inline-block; white-space: nowrap; }
@@ -114,12 +126,25 @@
     max-height: 0;
     transition: max-height 0.3s ease;
   }
-  .mobile-nav-panel.open { max-height: 560px; }
+  .mobile-nav-panel.open { max-height: 780px; }
   .mobile-nav-panel a {
     display: block; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl);
     border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family);
   }
+  .mobile-nav-accordion-trigger {
+    display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none;
+    color: var(--color-white); text-decoration: none; font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl);
+    border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family); cursor: pointer;
+  }
+  .mobile-nav-accordion-trigger svg { transition: transform var(--transition-fast); }
+  .mobile-nav-accordion.open .mobile-nav-accordion-trigger svg { transform: rotate(180deg); }
+  .mobile-nav-accordion-panel { max-height: 0; overflow: hidden; background: rgba(0,0,0,0.15); transition: max-height 0.3s ease; }
+  .mobile-nav-accordion.open .mobile-nav-accordion-panel { max-height: 220px; }
+  .mobile-nav-accordion-label { display: block; font-size: 11px; font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: var(--spacing-md) var(--spacing-2xl) var(--spacing-xs); font-family: var(--font-family); }
+  .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: var(--font-size-sm); padding: var(--spacing-sm) var(--spacing-2xl); font-family: var(--font-family); border-bottom: none; }
+  .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
 
   /* BUTTONS */
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
@@ -368,7 +393,22 @@
   <a href="/" class="logo">Venture Built <span>@ OAU</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/locations">Locations</a>
+    <div class="nav-dropdown" id="locationsDropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false">
+        Locations
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Nigeria</span>
+          <a href="/location/oau" class="nav-dropdown-link">Obafemi Awolowo University</a>
+        </div>
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Coming Soon</span>
+          <span class="nav-dropdown-link disabled">Your Campus</span>
+        </div>
+      </div>
+    </div>
     <a href="/resources">Resources</a>
     <a href="/community">Community</a>
     <a href="/partners">Partners</a>
@@ -385,7 +425,18 @@
 
 <div class="mobile-nav-panel" id="mobileNavPanel">
   <a href="/">Home</a>
-  <a href="/locations">Locations</a>
+  <div class="mobile-nav-accordion">
+    <button class="mobile-nav-accordion-trigger" aria-expanded="false">
+      Locations
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="mobile-nav-accordion-panel">
+      <span class="mobile-nav-accordion-label">Nigeria</span>
+      <a href="/location/oau">Obafemi Awolowo University</a>
+      <span class="mobile-nav-accordion-label">Coming Soon</span>
+      <span class="mobile-nav-accordion-link disabled">Your Campus</span>
+    </div>
+  </div>
   <a href="/resources">Resources</a>
   <a href="/community">Community</a>
   <a href="/partners">Partners</a>
@@ -725,6 +776,28 @@
       });
     });
   }
+
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    const trigger = dd.querySelector('.nav-dropdown-trigger');
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dd.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach(dd => {
+      dd.classList.remove('open');
+      dd.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.querySelectorAll('.mobile-nav-accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const wrap = trigger.closest('.mobile-nav-accordion');
+      const isOpen = wrap.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
 
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
