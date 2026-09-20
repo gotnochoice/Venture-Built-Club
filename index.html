@@ -84,7 +84,7 @@
     --transition-slow: 0.5s ease;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-family); background: var(--color-white); color: var(--text-primary); line-height: var(--line-height-normal); }
+  body { font-family: var(--font-family); background: #FAFBF9; color: var(--text-primary); line-height: var(--line-height-normal); }
   h1, h2, h3, .display { font-family: var(--font-family); font-weight: var(--font-weight-bold); letter-spacing: -0.01em; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
   a { color: inherit; }
@@ -194,26 +194,20 @@
   .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: 17px; margin-top: 0; }
 
 
-  /* MISSION / PLAIN PROSE BLOCKS */
-  .plain-block { padding: var(--spacing-6xl) 0; text-align: center; }
-  .plain-block h2 { font-size: clamp(26px, 3.2vw, 38px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); line-height: var(--line-height-snug); color: var(--text-primary); max-width: 760px; margin-left: auto; margin-right: auto; }
-  .plain-block p { font-size: var(--font-size-lg); color: var(--text-secondary); max-width: 720px; margin: 0 auto; line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .plain-block.alt { background: #F7F8F6; }
-
   /* HOW TO JOIN (Antler-style full-width tabs + photo card) */
   .process { padding: var(--spacing-6xl) 0; }
   .tab-nav-full { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-gray-300); margin-bottom: var(--spacing-4xl); }
   .tab-btn-full { text-align: left; background: none; border: none; border-bottom: 4px solid transparent; margin-bottom: -1px; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl) 0; font-size: clamp(18px, 1.8vw, 24px); font-weight: var(--font-weight-bold); color: var(--color-gray-400); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast); }
   .tab-btn-full:hover { color: var(--text-primary); }
   .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--color-bright); }
-  .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); background: #F1EBE0; border-radius: var(--radius-xl); align-items: stretch; box-shadow: var(--shadow-lg); min-height: 460px; padding: var(--spacing-2xl); }
+  .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); background: #EEF6F1; border-radius: var(--radius-xl); align-items: stretch; box-shadow: var(--shadow-lg); min-height: 460px; padding: var(--spacing-2xl); }
   .tab-panel-card.active { display: grid; }
   .tab-panel-content { padding: var(--spacing-3xl) var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
   .tab-panel-content h3 { font-size: clamp(34px, 4vw, 52px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-2xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
-  .tab-panel-content p { font-size: 15px; color: #4A453D; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
+  .tab-panel-content p { font-size: 15px; color: #445048; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
   .tab-panel-content p:last-child { margin-bottom: 0; }
-  .tab-panel-photo { background: #E3DBCB; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; }
-  .tab-panel-photo span { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 1.5px; text-transform: uppercase; color: #A89E8C; }
+  .tab-panel-photo { background: #DBEBE1; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; }
+  .tab-panel-photo span { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 1.5px; text-transform: uppercase; color: #8FA99B; }
 
   /* PROGRAM STRUCTURE (full-bleed dark break section) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
@@ -230,12 +224,14 @@
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
 
   /* COMMUNITY CTA (after How to Join) */
-  .community-cta { padding: var(--spacing-6xl) 0; background: var(--color-white); }
-  .community-card { max-width: 700px; margin: 0 auto; text-align: center; background: #F3F9F5; border: 1px solid #DCEEE3; border-radius: var(--radius-xl); padding: var(--spacing-5xl) var(--spacing-3xl); }
-  .community-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
-  .community-card h2 { font-size: clamp(24px, 3vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); line-height: 1.35; color: var(--text-primary); font-family: var(--font-family); }
-  .community-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 540px; margin: 0 auto var(--spacing-lg); font-family: var(--font-family); }
-  .community-card .btn-primary { margin-top: var(--spacing-lg); }
+  .community-cta { padding: var(--spacing-6xl) 0; background: #04140E; color: var(--color-white); }
+  .community-cta-wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--spacing-4xl); align-items: center; }
+  .community-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .community-cta-content h2 { font-size: clamp(26px, 3.2vw, 36px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); line-height: 1.3; color: var(--color-white); font-family: var(--font-family); }
+  .community-cta-content p { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.65; max-width: 480px; margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .community-cta-content .btn-primary { margin-top: var(--spacing-lg); }
+  .community-cta-icon { display: flex; align-items: center; justify-content: center; }
+  .community-cta-icon svg { color: rgba(62,189,121,0.35); }
 
   /* PLACEHOLDER SECTIONS */
   .placeholder-section { padding: var(--spacing-5xl) 0; }
@@ -323,6 +319,10 @@
     .tab-panel-card.active { grid-template-columns: 1fr; }
     .tab-panel-photo { min-height: 220px; }
     .ps-grid { grid-template-columns: 1fr; }
+    .community-cta-wrap { grid-template-columns: 1fr; text-align: center; }
+    .community-cta-content p { margin-left: auto; margin-right: auto; }
+    .community-cta-icon { order: -1; }
+    .community-cta-icon svg { width: 100px; height: 100px; }
     .team-row { flex-direction: column; align-items: center; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
     .team-card { max-width: 100%; }
@@ -510,28 +510,22 @@
 </section>
 
 <section class="community-cta reveal" id="community">
-  <div class="wrap">
-    <div class="community-card">
+  <div class="wrap community-cta-wrap">
+    <div class="community-cta-content">
       <span class="community-label">Community</span>
       <h2>Not in the cohort? You can still be part of Venture Built.</h2>
       <p>Our community is open to ambitious students across schools who want to learn, connect and stay active in the startup ecosystem.</p>
       <p>Whether you're not ready to apply yet, didn't make the cohort, or simply want to meet other students building and exploring ideas, there's a place for you here.</p>
       <button class="btn-primary" disabled title="Coming soon">Join the Venture Built Community on WhatsApp</button>
     </div>
-  </div>
-</section>
-
-<section class="plain-block reveal">
-  <div class="wrap">
-    <h2>The Cohort</h2>
-    <p>Each cohort runs for one full semester, about four months, with an intake of roughly 50 members. Every two weeks: a masterclass session and team pitches, sometimes taught by a guest founder joining virtually. In between: eHub, the WhatsApp community, and milestones tailored to where each team actually is. Once a month: a bigger Demo Day. At the end: one flagship pitch event where the whole cohort presents what they've built.</p>
-  </div>
-</section>
-
-<section class="plain-block alt reveal">
-  <div class="wrap">
-    <h2>The Terms</h2>
-    <p>Venture Built does not take equity and does not charge fees to join. We don't invest in or fund member startups directly. Our job is to prepare you and connect ready teams to the mentors, grants, and partners who can take it further.</p>
+    <div class="community-cta-icon">
+      <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        <circle cx="8.5" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+        <circle cx="12" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+        <circle cx="15.5" cy="11.5" r="0.6" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
   </div>
 </section>
 
