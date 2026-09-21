@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to the Team — Venture Built Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --forest: #0F3D2E;
+    --white: #FFFFFF;
+    --steel: #6B7268;
+    --bright: #3EBD79;
+    --bright-dark: #2DA863;
+    --border: #E5E7EB;
+    --font: 'Montserrat', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: #F7F8F6; color: #2A332F; line-height: 1.6; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 100px; }
+
+  .page-head { text-align: center; margin-bottom: 40px; }
+  .page-kicker {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--bright-dark); background: rgba(62,189,121,0.1); padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
+  }
+  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; color: var(--black); line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .lede { font-size: 15.5px; color: var(--steel); max-width: 480px; margin: 0 auto; }
+
+  .progress-rail { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; padding: 0 4px; }
+  .progress-step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; }
+  .progress-step::before {
+    content: ""; position: absolute; top: 13px; left: -50%; width: 100%; height: 2px; background: var(--border); z-index: 0;
+  }
+  .progress-step:first-child::before { display: none; }
+  .progress-dot {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--white); border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700; color: var(--steel);
+    position: relative; z-index: 1; transition: all 0.2s;
+  }
+  .progress-step.active .progress-dot { background: var(--forest); border-color: var(--forest); color: var(--white); }
+  .progress-step.active::before { background: var(--forest); }
+  .progress-label { font-size: 11px; font-weight: 600; color: var(--steel); text-align: center; line-height: 1.3; }
+  .progress-step.active .progress-label { color: var(--forest); }
+
+  .notice-card {
+    background: linear-gradient(135deg, var(--forest) 0%, #163f30 100%); color: var(--white);
+    border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; box-shadow: 0 12px 32px rgba(15,61,46,0.18);
+  }
+  .notice-card .notice-title { font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--bright); margin-bottom: 14px; }
+  .notice-card p { font-size: 14px; color: rgba(255,255,255,0.88); margin-bottom: 14px; line-height: 1.65; }
+  .notice-card p:last-child { margin-bottom: 0; }
+
+  .card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(10,10,10,0.04); margin-bottom: 20px;
+  }
+
+  .section-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .section-badge {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(15,61,46,0.08); color: var(--forest);
+    display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 800; flex-shrink: 0;
+  }
+  .section-heading { font-size: 19px; font-weight: 800; color: var(--black); }
+  .section-sub { font-size: 13.5px; color: var(--steel); margin-bottom: 22px; font-style: italic; margin-left: 40px; }
+
+  .field-group { margin-bottom: 20px; }
+  .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
+  .field-group .hint { font-weight: 400; color: var(--steel); font-size: 12.5px; }
+  .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"],
+  .field-group select, .field-group textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 14.5px; font-family: var(--font); background: #FAFBFA; color: var(--black);
+  }
+  .field-group textarea { min-height: 90px; resize: vertical; }
+  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+    outline: none; border-color: var(--bright); background: var(--white); box-shadow: 0 0 0 3px rgba(62,189,121,0.12);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .q-counter { font-size: 12px; color: var(--steel); margin-top: 6px; }
+
+  .role-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .role-option { position: relative; }
+  .role-option input { position: absolute; opacity: 0; }
+  .role-option label {
+    display: block; padding: 16px 18px; border: 1.5px solid var(--border); border-radius: 10px;
+    cursor: pointer; transition: all 0.15s;
+  }
+  .role-option label .role-title { display: block; font-size: 14.5px; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+  .role-option label .role-desc { display: block; font-size: 12.5px; color: var(--steel); line-height: 1.4; }
+  .role-option input:checked + label { border-color: var(--bright); background: rgba(62,189,121,0.06); box-shadow: 0 0 0 2px rgba(62,189,121,0.25); }
+
+  .file-upload {
+    border: 1.5px dashed var(--border); border-radius: 8px; padding: 18px; background: #FAFBFA;
+    display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color 0.15s, background 0.15s;
+  }
+  .file-upload:hover { border-color: var(--bright); background: rgba(62,189,121,0.04); }
+  .file-upload input[type="file"] { display: none; }
+  .file-upload-icon { color: var(--bright); flex-shrink: 0; }
+  .file-upload-text { font-size: 13.5px; color: var(--steel); }
+  .file-upload-text strong { color: var(--black); }
+  .file-upload.has-file { border-style: solid; border-color: var(--bright); }
+  .file-status { font-size: 12.5px; margin-top: 8px; }
+  .file-status.uploading { color: var(--steel); }
+  .file-status.success { color: var(--bright-dark); font-weight: 600; }
+  .file-status.error { color: #B91C1C; font-weight: 600; }
+
+  .btn-submit {
+    width: 100%; padding: 16px; background: var(--bright); color: var(--black); border: none; border-radius: 40px;
+    font-weight: 700; font-size: 15.5px; cursor: pointer; font-family: var(--font);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s; box-shadow: 0 8px 20px rgba(62,189,121,0.3);
+  }
+  .btn-submit:hover { background: var(--bright-dark); box-shadow: 0 10px 24px rgba(62,189,121,0.4); }
+  .btn-submit:active { transform: scale(0.99); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .form-error {
+    background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 8px;
+    padding: 12px 16px; font-size: 13.5px; margin-bottom: 20px;
+  }
+
+  .success-card { text-align: center; padding: 56px 40px; }
+  .success-icon {
+    width: 60px; height: 60px; border-radius: 50%; background: rgba(62,189,121,0.12); color: var(--bright-dark);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+  }
+  .success-card h2 { font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 10px; }
+  .success-card p { color: var(--steel); font-size: 14.5px; max-width: 380px; margin: 0 auto; }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 40px 16px 72px; }
+    .card { padding: 20px; }
+    .field-row { grid-template-columns: 1fr; }
+    .role-select-grid { grid-template-columns: 1fr; }
+    .progress-label { display: none; }
+    .progress-step { gap: 0; }
+    .notice-card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="page-kicker">Leadership Roles Open</span>
+    <h1>Apply to the Team</h1>
+    <p class="lede">We're looking for the people who'll help run Venture Built, not people applying to build a startup through the cohort.</p>
+  </div>
+
+  <div class="progress-rail">
+    <div class="progress-step active">
+      <div class="progress-dot">01</div>
+      <div class="progress-label">About You</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">02</div>
+      <div class="progress-label">Role</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">03</div>
+      <div class="progress-label">Leadership</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">04</div>
+      <div class="progress-label">CV</div>
+    </div>
+  </div>
+
+  <div class="notice-card">
+    <div class="notice-title">Before you apply</div>
+    <p>This is for former exco members, student leaders with a real track record, people genuinely pulled toward the startup or VC world, not just curious about it. You don't need startup experience. You need to have led something before, and want to build something bigger now.</p>
+    <p>Only four roles are open right now: Head of Programs, Head of Talent, Head of Growth, and Head of Finance/Operations. Tell us honestly which one fits you and why.</p>
+  </div>
+
+  <div id="formWrap">
+    <div id="formError" class="form-error hidden"></div>
+
+    <form id="teamApplyForm">
+      <!-- SECTION 1: ABOUT YOU -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">01</div><div class="section-heading">About You</div></div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="fullName">Name</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div class="field-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+234..." required>
+          </div>
+          <div class="field-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" required>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="level">Level</label>
+          <select id="level" required>
+            <option value="" disabled selected>Select your level</option>
+            <option value="100L">100L</option>
+            <option value="200L">200L</option>
+            <option value="300L">300L</option>
+            <option value="400L">400L</option>
+            <option value="500L">500L</option>
+            <option value="Masters">Masters</option>
+            <option value="PhD">PhD</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SECTION 2: ROLE -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">02</div><div class="section-heading">Which Role?</div></div>
+        <div class="section-sub">Pick the one role you're applying for.</div>
+        <div class="role-select-grid">
+          <div class="role-option">
+            <input type="radio" name="role" id="role-programs" value="Head of Programs" required>
+            <label for="role-programs">
+              <span class="role-title">Head of Programs</span>
+              <span class="role-desc">Masterclasses, hackathons, Demo Day, the flagship pitch.</span>
+            </label>
+          </div>
+          <div class="role-option">
+            <input type="radio" name="role" id="role-talent" value="Head of Talent">
+            <label for="role-talent">
+              <span class="role-title">Head of Talent</span>
+              <span class="role-desc">The community, WhatsApp, eHub, and team formation.</span>
+            </label>
+          </div>
+          <div class="role-option">
+            <input type="radio" name="role" id="role-growth" value="Head of Growth">
+            <label for="role-growth">
+              <span class="role-title">Head of Growth</span>
+              <span class="role-desc">Pipeline, socials, brand, and how people hear about us.</span>
+            </label>
+          </div>
+          <div class="role-option">
+            <input type="radio" name="role" id="role-finance" value="Head of Finance/Operations">
+            <label for="role-finance">
+              <span class="role-title">Head of Finance/Operations</span>
+              <span class="role-desc">Dues, budget, and the paperwork that keeps us running.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: LEADERSHIP QUESTIONS -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">03</div><div class="section-heading">Leadership</div></div>
+
+        <div class="field-group">
+          <div class="q-label">1. What have you led before? Tell us about a group, project, or team you were responsible for, and what your role actually was.</div>
+          <textarea id="ledBefore" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">2. Why this role specifically? What about how you work fits what it needs?</div>
+          <textarea id="whyRole" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">3. If you got this role, what would you actually do in your first month?</div>
+          <textarea id="firstMonthPlan" required></textarea>
+          <div class="q-counter">Recommended 100–300 words</div>
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">4. Anything else we should know? <span class="hint">optional</span></div>
+          <textarea id="additionalInfo"></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 4: CV -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">04</div><div class="section-heading">CV</div></div>
+
+        <div class="field-group">
+          <label class="file-upload" id="cvUploadBox" for="cvFile">
+            <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <span class="file-upload-text"><strong>CV</strong> — click to upload (PDF only) <span class="hint">required</span></span>
+          </label>
+          <input type="file" id="cvFile" accept="application/pdf" required>
+          <div class="file-status hidden" id="cvStatus"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+    </form>
+  </div>
+
+  <div class="card success-card hidden" id="successCard">
+    <div class="success-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+    </div>
+    <h2>Application received</h2>
+    <p>Thanks for applying to the team. We review every application carefully — you'll hear from us soon.</p>
+  </div>
+</div>
+
+<script>
+  const API_URL = '/api';
+
+  function setupFileBox(inputId, boxId) {
+    const input = document.getElementById(inputId);
+    const box = document.getElementById(boxId);
+    input.addEventListener('change', () => {
+      if (input.files.length > 0) {
+        box.classList.add('has-file');
+        box.querySelector('.file-upload-text').innerHTML = `<strong>${input.files[0].name}</strong> selected — click to change`;
+      }
+    });
+  }
+  setupFileBox('cvFile', 'cvUploadBox');
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function uploadFile(file, statusElId) {
+    const statusEl = document.getElementById(statusElId);
+    statusEl.classList.remove('hidden', 'success', 'error');
+    statusEl.classList.add('uploading');
+    statusEl.textContent = 'Uploading...';
+
+    if (file.type !== 'application/pdf') {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = 'Only PDF files are accepted.';
+      throw new Error(`${file.name} must be a PDF file.`);
+    }
+
+    if (file.size > 4 * 1024 * 1024) {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = 'File is too large. Please keep it under 4MB.';
+      throw new Error('File too large');
+    }
+
+    const dataBase64 = await fileToBase64(file);
+    const response = await fetch(`${API_URL}/upload`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: file.name, contentType: file.type, dataBase64 })
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      statusEl.classList.remove('uploading');
+      statusEl.classList.add('error');
+      statusEl.textContent = data.error || 'Upload failed';
+      throw new Error(data.error || 'Upload failed');
+    }
+
+    statusEl.classList.remove('uploading');
+    statusEl.classList.add('success');
+    statusEl.textContent = 'Uploaded';
+    return data.url;
+  }
+
+  document.getElementById('teamApplyForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('formError');
+    const btn = document.getElementById('submitBtn');
+    errEl.classList.add('hidden');
+    btn.disabled = true;
+
+    try {
+      const cvFile = document.getElementById('cvFile').files[0];
+      const roleEl = document.querySelector('input[name="role"]:checked');
+
+      if (!cvFile) {
+        throw new Error('Please upload your CV.');
+      }
+      if (!roleEl) {
+        throw new Error('Please select which role you\'re applying for.');
+      }
+
+      btn.textContent = 'Uploading CV...';
+      const cvUrl = await uploadFile(cvFile, 'cvStatus');
+
+      btn.textContent = 'Submitting...';
+
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        department: document.getElementById('department').value,
+        level: document.getElementById('level').value,
+        role: roleEl.value,
+        ledBefore: document.getElementById('ledBefore').value,
+        whyRole: document.getElementById('whyRole').value,
+        firstMonthPlan: document.getElementById('firstMonthPlan').value,
+        additionalInfo: document.getElementById('additionalInfo').value,
+        cvUrl,
+      };
+
+      const response = await fetch(`${API_URL}/team-applications/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('formWrap').classList.add('hidden');
+        document.getElementById('successCard').classList.remove('hidden');
+      } else {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      errEl.textContent = error.message || 'Could not reach the server. Please try again.';
+      errEl.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Application';
+    }
+  });
+</script>
+
+</body>
+</html>

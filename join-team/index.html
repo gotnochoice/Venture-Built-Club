@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resources — Venture Built</title>
-<meta name="description" content="What Venture Built members get access to: masterclasses, eHub, mentor connections, and a growing library of builder resources.">
+<title>Join the Team — Venture Built</title>
+<meta name="description" content="Venture Built is run by students, for students. We're looking for the people who'll help build it — four leadership roles are open now.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -73,24 +73,24 @@
   .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: var(--spacing-sm) var(--spacing-2xl); border-bottom: none; }
   .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
 
-  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; }
+  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(62,189,121,0.4); }
 
   .page-header { background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%); color: var(--color-white); padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-5xl); text-align: center; }
   .page-header .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-lg); }
   .page-header h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; margin-bottom: var(--spacing-lg); }
   .page-header p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 620px; margin: 0 auto; line-height: 1.6; }
 
-  .resources-section { padding: var(--spacing-6xl) 0; }
-  .resource-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 920px; margin: 0 auto; }
-  .resource-card { background: var(--color-gray-100); border-radius: var(--radius-lg); padding: var(--spacing-2xl); border-left: 3px solid var(--color-bright); }
-  .resource-card h3 { font-size: 18px; color: var(--color-forest); margin-bottom: var(--spacing-md); }
-  .resource-card p { font-size: 14.5px; color: #2A332F; line-height: 1.65; }
+  .looking-for { padding: var(--spacing-5xl) 0 var(--spacing-2xl); }
+  .looking-for h2 { font-size: clamp(22px, 2.6vw, 30px); margin-bottom: var(--spacing-lg); text-align: center; }
+  .looking-for p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 720px; margin: 0 auto; text-align: center; }
 
-  .placeholder-section { padding: var(--spacing-5xl) 0; background: #F7F8F6; }
-  .placeholder-card { max-width: 640px; margin: 0 auto; text-align: center; border: 1.5px dashed var(--color-gray-400); border-radius: var(--radius-lg); padding: var(--spacing-3xl) var(--spacing-2xl); background: var(--color-white); }
-  .placeholder-tag { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-bright-dark); background: rgba(62,189,121,0.1); padding: var(--spacing-xs) var(--spacing-md); border-radius: var(--radius-full); margin-bottom: var(--spacing-lg); }
-  .placeholder-card h3 { font-size: 18px; margin-bottom: var(--spacing-md); }
-  .placeholder-card p { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
+  .roles-section { padding: var(--spacing-4xl) 0 var(--spacing-6xl); }
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 920px; margin: 0 auto; }
+  .role-card { background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-2xl); transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal); }
+  .role-card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(15,61,46,0.12); border-color: var(--color-bright); }
+  .role-card h3 { font-size: 19px; color: var(--color-forest); margin-bottom: var(--spacing-md); }
+  .role-card p { font-size: 14.5px; color: #2A332F; line-height: 1.65; }
 
   .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
   .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
@@ -113,7 +113,7 @@
     .mobile-nav-panel { display: block; }
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
-    .resource-grid { grid-template-columns: 1fr; }
+    .role-grid { grid-template-columns: 1fr; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
 </style>
@@ -177,49 +177,46 @@
 </header>
 
 <header class="page-header">
-  <div class="eyebrow">Resources</div>
-  <h1>What Members Get Access To</h1>
-  <p>Venture Built isn't just a title, it's a set of tools and people that make building less lonely. Here's what's already running, and what's on the way.</p>
+  <div class="eyebrow">Leadership</div>
+  <h1>Join the Team</h1>
+  <p>Venture Built is run by students, for students. We're looking for the people who'll help build it.</p>
 </header>
 
-<section class="resources-section">
+<section class="looking-for">
   <div class="wrap">
-    <div class="resource-grid">
-      <div class="resource-card">
-        <h3>Masterclasses</h3>
-        <p>Every two weeks, we break down what it actually takes to build a venture-backable business, idea validation to fundraising, taught by club leadership and guest founders joining virtually.</p>
-      </div>
-      <div class="resource-card">
-        <h3>eHub</h3>
-        <p>Our co-building platform. List what you're working on and what you need, no cold directory, just people finding each other.</p>
-      </div>
-      <div class="resource-card">
-        <h3>Mentor Connections</h3>
-        <p>We don't fund or take equity. Once your team is ready, we connect you to the mentors and partners who can take it further.</p>
-      </div>
-      <div class="resource-card">
-        <h3>Demo Days & Pitch Events</h3>
-        <p>A monthly Demo Day and one flagship pitch event closing out each 4-month cohort, chances to show what you've built and get real feedback.</p>
-      </div>
-    </div>
+    <h2>Who We're Looking For</h2>
+    <p>Former exco members, student leaders with a real track record, people genuinely pulled toward the startup or VC world, not just curious about it. You don't need startup experience. You need to have led something before, and want to build something bigger now.</p>
   </div>
 </section>
 
-<section class="placeholder-section">
+<section class="roles-section">
   <div class="wrap">
-    <div class="placeholder-card">
-      <span class="placeholder-tag">Coming soon</span>
-      <h3>A library for builders</h3>
-      <p>We're putting together templates, guides, and recordings for members to reference between sessions. Check back once our first cohort is underway.</p>
+    <div class="role-grid">
+      <div class="role-card">
+        <h3>Head of Programs</h3>
+        <p>Runs everything program-related: the biweekly masterclasses (logistics, scheduling, guest founder coordination) and the events layer, hackathons, monthly Demo Day, the flagship pitch and exhibition. If you can run a session and an event with equal ease, this is yours.</p>
+      </div>
+      <div class="role-card">
+        <h3>Head of Talent</h3>
+        <p>Manages the community end to end, the WhatsApp group and eHub, the co-building space where members find each other and form teams. If you're the person who's always connecting people, this is your role.</p>
+      </div>
+      <div class="role-card">
+        <h3>Head of Growth</h3>
+        <p>Owns the applicant pipeline, our socials, and how people hear about Venture Built in the first place, brand, content, and the wider community's reach. If you think in terms of reach and momentum, this is your role.</p>
+      </div>
+      <div class="role-card">
+        <h3>Head of Finance/Operations</h3>
+        <p>Owns dues, budget, and the paperwork that keeps the club actually running. If you're the person who keeps things organized while everyone else is building, this is yours.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="cta-footer">
   <div class="wrap">
-    <h2>Ready to put these to use?</h2>
-    <p>Apply to join a cohort and get access to everything above, not just read about it.</p>
-    <a href="/apply" class="btn-primary">Apply Now</a>
+    <h2>Ready to help run Venture Built?</h2>
+    <p>Four leadership roles are open right now. Tell us what you've led before, and why one of these is yours.</p>
+    <a href="/apply-team" class="btn-primary">Apply to the Team &rarr;</a>
   </div>
 </section>
 

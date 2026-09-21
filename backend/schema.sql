@@ -196,6 +196,28 @@ CREATE TABLE partner_inquiries (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Team Applications (leadership roles: Head of Programs/Talent/Growth/Finance)
+CREATE TABLE team_applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  department VARCHAR(100) NOT NULL,
+  level VARCHAR(50) NOT NULL,
+
+  role VARCHAR(50) NOT NULL, -- Head of Programs, Head of Talent, Head of Growth, Head of Finance/Operations
+  led_before TEXT NOT NULL,
+  why_role TEXT NOT NULL,
+  first_month_plan TEXT NOT NULL,
+  additional_info TEXT,
+  cv_url VARCHAR(500) NOT NULL,
+
+  stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
+  internal_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_profiles_user_id ON profiles(user_id);
@@ -211,3 +233,5 @@ CREATE INDEX idx_applications_stage ON applications(stage);
 CREATE INDEX idx_applications_email ON applications(email);
 CREATE INDEX idx_partner_inquiries_status ON partner_inquiries(status);
 CREATE INDEX idx_partner_inquiries_email ON partner_inquiries(email);
+CREATE INDEX idx_team_applications_stage ON team_applications(stage);
+CREATE INDEX idx_team_applications_email ON team_applications(email);
