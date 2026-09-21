@@ -36,6 +36,7 @@
   h1, h2, h3 { font-family: var(--font-family); font-weight: 700; letter-spacing: -0.01em; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
   a { color: inherit; }
+  .disabled-link { opacity: 0.45; cursor: default; pointer-events: none; }
 
   .site-header { position: sticky; top: 0; z-index: 100; }
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
@@ -176,9 +177,9 @@
         </div>
       </div>
     </div>
-    <a href="/resources">Resources</a>
-    <a href="/community">Community</a>
-    <a href="/partners">Partners</a>
+    <a class="disabled-link" title="Coming soon">Resources</a>
+    <a class="disabled-link" title="Coming soon">Community</a>
+    <a class="disabled-link" title="Coming soon">Partners</a>
     <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
@@ -205,9 +206,9 @@
       <span class="mobile-nav-accordion-link disabled">Your Campus</span>
     </div>
   </div>
-  <a href="/resources">Resources</a>
-  <a href="/community">Community</a>
-  <a href="/partners">Partners</a>
+  <a class="disabled-link" title="Coming soon">Resources</a>
+  <a class="disabled-link" title="Coming soon">Community</a>
+  <a class="disabled-link" title="Coming soon">Partners</a>
   <a href="/join-team">Join the Team</a>
   <a href="/portal">Log In</a>
 </div>
@@ -331,15 +332,15 @@
       <h4>Overview</h4>
       <a href="/">Home</a>
       <a href="/location/oau">OAU Chapter</a>
-      <a href="/resources">Resources</a>
-      <a href="/community">Community</a>
+      <a class="disabled-link" title="Coming soon">Resources</a>
+      <a class="disabled-link" title="Coming soon">Community</a>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
       <a href="/portal">Log In</a>
       <a href="/apply">Apply to Join</a>
       <a href="/join-team">Join the Team</a>
-      <a href="/partners">Partners</a>
+      <a class="disabled-link" title="Coming soon">Partners</a>
       <a href="#connect">Get in Touch</a>
     </div>
   </div>
