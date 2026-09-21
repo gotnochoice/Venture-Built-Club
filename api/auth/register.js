@@ -1,5 +1,5 @@
-const { getPool } = require('../lib/db');
-const { generateToken, hashPassword, respondError, respondSuccess, applyCors } = require('../lib/auth');
+const { getPool } = require('../../lib/db');
+const { generateToken, hashPassword, respondError, respondSuccess, applyCors } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = async (req, res) => {

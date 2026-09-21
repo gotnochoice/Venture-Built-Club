@@ -1,5 +1,5 @@
-const { getPool } = require('../../lib/db');
-const { respondError, respondSuccess, applyCors, verifyToken } = require('../../lib/auth');
+const { getPool } = require('../../../lib/db');
+const { respondError, respondSuccess, applyCors, verifyToken } = require('../../../lib/auth');
 
 const VALID_STAGES = ['applied', 'interview', 'accepted', 'rejected'];
 

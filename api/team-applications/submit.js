@@ -1,5 +1,5 @@
-const { getPool } = require('../lib/db');
-const { respondError, respondSuccess, applyCors } = require('../lib/auth');
+const { getPool } = require('../../lib/db');
+const { respondError, respondSuccess, applyCors } = require('../../lib/auth');
 const { v4: uuidv4 } = require('uuid');
 
 const VALID_ROLES = ['Head of Programs', 'Head of Talent', 'Head of Growth', 'Head of Finance/Operations'];

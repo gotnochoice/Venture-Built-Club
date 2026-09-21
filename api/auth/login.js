@@ -1,5 +1,5 @@
-const { getPool } = require('../lib/db');
-const { generateToken, verifyPassword, respondError, respondSuccess, applyCors } = require('../lib/auth');
+const { getPool } = require('../../lib/db');
+const { generateToken, verifyPassword, respondError, respondSuccess, applyCors } = require('../../lib/auth');
 
 module.exports = async (req, res) => {
   if (applyCors(req, res)) return;

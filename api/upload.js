@@ -1,5 +1,5 @@
 const { put } = require('@vercel/blob');
-const { respondError, respondSuccess, applyCors } = require('./lib/auth');
+const { respondError, respondSuccess, applyCors } = require('../lib/auth');
 
 const MAX_SIZE_BYTES = 4 * 1024 * 1024; // 4MB - stays under Vercel's serverless request body limit
 
