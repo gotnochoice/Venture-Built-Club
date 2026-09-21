@@ -218,6 +218,10 @@
             <option value="PhD">PhD</option>
           </select>
         </div>
+        <div class="field-group">
+          <label for="referredBy">Were you referred to this role by someone? <span class="hint">optional, if yes, who?</span></label>
+          <input type="text" id="referredBy" placeholder="Name of the person who referred you">
+        </div>
       </div>
 
       <!-- SECTION 2: ROLE -->
@@ -405,6 +409,7 @@
         phone: document.getElementById('phone').value,
         department: document.getElementById('department').value,
         level: document.getElementById('level').value,
+        referredBy: document.getElementById('referredBy').value,
         role: roleEl.value,
         ledBefore: document.getElementById('ledBefore').value,
         whyRole: document.getElementById('whyRole').value,

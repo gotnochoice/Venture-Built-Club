@@ -303,6 +303,10 @@
       <div class="detail-value" id="teamModalDept">—</div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Referred By</div>
+      <div class="detail-value" id="teamModalReferredBy">—</div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Role Applied For</div>
       <div class="detail-value" id="teamModalRole">—</div>
     </div>
@@ -613,6 +617,7 @@
     document.getElementById('teamModalName').textContent = app.full_name;
     document.getElementById('teamModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
     document.getElementById('teamModalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
+    document.getElementById('teamModalReferredBy').textContent = app.referred_by || '—';
     document.getElementById('teamModalRole').textContent = app.role || '—';
     document.getElementById('teamModalLedBefore').textContent = app.led_before || '—';
     document.getElementById('teamModalWhyRole').textContent = app.why_role || '—';

@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 
   try {
     const {
-      fullName, email, phone, department, level,
+      fullName, email, phone, department, level, referredBy,
       role, ledBefore, whyRole, firstMonthPlan, additionalInfo,
       cvUrl
     } = req.body;
@@ -31,16 +31,16 @@ module.exports = async (req, res) => {
 
     await pool.query(
       `INSERT INTO team_applications (
-        id, full_name, email, phone, department, level,
+        id, full_name, email, phone, department, level, referred_by,
         role, led_before, why_role, first_month_plan, additional_info,
         cv_url
       ) VALUES (
-        $1, $2, $3, $4, $5, $6,
-        $7, $8, $9, $10, $11,
-        $12
+        $1, $2, $3, $4, $5, $6, $7,
+        $8, $9, $10, $11, $12,
+        $13
       )`,
       [
-        applicationId, fullName, email, phone, department, level,
+        applicationId, fullName, email, phone, department, level, referredBy || null,
         role, ledBefore, whyRole, firstMonthPlan, additionalInfo || null,
         cvUrl
       ]
