@@ -37,7 +37,8 @@
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
   a { color: inherit; }
 
-  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
   .logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
   .logo span { color: var(--color-bright); }
   .nav-links { display: flex; align-items: center; gap: var(--spacing-3xl); }
@@ -61,7 +62,7 @@
   .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); }
   .mobile-menu-btn .hidden { display: none !important; }
   .mobile-nav-panel { display: none; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
-  .mobile-nav-panel.open { max-height: 700px; }
+  .mobile-nav-panel.open { max-height: calc(100vh - 60px); overflow-y: auto; }
   .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); }
   .mobile-nav-accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
   .mobile-nav-accordion-trigger svg { transition: transform 0.15s ease; }
@@ -154,6 +155,7 @@
 </head>
 <body>
 
+<header class="site-header">
 <nav>
   <a href="/" class="logo">Venture <span>Built</span></a>
   <div class="nav-links">
@@ -207,6 +209,7 @@
   <a href="/partners">Partners</a>
   <a href="/portal">Log In</a>
 </div>
+</header>
 
 <header class="page-header">
   <div class="eyebrow">Partners</div>

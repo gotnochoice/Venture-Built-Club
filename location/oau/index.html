@@ -91,7 +91,8 @@
   a { color: inherit; }
 
   /* NAV */
-  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); position: sticky; top: 0; background: var(--color-white); z-index: 100; box-shadow: 0 2px 8px rgba(10,10,10,0.06); gap: var(--spacing-xl); }
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); gap: var(--spacing-xl); }
   .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); white-space: nowrap; text-decoration: none; }
   .logo span { color: var(--color-bright); }
   .nav-links { display: flex; align-items: center; gap: var(--spacing-2xl); flex: 1; }
@@ -126,7 +127,7 @@
     max-height: 0;
     transition: max-height 0.3s ease;
   }
-  .mobile-nav-panel.open { max-height: 780px; }
+  .mobile-nav-panel.open { max-height: calc(100vh - 60px); overflow-y: auto; }
   .mobile-nav-panel a {
     display: block; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base);
     font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl);
@@ -306,6 +307,7 @@
 </head>
 <body>
 
+<header class="site-header">
 <nav>
   <a href="/" class="logo">Venture Built <span>@ OAU</span></a>
   <div class="nav-links">
@@ -359,6 +361,7 @@
   <a href="/partners">Partners</a>
   <a href="/portal">Log In</a>
 </div>
+</header>
 
 <section class="hero">
   <div class="wrap">
