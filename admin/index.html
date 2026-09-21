@@ -307,6 +307,10 @@
       <div class="detail-value" id="teamModalReferredBy">—</div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">LinkedIn</div>
+      <div class="detail-value" id="teamModalLinkedin">—</div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Role Applied For</div>
       <div class="detail-value" id="teamModalRole">—</div>
     </div>
@@ -618,6 +622,9 @@
     document.getElementById('teamModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
     document.getElementById('teamModalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('teamModalReferredBy').textContent = app.referred_by || '—';
+    document.getElementById('teamModalLinkedin').innerHTML = app.linkedin_url
+      ? `<a href="${escapeHtml(app.linkedin_url)}" target="_blank" rel="noopener">${escapeHtml(app.linkedin_url)}</a>`
+      : '—';
     document.getElementById('teamModalRole').textContent = app.role || '—';
     document.getElementById('teamModalLedBefore').textContent = app.led_before || '—';
     document.getElementById('teamModalWhyRole').textContent = app.why_role || '—';

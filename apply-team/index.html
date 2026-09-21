@@ -222,6 +222,10 @@
           <label for="referredBy">Were you referred to this role by someone? <span class="hint">optional, if yes, who?</span></label>
           <input type="text" id="referredBy" placeholder="Name of the person who referred you">
         </div>
+        <div class="field-group">
+          <label for="linkedin">LinkedIn Profile <span class="hint">optional</span></label>
+          <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourname">
+        </div>
       </div>
 
       <!-- SECTION 2: ROLE -->
@@ -410,6 +414,7 @@
         department: document.getElementById('department').value,
         level: document.getElementById('level').value,
         referredBy: document.getElementById('referredBy').value,
+        linkedin: document.getElementById('linkedin').value,
         role: roleEl.value,
         ledBefore: document.getElementById('ledBefore').value,
         whyRole: document.getElementById('whyRole').value,

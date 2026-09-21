@@ -205,6 +205,7 @@ CREATE TABLE team_applications (
   department VARCHAR(100) NOT NULL,
   level VARCHAR(50) NOT NULL,
   referred_by VARCHAR(255),
+  linkedin_url VARCHAR(500),
 
   role VARCHAR(50) NOT NULL, -- Head of Programs, Head of Talent, Head of Growth, Head of Finance/Operations
   led_before TEXT NOT NULL,
