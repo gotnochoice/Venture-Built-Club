@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — Venture Built Club</title>
+<title>Admin | Venture Built Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -185,27 +185,27 @@
       <div class="detail-value" id="modalDept">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">01 — Who are you, and what do you bring that isn't obvious from your CV?</div>
+      <div class="detail-label">01. Who are you, and what do you bring that isn't obvious from your CV?</div>
       <div class="detail-value" id="modalWhoAreYou">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">02 — What are you building, or want to build?</div>
+      <div class="detail-label">02. What are you building, or want to build?</div>
       <div class="detail-value" id="modalBuilding">—</div>
     </div>
     <div class="detail-row" id="modalPullRow">
-      <div class="detail-label">03 — What pulls you into the startup world?</div>
+      <div class="detail-label">03. What pulls you into the startup world?</div>
       <div class="detail-value" id="modalPull">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">04 — What's a problem you can't stop thinking about?</div>
+      <div class="detail-label">04. What's a problem you can't stop thinking about?</div>
       <div class="detail-value" id="modalProblem">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">05 — What is Venture Built, and what do you hope to gain?</div>
+      <div class="detail-label">05. What is Venture Built, and what do you hope to gain?</div>
       <div class="detail-value" id="modalVBC">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">06 — Files</div>
+      <div class="detail-label">06. Files</div>
       <div class="detail-value" id="modalFiles">—</div>
     </div>
     <div class="detail-row">
@@ -381,7 +381,7 @@
 
     const roleLabel = app.role_fit === 'Other' ? (app.role_fit_other || 'Other') : app.role_fit;
     document.getElementById('modalRoleFit').textContent = roleLabel
-      ? `${roleLabel} — ${app.role_fit_reason || ''}`
+      ? `${roleLabel}: ${app.role_fit_reason || ''}`
       : (app.role_fit_reason || '—');
 
     const availabilityParts = [];

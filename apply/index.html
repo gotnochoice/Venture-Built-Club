@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apply — Venture Built Club</title>
+<title>Apply | Venture Built Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -269,14 +269,14 @@
 
           <label class="file-upload" id="cvUploadBox" for="cvFile" style="margin-bottom: 12px;">
             <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-            <span class="file-upload-text"><strong>CV / Portfolio</strong> — click to upload (PDF only) <span class="hint">required</span></span>
+            <span class="file-upload-text"><strong>CV / Portfolio</strong>: click to upload (PDF only) <span class="hint">required</span></span>
           </label>
           <input type="file" id="cvFile" accept="application/pdf" required>
           <div class="file-status hidden" id="cvStatus"></div>
 
           <label class="file-upload" id="deckUploadBox" for="deckFile" style="margin-top: 14px;">
             <svg class="file-upload-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
-            <span class="file-upload-text"><strong>Pitch Deck</strong> — click to upload (PDF only) <span class="hint">optional</span></span>
+            <span class="file-upload-text"><strong>Pitch Deck</strong>: click to upload (PDF only) <span class="hint">optional</span></span>
           </label>
           <input type="file" id="deckFile" accept="application/pdf">
           <div class="file-status hidden" id="deckStatus"></div>
@@ -400,7 +400,7 @@
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
     </div>
     <h2>Application received</h2>
-    <p>Thanks for applying. We review every application carefully — you'll hear from us soon.</p>
+    <p>Thanks for applying. We review every application carefully. You'll hear from us soon.</p>
   </div>
 </div>
 
@@ -419,7 +419,7 @@
     input.addEventListener('change', () => {
       if (input.files.length > 0) {
         box.classList.add('has-file');
-        box.querySelector('.file-upload-text').innerHTML = `<strong>${input.files[0].name}</strong> selected — click to change`;
+        box.querySelector('.file-upload-text').innerHTML = `<strong>${input.files[0].name}</strong> selected, click to change`;
       }
     });
   }
