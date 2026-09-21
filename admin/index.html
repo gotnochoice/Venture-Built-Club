@@ -47,6 +47,11 @@
   .board-header h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
   .board-header p { color: var(--slate); font-size: 13.5px; }
 
+  .view-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 1.5px solid var(--border); }
+  .view-tab { padding: 11px 4px; margin-right: 20px; background: none; border: none; border-bottom: 2.5px solid transparent; font-family: var(--font-body); font-size: 13.5px; font-weight: 700; color: var(--slate); cursor: pointer; transform: translateY(1.5px); }
+  .view-tab.active { color: var(--forest); border-bottom-color: var(--bright); }
+  .view-tab:hover:not(.active) { color: var(--ink); }
+
   .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
   .column { background: var(--paper-2); border-radius: var(--r-card); padding: 14px; min-height: 200px; }
   .column-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 0 4px; }
@@ -129,7 +134,12 @@
       <p>Review applications and move them through each stage.</p>
     </div>
 
-    <div class="board">
+    <div class="view-tabs">
+      <button class="view-tab active" data-view="cohort" id="tabCohort">Cohort Applications</button>
+      <button class="view-tab" data-view="team" id="tabTeam">Team Applications</button>
+    </div>
+
+    <div id="cohortBoard" class="board">
       <div class="column">
         <div class="column-header">
           <span class="column-step">01</span>
@@ -161,6 +171,41 @@
           <span class="column-count" id="count-rejected">0</span>
         </div>
         <div id="col-rejected"></div>
+      </div>
+    </div>
+
+    <div id="teamBoard" class="board hidden">
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">01</span>
+          <span class="column-title">Applied</span>
+          <span class="column-count" id="count-team-applied">0</span>
+        </div>
+        <div id="col-team-applied"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">02</span>
+          <span class="column-title">Interview</span>
+          <span class="column-count" id="count-team-interview">0</span>
+        </div>
+        <div id="col-team-interview"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">03</span>
+          <span class="column-title">Accepted</span>
+          <span class="column-count" id="count-team-accepted">0</span>
+        </div>
+        <div id="col-team-accepted"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">04</span>
+          <span class="column-title">Rejected</span>
+          <span class="column-count" id="count-team-rejected">0</span>
+        </div>
+        <div id="col-team-rejected"></div>
       </div>
     </div>
   </div>
@@ -239,11 +284,73 @@
   </div>
 </div>
 
+<!-- TEAM DETAIL MODAL -->
+<div id="teamModalBackdrop" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-top">
+      <h2 id="teamModalName">—</h2>
+      <button class="modal-close" id="teamModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Contact</div>
+      <div class="detail-value" id="teamModalContact">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Department / Level</div>
+      <div class="detail-value" id="teamModalDept">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Role Applied For</div>
+      <div class="detail-value" id="teamModalRole">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Have you led a team or project before?</div>
+      <div class="detail-value" id="teamModalLedBefore">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Why this role?</div>
+      <div class="detail-value" id="teamModalWhyRole">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">What would you do in your first month?</div>
+      <div class="detail-value" id="teamModalFirstMonth">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Anything else</div>
+      <div class="detail-value" id="teamModalAdditional">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Files</div>
+      <div class="detail-value" id="teamModalFiles">—</div>
+    </div>
+
+    <div class="detail-label">Move to stage</div>
+    <div class="stage-buttons" id="teamStageButtons">
+      <button class="stage-btn" data-stage="applied">Applied</button>
+      <button class="stage-btn" data-stage="interview">Interview</button>
+      <button class="stage-btn" data-stage="accepted">Accepted</button>
+      <button class="stage-btn" data-stage="rejected">Rejected</button>
+    </div>
+
+    <div class="detail-label">Internal Notes</div>
+    <textarea class="notes-textarea" id="teamModalNotes" placeholder="Notes visible only to admins..."></textarea>
+    <button class="btn-save" id="teamSaveBtn">Save Changes</button>
+  </div>
+</div>
+
 <script>
   const API_URL = '/api';
   let applications = [];
   let currentAppId = null;
   let currentStage = null;
+
+  let teamApplications = [];
+  let currentTeamAppId = null;
+  let currentTeamStage = null;
+  let teamLoaded = false;
 
   function showError(id, msg) {
     const el = document.getElementById(id);
@@ -438,6 +545,124 @@
     const user = localStorage.getItem('adminUser');
     if (user) {
       showDashboard(JSON.parse(user));
+    }
+  });
+
+  document.getElementById('tabCohort').addEventListener('click', () => switchView('cohort'));
+  document.getElementById('tabTeam').addEventListener('click', () => switchView('team'));
+
+  function switchView(view) {
+    document.getElementById('tabCohort').classList.toggle('active', view === 'cohort');
+    document.getElementById('tabTeam').classList.toggle('active', view === 'team');
+    document.getElementById('cohortBoard').classList.toggle('hidden', view !== 'cohort');
+    document.getElementById('teamBoard').classList.toggle('hidden', view !== 'team');
+    if (view === 'team' && !teamLoaded) {
+      loadTeamApplications();
+    }
+  }
+
+  async function loadTeamApplications() {
+    const token = localStorage.getItem('adminToken');
+    try {
+      const response = await fetch(`${API_URL}/admin/team-applications/list`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        teamApplications = data.data;
+        teamLoaded = true;
+        renderTeamBoard();
+      }
+    } catch (error) {
+      console.error('Failed to load team applications', error);
+    }
+  }
+
+  function renderTeamBoard() {
+    const stages = ['applied', 'interview', 'accepted', 'rejected'];
+    stages.forEach(stage => {
+      const col = document.getElementById(`col-team-${stage}`);
+      const items = teamApplications.filter(a => a.stage === stage);
+      document.getElementById(`count-team-${stage}`).textContent = items.length;
+
+      if (items.length === 0) {
+        col.innerHTML = '<div class="empty-column">No applications</div>';
+        return;
+      }
+
+      col.innerHTML = items.map(app => `
+        <div class="app-card" data-id="${app.id}">
+          <h3>${escapeHtml(app.full_name)}</h3>
+          <div class="meta">${escapeHtml(app.role || 'No role')}</div>
+          <div class="snippet">${escapeHtml(app.why_role)}</div>
+        </div>
+      `).join('');
+    });
+
+    document.querySelectorAll('#teamBoard .app-card').forEach(card => {
+      card.addEventListener('click', () => openTeamModal(card.dataset.id));
+    });
+  }
+
+  function openTeamModal(id) {
+    const app = teamApplications.find(a => a.id === id);
+    if (!app) return;
+    currentTeamAppId = id;
+    currentTeamStage = app.stage;
+
+    document.getElementById('teamModalName').textContent = app.full_name;
+    document.getElementById('teamModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('teamModalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
+    document.getElementById('teamModalRole').textContent = app.role || '—';
+    document.getElementById('teamModalLedBefore').textContent = app.led_before || '—';
+    document.getElementById('teamModalWhyRole').textContent = app.why_role || '—';
+    document.getElementById('teamModalFirstMonth').textContent = app.first_month_plan || '—';
+    document.getElementById('teamModalAdditional').textContent = app.additional_info || '—';
+
+    const fileLinks = [];
+    if (app.cv_url) fileLinks.push(`<a href="${escapeHtml(app.cv_url)}" target="_blank" rel="noopener">CV</a>`);
+    document.getElementById('teamModalFiles').innerHTML = fileLinks.length ? fileLinks.join(' &nbsp;·&nbsp; ') : '—';
+
+    document.getElementById('teamModalNotes').value = app.internal_notes || '';
+
+    document.querySelectorAll('#teamStageButtons .stage-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.stage === app.stage);
+    });
+
+    document.getElementById('teamModalBackdrop').classList.remove('hidden');
+  }
+
+  document.getElementById('teamModalClose').addEventListener('click', () => {
+    document.getElementById('teamModalBackdrop').classList.add('hidden');
+  });
+
+  document.querySelectorAll('#teamStageButtons .stage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentTeamStage = btn.dataset.stage;
+      document.querySelectorAll('#teamStageButtons .stage-btn').forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
+
+  document.getElementById('teamSaveBtn').addEventListener('click', async () => {
+    const token = localStorage.getItem('adminToken');
+    const notes = document.getElementById('teamModalNotes').value;
+
+    try {
+      const response = await fetch(`${API_URL}/admin/team-applications/update`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ id: currentTeamAppId, stage: currentTeamStage, internalNotes: notes })
+      });
+
+      if (response.ok) {
+        document.getElementById('teamModalBackdrop').classList.add('hidden');
+        loadTeamApplications();
+      }
+    } catch (error) {
+      console.error('Failed to save', error);
     }
   });
 </script>
