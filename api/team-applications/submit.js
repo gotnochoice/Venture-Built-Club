@@ -1,5 +1,6 @@
 const { getPool } = require('../../lib/db');
 const { respondError, respondSuccess, applyCors } = require('../../lib/auth');
+const { sendCopyEmail } = require('../../lib/mailer');
 const { v4: uuidv4 } = require('uuid');
 
 const VALID_ROLES = ['Head of Programs', 'Head of Talent', 'Head of Growth', 'Head of Finance/Operations'];
@@ -45,6 +46,29 @@ module.exports = async (req, res) => {
         cvUrl
       ]
     );
+
+    try {
+      await sendCopyEmail({
+        subject: `New Team Application: ${fullName} — ${role}`,
+        html: `
+          <h2>New Team Application</h2>
+          <p><strong>Name:</strong> ${fullName}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Department:</strong> ${department} · ${level}</p>
+          <p><strong>Referred By:</strong> ${referredBy || '—'}</p>
+          <p><strong>LinkedIn:</strong> ${linkedin || '—'}</p>
+          <p><strong>Role Applied For:</strong> ${role}</p>
+          <p><strong>Led Before:</strong><br>${ledBefore}</p>
+          <p><strong>Why This Role:</strong><br>${whyRole}</p>
+          <p><strong>First Month Plan:</strong><br>${firstMonthPlan}</p>
+          <p><strong>Additional Info:</strong><br>${additionalInfo || '—'}</p>
+          <p><strong>CV:</strong> <a href="${cvUrl}">${cvUrl}</a></p>
+        `,
+      });
+    } catch (emailError) {
+      console.error('Failed to send notification email', emailError);
+    }
 
     respondSuccess(res, 201, {
       message: 'Team application submitted successfully',
