@@ -76,6 +76,10 @@
   .detail-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--bright-dark); margin-bottom: 5px; }
   .detail-value { font-size: 14px; line-height: 1.55; color: var(--ink); }
   .detail-value a { color: var(--forest-light); }
+  .contact-row { display: flex; align-items: center; gap: 8px; }
+  .copy-btn { background: none; border: none; cursor: pointer; color: var(--slate-light); padding: 2px; display: inline-flex; align-items: center; transition: color 0.15s; flex-shrink: 0; }
+  .copy-btn:hover { color: var(--bright-dark); }
+  .copy-btn.copied { color: var(--bright-dark); }
   .stage-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; margin-bottom: 20px; }
   .stage-btn { padding: 9px 15px; border-radius: 999px; font-size: 12.5px; font-weight: 700; border: 1.5px solid var(--border); background: var(--paper-2); color: var(--slate); cursor: pointer; transition: all 0.15s; }
   .stage-btn.active { background: var(--forest); border-color: var(--forest); color: var(--paper); }
@@ -223,7 +227,12 @@
 
     <div class="detail-row">
       <div class="detail-label">Contact</div>
-      <div class="detail-value" id="modalContact">—</div>
+      <div class="detail-value contact-row">
+        <span id="modalContact">—</span>
+        <button type="button" class="copy-btn" id="modalCopyEmailBtn" title="Copy email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
     </div>
     <div class="detail-row">
       <div class="detail-label">Department / Level</div>
@@ -296,7 +305,12 @@
 
     <div class="detail-row">
       <div class="detail-label">Contact</div>
-      <div class="detail-value" id="teamModalContact">—</div>
+      <div class="detail-value contact-row">
+        <span id="teamModalContact">—</span>
+        <button type="button" class="copy-btn" id="teamModalCopyEmailBtn" title="Copy email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
     </div>
     <div class="detail-row">
       <div class="detail-label">Department / Level</div>
@@ -460,6 +474,25 @@
     return div.innerHTML;
   }
 
+  function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1200);
+    });
+  }
+
+  document.getElementById('modalCopyEmailBtn').addEventListener('click', function() {
+    copyToClipboard(this.dataset.email || '', this);
+  });
+  document.getElementById('teamModalCopyEmailBtn').addEventListener('click', function() {
+    copyToClipboard(this.dataset.email || '', this);
+  });
+
   function openModal(id) {
     const app = applications.find(a => a.id === id);
     if (!app) return;
@@ -468,6 +501,7 @@
 
     document.getElementById('modalName').textContent = app.full_name;
     document.getElementById('modalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('modalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('modalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('modalWhoAreYou').textContent = app.who_are_you;
     document.getElementById('modalBuilding').textContent = app.what_building;
@@ -620,6 +654,7 @@
 
     document.getElementById('teamModalName').textContent = app.full_name;
     document.getElementById('teamModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('teamModalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('teamModalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('teamModalReferredBy').textContent = app.referred_by || '—';
     document.getElementById('teamModalLinkedin').innerHTML = app.linkedin_url
