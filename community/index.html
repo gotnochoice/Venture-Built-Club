@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Community | Venture Built</title>
-<meta name="description" content="Venture Built's community of student builders, growing one campus at a time through eHub and shared masterclasses.">
+<meta name="description" content="Venture Built's community, for student founders, mentors and partners building the next generation of African ventures.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --color-black: #0A0A0A;
@@ -24,100 +24,130 @@
     --text-primary: #0A0A0A;
     --text-secondary: #6B7268;
     --text-muted: #9CA3AF;
-    --font-family: 'Montserrat', sans-serif;
+
+    --font-family: 'Manrope', sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
     --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 12px; --spacing-lg: 16px;
     --spacing-xl: 24px; --spacing-2xl: 32px; --spacing-3xl: 40px; --spacing-4xl: 48px;
     --spacing-5xl: 60px; --spacing-6xl: 80px;
-    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-full: 50px;
+    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-full: 50px;
+    --shadow-lg: 0 8px 24px rgba(15, 61, 46, 0.08);
     --transition-fast: 0.15s ease; --transition-normal: 0.3s ease;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-family); background: var(--color-white); color: var(--text-primary); line-height: 1.5; }
-  h1, h2, h3 { font-family: var(--font-family); font-weight: 700; letter-spacing: -0.01em; }
+  body { font-family: var(--font-family); background: #FAFBF9; color: var(--text-primary); line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--font-family); font-weight: var(--font-weight-bold); letter-spacing: -0.01em; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
   a { color: inherit; }
   .disabled-link { opacity: 0.45; cursor: default; pointer-events: none; }
 
+  /* NAV */
   .site-header { position: sticky; top: 0; z-index: 100; }
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
-  .logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
+  .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
   .logo span { color: var(--color-bright); }
   .nav-links { display: flex; align-items: center; gap: var(--spacing-3xl); }
-  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); }
+  .nav-links a { text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); }
   .nav-dropdown { position: relative; }
-  .nav-dropdown-trigger { display: flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); cursor: pointer; }
-  .nav-dropdown-trigger svg { transition: transform 0.15s ease; }
+  .nav-dropdown-trigger { display: flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); cursor: pointer; }
+  .nav-dropdown-trigger svg { transition: transform var(--transition-fast); }
   .nav-dropdown:hover .nav-dropdown-trigger svg, .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
-  .nav-dropdown-panel { position: absolute; top: calc(100% + 20px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 260px; background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); box-shadow: 0 16px 40px rgba(10,10,10,0.14); padding: var(--spacing-xl); opacity: 0; visibility: hidden; transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease; z-index: 200; }
+  .nav-dropdown-panel { position: absolute; top: calc(100% + 20px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 260px; background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); box-shadow: 0 16px 40px rgba(10,10,10,0.14); padding: var(--spacing-xl); opacity: 0; visibility: hidden; transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast); z-index: 200; }
   .nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown.open .nav-dropdown-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   .nav-dropdown-group { margin-bottom: var(--spacing-lg); }
   .nav-dropdown-group:last-child { margin-bottom: 0; }
-  .nav-dropdown-group-title { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: var(--spacing-sm); }
-  .nav-dropdown-link { display: block; font-size: 14px; font-weight: 600; color: var(--text-primary); text-decoration: none; padding: var(--spacing-sm) 0; }
+  .nav-dropdown-group-title { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: var(--spacing-sm); font-family: var(--font-family); }
+  .nav-dropdown-link { display: block; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-primary); text-decoration: none; padding: var(--spacing-sm) 0; font-family: var(--font-family); }
   .nav-dropdown-link:hover { color: var(--color-bright-dark); }
   .nav-dropdown-link.disabled { color: var(--text-muted); cursor: default; }
+  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); transition: all var(--transition-fast); display: inline-block; box-shadow: 0 8px 20px rgba(62,189,121,0.4); }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(62,189,121,0.5); }
   .nav-cta-row { display: flex; align-items: center; gap: var(--spacing-md); }
-  .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color var(--transition-fast), background var(--transition-fast); }
+  .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); transition: border-color var(--transition-fast), background var(--transition-fast); display: inline-block; }
   .nav-login:hover { border-color: var(--color-forest); background: var(--color-gray-100); }
-  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); text-decoration: none; font-size: 14px; font-weight: 700; box-shadow: 0 8px 20px rgba(62,189,121,0.4); }
-  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); }
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); align-items: center; justify-content: center; }
   .mobile-menu-btn .hidden { display: none !important; }
   .mobile-nav-panel { display: none; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
   .mobile-nav-panel.open { max-height: calc(100vh - 60px); overflow-y: auto; }
-  .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); }
-  .mobile-nav-accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; color: var(--color-white); text-decoration: none; font-size: 15px; font-weight: 500; padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; }
-  .mobile-nav-accordion-trigger svg { transition: transform 0.15s ease; }
+  .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family); }
+  .mobile-nav-accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family); cursor: pointer; }
+  .mobile-nav-accordion-trigger svg { transition: transform var(--transition-fast); }
   .mobile-nav-accordion.open .mobile-nav-accordion-trigger svg { transform: rotate(180deg); }
   .mobile-nav-accordion-panel { max-height: 0; overflow: hidden; background: rgba(0,0,0,0.15); transition: max-height 0.3s ease; }
   .mobile-nav-accordion.open .mobile-nav-accordion-panel { max-height: 220px; }
-  .mobile-nav-accordion-label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: var(--spacing-md) var(--spacing-2xl) var(--spacing-xs); }
-  .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: var(--spacing-sm) var(--spacing-2xl); border-bottom: none; }
+  .mobile-nav-accordion-label { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: var(--spacing-md) var(--spacing-2xl) var(--spacing-xs); font-family: var(--font-family); }
+  .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: var(--font-size-sm); padding: var(--spacing-sm) var(--spacing-2xl); font-family: var(--font-family); border-bottom: none; }
   .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
 
-  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; }
-  .btn-secondary { border: 2px solid var(--color-gray-400); background: transparent; color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); font-weight: 600; font-size: 15px; display: inline-block; }
-  .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
+  /* BUTTONS */
+  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 14px 32px rgba(62,189,121,0.45), 0 10px 24px rgba(10,10,10,0.35); }
+  .btn-primary[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+  .btn-primary[disabled]:hover { transform: none; }
+  .btn-secondary { border: 1.5px solid var(--color-forest); background: transparent; color: var(--color-forest); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); display: inline-block; transition: border-color var(--transition-fast), background var(--transition-fast); font-family: var(--font-family); cursor: pointer; }
+  .btn-secondary:hover { background: rgba(15,61,46,0.06); }
+  .btn-secondary[disabled] { opacity: 0.45; cursor: not-allowed; }
+  .btn-secondary[disabled]:hover { background: transparent; }
 
-  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 340px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
-  .bleed-banner svg { width: 100%; height: 100%; display: block; }
+  /* HERO */
+  .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 70vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
+  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
+  .hero .eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-bright); margin-bottom: var(--spacing-lg); }
+  .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 620px; line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); }
 
-  .content-section { padding: var(--spacing-6xl) 0; text-align: center; }
-  .content-section h1 { font-size: clamp(30px, 4vw, 44px); margin-bottom: var(--spacing-xl); }
-  .content-section p { font-size: 17px; color: var(--text-secondary); max-width: 700px; margin: 0 auto var(--spacing-lg); line-height: 1.7; }
-  .explore-link { color: var(--color-bright-dark); font-weight: 700; text-decoration: none; }
-  .explore-link:hover { text-decoration: underline; }
+  /* TABS (matches homepage's How to Join tabs) */
+  .process { padding: var(--spacing-6xl) 0; }
+  .tab-nav-full { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--color-gray-300); margin-bottom: var(--spacing-4xl); }
+  .tab-btn-full { text-align: left; background: none; border: none; border-bottom: 4px solid transparent; margin-bottom: -1px; padding: var(--spacing-xl) var(--spacing-md) var(--spacing-xl) 0; font-size: clamp(16px, 1.6vw, 22px); font-weight: var(--font-weight-bold); color: var(--color-gray-400); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast); }
+  .tab-btn-full:hover { color: var(--text-primary); }
+  .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--color-bright); }
+  .tab-panel-card { display: none; grid-template-columns: 1fr; gap: var(--spacing-2xl); background: #EEF6F1; border-radius: var(--radius-xl); align-items: stretch; box-shadow: var(--shadow-lg); padding: var(--spacing-2xl); }
+  .tab-panel-card.active { display: grid; }
+  .tab-panel-content { padding: var(--spacing-3xl); max-width: 640px; margin: 0 auto; text-align: center; }
+  .tab-panel-content h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
+  .tab-panel-content p { font-size: var(--font-size-base); color: #445048; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); }
+  .tab-panel-content p:last-of-type { margin-bottom: var(--spacing-xl); }
+  .tab-panel-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; }
 
-  .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-2xl); max-width: 960px; margin: var(--spacing-4xl) auto 0; }
-  .offer-card { text-align: left; padding: var(--spacing-2xl); background: var(--color-gray-100); border-radius: var(--radius-lg); }
-  .offer-card h3 { font-size: 16px; color: var(--color-forest); margin-bottom: var(--spacing-sm); }
-  .offer-card p { font-size: 13.5px; color: #2A332F; line-height: 1.6; margin: 0; text-align: left; }
-
-
-  .cta-footer { background: var(--color-black); color: var(--color-white); padding: var(--spacing-4xl) 0; text-align: center; }
-  .cta-footer h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 600; margin-bottom: var(--spacing-md); max-width: 480px; margin: 0 auto var(--spacing-md); }
-  .cta-footer p { color: rgba(255,255,255,0.7); margin: 0 auto var(--spacing-xl); max-width: 460px; font-size: 15px; line-height: 1.5; }
-  .cta-footer-row { display: flex; gap: var(--spacing-lg); flex-wrap: wrap; justify-content: center; }
-
-  footer { padding: var(--spacing-4xl) var(--spacing-2xl) var(--spacing-xl); background: var(--color-gray-100); }
-  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; }
+  footer { padding: var(--spacing-4xl) 0 var(--spacing-xl); background: var(--color-gray-100); font-family: var(--font-family); }
+  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; padding: 0 var(--spacing-2xl); }
   .footer-brand { max-width: 260px; }
   .footer-brand .logo { display: inline-block; margin-bottom: var(--spacing-md); }
-  .footer-brand p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-  .footer-col h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
-  .footer-col a { display: block; font-size: 14px; color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: var(--font-size-xs); color: var(--text-secondary); line-height: 1.6; }
+  .footer-col h4 { font-size: var(--font-size-xs); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
+  .footer-col a { display: block; font-size: var(--font-size-sm); color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
   .footer-col a:hover { color: var(--color-forest); }
-  .footer-bottom { max-width: 1080px; margin: var(--spacing-3xl) auto 0; padding-top: var(--spacing-lg); border-top: 1px solid var(--color-gray-300); font-size: 12.5px; color: var(--text-muted); }
+  .footer-bottom { max-width: 1080px; margin: var(--spacing-3xl) auto 0; padding: var(--spacing-lg) var(--spacing-2xl) 0; border-top: 1px solid var(--color-gray-300); font-size: var(--font-size-xs); color: var(--text-muted); }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
   @media (max-width: 760px) {
     .wrap { padding: 0 var(--spacing-lg); }
+    .hero { min-height: auto; padding: var(--spacing-3xl) 0; }
     nav { padding: var(--spacing-md) var(--spacing-lg); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
     .mobile-menu-btn { color: var(--text-primary); }
     .mobile-nav-panel { display: block; }
+    .logo { font-size: var(--font-size-base); }
     .nav-links, .nav-cta-row { display: none; }
-    .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
-    .offer-grid { grid-template-columns: 1fr; }
-    .cta-footer-row { flex-direction: column; align-items: center; }
-    .cta-footer-row .btn-primary, .cta-footer-row .btn-secondary { width: 100%; text-align: center; }
+    .mobile-menu-btn { display: flex; }
+    .tab-nav-full { grid-template-columns: 1fr; }
+    .tab-btn-full { text-align: center; font-size: var(--font-size-lg); border-bottom: none; border-left: 3px solid transparent; padding: var(--spacing-md); }
+    .tab-btn-full.active { border-left-color: var(--text-primary); background: var(--color-gray-100); }
+    .tab-panel-content { padding: var(--spacing-xl) var(--spacing-md); }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
 </style>
@@ -146,8 +176,8 @@
       </div>
     </div>
     <a class="disabled-link" title="Coming soon">Resources</a>
-    <a class="disabled-link" title="Coming soon">Community</a>
-    <a class="disabled-link" title="Coming soon">Partners</a>
+    <a href="/community">Community</a>
+    <a href="/partners">Partners</a>
     <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
@@ -175,61 +205,63 @@
     </div>
   </div>
   <a class="disabled-link" title="Coming soon">Resources</a>
-  <a class="disabled-link" title="Coming soon">Community</a>
-  <a class="disabled-link" title="Coming soon">Partners</a>
+  <a href="/community">Community</a>
+  <a href="/partners">Partners</a>
   <a href="/join-team">Join the Team</a>
   <a href="/portal">Log In</a>
 </div>
 </header>
 
-<div class="bleed-banner" aria-hidden="true">
-  <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#0A2A1F" opacity="0.55">
-      <rect x="20" y="160" width="70" height="140"/>
-      <rect x="110" y="110" width="55" height="190"/>
-      <rect x="180" y="190" width="90" height="110"/>
-      <rect x="290" y="70" width="60" height="230"/>
-      <rect x="365" y="150" width="80" height="150"/>
-      <rect x="460" y="40" width="50" height="260"/>
-      <rect x="525" y="130" width="100" height="170"/>
-      <rect x="640" y="95" width="65" height="205"/>
-      <rect x="720" y="170" width="85" height="130"/>
-      <rect x="820" y="60" width="55" height="240"/>
-      <rect x="890" y="140" width="95" height="160"/>
-      <rect x="1000" y="105" width="60" height="195"/>
-      <rect x="1075" y="180" width="105" height="120"/>
-    </g>
-  </svg>
-</div>
-
-<section class="content-section">
+<section class="hero">
   <div class="wrap">
+    <div class="eyebrow">Community</div>
     <h1>Our Community</h1>
-    <p>Venture Built is home to a growing community of student builders across Africa, starting at Obafemi Awolowo University. Through eHub, our co-building platform, and biweekly masterclasses, our members share feedback, sharpen ideas, and find the co-builder who completes them. We're just getting started, real numbers on our community will go here once we have them to share. <a href="/location/oau" class="explore-link">Explore where we're building &rarr;</a></p>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <h3>eHub</h3>
-        <p>List what you're working on and what you need. No cold directory, just people finding each other and building together.</p>
-      </div>
-      <div class="offer-card">
-        <h3>Masterclasses</h3>
-        <p>Biweekly sessions on what it actually takes to build a venture-backable business, taught by club leadership and guest founders.</p>
-      </div>
-      <div class="offer-card">
-        <h3>Demo Days</h3>
-        <p>A monthly chance to show what you and your peers have built, and get real feedback from people who've been there.</p>
-      </div>
-    </div>
+    <p class="lede">Student founders building ventures, mentors who've built or backed something real, and partners helping take it further, this is where they all meet.</p>
   </div>
 </section>
 
-<section class="cta-footer">
+<section class="process reveal" id="community-tabs">
   <div class="wrap">
-    <h2>Want in?</h2>
-    <p>Apply to a cohort, or join our WhatsApp community once it opens, to meet builders across Africa.</p>
-    <div class="cta-footer-row">
-      <a href="/apply" class="btn-primary">Apply Now</a>
-      <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+    <div class="tab-nav-full">
+      <button class="tab-btn-full active" data-tab="founder">Student Founder</button>
+      <button class="tab-btn-full" data-tab="mentor">Mentor</button>
+      <button class="tab-btn-full" data-tab="sponsor">Sponsors</button>
+    </div>
+
+    <div class="tab-panel-card active" data-panel="founder">
+      <div class="tab-panel-content">
+        <h3>Our Community</h3>
+        <p>Venture Built is home to a growing community of student builders across Africa, working across every industry, from fintech to healthtech to consumer products. As our cohorts graduate, this is where you'll find the ventures they're building.</p>
+        <p>Right now, we're at the beginning. The founders who go through Venture Built will build this page's story, cohort by cohort. Join the community today and be part of shaping it from the start.</p>
+        <div class="tab-panel-cta-row">
+          <a href="/apply" class="btn-primary">Apply to the Cohort</a>
+          <button class="btn-secondary" disabled title="Coming soon">Join the Community</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel-card" data-panel="mentor">
+      <div class="tab-panel-content">
+        <h3>Join Our Mentor Network</h3>
+        <p>You've built or backed something incredible. That's exactly what the next generation of African founders needs to hear directly from someone who's actually lived it.</p>
+        <p>A masterclass here, feedback on a pitch there, a conversation that shifts how a founder sees their own company. Whatever you're able to give shapes someone's path before anyone else gets the chance to.</p>
+        <p>You already know what that moment is worth. Give one to somebody else.</p>
+        <div class="tab-panel-cta-row">
+          <a href="/apply-mentor" class="btn-primary">Apply to Mentor</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel-card" data-panel="sponsor">
+      <div class="tab-panel-content">
+        <h3>Our Partners</h3>
+        <p>Venture Built connects ambitious student builders across Africa with the companies and firms who can help take their ventures further. As a partner, you get early access to the founders coming out of our program, before they're on anyone else's radar.</p>
+        <p>Your support funds the masterclasses, the pitch days, and the flagship event that make the program run, we don't take equity or dues, so partnerships and sponsorships are what keep this going.</p>
+        <p>We're building our partner network now. If you want to help shape the next generation of African founders, reach out.</p>
+        <div class="tab-panel-cta-row">
+          <a href="/partners#connect" class="btn-primary">Become a Partner</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -245,17 +277,17 @@
       <a href="/">Home</a>
       <a href="/location/oau">OAU Chapter</a>
       <a class="disabled-link" title="Coming soon">Resources</a>
-      <a class="disabled-link" title="Coming soon">Community</a>
+      <a href="/community">Community</a>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
       <a href="/portal">Log In</a>
       <a href="/apply">Apply to Join</a>
       <a href="/join-team">Join the Team</a>
-      <a class="disabled-link" title="Coming soon">Partners</a>
+      <a href="/partners">Partners</a>
     </div>
   </div>
-  <div class="footer-bottom wrap">Venture Built, based in Africa and starting at Obafemi Awolowo University</div>
+  <div class="footer-bottom">Venture Built, based in Africa and starting at Obafemi Awolowo University</div>
 </footer>
 
 <script>
@@ -299,6 +331,25 @@
       trigger.setAttribute('aria-expanded', isOpen);
     });
   });
+
+  document.querySelectorAll('.tab-btn-full').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn-full').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.tab-panel-card').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
 </script>
 
 </body>

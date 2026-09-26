@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to Mentor | Venture Built Club</title>
+<meta name="description" content="Join Venture Built's mentor network. Share what you've learned with the next generation of African founders.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --forest: #0F3D2E;
+    --white: #FFFFFF;
+    --steel: #6B7268;
+    --bright: #3EBD79;
+    --bright-dark: #2DA863;
+    --border: #E5E7EB;
+    --font: 'Montserrat', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: #F7F8F6; color: #2A332F; line-height: 1.6; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 100px; }
+
+  .page-head { text-align: center; margin-bottom: 40px; }
+  .page-kicker {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--bright-dark); background: rgba(62,189,121,0.1); padding: 6px 16px; border-radius: 999px; margin-bottom: 18px;
+  }
+  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 800; color: var(--black); line-height: 1.15; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .lede { font-size: 15.5px; color: var(--steel); max-width: 480px; margin: 0 auto; }
+
+  .progress-rail { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 40px; padding: 0 4px; }
+  .progress-step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; }
+  .progress-step::before {
+    content: ""; position: absolute; top: 13px; left: -50%; width: 100%; height: 2px; background: var(--border); z-index: 0;
+  }
+  .progress-step:first-child::before { display: none; }
+  .progress-dot {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--white); border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700; color: var(--steel);
+    position: relative; z-index: 1; transition: all 0.2s;
+  }
+  .progress-step.active .progress-dot { background: var(--forest); border-color: var(--forest); color: var(--white); }
+  .progress-step.active::before { background: var(--forest); }
+  .progress-label { font-size: 11px; font-weight: 600; color: var(--steel); text-align: center; line-height: 1.3; }
+  .progress-step.active .progress-label { color: var(--forest); }
+
+  .notice-card {
+    background: linear-gradient(135deg, var(--forest) 0%, #163f30 100%); color: var(--white);
+    border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; box-shadow: 0 12px 32px rgba(15,61,46,0.18);
+  }
+  .notice-card .notice-title { font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--bright); margin-bottom: 14px; }
+  .notice-card p { font-size: 14px; color: rgba(255,255,255,0.88); margin-bottom: 14px; line-height: 1.65; }
+  .notice-card p:last-child { margin-bottom: 0; }
+
+  .card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px;
+    box-shadow: 0 1px 3px rgba(10,10,10,0.04); margin-bottom: 20px;
+  }
+
+  .section-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .section-badge {
+    width: 28px; height: 28px; border-radius: 50%; background: rgba(15,61,46,0.08); color: var(--forest);
+    display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 800; flex-shrink: 0;
+  }
+  .section-heading { font-size: 19px; font-weight: 800; color: var(--black); }
+  .section-sub { font-size: 13.5px; color: var(--steel); margin-bottom: 22px; font-style: italic; margin-left: 40px; }
+
+  .field-group { margin-bottom: 20px; }
+  .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
+  .field-group .hint { font-weight: 400; color: var(--steel); font-size: 12.5px; }
+  .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"], .field-group input[type="url"],
+  .field-group select, .field-group textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+    font-size: 14.5px; font-family: var(--font); background: #FAFBFA; color: var(--black);
+  }
+  .field-group textarea { min-height: 90px; resize: vertical; }
+  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+    outline: none; border-color: var(--bright); background: var(--white); box-shadow: 0 0 0 3px rgba(62,189,121,0.12);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .q-counter { font-size: 12px; color: var(--steel); margin-top: 6px; }
+
+  .help-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; }
+  .help-option { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; color: #2A332F; }
+  .help-option input { margin-top: 3px; }
+
+  .btn-submit {
+    width: 100%; padding: 16px; background: var(--bright); color: var(--black); border: none; border-radius: 40px;
+    font-weight: 700; font-size: 15.5px; cursor: pointer; font-family: var(--font);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s; box-shadow: 0 8px 20px rgba(62,189,121,0.3);
+  }
+  .btn-submit:hover { background: var(--bright-dark); box-shadow: 0 10px 24px rgba(62,189,121,0.4); }
+  .btn-submit:active { transform: scale(0.99); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .form-error {
+    background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 8px;
+    padding: 12px 16px; font-size: 13.5px; margin-bottom: 20px;
+  }
+
+  .success-card { text-align: center; padding: 56px 40px; }
+  .success-icon {
+    width: 60px; height: 60px; border-radius: 50%; background: rgba(62,189,121,0.12); color: var(--bright-dark);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+  }
+  .success-card h2 { font-size: 22px; font-weight: 800; color: var(--black); margin-bottom: 10px; }
+  .success-card p { color: var(--steel); font-size: 14.5px; max-width: 380px; margin: 0 auto; }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 40px 16px 72px; }
+    .card { padding: 20px; }
+    .field-row, .help-grid { grid-template-columns: 1fr; }
+    .progress-label { display: none; }
+    .progress-step { gap: 0; }
+    .notice-card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <span class="page-kicker">Mentor Network</span>
+    <h1>Apply to Mentor</h1>
+    <p class="lede">Share what you've learned with the next generation of African founders.</p>
+  </div>
+
+  <div class="progress-rail">
+    <div class="progress-step active">
+      <div class="progress-dot">01</div>
+      <div class="progress-label">About You</div>
+    </div>
+    <div class="progress-step active">
+      <div class="progress-dot">02</div>
+      <div class="progress-label">Mentorship</div>
+    </div>
+  </div>
+
+  <div class="notice-card">
+    <div class="notice-title">Before you apply</div>
+    <p>This is for people who've built or backed something real, founders, operators, investors, and want to give back what that experience taught them. A masterclass, pitch feedback, a single good conversation, whatever you can give matters.</p>
+    <p>There's no fixed time commitment. Tell us how you'd like to help and we'll match you with what fits.</p>
+  </div>
+
+  <div id="formWrap">
+    <div id="formError" class="form-error hidden"></div>
+
+    <form id="mentorApplyForm">
+      <!-- SECTION 1: ABOUT YOU -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">01</div><div class="section-heading">About You</div></div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="fullName">Name</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div class="field-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label for="phone">Phone Number <span class="hint">optional</span></label>
+            <input type="tel" id="phone" placeholder="+234...">
+          </div>
+          <div class="field-group">
+            <label for="currentRole">Current Role / Company</label>
+            <input type="text" id="currentRole" placeholder="e.g. Founder at..., Investor at..." required>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="linkedin">LinkedIn Profile <span class="hint">optional</span></label>
+          <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourname">
+        </div>
+      </div>
+
+      <!-- SECTION 2: MENTORSHIP -->
+      <div class="card">
+        <div class="section-title-row"><div class="section-badge">02</div><div class="section-heading">Mentorship</div></div>
+
+        <div class="field-group">
+          <div class="q-label">1. What have you built or backed? Give us the short version of your track record.</div>
+          <textarea id="builtOrBacked" required></textarea>
+          <div class="q-counter">Recommended 50–200 words</div>
+        </div>
+
+        <div class="field-group">
+          <label>2. How would you like to help?</label>
+          <div class="help-grid" id="helpGrid">
+            <label class="help-option"><input type="checkbox" value="Teach a masterclass"> Teach a masterclass</label>
+            <label class="help-option"><input type="checkbox" value="Pitch feedback"> Pitch feedback</label>
+            <label class="help-option"><input type="checkbox" value="1:1 mentorship"> 1:1 mentorship</label>
+            <label class="help-option"><input type="checkbox" value="Demo Day judging"> Demo Day judging</label>
+          </div>
+          <input type="text" id="helpOther" placeholder="Other (optional)" style="margin-top: 12px;">
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">3. Why do you want to mentor Venture Built founders?</div>
+          <textarea id="whyMentor" required></textarea>
+        </div>
+
+        <div class="field-group">
+          <label for="availability">4. How much time can you realistically give? <span class="hint">optional</span></label>
+          <input type="text" id="availability" placeholder="e.g. an hour a month, one masterclass a term">
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
+    </form>
+  </div>
+
+  <div class="card success-card hidden" id="successCard">
+    <div class="success-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+    </div>
+    <h2>Application received</h2>
+    <p>Thanks for stepping up to mentor. We'll reach out once we're ready to match you with founders.</p>
+  </div>
+</div>
+
+<script>
+  const API_URL = '/api';
+
+  document.getElementById('mentorApplyForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('formError');
+    const btn = document.getElementById('submitBtn');
+    errEl.classList.add('hidden');
+    btn.disabled = true;
+
+    try {
+      const helpTypes = Array.from(document.querySelectorAll('#helpGrid input:checked')).map(el => el.value);
+      const helpOther = document.getElementById('helpOther').value.trim();
+      if (helpOther) helpTypes.push(helpOther);
+
+      if (helpTypes.length === 0) {
+        throw new Error('Please select at least one way you would like to help.');
+      }
+
+      btn.textContent = 'Submitting...';
+
+      const payload = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        currentRole: document.getElementById('currentRole').value,
+        linkedin: document.getElementById('linkedin').value,
+        builtOrBacked: document.getElementById('builtOrBacked').value,
+        helpTypes,
+        helpTypesOther: helpOther || null,
+        whyMentor: document.getElementById('whyMentor').value,
+        availability: document.getElementById('availability').value,
+      };
+
+      const response = await fetch(`${API_URL}/mentor-applications/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        document.getElementById('formWrap').classList.add('hidden');
+        document.getElementById('successCard').classList.remove('hidden');
+      } else {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      errEl.textContent = error.message || 'Could not reach the server. Please try again.';
+      errEl.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Application';
+    }
+  });
+</script>
+
+</body>
+</html>

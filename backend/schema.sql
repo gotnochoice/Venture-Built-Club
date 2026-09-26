@@ -220,6 +220,27 @@ CREATE TABLE team_applications (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Mentor Applications (mentor network sign-ups)
+CREATE TABLE mentor_applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  current_role VARCHAR(255) NOT NULL,
+  linkedin_url VARCHAR(500),
+
+  built_or_backed TEXT NOT NULL,
+  help_types TEXT[] NOT NULL,
+  help_types_other TEXT,
+  why_mentor TEXT NOT NULL,
+  availability VARCHAR(255),
+
+  stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
+  internal_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_profiles_user_id ON profiles(user_id);
@@ -237,3 +258,5 @@ CREATE INDEX idx_partner_inquiries_status ON partner_inquiries(status);
 CREATE INDEX idx_partner_inquiries_email ON partner_inquiries(email);
 CREATE INDEX idx_team_applications_stage ON team_applications(stage);
 CREATE INDEX idx_team_applications_email ON team_applications(email);
+CREATE INDEX idx_mentor_applications_stage ON mentor_applications(stage);
+CREATE INDEX idx_mentor_applications_email ON mentor_applications(email);
