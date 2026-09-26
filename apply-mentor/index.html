@@ -143,8 +143,8 @@
   </div>
 
   <div class="notice-card">
-    <div class="notice-title">Before you apply</div>
-    <p>This is for people who've built or backed something real, founders, operators, investors, and want to give back what that experience taught them. A masterclass, pitch feedback, a single good conversation, whatever you can give matters.</p>
+    <div class="notice-title">We're so glad you're here</div>
+    <p>We need mentors like you. If you've built or backed something and are willing to share even a little of what you learned, that's already more than enough.</p>
     <p>There's no fixed time commitment. Tell us how you'd like to help and we'll match you with what fits.</p>
   </div>
 
@@ -186,7 +186,7 @@
         <div class="section-title-row"><div class="section-badge">02</div><div class="section-heading">Mentorship</div></div>
 
         <div class="field-group">
-          <div class="q-label">1. What have you built or backed? Give us the short version of your track record.</div>
+          <div class="q-label">1. Tell us about something you've built or backed, we'd love to hear about it.</div>
           <textarea id="builtOrBacked" required></textarea>
           <div class="q-counter">Recommended 50–200 words</div>
         </div>
@@ -203,12 +203,7 @@
         </div>
 
         <div class="field-group">
-          <div class="q-label">3. Why do you want to mentor Venture Built founders?</div>
-          <textarea id="whyMentor" required></textarea>
-        </div>
-
-        <div class="field-group">
-          <label for="availability">4. How much time can you realistically give? <span class="hint">optional</span></label>
+          <label for="availability">3. How much time can you realistically give? <span class="hint">optional</span></label>
           <input type="text" id="availability" placeholder="e.g. an hour a month, one masterclass a term">
         </div>
       </div>
@@ -256,7 +251,6 @@
         builtOrBacked: document.getElementById('builtOrBacked').value,
         helpTypes,
         helpTypesOther: helpOther || null,
-        whyMentor: document.getElementById('whyMentor').value,
         availability: document.getElementById('availability').value,
       };
 

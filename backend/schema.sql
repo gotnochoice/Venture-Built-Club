@@ -232,7 +232,6 @@ CREATE TABLE mentor_applications (
   built_or_backed TEXT NOT NULL,
   help_types TEXT[] NOT NULL,
   help_types_other TEXT,
-  why_mentor TEXT NOT NULL,
   availability VARCHAR(255),
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
