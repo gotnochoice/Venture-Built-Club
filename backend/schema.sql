@@ -226,7 +226,7 @@ CREATE TABLE mentor_applications (
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   phone VARCHAR(50),
-  current_role VARCHAR(255) NOT NULL,
+  role_title VARCHAR(255) NOT NULL,
   linkedin_url VARCHAR(500),
 
   built_or_backed TEXT NOT NULL,

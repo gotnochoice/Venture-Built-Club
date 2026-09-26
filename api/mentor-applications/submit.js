@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
     await pool.query(
       `INSERT INTO mentor_applications (
-        id, full_name, email, phone, current_role, linkedin_url,
+        id, full_name, email, phone, role_title, linkedin_url,
         built_or_backed, help_types, help_types_other, why_mentor, availability
       ) VALUES (
         $1, $2, $3, $4, $5, $6,
