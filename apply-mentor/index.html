@@ -52,7 +52,7 @@
     background: linear-gradient(135deg, var(--forest) 0%, #163f30 100%); color: var(--white);
     border-radius: 12px; padding: 28px 32px; margin-bottom: 40px; box-shadow: 0 12px 32px rgba(15,61,46,0.18);
   }
-  .notice-card .notice-title { font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--bright); margin-bottom: 14px; }
+  .notice-card .notice-title { font-weight: 800; font-size: 19px; line-height: 1.4; color: var(--white); margin-bottom: 14px; }
   .notice-card p { font-size: 14px; color: rgba(255,255,255,0.88); margin-bottom: 14px; line-height: 1.65; }
   .notice-card p:last-child { margin-bottom: 0; }
 
@@ -161,9 +161,9 @@
   </div>
 
   <div class="notice-card">
-    <div class="notice-title">We're so glad you're here</div>
-    <p>We need mentors like you. If you've built or backed something and are willing to share even a little of what you learned, that's already more than enough.</p>
-    <p>There's no fixed time commitment. Tell us how you'd like to help and we'll match you with what fits.</p>
+    <div class="notice-title">We're glad to have you here. Thank you for choosing to be a Venture Built mentor.</div>
+    <p>There's no fixed time commitment. A single conversation, a masterclass, ongoing check-ins, whatever you're able to give. Tell us how you'd like to help, and we'll match you with what fits.</p>
+    <p>We sincerely appreciate you.</p>
   </div>
 
   <div id="formWrap">
@@ -212,7 +212,7 @@
         <div class="field-group">
           <label>2. How would you like to help?</label>
           <div class="help-grid" id="helpGrid">
-            <label class="help-option"><input type="checkbox" value="Teach a masterclass"> Teach a masterclass</label>
+            <label class="help-option"><input type="checkbox" value="Teach a masterclass"> Teach a masterclass <span class="hint">(1hr or 1hr 30 mins)</span></label>
             <label class="help-option"><input type="checkbox" value="Pitch feedback"> Pitch feedback</label>
             <label class="help-option"><input type="checkbox" value="1:1 mentorship"> 1:1 mentorship</label>
             <label class="help-option"><input type="checkbox" value="Demo Day judging"> Demo Day judging</label>
@@ -223,6 +223,11 @@
         <div class="field-group">
           <label for="availability">3. How much time can you realistically give? <span class="hint">optional</span></label>
           <input type="text" id="availability" placeholder="e.g. an hour a month, one masterclass a term">
+        </div>
+
+        <div class="field-group">
+          <div class="q-label">4. Is there anything else you'd love to do for the club? We're more than open to it. <span class="hint">optional</span></div>
+          <textarea id="somethingElse"></textarea>
         </div>
 
         <div class="field-group sponsor-callout">
@@ -295,6 +300,7 @@
         helpTypes,
         helpTypesOther: helpOther || null,
         availability: document.getElementById('availability').value,
+        somethingElse: document.getElementById('somethingElse').value,
         sponsorInterest: sponsorEl ? sponsorEl.value : null,
       };
 

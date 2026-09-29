@@ -233,6 +233,7 @@ CREATE TABLE mentor_applications (
   help_types TEXT[] NOT NULL,
   help_types_other TEXT,
   availability VARCHAR(255),
+  something_else TEXT,
   sponsor_interest VARCHAR(50), -- Yes, Maybe later, No
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected

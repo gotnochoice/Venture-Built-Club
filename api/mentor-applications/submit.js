@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
   try {
     const {
       fullName, email, phone, currentRole, linkedin,
-      builtOrBacked, helpTypes, helpTypesOther, availability, sponsorInterest
+      builtOrBacked, helpTypes, helpTypesOther, availability, somethingElse, sponsorInterest
     } = req.body;
 
     if (!fullName || !email || !currentRole || !builtOrBacked ||
@@ -27,14 +27,14 @@ module.exports = async (req, res) => {
     await pool.query(
       `INSERT INTO mentor_applications (
         id, full_name, email, phone, role_title, linkedin_url,
-        built_or_backed, help_types, help_types_other, availability, sponsor_interest
+        built_or_backed, help_types, help_types_other, availability, something_else, sponsor_interest
       ) VALUES (
         $1, $2, $3, $4, $5, $6,
-        $7, $8, $9, $10, $11
+        $7, $8, $9, $10, $11, $12
       )`,
       [
         applicationId, fullName, email, phone || null, currentRole, linkedin || null,
-        builtOrBacked, helpTypes, helpTypesOther || null, availability || null, sponsorInterest || null
+        builtOrBacked, helpTypes, helpTypesOther || null, availability || null, somethingElse || null, sponsorInterest || null
       ]
     );
 
@@ -51,6 +51,7 @@ module.exports = async (req, res) => {
           <p><strong>What They've Built/Backed:</strong><br>${builtOrBacked}</p>
           <p><strong>How They Can Help:</strong> ${helpTypes.join(', ')}${helpTypesOther ? ' · ' + helpTypesOther : ''}</p>
           <p><strong>Availability:</strong> ${availability || '—'}</p>
+          <p><strong>Anything Else They'd Love to Do:</strong> ${somethingElse || '—'}</p>
           <p><strong>Also Interested in Sponsoring:</strong> ${sponsorInterest || '—'}</p>
         `,
       });
