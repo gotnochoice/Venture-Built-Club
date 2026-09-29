@@ -7,7 +7,7 @@
 <meta name="description" content="Venture Built is building relationships with mentors, operators, and organizations who want to help Africa's next generation of founders get their footing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --color-black: #0A0A0A;
@@ -24,11 +24,22 @@
     --text-primary: #0A0A0A;
     --text-secondary: #6B7268;
     --text-muted: #9CA3AF;
-    --font-family: 'Montserrat', sans-serif;
+    --font-family: 'Manrope', sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
     --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 12px; --spacing-lg: 16px;
     --spacing-xl: 24px; --spacing-2xl: 32px; --spacing-3xl: 40px; --spacing-4xl: 48px;
     --spacing-5xl: 60px; --spacing-6xl: 80px;
-    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-full: 50px;
+    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-full: 50px;
+    --shadow-lg: 0 8px 24px rgba(15, 61, 46, 0.08);
     --transition-fast: 0.15s ease; --transition-normal: 0.3s ease;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,24 +89,38 @@
   .btn-secondary { border: 2px solid var(--color-gray-400); background: transparent; color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); font-weight: 600; font-size: 15px; display: inline-block; }
   .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
 
-  .page-header { background: linear-gradient(135deg, var(--color-forest) 0%, #14493A 55%, var(--color-forest-lighter) 100%); color: var(--color-white); padding: var(--spacing-6xl) var(--spacing-2xl) var(--spacing-5xl); text-align: center; }
-  .page-header .eyebrow { font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--color-bright-light); margin-bottom: var(--spacing-lg); }
-  .page-header h1 { font-size: clamp(32px, 4.5vw, 52px); line-height: 1.1; margin-bottom: var(--spacing-lg); }
-  .page-header p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 660px; margin: 0 auto; line-height: 1.6; }
+  /* HERO */
+  .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
+  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
+  .hero .eyebrow { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-bright); margin-bottom: var(--spacing-lg); }
+  .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 620px; line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); margin-bottom: var(--spacing-2xl); }
+  .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; }
 
-  .content-section { padding: var(--spacing-6xl) 0; }
-  .content-section .section-label, .connect-section .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-bright-dark); text-align: center; margin-bottom: var(--spacing-md); }
-  .content-section h2, .connect-section h2 { font-size: clamp(26px, 3.2vw, 38px); text-align: center; margin-bottom: var(--spacing-lg); }
-  .content-section .section-intro, .connect-section .section-intro { font-size: 16px; color: var(--text-secondary); text-align: center; max-width: 620px; margin: 0 auto var(--spacing-4xl); line-height: 1.65; }
+  /* WHO ARE OUR PARTNERS (matches homepage's Who We Are pattern) */
+  .who-we-are { padding: var(--spacing-6xl) 0; text-align: center; }
+  .who-we-are h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
 
-  .involve-list { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); max-width: 900px; margin: 0 auto; }
-  .involve-card { text-align: left; padding: var(--spacing-2xl); border-top: 3px solid var(--color-bright); background: var(--color-gray-100); border-radius: var(--radius-sm); }
-  .involve-num { font-size: 44px; font-weight: 800; color: var(--color-gray-300); line-height: 1; margin-bottom: var(--spacing-md); font-family: Georgia, serif; }
-  .involve-card h3 { font-size: 19px; color: var(--color-forest); margin-bottom: var(--spacing-sm); font-family: Georgia, serif; }
-  .involve-card p { font-size: 14px; color: #2A332F; line-height: 1.65; margin: 0; }
-  .involve-card p em { color: var(--text-muted); }
+  /* WAYS TO GET INVOLVED (matches homepage's Program Structure dark grid) */
+  .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
+  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); }
+  .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
+  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.65; font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
+  .ps-card { background: #04140E; padding: var(--spacing-2xl); transition: background var(--transition-normal); }
+  .ps-card:hover { background: rgba(62,189,121,0.06); }
+  .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-lg); letter-spacing: 1.5px; font-family: var(--font-family); }
+  .ps-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); }
+  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-card p em { color: rgba(255,255,255,0.4); }
 
-  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; padding: 0 0 var(--spacing-5xl); }
+  .connect-section .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-bright-dark); text-align: center; margin-bottom: var(--spacing-md); }
+  .connect-section h2 { font-size: clamp(26px, 3.2vw, 38px); text-align: center; margin-bottom: var(--spacing-lg); }
+  .connect-section .section-intro { font-size: 16px; color: var(--text-secondary); text-align: center; max-width: 620px; margin: 0 auto var(--spacing-4xl); line-height: 1.65; }
+
+  .team-row { display: flex; gap: var(--spacing-3xl); justify-content: center; flex-wrap: wrap; padding: var(--spacing-5xl) 0; }
   .team-card.more { align-items: center; justify-content: center; border: 1.5px dashed var(--color-gray-400); background: transparent; text-align: center; padding: var(--spacing-3xl); border-radius: var(--radius-lg); max-width: 420px; }
   .team-card.more p { font-size: 14.5px; color: var(--text-muted); font-style: italic; margin: 0; }
 
@@ -147,7 +172,7 @@
     .mobile-nav-panel { display: block; }
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
-    .involve-list { grid-template-columns: 1fr; }
+    .ps-grid { grid-template-columns: 1fr; }
     .field-row, .help-grid { grid-template-columns: 1fr; }
     .connect-form { padding: var(--spacing-2xl) var(--spacing-lg); }
     .field input[type="text"], .field input[type="email"] { font-size: 16px; }
@@ -233,35 +258,51 @@
 </div>
 </header>
 
-<header class="page-header">
-  <div class="eyebrow">Partners</div>
-  <h1>Our Partners</h1>
-  <p>We're building relationships with mentors, operators, and organizations who want to help Africa's next generation of founders get their footing. Venture Built doesn't take equity or charge fees, our partners help us prepare student builders and connect ready teams to the resources that can take them further.</p>
-</header>
-
-<section class="content-section">
+<section class="hero">
   <div class="wrap">
-    <div class="section-label">Ways to Get Involved</div>
-    <h2>Find your role in the ecosystem</h2>
-    <p class="section-intro">Whether you can give an hour a month or want to open real doors for ready teams, there's a place for you at Venture Built.</p>
-    <div class="involve-list">
-      <div class="involve-card">
-        <div class="involve-num">01</div>
+    <div class="eyebrow">Partners</div>
+    <h1>Open Real Doors for Africa's Next Founders</h1>
+    <p class="lede">Venture Built partners with mentors, operators, funders, and organizations who want to help our student founders get their footing. We don't take equity or charge fees, our partners simply help us prepare builders and connect ready teams to the resources that can take them further.</p>
+    <div class="hero-cta-row">
+      <a href="#connect" class="btn-primary">Become a Partner</a>
+    </div>
+  </div>
+</section>
+
+<section class="who-we-are" id="who-are-our-partners">
+  <div class="wrap">
+    <h2>Who Are Our Partners</h2>
+    <p>Our partners are operators, funders, and organizations already close to the work, people who've built companies, raised and deployed capital, or run the programs that early founders rely on.</p>
+    <p>Some teach, sharing a piece of the startup journey they know firsthand, from idea validation to fundraising. Some open their networks, connecting ready teams to capital, customers, and opportunity. Some show up at Demo Day to see what our builders are putting together and back what they believe in.</p>
+    <p>What unites them isn't a title, it's a willingness to invest a little time or belief in founders who are just getting started.</p>
+  </div>
+</section>
+
+<section class="program-structure" id="ways-to-get-involved">
+  <div class="wrap">
+    <div class="ps-header">
+      <div class="ps-label">Ways to Get Involved</div>
+      <h2>Find Your Role in the Ecosystem</h2>
+      <p class="ps-intro">Whether you can give an hour a month or want to open real doors for ready teams, there's a place for you at Venture Built.</p>
+    </div>
+    <div class="ps-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
         <h3>Teach a Masterclass</h3>
         <p>Join virtually to walk our members through a piece of the startup journey, idea validation to fundraising, from your own experience.</p>
       </div>
-      <div class="involve-card">
-        <div class="involve-num">02</div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
         <h3>Fundraising Mentorship</h3>
         <p>Support ready teams preparing to raise, through pitch coaching and Demo Day judging. <em>(Upon eligibility and interest.)</em></p>
       </div>
-      <div class="involve-card">
-        <div class="involve-num">03</div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
         <h3>Provide Grants or Funding</h3>
         <p>Venture Built doesn't take equity or fees itself, but if you fund or grant to early-stage African founders, we'll introduce you to teams once they're ready.</p>
       </div>
-      <div class="involve-card">
-        <div class="involve-num">04</div>
+      <div class="ps-card">
+        <span class="ps-num">04</span>
         <h3>Back a Demo Day</h3>
         <p>Show up at a monthly Demo Day or our flagship pitch event and see what Great Ife's next builders are putting together.</p>
       </div>
