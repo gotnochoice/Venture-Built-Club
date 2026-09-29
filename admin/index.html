@@ -142,6 +142,7 @@
     <div class="view-tabs">
       <button class="view-tab active" data-view="cohort" id="tabCohort">Cohort Applications</button>
       <button class="view-tab" data-view="team" id="tabTeam">Team Applications</button>
+      <button class="view-tab" data-view="mentor" id="tabMentor">Mentor Applications</button>
     </div>
 
     <div id="cohortBoard" class="board">
@@ -235,6 +236,53 @@
           </button>
         </div>
         <div id="col-team-rejected"></div>
+      </div>
+    </div>
+
+    <div id="mentorBoard" class="board hidden">
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">01</span>
+          <span class="column-title">Applied</span>
+          <span class="column-count" id="count-mentor-applied">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="applied" data-board="mentor" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-mentor-applied"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">02</span>
+          <span class="column-title">Interview</span>
+          <span class="column-count" id="count-mentor-interview">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="interview" data-board="mentor" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-mentor-interview"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">03</span>
+          <span class="column-title">Accepted</span>
+          <span class="column-count" id="count-mentor-accepted">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="accepted" data-board="mentor" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-mentor-accepted"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">04</span>
+          <span class="column-title">Rejected</span>
+          <span class="column-count" id="count-mentor-rejected">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="rejected" data-board="mentor" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-mentor-rejected"></div>
       </div>
     </div>
   </div>
@@ -388,6 +436,68 @@
   </div>
 </div>
 
+<!-- MENTOR DETAIL MODAL -->
+<div id="mentorModalBackdrop" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-top">
+      <h2 id="mentorModalName">—</h2>
+      <button class="modal-close" id="mentorModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Contact</div>
+      <div class="detail-value contact-row">
+        <span id="mentorModalContact">—</span>
+        <button type="button" class="copy-btn" id="mentorModalCopyEmailBtn" title="Copy email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Current Role / Company</div>
+      <div class="detail-value" id="mentorModalRole">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">LinkedIn</div>
+      <div class="detail-value" id="mentorModalLinkedin">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">What They've Built / Backed</div>
+      <div class="detail-value" id="mentorModalBuilt">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">How They Can Help</div>
+      <div class="detail-value" id="mentorModalHelp">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Availability</div>
+      <div class="detail-value" id="mentorModalAvailability">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Anything Else They'd Love to Do</div>
+      <div class="detail-value" id="mentorModalSomethingElse">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Also Interested in Sponsoring</div>
+      <div class="detail-value" id="mentorModalSponsorInterest">—</div>
+    </div>
+
+    <div class="detail-label">Move to stage</div>
+    <div class="stage-buttons" id="mentorStageButtons">
+      <button class="stage-btn" data-stage="applied">Applied</button>
+      <button class="stage-btn" data-stage="interview">Interview</button>
+      <button class="stage-btn" data-stage="accepted">Accepted</button>
+      <button class="stage-btn" data-stage="rejected">Rejected</button>
+    </div>
+
+    <div class="detail-label">Internal Notes</div>
+    <textarea class="notes-textarea" id="mentorModalNotes" placeholder="Notes visible only to admins..."></textarea>
+    <button class="btn-save" id="mentorSaveBtn">Save Changes</button>
+  </div>
+</div>
+
 <script>
   const API_URL = '/api';
   let applications = [];
@@ -398,6 +508,11 @@
   let currentTeamAppId = null;
   let currentTeamStage = null;
   let teamLoaded = false;
+
+  let mentorApplications = [];
+  let currentMentorAppId = null;
+  let currentMentorStage = null;
+  let mentorLoaded = false;
 
   function showError(id, msg) {
     const el = document.getElementById(id);
@@ -454,7 +569,7 @@
   async function loadApplications() {
     const token = localStorage.getItem('adminToken');
     try {
-      const response = await fetch(`${API_URL}/admin/applications/list`, {
+      const response = await fetch(`${API_URL}/admin/applications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -526,11 +641,14 @@
   document.getElementById('teamModalCopyEmailBtn').addEventListener('click', function() {
     copyToClipboard(this.dataset.email || '', this);
   });
+  document.getElementById('mentorModalCopyEmailBtn').addEventListener('click', function() {
+    copyToClipboard(this.dataset.email || '', this);
+  });
 
   document.querySelectorAll('.copy-stage-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const stage = this.dataset.stage;
-      const source = this.dataset.board === 'team' ? teamApplications : applications;
+      const source = this.dataset.board === 'team' ? teamApplications : this.dataset.board === 'mentor' ? mentorApplications : applications;
       const emails = source.filter(a => a.stage === stage).map(a => a.email);
       copyToClipboard(emails.join(', '), this);
     });
@@ -608,7 +726,7 @@
     const notes = document.getElementById('modalNotes').value;
 
     try {
-      const response = await fetch(`${API_URL}/admin/applications/update`, {
+      const response = await fetch(`${API_URL}/admin/applications`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -635,21 +753,27 @@
 
   document.getElementById('tabCohort').addEventListener('click', () => switchView('cohort'));
   document.getElementById('tabTeam').addEventListener('click', () => switchView('team'));
+  document.getElementById('tabMentor').addEventListener('click', () => switchView('mentor'));
 
   function switchView(view) {
     document.getElementById('tabCohort').classList.toggle('active', view === 'cohort');
     document.getElementById('tabTeam').classList.toggle('active', view === 'team');
+    document.getElementById('tabMentor').classList.toggle('active', view === 'mentor');
     document.getElementById('cohortBoard').classList.toggle('hidden', view !== 'cohort');
     document.getElementById('teamBoard').classList.toggle('hidden', view !== 'team');
+    document.getElementById('mentorBoard').classList.toggle('hidden', view !== 'mentor');
     if (view === 'team' && !teamLoaded) {
       loadTeamApplications();
+    }
+    if (view === 'mentor' && !mentorLoaded) {
+      loadMentorApplications();
     }
   }
 
   async function loadTeamApplications() {
     const token = localStorage.getItem('adminToken');
     try {
-      const response = await fetch(`${API_URL}/admin/team-applications/list`, {
+      const response = await fetch(`${API_URL}/admin/team-applications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();
@@ -747,7 +871,7 @@
     const notes = document.getElementById('teamModalNotes').value;
 
     try {
-      const response = await fetch(`${API_URL}/admin/team-applications/update`, {
+      const response = await fetch(`${API_URL}/admin/team-applications`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -759,6 +883,124 @@
       if (response.ok) {
         document.getElementById('teamModalBackdrop').classList.add('hidden');
         loadTeamApplications();
+      }
+    } catch (error) {
+      console.error('Failed to save', error);
+    }
+  });
+
+  async function loadMentorApplications() {
+    const token = localStorage.getItem('adminToken');
+    try {
+      const response = await fetch(`${API_URL}/admin/mentor-applications`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        mentorApplications = data.data;
+        mentorLoaded = true;
+        renderMentorBoard();
+      }
+    } catch (error) {
+      console.error('Failed to load mentor applications', error);
+    }
+  }
+
+  function renderMentorBoard() {
+    const stages = ['applied', 'interview', 'accepted', 'rejected'];
+    stages.forEach(stage => {
+      const col = document.getElementById(`col-mentor-${stage}`);
+      const items = mentorApplications.filter(a => a.stage === stage);
+      document.getElementById(`count-mentor-${stage}`).textContent = items.length;
+
+      if (items.length === 0) {
+        col.innerHTML = '<div class="empty-column">No applications</div>';
+        return;
+      }
+
+      col.innerHTML = items.map(app => `
+        <div class="app-card" data-id="${app.id}">
+          <button type="button" class="copy-btn card-copy-btn" data-email="${escapeHtml(app.email)}" title="Copy email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+          <h3>${escapeHtml(app.full_name)}</h3>
+          <div class="meta">${escapeHtml(app.role_title || 'No role')}</div>
+          <div class="snippet">${escapeHtml(app.built_or_backed)}</div>
+        </div>
+      `).join('');
+    });
+
+    document.querySelectorAll('#mentorBoard .app-card').forEach(card => {
+      card.addEventListener('click', () => openMentorModal(card.dataset.id));
+    });
+    document.querySelectorAll('#mentorBoard .card-copy-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        copyToClipboard(this.dataset.email || '', this);
+      });
+    });
+  }
+
+  function openMentorModal(id) {
+    const app = mentorApplications.find(a => a.id === id);
+    if (!app) return;
+    currentMentorAppId = id;
+    currentMentorStage = app.stage;
+
+    document.getElementById('mentorModalName').textContent = app.full_name;
+    document.getElementById('mentorModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('mentorModalCopyEmailBtn').dataset.email = app.email;
+    document.getElementById('mentorModalRole').textContent = app.role_title || '—';
+    document.getElementById('mentorModalLinkedin').innerHTML = app.linkedin_url
+      ? `<a href="${escapeHtml(app.linkedin_url)}" target="_blank" rel="noopener">${escapeHtml(app.linkedin_url)}</a>`
+      : '—';
+    document.getElementById('mentorModalBuilt').textContent = app.built_or_backed || '—';
+
+    const helpTypes = [...(app.help_types || [])];
+    if (app.help_types_other) helpTypes.push(app.help_types_other + ' (other)');
+    document.getElementById('mentorModalHelp').textContent = helpTypes.length ? helpTypes.join(', ') : '—';
+
+    document.getElementById('mentorModalAvailability').textContent = app.availability || '—';
+    document.getElementById('mentorModalSomethingElse').textContent = app.something_else || '—';
+    document.getElementById('mentorModalSponsorInterest').textContent = app.sponsor_interest || '—';
+
+    document.getElementById('mentorModalNotes').value = app.internal_notes || '';
+
+    document.querySelectorAll('#mentorStageButtons .stage-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.stage === app.stage);
+    });
+
+    document.getElementById('mentorModalBackdrop').classList.remove('hidden');
+  }
+
+  document.getElementById('mentorModalClose').addEventListener('click', () => {
+    document.getElementById('mentorModalBackdrop').classList.add('hidden');
+  });
+
+  document.querySelectorAll('#mentorStageButtons .stage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentMentorStage = btn.dataset.stage;
+      document.querySelectorAll('#mentorStageButtons .stage-btn').forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
+
+  document.getElementById('mentorSaveBtn').addEventListener('click', async () => {
+    const token = localStorage.getItem('adminToken');
+    const notes = document.getElementById('mentorModalNotes').value;
+
+    try {
+      const response = await fetch(`${API_URL}/admin/mentor-applications`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ id: currentMentorAppId, stage: currentMentorStage, internalNotes: notes })
+      });
+
+      if (response.ok) {
+        document.getElementById('mentorModalBackdrop').classList.add('hidden');
+        loadMentorApplications();
       }
     } catch (error) {
       console.error('Failed to save', error);
