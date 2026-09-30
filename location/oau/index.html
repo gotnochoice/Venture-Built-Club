@@ -154,11 +154,11 @@
   .btn-primary:active { transform: scale(0.98); }
   .btn-primary[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
   .btn-primary[disabled]:hover { transform: none; }
-  .btn-secondary { border: 2px solid rgba(255,255,255,0.9); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-semibold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
-  .btn-secondary:hover { transform: scale(1.02); background: rgba(255,255,255,0.12); border-color: var(--color-white); }
+  .btn-secondary { border: none; background: var(--color-white); color: var(--color-forest); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .btn-secondary:hover { transform: scale(1.02); box-shadow: 0 10px 24px rgba(255,255,255,0.25); }
   .btn-secondary:active { transform: scale(0.98); }
-  .btn-secondary[disabled] { opacity: 0.45; cursor: not-allowed; }
-  .btn-secondary[disabled]:hover { transform: none; background: transparent; }
+  .btn-secondary[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary[disabled]:hover { transform: none; box-shadow: none; }
   .btn-tertiary { border: 1.5px solid rgba(255,255,255,0.5); background: transparent; color: rgba(255,255,255,0.9); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-full); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-base); display: inline-block; transition: border-color var(--transition-fast), color var(--transition-fast); font-family: var(--font-family); cursor: pointer; }
   .btn-tertiary:hover { border-color: var(--color-white); color: var(--color-white); }
   .btn-tertiary[disabled] { opacity: 0.45; cursor: not-allowed; }
@@ -330,7 +330,7 @@
       </div>
     </div>
     <a class="disabled-link" title="Coming soon">Resources</a>
-    <a href="/community">Founders</a>
+    <a href="/community">Community</a>
     <a href="/community/mentors">Mentors</a>
     <a href="/partners">Partners</a>
     <a href="/join-team">Join the Team</a>
@@ -360,7 +360,7 @@
     </div>
   </div>
   <a class="disabled-link" title="Coming soon">Resources</a>
-  <a href="/community">Founders</a>
+  <a href="/community">Community</a>
   <a href="/community/mentors">Mentors</a>
   <a href="/partners">Partners</a>
   <a href="/join-team">Join the Team</a>
@@ -521,7 +521,7 @@
         <h4>Overview</h4>
         <a href="/">All Chapters</a>
         <a class="disabled-link" title="Coming soon">Resources</a>
-        <a href="/community">Founders</a>
+        <a href="/community">Community</a>
         <a href="/community/mentors">Mentors</a>
         <a href="/partners">Partners</a>
       </div>
