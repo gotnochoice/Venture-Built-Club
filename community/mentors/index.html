@@ -108,6 +108,18 @@
   .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
   .cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; margin-top: var(--spacing-2xl); }
 
+  /* WHERE THEY STARTED (two-card split) */
+  .mentor-types { padding: 0 0 var(--spacing-6xl); }
+  .mentor-types-header { text-align: center; max-width: 640px; margin: 0 auto var(--spacing-3xl); }
+  .mentor-types-header h2 { font-size: clamp(26px, 3vw, 36px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; color: var(--text-primary); margin-bottom: var(--spacing-md); font-family: var(--font-family); }
+  .mentor-types-header p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; font-family: var(--font-family); }
+  .mentor-types-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+  .mentor-type-card { background: var(--color-white); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-xl); padding: var(--spacing-3xl); transition: border-color var(--transition-normal), box-shadow var(--transition-normal); }
+  .mentor-type-card:hover { border-color: var(--color-bright); box-shadow: var(--shadow-lg); }
+  .mentor-type-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2px; color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .mentor-type-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); color: var(--text-primary); font-family: var(--font-family); }
+  .mentor-type-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; font-family: var(--font-family); }
+
   /* WHAT MENTORS GAIN (matches homepage's Program Structure dark grid) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
   .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); }
@@ -149,6 +161,7 @@
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
     .ps-grid { grid-template-columns: 1fr; }
+    .mentor-types-grid { grid-template-columns: 1fr; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
 </style>
@@ -251,6 +264,27 @@
     <p>Some are specialized professionals, experts in legal, finance, product, design, and the other skillsets critical to early-stage startups.</p>
     <p>And some are investors, people who bring strong pattern recognition and are motivated by building long-term relationships with founders through thoughtful, high-signal mentorship.</p>
     <p><strong>Different backgrounds, one thing in common: they're genuinely invested in the founders they work with.</strong></p>
+  </div>
+</section>
+
+<section class="mentor-types reveal" id="mentor-types">
+  <div class="wrap">
+    <div class="mentor-types-header">
+      <h2>Where They Started</h2>
+      <p>Our mentors come from two different starting points, and both bring something distinct.</p>
+    </div>
+    <div class="mentor-types-grid">
+      <div class="mentor-type-card">
+        <span class="mentor-type-label">Path One</span>
+        <h3>Started Building in School</h3>
+        <p>Founders and operators who began building while they were still students, some right here at Venture Built. They know what it's like to balance a venture with lectures, and can speak directly to the road from a dorm-room idea to something real.</p>
+      </div>
+      <div class="mentor-type-card">
+        <span class="mentor-type-label">Path Two</span>
+        <h3>Built Outside the Classroom</h3>
+        <p>Founders and operators who started building after school, in the wider industry. They bring the vantage point of what it takes to scale, raise, hire, and operate once the stakes get bigger.</p>
+      </div>
+    </div>
   </div>
 </section>
 
