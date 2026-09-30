@@ -295,7 +295,13 @@
 
       const sponsorEl = document.querySelector('input[name="sponsorInterest"]:checked');
 
+      const pathParam = new URLSearchParams(window.location.search).get('path');
+      const mentorPath = pathParam === 'student' ? 'Started Building in School'
+        : pathParam === 'operator' ? 'Built Outside the Classroom'
+        : null;
+
       const payload = {
+        mentorPath,
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value,

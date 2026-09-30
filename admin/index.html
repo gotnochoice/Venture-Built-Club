@@ -456,6 +456,10 @@
       </div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Mentor Path</div>
+      <div class="detail-value" id="mentorModalPath">—</div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Current Role / Company</div>
       <div class="detail-value" id="mentorModalRole">—</div>
     </div>
@@ -950,6 +954,7 @@
     document.getElementById('mentorModalName').textContent = app.full_name;
     document.getElementById('mentorModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
     document.getElementById('mentorModalCopyEmailBtn').dataset.email = app.email;
+    document.getElementById('mentorModalPath').textContent = app.mentor_path || '—';
     document.getElementById('mentorModalRole').textContent = app.role_title || '—';
     document.getElementById('mentorModalLinkedin').innerHTML = app.linkedin_url
       ? `<a href="${escapeHtml(app.linkedin_url)}" target="_blank" rel="noopener">${escapeHtml(app.linkedin_url)}</a>`

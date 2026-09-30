@@ -46,6 +46,7 @@
     --transition-fast: 0.15s ease; --transition-normal: 0.3s ease;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body { font-family: var(--font-family); background: #FAFBF9; color: var(--text-primary); line-height: 1.5; }
   h1, h2, h3 { font-family: var(--font-family); font-weight: var(--font-weight-bold); letter-spacing: -0.01em; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
@@ -118,7 +119,8 @@
   .mentor-type-card:hover { border-color: var(--color-bright); box-shadow: var(--shadow-lg); }
   .mentor-type-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2px; color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
   .mentor-type-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); color: var(--text-primary); font-family: var(--font-family); }
-  .mentor-type-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; font-family: var(--font-family); }
+  .mentor-type-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; font-family: var(--font-family); margin-bottom: var(--spacing-xl); }
+  .mentor-type-card .btn-primary { padding: var(--spacing-md) var(--spacing-2xl); font-size: var(--font-size-sm); }
 
   /* WHAT MENTORS GAIN (matches homepage's Program Structure dark grid) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
@@ -250,7 +252,7 @@
     <h1>Shaping the Next Generation of African Founders</h1>
     <p class="lede">Venture Built mentors are a curated network of builders and operators who guide the continent's most promising student founders, and get a front-row seat to what's coming next.</p>
     <div class="hero-cta-row">
-      <a href="/apply-mentor" class="btn-primary">Apply to Become a Mentor</a>
+      <a href="#mentor-types" class="btn-primary">Apply to Become a Mentor</a>
     </div>
   </div>
 </section>
@@ -278,11 +280,13 @@
         <span class="mentor-type-label">Path One</span>
         <h3>Started Building in School</h3>
         <p>Founders and operators who began building while they were still students, some right here at Venture Built. They know what it's like to balance a venture with lectures, and can speak directly to the road from a dorm-room idea to something real.</p>
+        <a href="/apply-mentor?path=student" class="btn-primary">Apply to Become a Mentor</a>
       </div>
       <div class="mentor-type-card">
         <span class="mentor-type-label">Path Two</span>
         <h3>Built Outside the Classroom</h3>
         <p>Founders and operators who started building after school, in the wider industry. They bring the vantage point of what it takes to scale, raise, hire, and operate once the stakes get bigger.</p>
+        <a href="/apply-mentor?path=operator" class="btn-primary">Apply to Become a Mentor</a>
       </div>
     </div>
   </div>
@@ -329,7 +333,7 @@
   <div class="wrap">
     <h2>Ready to shape what comes next?</h2>
     <p>A few hours a month is all it takes. Tell us what you've built or backed, and how you'd like to help.</p>
-    <a href="/apply-mentor" class="btn-primary">Apply to Become a Mentor</a>
+    <a href="#mentor-types" class="btn-primary">Apply to Become a Mentor</a>
   </div>
 </section>
 

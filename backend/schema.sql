@@ -235,6 +235,7 @@ CREATE TABLE mentor_applications (
   availability VARCHAR(255),
   something_else TEXT,
   sponsor_interest VARCHAR(50), -- Yes, Maybe later, No
+  mentor_path VARCHAR(50), -- Started Building in School, Built Outside the Classroom
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
   internal_notes TEXT,
