@@ -93,6 +93,8 @@
   /* BUTTONS */
   .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: 4px; text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); box-shadow: 0 10px 24px rgba(10,10,10,0.3); letter-spacing: 0.3px; border: none; cursor: pointer; }
   .btn-primary:hover { transform: scale(1.02); }
+  .btn-primary[disabled] { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+  .btn-primary[disabled]:hover { transform: none; }
   .btn-tertiary { border: 1.5px solid rgba(255,255,255,0.5); background: transparent; color: rgba(255,255,255,0.9); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: 4px; text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-base); display: inline-block; transition: border-color var(--transition-fast), color var(--transition-fast); font-family: var(--font-family); cursor: pointer; }
   .btn-tertiary:hover { border-color: var(--color-white); color: var(--color-white); }
 
@@ -225,10 +227,10 @@
     <div class="eyebrow">Leadership</div>
     <h1>Join the Team</h1>
     <p class="lede">Venture Built is built by students, for students. We're looking for exceptional people who want to help build the community, shape the experience, and make Venture Built something worth being part of.</p>
-    <p class="lede">If you want to build with us, we want to hear from you.</p>
+    <p class="lede">Applications for this round are currently closed. Check back for when they reopen.</p>
     <div class="hero-cta-row">
-      <a href="/apply-team" class="btn-primary">Apply to the Team</a>
-      <a href="#roles" class="btn-tertiary">See Open Roles</a>
+      <button class="btn-primary" disabled title="Applications closed">Applications Closed</button>
+      <a href="#roles" class="btn-tertiary">See Leadership Roles</a>
     </div>
   </div>
 </section>
@@ -246,9 +248,9 @@
 <section class="program-structure reveal" id="roles">
   <div class="wrap">
     <div class="ps-header">
-      <span class="ps-label">Open Roles</span>
-      <h2>Four leadership roles, open now.</h2>
-      <p class="ps-intro">Head of Platform and Head of Ecosystem are held by our founder for now, these four are open.</p>
+      <span class="ps-label">Leadership Roles</span>
+      <h2>Four leadership roles, filled for now.</h2>
+      <p class="ps-intro">Head of Platform and Head of Ecosystem are held by our founder for now. These four have been filled for this round, applications will open again in the future.</p>
     </div>
     <div class="ps-grid">
       <div class="ps-card">
@@ -278,8 +280,8 @@
 <section class="cta-footer">
   <div class="wrap">
     <h2>Ready to help run Venture Built?</h2>
-    <p>Four leadership roles are open right now. Tell us what you've led before, and why one of these is yours.</p>
-    <a href="/apply-team" class="btn-primary">Apply to the Team &rarr;</a>
+    <p>We've filled our leadership roles for this round. Follow our community channels for when applications open again.</p>
+    <button class="btn-primary" disabled title="Applications closed">Applications Closed</button>
   </div>
 </section>
 
