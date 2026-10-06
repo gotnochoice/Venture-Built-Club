@@ -128,6 +128,8 @@
   .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
   .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
   .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
+  .ps-closing { max-width: 740px; margin: var(--spacing-2xl) auto 0; text-align: center; font-size: var(--font-size-base); color: rgba(255,255,255,0.6); line-height: 1.55; font-family: var(--font-family); }
   .ps-card { background: #04140E; padding: var(--spacing-2xl); transition: background var(--transition-normal); }
   .ps-card:hover { background: rgba(62,189,121,0.06); }
   .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-lg); letter-spacing: 1.5px; font-family: var(--font-family); }
@@ -163,6 +165,7 @@
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
     .ps-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
     .mentor-types-grid { grid-template-columns: 1fr; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
   }
@@ -273,6 +276,36 @@
         <a href="/apply-mentor?path=operator" class="btn-primary">Apply to Become a Mentor</a>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="who-we-are reveal" id="how-you-help">
+  <div class="wrap">
+    <h2>How You Help</h2>
+    <p>A mentor is anyone with real experience willing to pass some of it on. There's no single way to do that.</p>
+  </div>
+</section>
+
+<section class="program-structure reveal" id="how-you-help-ways">
+  <div class="wrap">
+    <div class="phase-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
+        <h3>Lead a Webinar</h3>
+        <p>One hour, once. Tell your story and take questions from our founders, online.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
+        <h3>Join as a Pitch Reviewer or Judge</h3>
+        <p>A few hours across Demo Day and the Grand Pitch, giving founders real, honest feedback.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
+        <h3>Mentor</h3>
+        <p>One-on-one conversations, as often as works for you. Flexible, ongoing.</p>
+      </div>
+    </div>
+    <p class="ps-closing">Specific asks, like an hour on a Thursday evening, are sent once you sign up.</p>
   </div>
 </section>
 

@@ -223,6 +223,7 @@
   .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
   .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
 
   /* COMMUNITY CTA (after How to Join) */
   .community-cta { padding: var(--spacing-6xl) 0; background: #04140E; color: var(--color-white); }
@@ -320,6 +321,7 @@
     .tab-panel-card.active { grid-template-columns: 1fr; }
     .tab-panel-photo { min-height: 220px; }
     .ps-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
     .community-cta-wrap { grid-template-columns: 1fr; text-align: center; }
     .community-cta-content p { margin-left: auto; margin-right: auto; }
     .community-cta-icon { order: -1; }
@@ -396,7 +398,7 @@
   <div class="wrap">
     <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
     <p class="lede">We are the best community for ambitious student builders across Africa.</p>
-    <p class="lede">16 weeks to build, backed by a community that pushes you further. No equity. No fees. We connect our best teams to the mentors and partners who can take it further.</p>
+    <p class="lede">12 weeks to build, backed by a community that pushes you further. No equity. No fees. We connect our best teams to the mentors and partners who can take it further.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
       <a href="https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4" target="_blank" rel="noopener" class="btn-secondary">Join the Community</a>
@@ -431,7 +433,7 @@
     <h2>Who We Are</h2>
     <p>Venture Built is a club for ambitious students who want to build. Not just any company, but one with the potential to become venture-backable.</p>
     <p>We bring together students with the ambition to build the next generation of great African startups and give them the knowledge, environment and people to push their ideas further.</p>
-    <p>Through our flagship 16-week cohort, you will learn what it takes to take an idea from the starting point to something real. You'll test problems, understand your users, build products, challenge your assumptions and learn how to think about your business from an investor's perspective.</p>
+    <p>Through our flagship 12-week cohort, you will learn what it takes to take an idea from the starting point to something real. You'll test problems, understand your users, build products, challenge your assumptions and learn how to think about your business from an investor's perspective.</p>
     <p>You'll build alongside ambitious students, learn from founders, operators and investors, and gain a deeper understanding of the ecosystem around building.</p>
     <p class="who-we-are-lead-in">It's intense. It's hands-on. And it's built around two things:</p>
     <p class="who-we-are-emphasis">Building. Understanding the venture ecosystem.</p>
@@ -453,14 +455,14 @@
   <div class="wrap">
     <div class="ps-header">
       <span class="ps-label">Program Structure</span>
-      <h2>16 weeks. One intense building journey.</h2>
+      <h2>12 weeks. One intense building journey.</h2>
       <p class="ps-intro">Learn the fundamentals. Test your ideas. Build. Iterate. Pitch.</p>
     </div>
     <div class="ps-grid">
       <div class="ps-card">
         <span class="ps-num">01</span>
         <h3>Masterclasses</h3>
-        <p>Practical sessions led by founders, operators, investors and experts across the venture ecosystem.</p>
+        <p>Weekly sessions, a mix of in-person masterclasses from our team and live webinars with founders and operators who have done it.</p>
       </div>
       <div class="ps-card">
         <span class="ps-num">02</span>
@@ -479,6 +481,33 @@
       </div>
     </div>
     <p class="ps-closing">The goal isn't just to teach you how to build. It's to help you understand the ecosystem around building, including how investors think and how the venture world works.</p>
+  </div>
+</section>
+
+<section class="program-structure reveal" id="program-timeline">
+  <div class="wrap">
+    <div class="ps-header">
+      <span class="ps-label">Program Timeline</span>
+      <h2>Three phases, 12 weeks.</h2>
+      <p class="ps-intro">Here's how the cohort breaks down.</p>
+    </div>
+    <div class="phase-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
+        <h3>Foundations</h3>
+        <p>Finding your idea and co-builders, breaking down the problem, and validating your first version. Includes a live session with a founder who has done exactly this.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
+        <h3>Business</h3>
+        <p>Sizing your market, landing your first customers, and getting your business model and unit economics right. Includes a live look at how investors actually read a market.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
+        <h3>Funding and Pitch</h3>
+        <p>Fundraising basics, the legal side of raising as a Nigerian founder, and sharpening your pitch, ending in the Grand Pitch in front of judges and investors.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -524,7 +553,7 @@
       <h2>Not in the cohort? You can still be part of Venture Built.</h2>
       <p>Our community is open to ambitious students across schools who want to learn, connect and stay active in the startup ecosystem.</p>
       <p>Whether you're not ready to apply yet, didn't make the cohort, or simply want to meet other students building and exploring ideas, there's a place for you here.</p>
-      <button class="btn-primary" disabled title="Coming soon">Join the Venture Built Community on WhatsApp</button>
+      <a href="https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4" target="_blank" rel="noopener" class="btn-primary">Join the Venture Built Community on WhatsApp</a>
     </div>
     <div class="community-cta-icon">
       <svg width="160" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
