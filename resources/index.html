@@ -47,6 +47,8 @@
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
   .logo { font-weight: 800; font-size: 16px; letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
   .logo span { color: var(--color-bright); }
+  .logo { display: inline-flex; align-items: center; gap: 8px; }
+  .logo img { display: block; flex-shrink: 0; }
   .nav-links { display: flex; align-items: center; gap: var(--spacing-3xl); }
   .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--text-primary); }
   .nav-dropdown { position: relative; }
@@ -105,7 +107,7 @@
   footer { padding: var(--spacing-4xl) var(--spacing-2xl) var(--spacing-xl); background: var(--color-gray-100); }
   .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; }
   .footer-brand { max-width: 260px; }
-  .footer-brand .logo { display: inline-block; margin-bottom: var(--spacing-md); }
+  .footer-brand .logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: var(--spacing-md); }
   .footer-brand p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .footer-col h4 { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
   .footer-col a { display: block; font-size: 14px; color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
@@ -128,7 +130,7 @@
 
 <header class="site-header">
 <nav>
-  <a href="/" class="logo">Venture <span>Built</span></a>
+  <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture <span>Built</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <div class="nav-dropdown" id="locationsDropdown">
@@ -236,7 +238,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a href="/" class="logo">Venture <span>Built</span></a>
+      <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture <span>Built</span></a>
       <p>Student-led venture building chapters on Africa's top campuses, starting at Obafemi Awolowo University.</p>
     </div>
     <div class="footer-col">
