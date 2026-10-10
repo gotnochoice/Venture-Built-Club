@@ -122,6 +122,16 @@
   .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
   .cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: center; margin-top: var(--spacing-2xl); }
 
+  .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
+  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); }
+  .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
+  .ps-card { background: #04140E; padding: var(--spacing-2xl); transition: background var(--transition-normal); }
+  .ps-card:hover { background: rgba(62,189,121,0.06); }
+  .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-lg); letter-spacing: 1.5px; font-family: var(--font-family); }
+  .ps-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); }
+  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+
   footer { padding: var(--spacing-4xl) 0 var(--spacing-xl); background: var(--color-gray-100); font-family: var(--font-family); }
   .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; padding: 0 var(--spacing-2xl); }
   .footer-brand { max-width: 260px; }
@@ -146,6 +156,7 @@
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
+    .ps-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -228,6 +239,36 @@
     <h2>Our Community</h2>
     <p>Venture Built is home to a growing community of student builders across Africa, working across every industry, from fintech to healthtech to consumer products. As our cohorts graduate, this is where you'll find the ventures they're building.</p>
     <p>Right now, we're at the beginning. The founders who go through Venture Built will build this page's story, cohort by cohort. Join the community today and be part of shaping it from the start.</p>
+  </div>
+</section>
+
+<section class="program-structure reveal" id="what-you-get">
+  <div class="wrap">
+    <div class="ps-header">
+      <span class="ps-label">What You Get</span>
+    </div>
+    <div class="ps-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
+        <h3>The Network</h3>
+        <p>Student founders, mentors, and partners, all in one place. People building and people who've already built.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
+        <h3>First Look at Events</h3>
+        <p>Masterclasses, webinars, and Demo Days get shared in the community first.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
+        <h3>Real Conversations</h3>
+        <p>A place to ask questions, share what you're working on, and get honest feedback from people who get it.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">04</span>
+        <h3>A Say in What's Next</h3>
+        <p>We're early. The people here now are shaping what Venture Built becomes.</p>
+      </div>
+    </div>
   </div>
 </section>
 
