@@ -100,7 +100,7 @@
   .site-header { position: sticky; top: 0; z-index: 100; }
   nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); gap: var(--spacing-xl); }
   .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); white-space: nowrap; text-decoration: none; }
-  .logo span { color: var(--color-bright); }
+  .logo .logo-built { color: var(--color-bright); }
   .logo { display: inline-flex; align-items: center; gap: 8px; }
   .logo img { display: block; flex-shrink: 0; }
   .nav-links { display: flex; align-items: center; gap: var(--spacing-2xl); flex: 1; }
@@ -319,7 +319,7 @@
 
 <header class="site-header">
 <nav>
-  <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture Built <span>@ OAU</span></a>
+  <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture Built <span class="logo-built">@ OAU</span></a>
   <div class="nav-links">
     <a href="/">Home</a>
     <div class="nav-dropdown" id="locationsDropdown">
@@ -550,7 +550,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture Built <span>@ OAU</span></a>
+        <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28">Venture Built <span class="logo-built">@ OAU</span></a>
         <p>The founding Venture Built chapter at Obafemi Awolowo University, Ile-Ife.</p>
       </div>
       <div class="footer-col">
