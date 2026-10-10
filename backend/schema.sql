@@ -187,6 +187,9 @@ CREATE TABLE partner_inquiries (
   help_types TEXT[] NOT NULL,
   help_types_other TEXT,
 
+  needs_from_us TEXT[],
+  needs_from_us_other TEXT,
+
   agreed_to_communications BOOLEAN NOT NULL DEFAULT false,
   agreed_to_data_storage BOOLEAN NOT NULL DEFAULT false,
 

@@ -134,6 +134,7 @@
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
   .field { margin-bottom: var(--spacing-lg); text-align: left; }
   .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: var(--spacing-xs); color: var(--text-primary); }
+  .field label .hint { font-weight: 400; color: var(--text-muted); text-transform: none; letter-spacing: 0; }
   .field input[type="text"], .field input[type="email"] {
     width: 100%; padding: var(--spacing-md) var(--spacing-lg); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-sm);
     font-size: 14.5px; font-family: var(--font-family); color: var(--text-primary);
@@ -338,13 +339,26 @@
       <div class="field">
         <label>How Would You Like to Help?*</label>
         <div class="help-grid" id="helpGrid">
-          <label class="help-option"><input type="checkbox" value="Teach a masterclass"> Teach a masterclass</label>
-          <label class="help-option"><input type="checkbox" value="Fundraising mentorship"> Fundraising mentorship</label>
+          <label class="help-option"><input type="checkbox" value="Lead a webinar"> Lead a webinar</label>
+          <label class="help-option"><input type="checkbox" value="Join as a pitch reviewer or judge"> Join as a pitch reviewer or judge</label>
           <label class="help-option"><input type="checkbox" value="Provide grants or funding"> Provide grants or funding</label>
-          <label class="help-option"><input type="checkbox" value="Back a Demo Day"> Back a Demo Day</label>
+          <label class="help-option"><input type="checkbox" value="Send your operators"> Send your operators</label>
         </div>
         <div class="field" style="margin-top: var(--spacing-md);">
           <input type="text" id="helpOther" placeholder="Other (optional)">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>What Would You Like From Us? <span class="hint">optional</span></label>
+        <div class="help-grid" id="needsGrid">
+          <label class="help-option"><input type="checkbox" value="Access to our student talent pool"> Access to our student talent pool</label>
+          <label class="help-option"><input type="checkbox" value="Brand visibility across our community and events"> Brand visibility across our community and events</label>
+          <label class="help-option"><input type="checkbox" value="Early access to Demo Day teams"> Early access to Demo Day teams</label>
+          <label class="help-option"><input type="checkbox" value="Co-branded content or case study"> Co-branded content or case study</label>
+        </div>
+        <div class="field" style="margin-top: var(--spacing-md);">
+          <input type="text" id="needsOther" placeholder="Other (optional)">
         </div>
       </div>
 
@@ -454,6 +468,10 @@
       const helpOther = document.getElementById('helpOther').value.trim();
       if (helpOther) helpTypes.push(helpOther);
 
+      const needsFromUs = Array.from(document.querySelectorAll('#needsGrid input:checked')).map(el => el.value);
+      const needsOther = document.getElementById('needsOther').value.trim();
+      if (needsOther) needsFromUs.push(needsOther);
+
       if (helpTypes.length === 0) {
         formError.textContent = 'Please select at least one way you would like to help.';
         formError.classList.add('visible');
@@ -469,6 +487,8 @@
         roleTitle: document.getElementById('roleTitle').value.trim(),
         helpTypes,
         helpTypesOther: helpOther || null,
+        needsFromUs,
+        needsFromUsOther: needsOther || null,
         agreedToCommunications: document.getElementById('agreedToCommunications').checked,
         agreedToDataStorage: document.getElementById('agreedToDataStorage').checked,
       };

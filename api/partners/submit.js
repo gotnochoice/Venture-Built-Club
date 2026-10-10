@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
     const {
       firstName, lastName, email, organizationName, roleTitle,
       helpTypes, helpTypesOther,
+      needsFromUs, needsFromUsOther,
       agreedToCommunications, agreedToDataStorage
     } = req.body;
 
@@ -33,15 +34,18 @@ module.exports = async (req, res) => {
       `INSERT INTO partner_inquiries (
         id, first_name, last_name, email, organization_name, role_title,
         help_types, help_types_other,
+        needs_from_us, needs_from_us_other,
         agreed_to_communications, agreed_to_data_storage
       ) VALUES (
         $1, $2, $3, $4, $5, $6,
         $7, $8,
-        $9, $10
+        $9, $10,
+        $11, $12
       )`,
       [
         inquiryId, firstName, lastName, email, organizationName, roleTitle,
         helpTypes, helpTypesOther || null,
+        needsFromUs || [], needsFromUsOther || null,
         agreedToCommunications, agreedToDataStorage
       ]
     );
