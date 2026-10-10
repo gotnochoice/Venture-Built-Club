@@ -8,6 +8,7 @@
     { "source": "/apply/:path*", "destination": "/apply/index.html" }
   ],
   "redirects": [
+    { "source": "/community", "destination": "https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4", "permanent": false },
     { "source": "/whatsapp", "destination": "https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4", "permanent": false }
   ]
 }
