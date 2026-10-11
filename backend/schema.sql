@@ -168,6 +168,7 @@ CREATE TABLE applications (
   meeting_time VARCHAR(100),
   can_commit_hours BOOLEAN,
   comfortable_pitching BOOLEAN,
+  followed_socials BOOLEAN DEFAULT false,
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
   internal_notes TEXT,

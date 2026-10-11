@@ -107,6 +107,9 @@
 
   .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-bottom: 14px; }
   .checkbox-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: #2A332F; cursor: pointer; }
+  .follow-links { font-size: 13.5px; margin-bottom: 10px; }
+  .follow-links a { color: var(--bright-dark, #2DA863); text-decoration: none; font-weight: 600; }
+  .follow-links a:hover { text-decoration: underline; }
   .checkbox-item input { margin-top: 3px; accent-color: var(--bright); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
 
   .radio-row { display: flex; gap: 20px; }
@@ -397,6 +400,18 @@
             <label class="radio-item"><input type="radio" name="comfortPitch" value="no"> No</label>
           </div>
         </div>
+
+        <div class="section-divider"></div>
+
+        <div class="field-group">
+          <label>Follow Venture Built on social media <span class="hint">required</span></label>
+          <p class="follow-links">
+            <a href="https://x.com/thevbclub?s=11" target="_blank" rel="noopener">X (Twitter)</a> ·
+            <a href="https://www.instagram.com/venturebuiltclub/" target="_blank" rel="noopener">Instagram</a> ·
+            <a href="https://www.linkedin.com/company/venturebuiltclub" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+          <label class="checkbox-item"><input type="checkbox" id="followedSocials" required> I've followed Venture Built on social media</label>
+        </div>
       </div>
 
       <button type="submit" class="btn-submit" id="submitBtn">Submit Application</button>
@@ -508,6 +523,9 @@
       if (meetingDays.length === 0) {
         throw new Error('Please select at least one day that works for the weekly meeting.');
       }
+      if (!document.getElementById('followedSocials').checked) {
+        throw new Error('Please confirm you\'ve followed Venture Built on social media.');
+      }
 
       btn.textContent = 'Uploading files...';
       const cvUrl = await uploadFile(cvFile, 'cvStatus');
@@ -538,6 +556,7 @@
         meetingTime: document.getElementById('meetingTime').value,
         canCommitHours: commitHours ? commitHours.value === 'yes' : null,
         comfortablePitching: comfortPitch ? comfortPitch.value === 'yes' : null,
+        followedSocials: document.getElementById('followedSocials').checked,
       };
 
       const response = await fetch(`${API_URL}/applications/submit`, {

@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       cvUrl, pitchDeckUrl,
       clubSkills, clubSkillsOther, builderSkills, builderSkillsOther,
       roleFit, roleFitOther, roleFitReason,
-      meetingDays, meetingTime, canCommitHours, comfortablePitching
+      meetingDays, meetingTime, canCommitHours, comfortablePitching, followedSocials
     } = req.body;
 
     if (!fullName || !email || !phone || !department || !level || !whoAreYou || !whatBuilding ||
@@ -29,6 +29,9 @@ module.exports = async (req, res) => {
     if (!meetingTime) {
       return respondError(res, 400, 'Please provide a meeting time');
     }
+    if (!followedSocials) {
+      return respondError(res, 400, 'Please confirm you have followed Venture Built on social media');
+    }
 
     const applicationId = uuidv4();
     const pool = getPool();
@@ -40,14 +43,14 @@ module.exports = async (req, res) => {
         cv_url, pitch_deck_url,
         club_skills, club_skills_other, builder_skills, builder_skills_other,
         role_fit, role_fit_other, role_fit_reason,
-        meeting_days, meeting_time, can_commit_hours, comfortable_pitching
+        meeting_days, meeting_time, can_commit_hours, comfortable_pitching, followed_socials
       ) VALUES (
         $1, $2, $3, $4, $5, $6,
         $7, $8, $9, $10, $11,
         $12, $13,
         $14, $15, $16, $17,
         $18, $19, $20,
-        $21, $22, $23, $24
+        $21, $22, $23, $24, $25
       )`,
       [
         applicationId, fullName, email, phone, department, level,
@@ -55,7 +58,7 @@ module.exports = async (req, res) => {
         cvUrl, pitchDeckUrl || null,
         clubSkills || [], clubSkillsOther || null, builderSkills || [], builderSkillsOther || null,
         roleFit || null, roleFitOther || null, roleFitReason,
-        meetingDays || [], meetingTime || null, canCommitHours ?? null, comfortablePitching ?? null
+        meetingDays || [], meetingTime || null, canCommitHours ?? null, comfortablePitching ?? null, !!followedSocials
       ]
     );
 
