@@ -214,8 +214,10 @@
   .tab-panel-content h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
   .tab-panel-content p { font-size: var(--font-size-base); color: #445048; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
   .tab-panel-content p:last-child { margin-bottom: 0; }
-  .tab-panel-photo { background: #DBEBE1; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; }
-  .tab-panel-photo span { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 1.5px; text-transform: uppercase; color: #8FA99B; }
+  .tab-panel-photo { background: linear-gradient(135deg, #DBEBE1 0%, #C3E0D1 100%); border-radius: var(--radius-lg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--spacing-lg); position: relative; overflow: hidden; }
+  .tab-panel-photo::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(15,61,46,0.08) 1.5px, transparent 1.5px); background-size: 22px 22px; }
+  .tpp-icon { width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,0.65); display: flex; align-items: center; justify-content: center; color: var(--color-forest); position: relative; z-index: 1; box-shadow: 0 8px 20px rgba(15,61,46,0.08); }
+  .tpp-caption { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); letter-spacing: 0.3px; color: #4E7360; text-align: center; max-width: 220px; position: relative; z-index: 1; font-family: var(--font-family); }
 
   /* PROGRAM STRUCTURE (full-bleed dark break section) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
@@ -535,7 +537,7 @@
         <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
         <p>Put real thought into your answers, we can tell when a response wasn't written by you. Please include your CV so we can properly review your application.</p>
       </div>
-      <div class="tab-panel-photo"><span>Photo</span></div>
+      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Tell us what you're building, and why.</span></div>
     </div>
 
     <div class="tab-panel-card" data-panel="interview">
@@ -543,7 +545,7 @@
         <h3>Interview</h3>
         <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
       </div>
-      <div class="tab-panel-photo"><span>Photo</span></div>
+      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><span class="tpp-caption">A real conversation, not a rehearsed pitch.</span></div>
     </div>
 
     <div class="tab-panel-card" data-panel="in">
@@ -551,7 +553,7 @@
         <h3>You're In</h3>
         <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
       </div>
-      <div class="tab-panel-photo"><span>Photo</span></div>
+      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the cohort.</span></div>
     </div>
   </div>
 </section>
