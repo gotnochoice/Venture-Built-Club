@@ -233,6 +233,10 @@
   .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
   .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); margin-bottom: var(--spacing-sm); }
   .ps-card p:last-child { margin-bottom: 0; }
+  .ps-meta { margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-lg); border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .ps-meta-row { display: flex; justify-content: space-between; gap: var(--spacing-md); font-size: var(--font-size-xs); padding: 5px 0; font-family: var(--font-family); }
+  .ps-meta-row span:first-child { color: var(--color-bright); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.6px; flex-shrink: 0; }
+  .ps-meta-row span:last-child { color: rgba(255,255,255,0.75); text-align: right; }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
   .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
 
@@ -462,22 +466,34 @@
       <p class="ps-intro">Each one serves a different stage of the same journey: turning what you know into something real.</p>
     </div>
     <div class="ps-grid ps-grid-3">
-      <a class="ps-card" href="/apply">
-        <span class="ps-num">Cohort</span>
-        <h3>The Flagship</h3>
-        <p>Selected OAU builders · 12 weeks, once a semester · Application + two interviews</p>
-        <p>The selective, hands-on programme for students already building. Teams build, learn from practitioners, and finish on stage at the Grand Pitch.</p>
-      </a>
       <a class="ps-card" href="/apply-club">
         <span class="ps-num">Club</span>
         <h3>The Pipeline</h3>
-        <p>Any OAU student · All year · Short application, reviewed in a week</p>
+        <div class="ps-meta">
+          <div class="ps-meta-row"><span>Who</span><span>Any OAU student</span></div>
+          <div class="ps-meta-row"><span>Length</span><span>All year</span></div>
+          <div class="ps-meta-row"><span>How in</span><span>Short application, reviewed in a week</span></div>
+        </div>
         <p>A year-round home to learn how ventures are built, explore problems, find collaborators, and find your way into the Cohort. No idea or product required.</p>
+      </a>
+      <a class="ps-card" href="/apply">
+        <span class="ps-num">Cohort</span>
+        <h3>The Flagship</h3>
+        <div class="ps-meta">
+          <div class="ps-meta-row"><span>Who</span><span>Selected OAU builders</span></div>
+          <div class="ps-meta-row"><span>Length</span><span>12 weeks, once a semester</span></div>
+          <div class="ps-meta-row"><span>How in</span><span>Application, then two interviews</span></div>
+        </div>
+        <p>The selective, hands-on programme for students already building. Teams build, learn from practitioners, and finish on stage at the Grand Pitch.</p>
       </a>
       <a class="ps-card" href="/community" target="_blank" rel="noopener">
         <span class="ps-num">Community</span>
         <h3>The Network</h3>
-        <p>Founders across Africa · All year · Short application, by stage</p>
+        <div class="ps-meta">
+          <div class="ps-meta-row"><span>Who</span><span>Founders across Africa</span></div>
+          <div class="ps-meta-row"><span>Length</span><span>All year</span></div>
+          <div class="ps-meta-row"><span>How in</span><span>Short application, by stage</span></div>
+        </div>
         <p>For people at idea stage or already building, anywhere in Africa. Peers, feedback, co-builders, and founder-to-founder introductions.</p>
       </a>
     </div>
