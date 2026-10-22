@@ -144,6 +144,26 @@
           </div>
         </div>
 
+        <div class="field-row">
+          <div class="field-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" required>
+          </div>
+          <div class="field-group">
+            <label for="level">Level</label>
+            <select id="level" required>
+              <option value="" disabled selected>Select your level</option>
+              <option value="100L">100L</option>
+              <option value="200L">200L</option>
+              <option value="300L">300L</option>
+              <option value="400L">400L</option>
+              <option value="500L">500L</option>
+              <option value="Masters">Masters</option>
+              <option value="PhD">PhD</option>
+            </select>
+          </div>
+        </div>
+
         <div class="field-group">
           <label for="groupFit">Which of these fits you best?</label>
           <select id="groupFit" required>
@@ -198,6 +218,8 @@
         kind: 'club',
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
+        department: document.getElementById('department').value,
+        level: document.getElementById('level').value,
         groupFit: document.getElementById('groupFit').value,
         focus: document.getElementById('focus').value,
         why: document.getElementById('why').value,

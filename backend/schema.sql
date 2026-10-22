@@ -254,6 +254,8 @@ CREATE TABLE IF NOT EXISTS club_applications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  department VARCHAR(255) NOT NULL,
+  level VARCHAR(50) NOT NULL, -- 100L, 200L, 300L, 400L, 500L, Masters, PhD
   group_fit VARCHAR(50) NOT NULL, -- builder, problem_spotter, business_owner, technical, curious
   focus TEXT NOT NULL, -- the problem they care about, or what they're building
   why TEXT NOT NULL,

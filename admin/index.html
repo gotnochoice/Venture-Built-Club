@@ -575,6 +575,10 @@
       </div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Department &amp; Level</div>
+      <div class="detail-value" id="clubModalDeptLevel">—</div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Which group fits best</div>
       <div class="detail-value" id="clubModalGroupFit">—</div>
     </div>
@@ -1170,6 +1174,7 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
           </button>
           <h3>${escapeHtml(app.full_name)}</h3>
+          <div class="meta">${escapeHtml(app.department || '')}${app.level ? ' · ' + escapeHtml(app.level) : ''}</div>
           <div class="meta">${escapeHtml(CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '')}</div>
           <div class="snippet">${escapeHtml(app.focus)}</div>
         </div>
@@ -1196,6 +1201,7 @@
     document.getElementById('clubModalName').textContent = app.full_name;
     document.getElementById('clubModalContact').textContent = app.email;
     document.getElementById('clubModalCopyEmailBtn').dataset.email = app.email;
+    document.getElementById('clubModalDeptLevel').textContent = [app.department, app.level].filter(Boolean).join(' · ') || '—';
     document.getElementById('clubModalGroupFit').textContent = CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '—';
     document.getElementById('clubModalFocus').textContent = app.focus || '—';
     document.getElementById('clubModalWhy').textContent = app.why || '—';
