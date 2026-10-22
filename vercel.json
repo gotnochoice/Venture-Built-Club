@@ -2,10 +2,10 @@
   "rewrites": [
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/admin/:path*", "destination": "/admin/index.html" },
+    { "source": "/apply/club", "destination": "/apply-club/index.html" },
+    { "source": "/apply/club/:path*", "destination": "/apply-club/index.html" },
     { "source": "/apply", "destination": "/apply/index.html" },
     { "source": "/apply/:path*", "destination": "/apply/index.html" },
-    { "source": "/apply-club", "destination": "/apply-club/index.html" },
-    { "source": "/apply-club/:path*", "destination": "/apply-club/index.html" },
     { "source": "/how-it-works", "destination": "/how-it-works/index.html" },
     { "source": "/how-it-works/:path*", "destination": "/how-it-works/index.html" }
   ],
@@ -13,6 +13,8 @@
     { "source": "/community", "destination": "https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4", "permanent": false },
     { "source": "/whatsapp", "destination": "https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4", "permanent": false },
     { "source": "/portal", "destination": "https://hub.venturebuiltclub.com", "permanent": false },
-    { "source": "/portal/:path*", "destination": "https://hub.venturebuiltclub.com", "permanent": false }
+    { "source": "/portal/:path*", "destination": "https://hub.venturebuiltclub.com", "permanent": false },
+    { "source": "/apply-club", "destination": "/apply/club", "permanent": true },
+    { "source": "/apply-club/:path*", "destination": "/apply/club", "permanent": true }
   ]
 }
