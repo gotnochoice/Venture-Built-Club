@@ -210,6 +210,13 @@
   .tab-btn-full.active { color: var(--text-primary); border-bottom-color: var(--color-bright); }
   .tab-panel-card { display: none; grid-template-columns: 1fr 1fr; gap: var(--spacing-2xl); background: #EEF6F1; border-radius: var(--radius-xl); align-items: stretch; box-shadow: var(--shadow-lg); min-height: 460px; padding: var(--spacing-2xl); }
   .tab-panel-card.active { display: grid; }
+  .track-nav-full { display: flex; gap: var(--spacing-md); justify-content: center; margin-bottom: var(--spacing-3xl); }
+  .track-btn-full { background: none; border: 2px solid var(--color-gray-300); border-radius: 999px; padding: var(--spacing-sm) var(--spacing-2xl); font-size: var(--font-size-base); font-weight: var(--font-weight-bold); color: var(--color-gray-400); cursor: pointer; font-family: var(--font-family); transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast); }
+  .track-btn-full:hover { color: var(--text-primary); }
+  .track-btn-full.active { color: var(--text-primary); border-color: var(--color-bright); background: rgba(0,0,0,0.04); }
+  .track-panel { display: none; }
+  .track-panel.active { display: block; }
+  .process-cta { text-align: center; margin-top: var(--spacing-3xl); }
   .tab-panel-content { padding: var(--spacing-3xl) var(--spacing-xl); display: flex; flex-direction: column; justify-content: center; }
   .tab-panel-content h3 { font-size: clamp(24px, 2.6vw, 32px); font-weight: var(--font-weight-bold); margin-bottom: var(--spacing-xl); font-family: var(--font-family); color: var(--text-primary); letter-spacing: -0.01em; }
   .tab-panel-content p { font-size: var(--font-size-base); color: #445048; line-height: 1.8; font-family: var(--font-family); margin-bottom: var(--spacing-lg); max-width: 440px; }
@@ -514,7 +521,7 @@
 <section class="program-structure reveal" id="program-structure">
   <div class="wrap">
     <div class="ps-header">
-      <span class="ps-label">Program Structure</span>
+      <span class="ps-label">Cohort Program Structure</span>
       <h2>12 weeks. One intense building journey.</h2>
       <p class="ps-intro">Learn the fundamentals. Test your ideas. Build. Iterate. Pitch.</p>
     </div>
@@ -573,35 +580,88 @@
 
 <section class="process reveal" id="join">
   <div class="wrap">
-    <div class="tab-nav-full">
-      <button class="tab-btn-full active" data-tab="apply">Apply</button>
-      <button class="tab-btn-full" data-tab="interview">Interview</button>
-      <button class="tab-btn-full" data-tab="in">You're In</button>
+    <div class="ps-header">
+      <span class="ps-label">How To Join</span>
+      <h2>Two tracks. Two ways in.</h2>
+      <p class="ps-intro">The Cohort is the selective 12-week programme. The Club is open all year. Pick the one that fits where you are.</p>
     </div>
 
-    <div class="tab-panel-card active" data-panel="apply">
-      <div class="tab-panel-content">
-        <h3>Application</h3>
-        <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
-        <p>Put real thought into your answers, we can tell when a response wasn't written by you. Please include your CV so we can properly review your application.</p>
-      </div>
-      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Tell us what you're building, and why.</span></div>
+    <div class="track-nav-full">
+      <button class="track-btn-full active" data-track="cohort">Cohort</button>
+      <button class="track-btn-full" data-track="club">Club</button>
     </div>
 
-    <div class="tab-panel-card" data-panel="interview">
-      <div class="tab-panel-content">
-        <h3>Interview</h3>
-        <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
+    <div class="track-panel active" data-track="cohort">
+      <div class="tab-nav-full">
+        <button class="tab-btn-full active" data-tab="apply">Apply</button>
+        <button class="tab-btn-full" data-tab="interview">Interview</button>
+        <button class="tab-btn-full" data-tab="in">You're In</button>
       </div>
-      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><span class="tpp-caption">A real conversation, not a rehearsed pitch.</span></div>
+
+      <div class="tab-panel-card active" data-panel="apply">
+        <div class="tab-panel-content">
+          <h3>Application</h3>
+          <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
+          <p>Put real thought into your answers, we can tell when a response wasn't written by you. Please include your CV so we can properly review your application.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Tell us what you're building, and why.</span></div>
+      </div>
+
+      <div class="tab-panel-card" data-panel="interview">
+        <div class="tab-panel-content">
+          <h3>Interview</h3>
+          <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><span class="tpp-caption">A real conversation, not a rehearsed pitch.</span></div>
+      </div>
+
+      <div class="tab-panel-card" data-panel="in">
+        <div class="tab-panel-content">
+          <h3>You're In</h3>
+          <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the cohort.</span></div>
+      </div>
+
+      <div class="process-cta">
+        <a href="/apply" class="btn-primary">Apply to the Cohort</a>
+      </div>
     </div>
 
-    <div class="tab-panel-card" data-panel="in">
-      <div class="tab-panel-content">
-        <h3>You're In</h3>
-        <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
+    <div class="track-panel" data-track="club">
+      <div class="tab-nav-full">
+        <button class="tab-btn-full active" data-tab="apply">Apply</button>
+        <button class="tab-btn-full" data-tab="interview">Review</button>
+        <button class="tab-btn-full" data-tab="in">You're In</button>
       </div>
-      <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the cohort.</span></div>
+
+      <div class="tab-panel-card active" data-panel="apply">
+        <div class="tab-panel-content">
+          <h3>Application</h3>
+          <p>A short form, three questions. No CV, no deck, no finished idea needed. Just tell us where you are and what pulls you toward building.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Short, simple, no CV needed.</span></div>
+      </div>
+
+      <div class="tab-panel-card" data-panel="interview">
+        <div class="tab-panel-content">
+          <h3>Review</h3>
+          <p>No interview. We review every application and get back to you within a week.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><span class="tpp-caption">Reviewed in a week, no interview.</span></div>
+      </div>
+
+      <div class="tab-panel-card" data-panel="in">
+        <div class="tab-panel-content">
+          <h3>You're In</h3>
+          <p>Welcome to the Club. You're now part of a year-round home to learn how ventures are built, find collaborators, and find your way into a future Cohort.</p>
+        </div>
+        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the Club.</span></div>
+      </div>
+
+      <div class="process-cta">
+        <a href="/apply-club" class="btn-primary">Apply to the Club</a>
+      </div>
     </div>
   </div>
 </section>
@@ -831,11 +891,22 @@
     });
   });
 
+  // Scoped to the nearest .tab-nav-full/.track-panel group so the Cohort
+  // and Club tracks (same tab names: apply/interview/in) don't cross-wire.
   document.querySelectorAll('.tab-btn-full').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
-      document.querySelectorAll('.tab-btn-full').forEach(b => b.classList.toggle('active', b === btn));
-      document.querySelectorAll('.tab-panel-card').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+      const group = btn.closest('.track-panel') || document;
+      group.querySelectorAll('.tab-btn-full').forEach(b => b.classList.toggle('active', b === btn));
+      group.querySelectorAll('.tab-panel-card').forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+    });
+  });
+
+  document.querySelectorAll('.track-btn-full').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const track = btn.dataset.track;
+      document.querySelectorAll('.track-btn-full').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.track-panel').forEach(p => p.classList.toggle('active', p.dataset.track === track));
     });
   });
 </script>
