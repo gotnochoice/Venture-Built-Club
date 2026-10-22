@@ -42,12 +42,12 @@
   }
   .notice-card .notice-title { font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--bright); margin-bottom: 14px; }
   .notice-card p { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.65; }
-  .notice-meta { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14); }
-  .notice-meta-row { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; font-size: 13px; }
-  .notice-meta-row span:first-child { color: var(--bright); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
-  .notice-meta-row span:last-child { color: rgba(255,255,255,0.82); text-align: right; }
-  .notice-link { display: inline-block; margin-top: 18px; font-size: 13.5px; font-weight: 700; color: var(--bright); text-decoration: none; }
-  .notice-link:hover { text-decoration: underline; }
+  .notice-points { list-style: none; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14); display: flex; flex-direction: column; gap: 13px; }
+  .notice-points li { display: flex; align-items: flex-start; gap: 11px; font-size: 13.5px; color: rgba(255,255,255,0.82); line-height: 1.6; }
+  .notice-points .check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: rgba(62,189,121,0.16); color: var(--bright); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .notice-points strong { color: var(--white); font-weight: 700; }
+  .notice-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 22px; padding: 11px 20px; border: 1.5px solid rgba(62,189,121,0.4); border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--bright); text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+  .notice-link:hover { background: rgba(62,189,121,0.12); border-color: var(--bright); }
 
   .card {
     background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px;
@@ -117,12 +117,12 @@
   <div class="notice-card">
     <div class="notice-title">What the Club is</div>
     <p>A year-round home for OAU students who want to learn how ventures are built, meet other builders, and find their way into the Cohort. No idea, product, or startup experience required — just curiosity and the drive to show up.</p>
-    <div class="notice-meta">
-      <div class="notice-meta-row"><span>Who it's for</span><span>Any OAU student, at any stage</span></div>
-      <div class="notice-meta-row"><span>What you get</span><span>Monthly meetups, a knowledge hub, and a pathway into the Cohort</span></div>
-      <div class="notice-meta-row"><span>Review time</span><span>Within a week of applying</span></div>
-    </div>
-    <a href="/#tiers" class="notice-link">Read more about how the Club works &rarr;</a>
+    <ul class="notice-points">
+      <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Who it's for:</strong> any OAU student, at any stage.</span></li>
+      <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>What you get:</strong> monthly meetups, a knowledge hub, and a pathway into the Cohort.</span></li>
+      <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Review time:</strong> within a week of applying.</span></li>
+    </ul>
+    <a href="/how-it-works" class="notice-link">Read more about what we're building &rarr;</a>
   </div>
 
   <div id="formWrap">

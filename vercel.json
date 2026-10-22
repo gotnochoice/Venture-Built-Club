@@ -5,7 +5,9 @@
     { "source": "/apply", "destination": "/apply/index.html" },
     { "source": "/apply/:path*", "destination": "/apply/index.html" },
     { "source": "/apply-club", "destination": "/apply-club/index.html" },
-    { "source": "/apply-club/:path*", "destination": "/apply-club/index.html" }
+    { "source": "/apply-club/:path*", "destination": "/apply-club/index.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works/index.html" },
+    { "source": "/how-it-works/:path*", "destination": "/how-it-works/index.html" }
   ],
   "redirects": [
     { "source": "/community", "destination": "https://chat.whatsapp.com/BmixBvnCCSBAoOxffSxVVS?s=cl&p=i&mlu=0&ilr=4", "permanent": false },
