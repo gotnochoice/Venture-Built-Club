@@ -9,6 +9,35 @@ module.exports = async (req, res) => {
     return respondError(res, 405, 'Method not allowed');
   }
 
+  // The Club application is a different, much shorter form (3 questions,
+  // no CV/phone/etc) from the Cohort one below - shares this endpoint and
+  // the Vercel function slot it uses rather than adding a new function
+  // (the project is already near the free-tier 12-function cap).
+  if (req.body && req.body.kind === 'club') {
+    try {
+      const { fullName, email, groupFit, focus, why } = req.body;
+      if (!fullName || !email || !groupFit || !focus || !why) {
+        return respondError(res, 400, 'Please fill in all required fields');
+      }
+
+      const applicationId = uuidv4();
+      const pool = getPool();
+      await pool.query(
+        `INSERT INTO club_applications (id, full_name, email, group_fit, focus, why)
+         VALUES ($1, $2, $3, $4, $5, $6)`,
+        [applicationId, fullName, email, groupFit, focus, why]
+      );
+
+      return respondSuccess(res, 201, {
+        message: 'Application submitted successfully',
+        applicationId
+      });
+    } catch (error) {
+      console.error(error);
+      return respondError(res, 500, 'Failed to submit application');
+    }
+  }
+
   try {
     const {
       fullName, email, phone, department, level,

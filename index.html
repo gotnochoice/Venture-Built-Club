@@ -226,11 +226,13 @@
   .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
   .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
   .ps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--spacing-5xl); position: relative; }
-  .ps-card { background: #04140E; padding: var(--spacing-2xl) var(--spacing-xl); transition: background var(--transition-normal); }
+  .ps-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .ps-card { background: #04140E; padding: var(--spacing-2xl) var(--spacing-xl); transition: background var(--transition-normal); display: block; text-decoration: none; }
   .ps-card:hover { background: rgba(62,189,121,0.06); }
   .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-xl); letter-spacing: 1.5px; font-family: var(--font-family); }
   .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
-  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); margin-bottom: var(--spacing-sm); }
+  .ps-card p:last-child { margin-bottom: 0; }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
   .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
 
@@ -375,7 +377,7 @@
     <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
-    <a href="/portal" class="nav-login">Log In</a>
+    <a href="https://hub.venturebuiltclub.com" class="nav-login">Log In</a>
     <a href="/apply" class="nav-cta">Apply to join</a>
   </div>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
@@ -402,15 +404,15 @@
   <a href="/mentor">Mentors</a>
   <a href="/partners">Partners</a>
   <a href="/join-team">Join the Team</a>
-  <a href="/portal">Log In</a>
+  <a href="https://hub.venturebuiltclub.com">Log In</a>
 </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
     <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
-    <p class="lede">We are the best community for ambitious student builders across Africa.</p>
-    <p class="lede">12 weeks to build, backed by a community that pushes you further. No equity. No fees. We connect our best teams to the mentors and partners who can take it further.</p>
+    <p class="lede">We help ambitious people learn to turn real problems into scalable ventures. Starting at OAU, we bring together builders, practical learning and the people who can help them go further.</p>
+    <p class="lede">Our flagship is a 12-week cohort to build, backed by a community that pushes you further. No equity. No fees. We connect our best teams to the mentors and partners who can take it further.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply Now</a>
       <a href="/community" target="_blank" rel="noopener" class="btn-secondary">Join the Community</a>
@@ -449,6 +451,37 @@
     <p>You'll build alongside ambitious students, learn from founders, operators and investors, and gain a deeper understanding of the ecosystem around building.</p>
     <p class="who-we-are-lead-in">It's intense. It's hands-on. And it's built around two things:</p>
     <p class="who-we-are-emphasis">Building. Understanding the venture ecosystem.</p>
+  </div>
+</section>
+
+<section class="program-structure reveal" id="tiers">
+  <div class="wrap">
+    <div class="ps-header">
+      <span class="ps-label">One Mission, Three Ways In</span>
+      <h2>Cohort. Club. Community.</h2>
+      <p class="ps-intro">Each one serves a different stage of the same journey: turning what you know into something real.</p>
+    </div>
+    <div class="ps-grid ps-grid-3">
+      <a class="ps-card" href="/apply">
+        <span class="ps-num">Cohort</span>
+        <h3>The Flagship</h3>
+        <p>Selected OAU builders · 12 weeks, once a semester · Application + two interviews</p>
+        <p>The selective, hands-on programme for students already building. Teams build, learn from practitioners, and finish on stage at the Grand Pitch.</p>
+      </a>
+      <a class="ps-card" href="/apply-club">
+        <span class="ps-num">Club</span>
+        <h3>The Pipeline</h3>
+        <p>Any OAU student · All year · Short application, reviewed in a week</p>
+        <p>A year-round home to learn how ventures are built, explore problems, find collaborators, and find your way into the Cohort. No idea or product required.</p>
+      </a>
+      <a class="ps-card" href="/community" target="_blank" rel="noopener">
+        <span class="ps-num">Community</span>
+        <h3>The Network</h3>
+        <p>Founders across Africa · All year · Short application, by stage</p>
+        <p>For people at idea stage or already building, anywhere in Africa. Peers, feedback, co-builders, and founder-to-founder introductions.</p>
+      </a>
+    </div>
+    <p class="ps-closing">The Club isn't a less selective Cohort, and the Community isn't a bigger Club. Each solves a different problem, and each one feeds the next.</p>
   </div>
 </section>
 
@@ -703,7 +736,7 @@
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
-        <a href="/portal">Log In</a>
+        <a href="https://hub.venturebuiltclub.com">Log In</a>
         <a href="/apply">Apply to Join</a>
         <a href="/join-team">Join the Team</a>
         <a href="#faq">FAQ</a>

@@ -148,6 +148,7 @@
       <button class="view-tab active" data-view="cohort" id="tabCohort">Cohort Applications</button>
       <button class="view-tab" data-view="team" id="tabTeam">Team Applications</button>
       <button class="view-tab" data-view="mentor" id="tabMentor">Mentor Applications</button>
+      <button class="view-tab" data-view="club" id="tabClub">Club Applications</button>
     </div>
 
     <div id="cohortBoard" class="board">
@@ -288,6 +289,53 @@
           </button>
         </div>
         <div id="col-mentor-rejected"></div>
+      </div>
+    </div>
+
+    <div id="clubBoard" class="board hidden">
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">01</span>
+          <span class="column-title">Applied</span>
+          <span class="column-count" id="count-club-applied">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="applied" data-board="club" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-club-applied"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">02</span>
+          <span class="column-title">Interview</span>
+          <span class="column-count" id="count-club-interview">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="interview" data-board="club" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-club-interview"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">03</span>
+          <span class="column-title">Accepted</span>
+          <span class="column-count" id="count-club-accepted">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="accepted" data-board="club" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-club-accepted"></div>
+      </div>
+      <div class="column">
+        <div class="column-header">
+          <span class="column-step">04</span>
+          <span class="column-title">Rejected</span>
+          <span class="column-count" id="count-club-rejected">0</span>
+          <button type="button" class="copy-btn copy-stage-btn" data-stage="rejected" data-board="club" title="Copy all emails in this stage">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div id="col-club-rejected"></div>
       </div>
     </div>
   </div>
@@ -507,6 +555,52 @@
   </div>
 </div>
 
+<!-- CLUB DETAIL MODAL -->
+<div id="clubModalBackdrop" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-top">
+      <h2 id="clubModalName">—</h2>
+      <button class="modal-close" id="clubModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="detail-row">
+      <div class="detail-label">Contact</div>
+      <div class="detail-value contact-row">
+        <span id="clubModalContact">—</span>
+        <button type="button" class="copy-btn" id="clubModalCopyEmailBtn" title="Copy email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Which group fits best</div>
+      <div class="detail-value" id="clubModalGroupFit">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Problem or what they're building</div>
+      <div class="detail-value" id="clubModalFocus">—</div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Why they want to be here</div>
+      <div class="detail-value" id="clubModalWhy">—</div>
+    </div>
+
+    <div class="detail-label">Move to stage</div>
+    <div class="stage-buttons" id="clubStageButtons">
+      <button class="stage-btn" data-stage="applied">Applied</button>
+      <button class="stage-btn" data-stage="interview">Interview</button>
+      <button class="stage-btn" data-stage="accepted">Accepted</button>
+      <button class="stage-btn" data-stage="rejected">Rejected</button>
+    </div>
+
+    <div class="detail-label">Internal Notes</div>
+    <textarea class="notes-textarea" id="clubModalNotes" placeholder="Notes visible only to admins..."></textarea>
+    <button class="btn-save" id="clubSaveBtn">Save Changes</button>
+  </div>
+</div>
+
 <script>
   const API_URL = '/api';
   let applications = [];
@@ -522,6 +616,18 @@
   let currentMentorAppId = null;
   let currentMentorStage = null;
   let mentorLoaded = false;
+
+  let clubApplications = [];
+  let currentClubAppId = null;
+  let currentClubStage = null;
+  let clubLoaded = false;
+  const CLUB_GROUP_LABEL = {
+    builder: 'Has a product or idea, needs to monetize/fundraise/scale',
+    problem_spotter: "Noticed a problem, doesn't know how to solve it",
+    business_owner: 'Runs a business, wants to scale',
+    technical: 'Can build, wants a real problem to build on',
+    curious: 'Curious about startups and venture capital',
+  };
 
   function showError(id, msg) {
     const el = document.getElementById(id);
@@ -653,11 +759,17 @@
   document.getElementById('mentorModalCopyEmailBtn').addEventListener('click', function() {
     copyToClipboard(this.dataset.email || '', this);
   });
+  document.getElementById('clubModalCopyEmailBtn').addEventListener('click', function() {
+    copyToClipboard(this.dataset.email || '', this);
+  });
 
   document.querySelectorAll('.copy-stage-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const stage = this.dataset.stage;
-      const source = this.dataset.board === 'team' ? teamApplications : this.dataset.board === 'mentor' ? mentorApplications : applications;
+      const source = this.dataset.board === 'team' ? teamApplications
+        : this.dataset.board === 'mentor' ? mentorApplications
+        : this.dataset.board === 'club' ? clubApplications
+        : applications;
       const emails = source.filter(a => a.stage === stage).map(a => a.email);
       copyToClipboard(emails.join(', '), this);
     });
@@ -763,19 +875,25 @@
   document.getElementById('tabCohort').addEventListener('click', () => switchView('cohort'));
   document.getElementById('tabTeam').addEventListener('click', () => switchView('team'));
   document.getElementById('tabMentor').addEventListener('click', () => switchView('mentor'));
+  document.getElementById('tabClub').addEventListener('click', () => switchView('club'));
 
   function switchView(view) {
     document.getElementById('tabCohort').classList.toggle('active', view === 'cohort');
     document.getElementById('tabTeam').classList.toggle('active', view === 'team');
     document.getElementById('tabMentor').classList.toggle('active', view === 'mentor');
+    document.getElementById('tabClub').classList.toggle('active', view === 'club');
     document.getElementById('cohortBoard').classList.toggle('hidden', view !== 'cohort');
     document.getElementById('teamBoard').classList.toggle('hidden', view !== 'team');
     document.getElementById('mentorBoard').classList.toggle('hidden', view !== 'mentor');
+    document.getElementById('clubBoard').classList.toggle('hidden', view !== 'club');
     if (view === 'team' && !teamLoaded) {
       loadTeamApplications();
     }
     if (view === 'mentor' && !mentorLoaded) {
       loadMentorApplications();
+    }
+    if (view === 'club' && !clubLoaded) {
+      loadClubApplications();
     }
   }
 
@@ -1011,6 +1129,113 @@
       if (response.ok) {
         document.getElementById('mentorModalBackdrop').classList.add('hidden');
         loadMentorApplications();
+      }
+    } catch (error) {
+      console.error('Failed to save', error);
+    }
+  });
+
+  async function loadClubApplications() {
+    const token = localStorage.getItem('adminToken');
+    try {
+      const response = await fetch(`${API_URL}/admin/applications?kind=club`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await response.json();
+      if (response.ok) {
+        clubApplications = data.data;
+        clubLoaded = true;
+        renderClubBoard();
+      }
+    } catch (error) {
+      console.error('Failed to load club applications', error);
+    }
+  }
+
+  function renderClubBoard() {
+    const stages = ['applied', 'interview', 'accepted', 'rejected'];
+    stages.forEach(stage => {
+      const col = document.getElementById(`col-club-${stage}`);
+      const items = clubApplications.filter(a => a.stage === stage);
+      document.getElementById(`count-club-${stage}`).textContent = items.length;
+
+      if (items.length === 0) {
+        col.innerHTML = '<div class="empty-column">No applications</div>';
+        return;
+      }
+
+      col.innerHTML = items.map(app => `
+        <div class="app-card" data-id="${app.id}">
+          <button type="button" class="copy-btn card-copy-btn" data-email="${escapeHtml(app.email)}" title="Copy email">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+          <h3>${escapeHtml(app.full_name)}</h3>
+          <div class="meta">${escapeHtml(CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '')}</div>
+          <div class="snippet">${escapeHtml(app.focus)}</div>
+        </div>
+      `).join('');
+    });
+
+    document.querySelectorAll('#clubBoard .app-card').forEach(card => {
+      card.addEventListener('click', () => openClubModal(card.dataset.id));
+    });
+    document.querySelectorAll('#clubBoard .card-copy-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        copyToClipboard(this.dataset.email || '', this);
+      });
+    });
+  }
+
+  function openClubModal(id) {
+    const app = clubApplications.find(a => a.id === id);
+    if (!app) return;
+    currentClubAppId = id;
+    currentClubStage = app.stage;
+
+    document.getElementById('clubModalName').textContent = app.full_name;
+    document.getElementById('clubModalContact').textContent = app.email;
+    document.getElementById('clubModalCopyEmailBtn').dataset.email = app.email;
+    document.getElementById('clubModalGroupFit').textContent = CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '—';
+    document.getElementById('clubModalFocus').textContent = app.focus || '—';
+    document.getElementById('clubModalWhy').textContent = app.why || '—';
+    document.getElementById('clubModalNotes').value = app.internal_notes || '';
+
+    document.querySelectorAll('#clubStageButtons .stage-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.stage === app.stage);
+    });
+
+    document.getElementById('clubModalBackdrop').classList.remove('hidden');
+  }
+
+  document.getElementById('clubModalClose').addEventListener('click', () => {
+    document.getElementById('clubModalBackdrop').classList.add('hidden');
+  });
+
+  document.querySelectorAll('#clubStageButtons .stage-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentClubStage = btn.dataset.stage;
+      document.querySelectorAll('#clubStageButtons .stage-btn').forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
+
+  document.getElementById('clubSaveBtn').addEventListener('click', async () => {
+    const token = localStorage.getItem('adminToken');
+    const notes = document.getElementById('clubModalNotes').value;
+
+    try {
+      const response = await fetch(`${API_URL}/admin/applications?kind=club`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ id: currentClubAppId, stage: currentClubStage, internalNotes: notes })
+      });
+
+      if (response.ok) {
+        document.getElementById('clubModalBackdrop').classList.add('hidden');
+        loadClubApplications();
       }
     } catch (error) {
       console.error('Failed to save', error);
