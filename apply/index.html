@@ -136,6 +136,13 @@
   .btn-submit:active { transform: scale(0.99); }
   .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
+  .btn-submit-link {
+    display: inline-block; margin-top: 24px; padding: 14px 28px; background: var(--bright); color: var(--black);
+    border-radius: 4px; font-weight: 700; font-size: 14.5px; text-decoration: none; font-family: var(--font);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s; box-shadow: 0 8px 20px rgba(62,189,121,0.3);
+  }
+  .btn-submit-link:hover { background: var(--bright-dark); box-shadow: 0 10px 24px rgba(62,189,121,0.4); }
+
   .form-error {
     background: #FEF2F2; color: #B91C1C; border: 1px solid #FCA5A5; border-radius: 8px;
     padding: 12px 16px; font-size: 13.5px; margin-bottom: 20px;
@@ -424,6 +431,7 @@
     </div>
     <h2>Application received</h2>
     <p>Thanks for applying. We review every application carefully. You'll hear from us soon.</p>
+    <a href="/community" target="_blank" rel="noopener" class="btn-submit-link">Join our Community on WhatsApp</a>
   </div>
 </div>
 
