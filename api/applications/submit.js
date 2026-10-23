@@ -24,8 +24,8 @@ module.exports = async (req, res) => {
       }
 
       const countWords = (text) => text.trim().split(/\s+/).filter(Boolean).length;
-      if (countWords(focus) < 50 || countWords(why) < 50) {
-        return respondError(res, 400, 'Please write at least 50 words for each question');
+      if (countWords(focus) < 25 || countWords(why) < 25) {
+        return respondError(res, 400, 'Please write at least 25 words for each question');
       }
 
       const applicationId = uuidv4();
