@@ -58,12 +58,14 @@
   .field-group { margin-bottom: 20px; }
   .field-group:last-child { margin-bottom: 0; }
   .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
-  .field-group input[type="text"], .field-group input[type="email"],
+  .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"],
   .field-group select, .field-group textarea {
     width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
     font-size: 14.5px; font-family: var(--font); background: #FAFBFA; color: var(--black);
   }
   .field-group textarea { min-height: 90px; resize: vertical; }
+  .word-count { margin-top: 6px; font-size: 12.5px; color: var(--steel); text-align: right; }
+  .word-count.ok { color: var(--bright-dark); font-weight: 600; }
   .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
     outline: none; border-color: var(--bright); background: var(--white); box-shadow: 0 0 0 3px rgba(62,189,121,0.12);
   }
@@ -101,7 +103,7 @@
     .card { padding: 20px; }
     .field-row { grid-template-columns: 1fr; }
     .notice-card { padding: 22px 20px; }
-    .field-group input[type="text"], .field-group input[type="email"],
+    .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"],
     .field-group select, .field-group textarea { font-size: 16px; }
   }
 </style>
@@ -184,11 +186,13 @@
         <div class="field-group">
           <label for="focus" class="q-label">What problem do you care about, or what are you building?</label>
           <textarea id="focus" required></textarea>
+          <div class="word-count" id="focusCount">0 / 100 words minimum</div>
         </div>
 
         <div class="field-group">
           <label for="why" class="q-label">Why do you want to be here?</label>
           <textarea id="why" required></textarea>
+          <div class="word-count" id="whyCount">0 / 100 words minimum</div>
         </div>
       </div>
 
@@ -209,12 +213,40 @@
 
 <script>
   const API_URL = '/api';
+  const MIN_WORDS = 100;
+
+  function wordCount(text) {
+    return (text || '').trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  function wireWordCount(textareaId, countId) {
+    const textarea = document.getElementById(textareaId);
+    const countEl = document.getElementById(countId);
+    textarea.addEventListener('input', () => {
+      const count = wordCount(textarea.value);
+      const ok = count >= MIN_WORDS;
+      countEl.textContent = `${count} / ${MIN_WORDS} words minimum`;
+      countEl.classList.toggle('ok', ok);
+    });
+  }
+  wireWordCount('focus', 'focusCount');
+  wireWordCount('why', 'whyCount');
 
   document.getElementById('clubApplyForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     const errEl = document.getElementById('formError');
     errEl.classList.add('hidden');
+
+    const focusVal = document.getElementById('focus').value;
+    const whyVal = document.getElementById('why').value;
+    if (wordCount(focusVal) < MIN_WORDS || wordCount(whyVal) < MIN_WORDS) {
+      errEl.textContent = `Please write at least ${MIN_WORDS} words for each question so we can properly review your application.`;
+      errEl.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     btn.disabled = true;
     btn.textContent = 'Submitting...';
 
@@ -227,8 +259,8 @@
         department: document.getElementById('department').value,
         level: document.getElementById('level').value,
         groupFit: document.getElementById('groupFit').value,
-        focus: document.getElementById('focus').value,
-        why: document.getElementById('why').value,
+        focus: focusVal,
+        why: whyVal,
       };
 
       const response = await fetch(`${API_URL}/applications/submit`, {

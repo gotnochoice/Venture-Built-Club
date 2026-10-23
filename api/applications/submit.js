@@ -9,15 +9,20 @@ module.exports = async (req, res) => {
     return respondError(res, 405, 'Method not allowed');
   }
 
-  // The Club application is a different, much shorter form (3 questions,
-  // no CV/phone/etc) from the Cohort one below - shares this endpoint and
-  // the Vercel function slot it uses rather than adding a new function
-  // (the project is already near the free-tier 12-function cap).
+  // The Club application is a shorter form than the Cohort one below (no
+  // CV/deck) - shares this endpoint and the Vercel function slot it uses
+  // rather than adding a new function (the project is already near the
+  // free-tier 12-function cap).
   if (req.body && req.body.kind === 'club') {
     try {
       const { fullName, email, phone, department, level, groupFit, focus, why } = req.body;
       if (!fullName || !email || !phone || !department || !level || !groupFit || !focus || !why) {
         return respondError(res, 400, 'Please fill in all required fields');
+      }
+
+      const countWords = (text) => text.trim().split(/\s+/).filter(Boolean).length;
+      if (countWords(focus) < 100 || countWords(why) < 100) {
+        return respondError(res, 400, 'Please write at least 100 words for each question');
       }
 
       const applicationId = uuidv4();
