@@ -260,6 +260,7 @@ CREATE TABLE IF NOT EXISTS club_applications (
   group_fit VARCHAR(50) NOT NULL, -- builder, problem_spotter, business_owner, technical, curious
   focus TEXT NOT NULL, -- the problem they care about, or what they're building
   why TEXT NOT NULL,
+  followed_socials BOOLEAN DEFAULT false,
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
   internal_notes TEXT,

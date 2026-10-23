@@ -58,6 +58,12 @@
   .field-group { margin-bottom: 20px; }
   .field-group:last-child { margin-bottom: 0; }
   .field-group label, .field-group .q-label { display: block; font-size: 14px; font-weight: 700; color: var(--black); margin-bottom: 8px; line-height: 1.45; }
+  .field-group .hint { font-weight: 400; color: var(--steel); font-size: 12.5px; }
+  .checkbox-item { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: #2A332F; cursor: pointer; }
+  .checkbox-item input { margin-top: 3px; accent-color: var(--bright); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+  .follow-links { font-size: 13.5px; margin-bottom: 10px; }
+  .follow-links a { color: var(--bright-dark); text-decoration: none; font-weight: 600; }
+  .follow-links a:hover { text-decoration: underline; }
   .field-group input[type="text"], .field-group input[type="email"], .field-group input[type="tel"],
   .field-group select, .field-group textarea {
     width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
@@ -209,6 +215,16 @@
           <textarea id="why" required></textarea>
           <div class="word-count" id="whyCount">0 / 100 words minimum</div>
         </div>
+
+        <div class="field-group">
+          <label>Follow Venture Built on social media <span class="hint">required</span></label>
+          <p class="follow-links">
+            <a href="https://x.com/thevbclub?s=11" target="_blank" rel="noopener">X (Twitter)</a> ·
+            <a href="https://www.instagram.com/venturebuiltclub/" target="_blank" rel="noopener">Instagram</a> ·
+            <a href="https://www.linkedin.com/company/venturebuiltclub" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+          <label class="checkbox-item"><input type="checkbox" id="followedSocials" required> I've followed Venture Built on social media</label>
+        </div>
       </div>
 
       <div class="cohort-prompt">
@@ -268,6 +284,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
+    if (!document.getElementById('followedSocials').checked) {
+      errEl.textContent = 'Please confirm you\'ve followed Venture Built on social media.';
+      errEl.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Submitting...';
@@ -283,6 +305,7 @@
         groupFit: document.getElementById('groupFit').value,
         focus: focusVal,
         why: whyVal,
+        followedSocials: document.getElementById('followedSocials').checked,
       };
 
       const response = await fetch(`${API_URL}/applications/submit`, {

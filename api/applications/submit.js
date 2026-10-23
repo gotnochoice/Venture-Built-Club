@@ -15,9 +15,12 @@ module.exports = async (req, res) => {
   // free-tier 12-function cap).
   if (req.body && req.body.kind === 'club') {
     try {
-      const { fullName, email, phone, department, level, groupFit, focus, why } = req.body;
+      const { fullName, email, phone, department, level, groupFit, focus, why, followedSocials } = req.body;
       if (!fullName || !email || !phone || !department || !level || !groupFit || !focus || !why) {
         return respondError(res, 400, 'Please fill in all required fields');
+      }
+      if (!followedSocials) {
+        return respondError(res, 400, 'Please confirm you have followed Venture Built on social media');
       }
 
       const countWords = (text) => text.trim().split(/\s+/).filter(Boolean).length;
@@ -28,9 +31,9 @@ module.exports = async (req, res) => {
       const applicationId = uuidv4();
       const pool = getPool();
       await pool.query(
-        `INSERT INTO club_applications (id, full_name, email, phone, department, level, group_fit, focus, why)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        [applicationId, fullName, email, phone, department, level, groupFit, focus, why]
+        `INSERT INTO club_applications (id, full_name, email, phone, department, level, group_fit, focus, why, followed_socials)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [applicationId, fullName, email, phone, department, level, groupFit, focus, why, !!followedSocials]
       );
 
       return respondSuccess(res, 201, {
