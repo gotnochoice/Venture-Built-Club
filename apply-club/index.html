@@ -207,13 +207,13 @@
         <div class="field-group">
           <label for="focus" class="q-label">What problem do you care about, or what are you building?</label>
           <textarea id="focus" required></textarea>
-          <div class="word-count" id="focusCount">0 / 100 words minimum</div>
+          <div class="word-count" id="focusCount">0 / 50 words minimum</div>
         </div>
 
         <div class="field-group">
           <label for="why" class="q-label">Why do you want to be here?</label>
           <textarea id="why" required></textarea>
-          <div class="word-count" id="whyCount">0 / 100 words minimum</div>
+          <div class="word-count" id="whyCount">0 / 50 words minimum</div>
         </div>
 
         <div class="field-group">
@@ -251,7 +251,7 @@
 
 <script>
   const API_URL = '/api';
-  const MIN_WORDS = 100;
+  const MIN_WORDS = 50;
 
   function wordCount(text) {
     return (text || '').trim().split(/\s+/).filter(Boolean).length;
