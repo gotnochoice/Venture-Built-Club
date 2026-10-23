@@ -112,14 +112,14 @@
   <div class="page-head">
     <span class="page-kicker">Club Applications Open</span>
     <h1>Join the Venture Built Club</h1>
-    <p class="lede">No idea, no product, and no experience needed. We're looking for genuine curiosity and ambition — just come ready to learn and build.</p>
+    <p class="lede">No idea, no product, and no experience needed. We're looking for genuine curiosity and ambition, just come ready to learn and build.</p>
   </div>
 
   <div class="notice-card">
     <div class="notice-title">What the Club is</div>
     <p>A year-round home for OAU students who want to learn how real businesses get built from the ground up: spotting problems worth solving, meeting other builders, and figuring out your own path into the Cohort. Whether you've never built anything before or you're already tinkering on something small, come as you are.</p>
     <ul class="notice-points">
-      <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Who it's for:</strong> any OAU student, at any stage — complete beginners and experienced builders alike.</span></li>
+      <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Who it's for:</strong> any OAU student, at any stage, complete beginners and experienced builders alike.</span></li>
       <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>What you get:</strong> monthly meetups, hands-on sessions, a growing knowledge hub, other builders to learn with, and a direct pathway into the Cohort.</span></li>
       <li><span class="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span><span><strong>Review time:</strong> within a week of applying.</span></li>
     </ul>
@@ -139,29 +139,34 @@
             <input type="text" id="fullName" required>
           </div>
           <div class="field-group">
-            <label for="email">Email</label>
+            <label for="email">Email (one you actively check)</label>
             <input type="email" id="email" required>
           </div>
         </div>
 
         <div class="field-row">
           <div class="field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+234..." required>
+          </div>
+          <div class="field-group">
             <label for="department">Department</label>
             <input type="text" id="department" required>
           </div>
-          <div class="field-group">
-            <label for="level">Level</label>
-            <select id="level" required>
-              <option value="" disabled selected>Select your level</option>
-              <option value="100L">100L</option>
-              <option value="200L">200L</option>
-              <option value="300L">300L</option>
-              <option value="400L">400L</option>
-              <option value="500L">500L</option>
-              <option value="Masters">Masters</option>
-              <option value="PhD">PhD</option>
-            </select>
-          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="level">Level</label>
+          <select id="level" required>
+            <option value="" disabled selected>Select your level</option>
+            <option value="100L">100L</option>
+            <option value="200L">200L</option>
+            <option value="300L">300L</option>
+            <option value="400L">400L</option>
+            <option value="500L">500L</option>
+            <option value="Masters">Masters</option>
+            <option value="PhD">PhD</option>
+          </select>
         </div>
 
         <div class="field-group">
@@ -218,6 +223,7 @@
         kind: 'club',
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
         department: document.getElementById('department').value,
         level: document.getElementById('level').value,
         groupFit: document.getElementById('groupFit').value,

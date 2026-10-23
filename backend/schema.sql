@@ -248,12 +248,13 @@ CREATE TABLE mentor_applications (
 );
 
 -- Club Applications (year-round, OAU students - separate from the
--- selective Cohort application above: 3 short questions, no CV/phone/etc
--- required, reviewed within a week per the Cohort/Club/Community strategy doc)
+-- selective Cohort application above: a short form, reviewed within
+-- a week per the Cohort/Club/Community strategy doc)
 CREATE TABLE IF NOT EXISTS club_applications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   full_name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
   department VARCHAR(255) NOT NULL,
   level VARCHAR(50) NOT NULL, -- 100L, 200L, 300L, 400L, 500L, Masters, PhD
   group_fit VARCHAR(50) NOT NULL, -- builder, problem_spotter, business_owner, technical, curious

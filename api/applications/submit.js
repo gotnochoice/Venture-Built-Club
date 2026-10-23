@@ -15,17 +15,17 @@ module.exports = async (req, res) => {
   // (the project is already near the free-tier 12-function cap).
   if (req.body && req.body.kind === 'club') {
     try {
-      const { fullName, email, department, level, groupFit, focus, why } = req.body;
-      if (!fullName || !email || !department || !level || !groupFit || !focus || !why) {
+      const { fullName, email, phone, department, level, groupFit, focus, why } = req.body;
+      if (!fullName || !email || !phone || !department || !level || !groupFit || !focus || !why) {
         return respondError(res, 400, 'Please fill in all required fields');
       }
 
       const applicationId = uuidv4();
       const pool = getPool();
       await pool.query(
-        `INSERT INTO club_applications (id, full_name, email, department, level, group_fit, focus, why)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-        [applicationId, fullName, email, department, level, groupFit, focus, why]
+        `INSERT INTO club_applications (id, full_name, email, phone, department, level, group_fit, focus, why)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        [applicationId, fullName, email, phone, department, level, groupFit, focus, why]
       );
 
       return respondSuccess(res, 201, {

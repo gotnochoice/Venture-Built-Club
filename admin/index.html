@@ -1199,7 +1199,7 @@
     currentClubStage = app.stage;
 
     document.getElementById('clubModalName').textContent = app.full_name;
-    document.getElementById('clubModalContact').textContent = app.email;
+    document.getElementById('clubModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
     document.getElementById('clubModalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('clubModalDeptLevel').textContent = [app.department, app.level].filter(Boolean).join(' · ') || '—';
     document.getElementById('clubModalGroupFit').textContent = CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '—';
