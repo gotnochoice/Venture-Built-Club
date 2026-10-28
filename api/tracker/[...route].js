@@ -1,16 +1,19 @@
 // Backend for the /tracker page. One catch-all function (not a file
 // per task action) so this stays a single Vercel function slot:
 //
-//   GET    /api/tracker/all          -> { tasks, milestones }
-//   POST   /api/tracker/tasks        -> create a task
-//   PATCH  /api/tracker/tasks/:id    -> update a task (status, priority, full edit)
-//   DELETE /api/tracker/tasks/:id    -> delete a task
+//   GET    /api/tracker/all                -> { tasks, milestones }
+//   POST   /api/tracker/tasks              -> create a task
+//   PATCH  /api/tracker/tasks?id=<uuid>    -> update a task (status, priority, full edit)
+//   DELETE /api/tracker/tasks?id=<uuid>    -> delete a task
 //
 // This is a *required* catch-all ([...route].js) - Vercel's plain
 // (non-Next.js) function router doesn't support the optional
 // ([[...route]].js) form, so every path here must have a segment
-// after /api/tracker/. That's why "all" exists instead of handling
-// the bare /api/tracker path.
+// after /api/tracker/. The task id is passed as a query param rather
+// than a further path segment (e.g. /tasks/:id) because PATCH/DELETE
+// requests to a two-segment path were 404ing at the platform level
+// in production while one-segment paths worked fine - keeping every
+// route to exactly one fixed segment sidesteps that entirely.
 //
 // No login: the page is reached only by its unlisted URL, same trust
 // model as the rest of this internal tool - see DEPLOYMENT.md.
@@ -36,7 +39,8 @@ module.exports = async (req, res) => {
     .replace(/^api\//, '')
     .replace(/^tracker(\/|$)/, '')
     .replace(/\/+$/, '');
-  const [resource, id] = pathname ? pathname.split('/') : [];
+  const [resource] = pathname ? pathname.split('/') : [];
+  const id = parsed.query.id || null;
   const pool = getPool();
 
   try {

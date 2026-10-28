@@ -435,7 +435,7 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
     if (!db) return;
     var prev = t.status;
     patchTaskLocal(t.id, { status: s });
-    api("/tasks/" + t.id, "PATCH", { status: s }).catch(function () {
+    api("/tasks?id=" + encodeURIComponent(t.id), "PATCH", { status: s }).catch(function () {
       patchTaskLocal(t.id, { status: prev });
       toast("Could not save that change. Try again.");
     });
@@ -445,7 +445,7 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
     if (!db) return;
     var prev = t.priority, next = t.priority === "high" ? "normal" : "high";
     patchTaskLocal(t.id, { priority: next });
-    api("/tasks/" + t.id, "PATCH", { priority: next }).catch(function () {
+    api("/tasks?id=" + encodeURIComponent(t.id), "PATCH", { priority: next }).catch(function () {
       patchTaskLocal(t.id, { priority: prev });
       toast("Could not save that change. Try again.");
     });
@@ -494,7 +494,7 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
       if (db && id) {
         tasks = tasks.filter(function (t) { return t.id !== id; });
         render();
-        api("/tasks/" + id, "DELETE").catch(function () { toast("Could not delete. Try again. Reload to see the current state."); loadData(); });
+        api("/tasks?id=" + encodeURIComponent(id), "DELETE").catch(function () { toast("Could not delete. Try again. Reload to see the current state."); loadData(); });
       }
     });
     $("form").addEventListener("submit", function (e) {
@@ -505,7 +505,7 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
       var data = { title: title, role: $("f-role").value, due: due, status: $("f-status").value, priority: $("f-priority").value, owner: $("f-owner").value.trim(), notes: $("f-notes").value.trim() };
       var editId = editing && editing.id;
       closeModal();
-      var req = editId ? api("/tasks/" + editId, "PATCH", data) : api("/tasks", "POST", data);
+      var req = editId ? api("/tasks?id=" + encodeURIComponent(editId), "PATCH", data) : api("/tasks", "POST", data);
       req.then(function (result) {
         var saved = result.task;
         tasks = editId ? tasks.map(function (t) { return t.id === editId ? saved : t; }) : tasks.concat([saved]);
