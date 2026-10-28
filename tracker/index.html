@@ -478,11 +478,15 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
   function init() {
     var sel = $("f-role");
     ROLES.forEach(function (r) { sel.append(el("option", { value: r.id, text: r.name + " (" + r.owner + ")" })); });
-    var rf = recall("vb-role"), sf = recall("vb-status");
+    var rf = recall("vb-role");
     if (rf && (rf === "all" || roleOf(rf))) roleFilter = rf;
-    if (sf && ["open", "todo", "doing", "blocked", "done", "all"].indexOf(sf) > -1) statusFilter = sf;
+    // Status filter is intentionally NOT remembered across visits - this
+    // is a shared link everyone opens, and it should always start by
+    // showing everything (done tasks included, struck through) rather
+    // than silently reopening on whatever the last person narrowed it
+    // down to. The dropdown is still there for filtering in the moment.
     $("status-filter").value = statusFilter;
-    $("status-filter").addEventListener("change", function (e) { statusFilter = e.target.value; store("vb-status", statusFilter); render(); });
+    $("status-filter").addEventListener("change", function (e) { statusFilter = e.target.value; render(); });
     $("add-top").addEventListener("click", function () { openModal({ role: roleFilter === "all" ? "president" : roleFilter }); });
     $("cancel-btn").addEventListener("click", closeModal);
     $("overlay").addEventListener("mousedown", function (e) { if (e.target === $("overlay")) closeModal(); });
