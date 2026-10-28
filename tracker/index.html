@@ -517,7 +517,7 @@ select.pill-sel option { background: #fff; color: #1a1a1a; }
   }
 
   function loadData() {
-    api("", "GET").then(function (result) {
+    api("/all", "GET").then(function (result) {
       db = true;
       tasks = (result.tasks || []).filter(function (t) { return t.title && t.due && t.role && STATUS[t.status]; });
       miles = (result.milestones || []).filter(function (m) { return m.label && m.date; });

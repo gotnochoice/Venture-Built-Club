@@ -1,10 +1,16 @@
 // Backend for the /tracker page. One catch-all function (not a file
 // per task action) so this stays a single Vercel function slot:
 //
-//   GET    /api/tracker              -> { tasks, milestones }
+//   GET    /api/tracker/all          -> { tasks, milestones }
 //   POST   /api/tracker/tasks        -> create a task
 //   PATCH  /api/tracker/tasks/:id    -> update a task (status, priority, full edit)
 //   DELETE /api/tracker/tasks/:id    -> delete a task
+//
+// This is a *required* catch-all ([...route].js) - Vercel's plain
+// (non-Next.js) function router doesn't support the optional
+// ([[...route]].js) form, so every path here must have a segment
+// after /api/tracker/. That's why "all" exists instead of handling
+// the bare /api/tracker path.
 //
 // No login: the page is reached only by its unlisted URL, same trust
 // model as the rest of this internal tool - see DEPLOYMENT.md.
@@ -34,7 +40,7 @@ module.exports = async (req, res) => {
   const pool = getPool();
 
   try {
-    if (!resource && req.method === 'GET') {
+    if (resource === 'all' && req.method === 'GET') {
       const [tasks, milestones] = await Promise.all([
         pool.query(`SELECT ${TASK_COLUMNS} FROM tracker_tasks ORDER BY due ASC`),
         pool.query(`SELECT id, label, to_char(date, 'YYYY-MM-DD') AS date, to_char(end_date, 'YYYY-MM-DD') AS end FROM tracker_milestones ORDER BY date ASC`),
