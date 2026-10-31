@@ -190,9 +190,7 @@
   @media (min-width: 768px) { .hero p.lede { font-size: var(--font-size-base); } }
   .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; justify-content: flex-start; align-items: center; }
 
-  /* FULL-BLEED BANNER (abstract, no photography available) */
-  .bleed-banner { width: 100%; height: clamp(180px, 26vw, 360px); overflow: hidden; background: linear-gradient(180deg, var(--color-forest) 0%, var(--color-forest-lighter) 100%); }
-  .bleed-banner svg { width: 100%; height: 100%; display: block; }
+  .hero-trust-line { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-bright); margin-bottom: var(--spacing-xl); font-family: var(--font-family); }
 
   /* WHO WE ARE (centered statement page, matching Antler's "Who Is Antler For?") */
   .who-we-are { padding: var(--spacing-5xl) 0; text-align: center; }
@@ -247,6 +245,22 @@
   .ps-meta-row { display: flex; justify-content: space-between; gap: var(--spacing-md); font-size: var(--font-size-xs); padding: 5px 0; font-family: var(--font-family); }
   .ps-meta-row span:first-child { color: var(--color-bright); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.6px; flex-shrink: 0; }
   .ps-meta-row span:last-child { color: rgba(255,255,255,0.75); text-align: right; }
+
+  .paths-section { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
+  .paths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); position: relative; }
+  .paths-grid::before { content: ""; position: absolute; top: 52px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.14); z-index: 0; }
+  .path-card { position: relative; z-index: 1; background: #04140E; border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-xl); text-decoration: none; display: block; transition: border-color var(--transition-normal), transform var(--transition-normal); }
+  .path-card:hover { border-color: rgba(62,189,121,0.4); transform: translateY(-2px); }
+  .path-card-num { position: absolute; top: var(--spacing-lg); right: var(--spacing-xl); font-size: 56px; font-weight: var(--font-weight-extrabold); color: rgba(255,255,255,0.06); line-height: 1; font-family: var(--font-family); pointer-events: none; }
+  .path-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-white); margin-bottom: var(--spacing-lg); position: relative; font-family: var(--font-family); }
+  .path-card-list { list-style: none; padding: 0; margin: 0 0 var(--spacing-xl); display: flex; flex-direction: column; gap: 10px; }
+  .path-card-list li { position: relative; padding-left: 18px; font-size: var(--font-size-sm); color: rgba(255,255,255,0.65); line-height: 1.5; font-family: var(--font-family); }
+  .path-card-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--color-bright); }
+  .path-card-actions { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid rgba(255,255,255,0.1); }
+  .path-card-link { font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.6px; text-decoration: none; transition: color var(--transition-fast); }
+  .path-card-link-join { color: var(--color-bright); }
+  .path-card:hover .path-card-link { color: rgba(255,255,255,0.85); }
+  .path-card:hover .path-card-link-join { color: var(--color-bright); }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
   .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
 
@@ -349,6 +363,8 @@
     .tab-panel-card.active { grid-template-columns: 1fr; }
     .tab-panel-photo { min-height: 220px; }
     .ps-grid { grid-template-columns: 1fr; }
+    .paths-grid { grid-template-columns: 1fr; }
+    .paths-grid::before { display: none; }
     .phase-grid { grid-template-columns: 1fr; }
     .community-cta-wrap { grid-template-columns: 1fr; text-align: center; }
     .community-cta-content p { margin-left: auto; margin-right: auto; }
@@ -385,11 +401,8 @@
       </div>
     </div>
     <a class="disabled-link" title="Coming soon">Resources</a>
-    <a href="/about">Community</a>
-    <a href="/founders">Founders</a>
-    <a href="/mentor">Mentors</a>
+    <a href="/join-us">Community</a>
     <a href="/partners">Partners</a>
-    <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
     <a href="https://hub.venturebuiltclub.com" class="nav-login">Log In</a>
@@ -415,11 +428,8 @@
     </div>
   </div>
   <a class="disabled-link" title="Coming soon">Resources</a>
-  <a href="/about">Community</a>
-  <a href="/founders">Founders</a>
-  <a href="/mentor">Mentors</a>
+  <a href="/join-us">Community</a>
   <a href="/partners">Partners</a>
-  <a href="/join-team">Join the Team</a>
   <a href="https://hub.venturebuiltclub.com">Log In</a>
 </div>
 </header>
@@ -427,7 +437,8 @@
 <section class="hero">
   <div class="wrap">
     <h1>Where Africa's Next<br>Unicorn Founders Are Built</h1>
-    <p class="lede">We are the biggest community for ambitious student builders across Africa.</p>
+    <p class="lede">We're building the biggest community of ambitious student builders across Africa.</p>
+    <p class="hero-trust-line">Free for all. No fees, no equity taken.</p>
     <div class="hero-cta-row">
       <a href="/apply" class="btn-primary">Apply for the Cohort</a>
       <a href="/apply/club" class="btn-primary">Apply to the Club</a>
@@ -436,27 +447,6 @@
     </div>
   </div>
 </section>
-
-<div class="bleed-banner" aria-hidden="true">
-  <svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="1200" height="300" fill="none"/>
-    <g fill="#0A2A1F" opacity="0.55">
-      <rect x="20" y="160" width="70" height="140"/>
-      <rect x="110" y="110" width="55" height="190"/>
-      <rect x="180" y="190" width="90" height="110"/>
-      <rect x="290" y="70" width="60" height="230"/>
-      <rect x="365" y="150" width="80" height="150"/>
-      <rect x="460" y="40" width="50" height="260"/>
-      <rect x="525" y="130" width="100" height="170"/>
-      <rect x="640" y="95" width="65" height="205"/>
-      <rect x="720" y="170" width="85" height="130"/>
-      <rect x="820" y="60" width="55" height="240"/>
-      <rect x="890" y="140" width="95" height="160"/>
-      <rect x="1000" y="105" width="60" height="195"/>
-      <rect x="1075" y="180" width="105" height="120"/>
-    </g>
-  </svg>
-</div>
 
 <section class="who-we-are reveal" id="who-we-are">
   <div class="wrap">
@@ -470,44 +460,53 @@
   </div>
 </section>
 
-<section class="program-structure reveal" id="tiers">
+<section class="paths-section reveal" id="tiers">
   <div class="wrap">
     <div class="ps-header">
       <span class="ps-label">One Mission, Three Ways In</span>
-      <h2>Cohort. Club. Community.</h2>
-      <p class="ps-intro">Each one serves a different stage of the same journey: turning what you know into something real.</p>
+      <h2>Community. Club. Cohort.</h2>
+      <p class="ps-intro">One journey, three entry points. Start wherever you are.</p>
     </div>
-    <div class="ps-grid ps-grid-3">
-      <a class="ps-card" href="/apply/club">
-        <span class="ps-num">Club</span>
-        <h3>The Pipeline</h3>
-        <div class="ps-meta">
-          <div class="ps-meta-row"><span>Who</span><span>Any OAU student</span></div>
-          <div class="ps-meta-row"><span>Length</span><span>All year</span></div>
-          <div class="ps-meta-row"><span>How in</span><span>Short application, reviewed in a week</span></div>
+    <div class="paths-grid">
+      <div class="path-card">
+        <span class="path-card-num" aria-hidden="true">01</span>
+        <h3>Community</h3>
+        <ul class="path-card-list">
+          <li>WhatsApp access to founders across Africa</li>
+          <li>Free access to self-paced startup learning in the hub</li>
+          <li>Find co-founders, share your progress, grow your network</li>
+        </ul>
+        <div class="path-card-actions">
+          <a class="path-card-link" href="/join-us#community">Learn more &rarr;</a>
+          <a class="path-card-link path-card-link-join" href="/community" target="_blank" rel="noopener">Join &rarr;</a>
         </div>
-        <p>A year-round home to learn how ventures are built, explore problems, find collaborators, and find your way into the Cohort. No idea or product required.</p>
-      </a>
-      <a class="ps-card" href="/apply">
-        <span class="ps-num">Cohort</span>
-        <h3>The Flagship</h3>
-        <div class="ps-meta">
-          <div class="ps-meta-row"><span>Who</span><span>Selected OAU builders</span></div>
-          <div class="ps-meta-row"><span>Length</span><span>12 weeks, once a semester</span></div>
-          <div class="ps-meta-row"><span>How in</span><span>Application, then two interviews</span></div>
+      </div>
+      <div class="path-card">
+        <span class="path-card-num" aria-hidden="true">02</span>
+        <h3>Club</h3>
+        <ul class="path-card-list">
+          <li>On campus group for students exploring building</li>
+          <li>Full hub access, no idea needed yet</li>
+          <li>Pitch your product at our grand event</li>
+        </ul>
+        <div class="path-card-actions">
+          <a class="path-card-link" href="/join-us#club">Learn more &rarr;</a>
+          <a class="path-card-link path-card-link-join" href="/apply/club">Join &rarr;</a>
         </div>
-        <p>The selective, hands-on programme for students already building. Teams build, learn from practitioners, and finish on stage at the Grand Pitch.</p>
-      </a>
-      <a class="ps-card" href="/community" target="_blank" rel="noopener">
-        <span class="ps-num">Community</span>
-        <h3>The Network</h3>
-        <div class="ps-meta">
-          <div class="ps-meta-row"><span>Who</span><span>Founders across Africa</span></div>
-          <div class="ps-meta-row"><span>Length</span><span>All year</span></div>
-          <div class="ps-meta-row"><span>How in</span><span>Short application, by stage</span></div>
+      </div>
+      <div class="path-card">
+        <span class="path-card-num" aria-hidden="true">03</span>
+        <h3>Cohort</h3>
+        <ul class="path-card-list">
+          <li>Selective, 12 week in person program</li>
+          <li>Full hub access, hands on building</li>
+          <li>Pitch your startup at our grand event</li>
+        </ul>
+        <div class="path-card-actions">
+          <a class="path-card-link" href="/join-us#cohort">Learn more &rarr;</a>
+          <a class="path-card-link path-card-link-join" href="/apply">Join &rarr;</a>
         </div>
-        <p>For people at idea stage or already building, anywhere in Africa. Peers, feedback, co-builders, and founder-to-founder introductions.</p>
-      </a>
+      </div>
     </div>
   </div>
 </section>
@@ -578,94 +577,6 @@
         <span class="ps-num">03</span>
         <h3>Funding and Pitch</h3>
         <p>Fundraising basics, the legal side of raising as a Nigerian founder, and sharpening your pitch, ending in the Grand Pitch in front of judges and investors.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="process reveal" id="join">
-  <div class="wrap">
-    <div class="ps-header">
-      <span class="ps-label">How To Join</span>
-      <h2>Two tracks. Two ways in.</h2>
-      <p class="ps-intro">The Cohort is the selective 12-week programme. The Club is open all year. Pick the one that fits where you are.</p>
-    </div>
-
-    <div class="track-nav-full">
-      <button class="track-btn-full active" data-track="cohort">Cohort</button>
-      <button class="track-btn-full" data-track="club">Club</button>
-    </div>
-
-    <div class="track-panel active" data-track="cohort">
-      <div class="tab-nav-full">
-        <button class="tab-btn-full active" data-tab="apply">Apply</button>
-        <button class="tab-btn-full" data-tab="interview">Interview</button>
-        <button class="tab-btn-full" data-tab="in">You're In</button>
-      </div>
-
-      <div class="tab-panel-card active" data-panel="apply">
-        <div class="tab-panel-content">
-          <h3>Application</h3>
-          <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
-          <p>Put real thought into your answers, we can tell when a response wasn't written by you. Please include your CV so we can properly review your application.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Tell us what you're building, and why.</span></div>
-      </div>
-
-      <div class="tab-panel-card" data-panel="interview">
-        <div class="tab-panel-content">
-          <h3>Interview</h3>
-          <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><span class="tpp-caption">A real conversation, not a rehearsed pitch.</span></div>
-      </div>
-
-      <div class="tab-panel-card" data-panel="in">
-        <div class="tab-panel-content">
-          <h3>You're In</h3>
-          <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like before your first masterclass.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the cohort.</span></div>
-      </div>
-
-      <div class="process-cta">
-        <a href="/apply" class="btn-primary">Apply to the Cohort</a>
-      </div>
-    </div>
-
-    <div class="track-panel" data-track="club">
-      <div class="tab-nav-full">
-        <button class="tab-btn-full active" data-tab="apply">Apply</button>
-        <button class="tab-btn-full" data-tab="interview">Review</button>
-        <button class="tab-btn-full" data-tab="in">You're In</button>
-      </div>
-
-      <div class="tab-panel-card active" data-panel="apply">
-        <div class="tab-panel-content">
-          <h3>Application</h3>
-          <p>A short form, three questions. No CV, no deck, no finished idea needed. Just tell us where you are and what pulls you toward building.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span class="tpp-caption">Short, simple, no CV needed.</span></div>
-      </div>
-
-      <div class="tab-panel-card" data-panel="interview">
-        <div class="tab-panel-content">
-          <h3>Review</h3>
-          <p>No interview. We review every application and get back to you within a week.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><span class="tpp-caption">Reviewed in a week, no interview.</span></div>
-      </div>
-
-      <div class="tab-panel-card" data-panel="in">
-        <div class="tab-panel-content">
-          <h3>You're In</h3>
-          <p>Welcome to the Club. You're now part of a year-round home to learn how ventures are built, find collaborators, and find your way into a future Cohort.</p>
-        </div>
-        <div class="tab-panel-photo"><div class="tpp-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span class="tpp-caption">Welcome to the Club.</span></div>
-      </div>
-
-      <div class="process-cta">
-        <a href="/apply/club" class="btn-primary">Apply to the Club</a>
       </div>
     </div>
   </div>
@@ -768,26 +679,6 @@
   </div>
 </section>
 
-<section class="team reveal" id="team">
-  <div class="wrap">
-    <div class="section-label">Advisors</div>
-    <h2>Meet the Team</h2>
-    <div class="team-row">
-      <div class="team-card">
-        <div class="team-avatar"></div>
-        <div>
-          <h3>Prof. Ishaya Gambo</h3>
-          <div class="role">Partner Advisor, OAU</div>
-          <p>"Prof. Gambo has agreed to head Venture Built as its first partner advisor."</p>
-        </div>
-      </div>
-      <div class="team-card more">
-        <p>More advisors joining soon</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="cta-footer reveal">
   <div class="wrap">
     <h2>Building something? You don't have to figure it out alone.</h2>
@@ -811,16 +702,13 @@
         <h4>Overview</h4>
         <a href="/location/oau">OAU Chapter</a>
         <a class="disabled-link" title="Coming soon">Resources</a>
-        <a href="/about">Community</a>
-        <a href="/founders">Founders</a>
-        <a href="/mentor">Mentors</a>
+        <a href="/join-us">Community</a>
         <a href="/partners">Partners</a>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
         <a href="https://hub.venturebuiltclub.com">Log In</a>
         <a href="/apply">Apply to Join</a>
-        <a href="/join-team">Join the Team</a>
         <a href="#faq">FAQ</a>
       </div>
 
