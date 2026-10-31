@@ -133,23 +133,28 @@
   .path-section.dark .meta-item .meta-value { color: rgba(255,255,255,0.85); }
 
   .tab-row { display: flex; justify-content: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-2xl); flex-wrap: wrap; }
-  .tab-btn { background: none; border: 1.5px solid var(--color-gray-300); color: var(--text-secondary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); font-family: var(--font-family); cursor: pointer; transition: all var(--transition-fast); }
+  .tab-btn { background: none; border: 1.5px solid var(--color-gray-300); color: var(--text-secondary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-sm); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); font-family: var(--font-family); cursor: pointer; transition: all var(--transition-fast); }
   .tab-btn.active { background: var(--color-bright); border-color: var(--color-bright); color: var(--color-black); }
   .path-section.dark .tab-btn { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); }
   .path-section.dark .tab-btn.active { background: var(--color-bright); border-color: var(--color-bright); color: var(--color-black); }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  .inside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); }
-  .inside-item { border-left: 2px solid var(--color-bright); padding-left: var(--spacing-lg); }
-  .inside-item h3 { font-size: var(--font-size-base); margin-bottom: 6px; }
-  .inside-item p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.55; }
+  .inside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-2xl); align-items: stretch; }
+  .inside-item { position: relative; overflow: hidden; border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-xl); transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .inside-item:hover { border-color: var(--color-bright); transform: translateY(-3px); }
+  .path-section.dark .inside-item { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.02); }
+  .path-section.dark .inside-item:hover { border-color: var(--color-bright); background: rgba(62,189,121,0.05); }
+  .inside-item h3 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-sm); }
+  .inside-item p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; }
   .path-section.dark .inside-item p { color: rgba(255,255,255,0.6); }
 
-  .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); }
-  .step-card { border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-xl); }
-  .path-section.dark .step-card { border-color: rgba(255,255,255,0.14); }
-  .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(62,189,121,0.14); color: var(--color-bright-dark); font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg); }
+  .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-2xl); align-items: stretch; }
+  .step-card { border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-xl); transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .step-card:hover { border-color: var(--color-bright); transform: translateY(-3px); }
+  .path-section.dark .step-card { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.02); }
+  .path-section.dark .step-card:hover { border-color: var(--color-bright); background: rgba(62,189,121,0.05); }
+  .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: var(--radius-sm); background: rgba(62,189,121,0.14); color: var(--color-bright-dark); font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-lg); }
   .path-section.dark .step-num { color: var(--color-bright); }
   .step-card h3 { font-size: var(--font-size-lg); margin-bottom: var(--spacing-md); }
   .step-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.6; }
@@ -223,7 +228,7 @@
       </div>
     </div>
     <a class="disabled-link" title="Coming soon">Resources</a>
-    <a href="/join-us">Community</a>
+    <a href="/join-us">Join Us</a>
     <a href="/partners">Partners</a>
   </div>
   <div class="nav-cta-row">
@@ -251,7 +256,7 @@
     </div>
   </div>
   <a class="disabled-link" title="Coming soon">Resources</a>
-  <a href="/join-us">Community</a>
+  <a href="/join-us">Join Us</a>
   <a href="/partners">Partners</a>
   <a href="https://hub.venturebuiltclub.com">Log In</a>
 </div>
@@ -289,15 +294,15 @@
       <div class="inside-grid">
         <div class="inside-item">
           <h3>WhatsApp Network</h3>
-          <p>Founders across Africa. Daily intros, questions, and feedback.</p>
+          <p>One group, founders across the continent. Ask a question in the morning and get an honest answer from someone who's actually building, not theorizing. Daily intros, deal flow, and real feedback on what you're working on.</p>
         </div>
         <div class="inside-item">
-          <h3>Hub Learning</h3>
-          <p>Problem Validation &middot; Solution Validation &middot; MVP Building &middot; Fundraising Basics.</p>
+          <h3>Free Hub Learning</h3>
+          <p>Self-paced lessons open to everyone, no gatekeeping. Problem Validation, Solution Validation, MVP Building, and Fundraising Basics, written and taught by people who've actually done it.</p>
         </div>
         <div class="inside-item">
           <h3>Find Your People</h3>
-          <p>Co-founder matching, shared progress, real feedback.</p>
+          <p>Looking for a co-founder, a technical partner, or just someone building something similar? Share your progress here and get matched with people building in your lane.</p>
         </div>
       </div>
     </div>
@@ -305,7 +310,15 @@
       <div class="inside-grid">
         <div class="inside-item">
           <h3>No Application</h3>
-          <p>Just click and join, open to anyone building anywhere.</p>
+          <p>No form, no waiting. Click the link below and you're in, open to anyone building anywhere in Africa.</p>
+        </div>
+        <div class="inside-item">
+          <h3>No Cost, Ever</h3>
+          <p>We don't charge for Community access and never will. It's the easiest way to find out if Venture Built is for you.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Grow Into More</h3>
+          <p>Community is also where OAU students test the waters before applying to the Club or Cohort.</p>
         </div>
       </div>
     </div>
@@ -335,15 +348,15 @@
       <div class="inside-grid">
         <div class="inside-item">
           <h3>Monthly Builds</h3>
-          <p>Hands-on sessions, testing problems and prototypes together.</p>
+          <p>Hands-on sessions every month, on campus. You'll test problems, sketch solutions, and build rough prototypes alongside other students, even before you have an idea of your own.</p>
         </div>
         <div class="inside-item">
           <h3>Full Hub Access</h3>
-          <p>Same learning, tools, and resources as the Cohort.</p>
+          <p>The same learning, tools, and resources the Cohort gets, no idea or product required to unlock it. You get in the door first, and figure the rest out as you go.</p>
         </div>
         <div class="inside-item">
-          <h3>Path to Cohort</h3>
-          <p>Active Club members get priority when Cohort applications open.</p>
+          <h3>Path to the Cohort</h3>
+          <p>Active Club members get priority consideration when Cohort applications open, a real on-ramp into the selective 12-week program, not a separate world.</p>
         </div>
       </div>
     </div>
@@ -461,7 +474,7 @@
       <a href="/">Home</a>
       <a href="/location/oau">OAU Chapter</a>
       <a class="disabled-link" title="Coming soon">Resources</a>
-      <a href="/join-us">Community</a>
+      <a href="/join-us">Join Us</a>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
