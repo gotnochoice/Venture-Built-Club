@@ -98,12 +98,6 @@
 
   /* HERO */
   .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
-  .hero::before {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(circle at 12% 15%, rgba(62,189,121,0.12) 0%, transparent 42%),
-      radial-gradient(circle at 88% 85%, rgba(62,189,121,0.09) 0%, transparent 42%);
-  }
   .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
   .hero .eyebrow { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-bright); margin-bottom: var(--spacing-lg); }
   .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
