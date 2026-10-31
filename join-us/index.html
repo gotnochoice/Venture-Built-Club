@@ -131,6 +131,20 @@
   .meta-item .meta-value { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); }
   .path-section.dark .meta-item .meta-value { color: rgba(255,255,255,0.85); }
 
+  .tab-row { display: flex; justify-content: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-2xl); flex-wrap: wrap; }
+  .tab-btn { background: none; border: 1.5px solid var(--color-gray-300); color: var(--text-secondary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-full); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); font-family: var(--font-family); cursor: pointer; transition: all var(--transition-fast); }
+  .tab-btn.active { background: var(--color-bright); border-color: var(--color-bright); color: var(--color-black); }
+  .path-section.dark .tab-btn { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); }
+  .path-section.dark .tab-btn.active { background: var(--color-bright); border-color: var(--color-bright); color: var(--color-black); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .inside-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); }
+  .inside-item { border-left: 2px solid var(--color-bright); padding-left: var(--spacing-lg); }
+  .inside-item h3 { font-size: var(--font-size-base); margin-bottom: 6px; }
+  .inside-item p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.55; }
+  .path-section.dark .inside-item p { color: rgba(255,255,255,0.6); }
+
   .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); margin-bottom: var(--spacing-2xl); }
   .step-card { border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-xl); }
   .path-section.dark .step-card { border-color: rgba(255,255,255,0.14); }
@@ -178,6 +192,7 @@
     .mobile-menu-btn { display: flex; }
     .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
     .step-grid { grid-template-columns: 1fr; }
+    .inside-grid { grid-template-columns: 1fr; }
     .meta-row-group { gap: var(--spacing-xl); }
     .advisor-card { flex-direction: column; text-align: center; }
   }
@@ -266,21 +281,32 @@
       <div class="meta-item"><span class="meta-label">Length</span><span class="meta-value">All year</span></div>
       <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">No campus required</span></div>
     </div>
-    <div class="step-grid">
-      <div class="step-card">
-        <span class="step-num">1</span>
-        <h3>WhatsApp Access</h3>
-        <p>Join founders across Africa in one place. Ask questions, share what you're working on, and get honest feedback.</p>
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="inside">What's Inside</button>
+      <button class="tab-btn" data-tab="join">How to Join</button>
+    </div>
+    <div class="tab-panel active" data-panel="inside">
+      <div class="inside-grid">
+        <div class="inside-item">
+          <h3>WhatsApp Network</h3>
+          <p>Founders across Africa. Daily intros, questions, and feedback.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Hub Learning</h3>
+          <p>Problem Validation &middot; Solution Validation &middot; MVP Building &middot; Fundraising Basics.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Find Your People</h3>
+          <p>Co-founder matching, shared progress, real feedback.</p>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-num">2</span>
-        <h3>Free Learning in the Hub</h3>
-        <p>Self-paced startup learning, open to everyone: real talks and essays on finding a problem, validating it, and building your first version.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-num">3</span>
-        <h3>Find Your People</h3>
-        <p>Find co-founders, share your progress, and grow your network, wherever you're building from.</p>
+    </div>
+    <div class="tab-panel" data-panel="join">
+      <div class="inside-grid">
+        <div class="inside-item">
+          <h3>No Application</h3>
+          <p>Just click and join, open to anyone building anywhere.</p>
+        </div>
       </div>
     </div>
     <div class="path-cta-row">
@@ -301,21 +327,43 @@
       <div class="meta-item"><span class="meta-label">Length</span><span class="meta-value">All year</span></div>
       <div class="meta-item"><span class="meta-label">How In</span><span class="meta-value">Short application, reviewed in a week</span></div>
     </div>
-    <div class="step-grid">
-      <div class="step-card">
-        <span class="step-num">1</span>
-        <h3>Application</h3>
-        <p>A short form, three questions. No CV, no deck, no finished idea needed. Just tell us where you are and what pulls you toward building.</p>
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="inside">What's Inside</button>
+      <button class="tab-btn" data-tab="join">How to Join</button>
+    </div>
+    <div class="tab-panel active" data-panel="inside">
+      <div class="inside-grid">
+        <div class="inside-item">
+          <h3>Monthly Builds</h3>
+          <p>Hands-on sessions, testing problems and prototypes together.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Full Hub Access</h3>
+          <p>Same learning, tools, and resources as the Cohort.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Path to Cohort</h3>
+          <p>Active Club members get priority when Cohort applications open.</p>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-num">2</span>
-        <h3>Review</h3>
-        <p>No interview. We review every application and get back to you within a week.</p>
-      </div>
-      <div class="step-card">
-        <span class="step-num">3</span>
-        <h3>You're In</h3>
-        <p>Welcome to the Club. Full hub access, a year-round home to learn how ventures are built, and your path into a future Cohort.</p>
+    </div>
+    <div class="tab-panel" data-panel="join">
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h3>Application</h3>
+          <p>Three questions. No CV, no deck, no finished idea needed.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h3>Review</h3>
+          <p>No interview. We review every application within a week.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h3>You're In</h3>
+          <p>Welcome to the Club. Full hub access, year-round.</p>
+        </div>
       </div>
     </div>
     <div class="path-cta-row">
@@ -336,21 +384,64 @@
       <div class="meta-item"><span class="meta-label">Length</span><span class="meta-value">12 weeks, once a semester</span></div>
       <div class="meta-item"><span class="meta-label">How In</span><span class="meta-value">Application, then two interviews</span></div>
     </div>
-    <div class="step-grid">
-      <div class="step-card">
-        <span class="step-num">1</span>
-        <h3>Application</h3>
-        <p>We're only looking for the best. Tell us why you want to build, or what about the startup world pulls you in. Come with a team, or come alone, we don't need a finished startup, just real conviction.</p>
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="structure">Structure</button>
+      <button class="tab-btn" data-tab="timeline">Timeline</button>
+      <button class="tab-btn" data-tab="join">How to Join</button>
+    </div>
+    <div class="tab-panel active" data-panel="structure">
+      <div class="inside-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="inside-item">
+          <h3>Masterclasses</h3>
+          <p>Weekly, in person plus guest webinars from founders and operators.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Build</h3>
+          <p>Ship real products. Talk to users. Iterate fast.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Community</h3>
+          <p>Build alongside ambitious peers. Learn from each other.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Demo Day</h3>
+          <p>Pitch to founders, investors, and operators.</p>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-num">2</span>
-        <h3>Interview</h3>
-        <p>If we think you have what it takes, we'll set up a call. We're listening for conviction you can defend, not a rehearsed pitch.</p>
+    </div>
+    <div class="tab-panel" data-panel="timeline">
+      <div class="inside-grid">
+        <div class="inside-item">
+          <h3>Foundations</h3>
+          <p>Find your idea and co-builders, validate version one.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Business</h3>
+          <p>Size your market, land first customers, nail unit economics.</p>
+        </div>
+        <div class="inside-item">
+          <h3>Funding &amp; Pitch</h3>
+          <p>Raise the right way, sharpen your pitch, Grand Pitch.</p>
+        </div>
       </div>
-      <div class="step-card">
-        <span class="step-num">3</span>
-        <h3>You're In</h3>
-        <p>Welcome to the cohort. You'll get access to eHub, get added to your cohort group, and be briefed on what the first two weeks look like.</p>
+    </div>
+    <div class="tab-panel" data-panel="join">
+      <div class="step-grid">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <h3>Application</h3>
+          <p>We're only looking for the best. Come with a team or alone, just bring real conviction.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <h3>Interview</h3>
+          <p>We're listening for conviction you can defend, not a rehearsed pitch.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <h3>You're In</h3>
+          <p>Access to eHub, your cohort group, and a briefing on week one.</p>
+        </div>
       </div>
     </div>
     <div class="path-cta-row">
@@ -394,6 +485,17 @@
 </footer>
 
 <script>
+  document.querySelectorAll('.path-section').forEach(section => {
+    const tabBtns = section.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+        section.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+        section.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === target));
+      });
+    });
+  });
+
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileNavPanel = document.getElementById('mobileNavPanel');
   if (mobileMenuBtn && mobileNavPanel) {
