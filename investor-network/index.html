@@ -95,6 +95,9 @@
 
   .btn-primary { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-sm); text-decoration: none; font-weight: var(--font-weight-extrabold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; border: none; cursor: pointer; }
   .btn-primary:hover { transform: scale(1.04); box-shadow: 0 14px 30px -8px rgba(62,189,121,0.5); }
+  .btn-secondary { border: 1.5px solid rgba(255,255,255,0.3); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-sm); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: all var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .btn-secondary:hover { border-color: var(--color-bright); color: var(--color-bright); }
+  .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-top: var(--spacing-xl); }
 
   /* HERO */
   .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
@@ -104,7 +107,7 @@
   .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 600px; margin: 0; line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); }
 
   /* SEARCH + FILTERS */
-  .investor-toolbar { background: var(--color-gray-100); padding: var(--spacing-3xl) 0; border-bottom: 1px solid var(--color-gray-300); }
+  .investor-toolbar { background: var(--color-gray-100); padding: var(--spacing-3xl) 0; border-bottom: 1px solid var(--color-gray-300); scroll-margin-top: 80px; }
   .investor-search { width: 100%; max-width: 640px; margin: 0 auto var(--spacing-xl); display: block; padding: var(--spacing-lg) var(--spacing-xl); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-md); font-size: var(--font-size-base); font-family: var(--font-family); color: var(--text-primary); }
   .investor-search:focus { outline: none; border-color: var(--color-bright); }
   .filter-row { display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap; }
@@ -221,10 +224,14 @@
     <span class="eyebrow">Investor Network</span>
     <h1>Meet the Investors Backing African Founders</h1>
     <p class="lede">A curated list of funds and angels actively investing in early-stage African startups. Search by sector or filter by stage to find who fits where you are.</p>
+    <div class="hero-cta-row">
+      <a href="/apply" class="btn-primary">Apply to Join</a>
+      <a href="#investors" class="btn-secondary">Browse Investors</a>
+    </div>
   </div>
 </section>
 
-<section class="investor-toolbar">
+<section class="investor-toolbar" id="investors">
   <div class="wrap">
     <input type="text" class="investor-search" id="investorSearch" placeholder="Search investors, sectors, or focus areas...">
     <div class="filter-row" id="filterRow">
