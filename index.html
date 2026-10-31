@@ -247,16 +247,15 @@
   .ps-meta-row span:last-child { color: rgba(255,255,255,0.75); text-align: right; }
 
   .paths-section { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
-  .paths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); position: relative; }
-  .paths-grid::before { content: ""; position: absolute; top: 52px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.14); z-index: 0; }
-  .path-card { position: relative; z-index: 1; background: #04140E; border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-xl); text-decoration: none; display: block; transition: border-color var(--transition-normal), transform var(--transition-normal); }
-  .path-card:hover { border-color: rgba(62,189,121,0.4); transform: translateY(-2px); }
-  .path-card-num { position: absolute; top: var(--spacing-lg); right: var(--spacing-xl); font-size: 56px; font-weight: var(--font-weight-extrabold); color: rgba(255,255,255,0.06); line-height: 1; font-family: var(--font-family); pointer-events: none; }
+  .paths-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-xl); position: relative; align-items: stretch; }
+  .path-card { position: relative; z-index: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-xl); text-decoration: none; display: flex; flex-direction: column; transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .path-card:hover { border-color: rgba(62,189,121,0.4); background: rgba(62,189,121,0.03); transform: translateY(-3px); }
+  .path-card-num { font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); letter-spacing: 1.5px; margin-bottom: var(--spacing-md); font-family: var(--font-family); }
   .path-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-white); margin-bottom: var(--spacing-lg); position: relative; font-family: var(--font-family); }
   .path-card-list { list-style: none; padding: 0; margin: 0 0 var(--spacing-xl); display: flex; flex-direction: column; gap: 10px; }
   .path-card-list li { position: relative; padding-left: 18px; font-size: var(--font-size-sm); color: rgba(255,255,255,0.65); line-height: 1.5; font-family: var(--font-family); }
   .path-card-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--color-bright); }
-  .path-card-actions { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid rgba(255,255,255,0.1); }
+  .path-card-actions { display: flex; gap: var(--spacing-lg); padding-top: var(--spacing-lg); margin-top: auto; border-top: 1px solid rgba(255,255,255,0.1); }
   .path-card-link { font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.6px; text-decoration: none; transition: color var(--transition-fast); }
   .path-card-link-join { color: var(--color-bright); }
   .path-card:hover .path-card-link { color: rgba(255,255,255,0.85); }
@@ -364,7 +363,6 @@
     .tab-panel-photo { min-height: 220px; }
     .ps-grid { grid-template-columns: 1fr; }
     .paths-grid { grid-template-columns: 1fr; }
-    .paths-grid::before { display: none; }
     .phase-grid { grid-template-columns: 1fr; }
     .community-cta-wrap { grid-template-columns: 1fr; text-align: center; }
     .community-cta-content p { margin-left: auto; margin-right: auto; }
