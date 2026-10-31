@@ -108,7 +108,8 @@
   .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
   .hero .eyebrow { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-bright); margin-bottom: var(--spacing-lg); }
   .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
-  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: var(--spacing-2xl); line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: var(--spacing-lg); line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+  .hero-trust-line { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--color-bright); margin-bottom: var(--spacing-xl); font-family: var(--font-family); }
   .jump-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; }
   .jump-pill { border: 1.5px solid rgba(255,255,255,0.3); border-radius: var(--radius-sm); padding: var(--spacing-sm) var(--spacing-xl); font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); text-decoration: none; color: var(--color-white); transition: all var(--transition-fast); }
   .jump-pill:hover { border-color: var(--color-bright); color: var(--color-bright); }
@@ -279,10 +280,11 @@
   <div class="wrap">
     <h1>Join Us</h1>
     <p class="lede">Venture Built has three ways in: Community, Club, and Cohort. Each one gives you a different level of access, built for where you are right now. Pick one below to see exactly what's inside and how to join.</p>
+    <p class="hero-trust-line">Free for all. No fees, no equity taken.</p>
     <div class="jump-row">
       <a href="#community" class="btn-secondary">Community</a>
       <a href="#club" class="btn-secondary">Club</a>
-      <a href="#cohort" class="btn-secondary">Cohort</a>
+      <a href="#cohort" class="btn-primary">Cohort</a>
     </div>
   </div>
 </section>
