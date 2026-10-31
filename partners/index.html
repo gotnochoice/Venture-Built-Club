@@ -108,7 +108,7 @@
   /* WHO ARE OUR PARTNERS (matches homepage's Who We Are pattern) */
   .who-we-are { padding: var(--spacing-6xl) 0; text-align: center; }
   .who-we-are h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
-  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin: 0 auto var(--spacing-lg); font-family: var(--font-family); text-align: center; }
 
   /* MENTOR PATHS (two-card split) */
   .mentor-types { padding: 0 0 var(--spacing-6xl); }
@@ -119,21 +119,21 @@
   .mentor-type-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); color: var(--text-primary); font-family: var(--font-family); }
   .mentor-type-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; font-family: var(--font-family); margin-bottom: var(--spacing-xl); }
   .mentor-type-card .btn-primary { padding: var(--spacing-md) var(--spacing-2xl); font-size: var(--font-size-sm); }
-  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
-  .ps-closing { max-width: 740px; margin: var(--spacing-2xl) auto 0; text-align: center; font-size: var(--font-size-base); color: rgba(255,255,255,0.6); line-height: 1.55; font-family: var(--font-family); }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+  .ps-closing { max-width: 740px; margin: var(--spacing-3xl) auto 0; text-align: center; font-size: var(--font-size-base); color: rgba(255,255,255,0.55); line-height: 1.6; font-family: var(--font-family); }
 
   /* WAYS TO GET INVOLVED (matches homepage's Program Structure dark grid) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
-  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); }
+  .ps-header { text-align: center; max-width: 640px; margin: 0 auto var(--spacing-5xl); }
   .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
-  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
-  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.65; font-family: var(--font-family); }
-  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
-  .ps-card { background: #04140E; padding: var(--spacing-2xl); transition: background var(--transition-normal); }
-  .ps-card:hover { background: rgba(62,189,121,0.06); }
-  .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-lg); letter-spacing: 1.5px; font-family: var(--font-family); }
-  .ps-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); }
-  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.22; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
+  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.7; font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); }
+  .ps-card { position: relative; overflow: hidden; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-3xl); transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .ps-card:hover { border-color: var(--color-bright); background: rgba(62,189,121,0.05); transform: translateY(-3px); }
+  .ps-num { position: absolute; top: var(--spacing-lg); right: var(--spacing-xl); font-size: 48px; font-weight: var(--font-weight-extrabold); color: rgba(255,255,255,0.06); letter-spacing: 0; line-height: 1; font-family: var(--font-family); pointer-events: none; }
+  .ps-card h3 { position: relative; font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); max-width: 85%; }
+  .ps-card p { position: relative; font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.7; font-family: var(--font-family); }
   .ps-card p em { color: rgba(255,255,255,0.4); }
 
   .connect-section .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-bright-dark); text-align: center; margin-bottom: var(--spacing-md); }
