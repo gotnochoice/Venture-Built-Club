@@ -9,6 +9,43 @@ module.exports = async (req, res) => {
     return respondError(res, 405, 'Method not allowed');
   }
 
+  // The Club application is a shorter form than the Cohort one below (no
+  // CV/deck) - shares this endpoint and the Vercel function slot it uses
+  // rather than adding a new function (the project is already near the
+  // free-tier 12-function cap).
+  if (req.body && req.body.kind === 'club') {
+    try {
+      const { fullName, email, phone, department, level, groupFit, focus, why, followedSocials } = req.body;
+      if (!fullName || !email || !phone || !department || !level || !groupFit || !focus || !why) {
+        return respondError(res, 400, 'Please fill in all required fields');
+      }
+      if (!followedSocials) {
+        return respondError(res, 400, 'Please confirm you have followed Venture Built on social media');
+      }
+
+      const countWords = (text) => text.trim().split(/\s+/).filter(Boolean).length;
+      if (countWords(focus) < 25 || countWords(why) < 25) {
+        return respondError(res, 400, 'Please write at least 25 words for each question');
+      }
+
+      const applicationId = uuidv4();
+      const pool = getPool();
+      await pool.query(
+        `INSERT INTO club_applications (id, full_name, email, phone, department, level, group_fit, focus, why, followed_socials)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [applicationId, fullName, email, phone, department, level, groupFit, focus, why, !!followedSocials]
+      );
+
+      return respondSuccess(res, 201, {
+        message: 'Application submitted successfully',
+        applicationId
+      });
+    } catch (error) {
+      console.error(error);
+      return respondError(res, 500, 'Failed to submit application');
+    }
+  }
+
   try {
     const {
       fullName, email, phone, department, level,

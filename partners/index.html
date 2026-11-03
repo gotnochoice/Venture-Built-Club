@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partners | Venture Built</title>
+<title>Partners & Mentors | Venture Built</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
 <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="description" content="Venture Built partners with companies and organizations who want to help Africa's next generation of founders get their footing.">
+<meta name="description" content="Venture Built mentors and partners are the builders, operators, and organizations who help Africa's next generation of founders get their footing.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -92,7 +92,8 @@
   .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; padding: var(--spacing-sm) var(--spacing-2xl); border-bottom: none; }
   .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
 
-  .btn-primary { background: var(--color-bright); color: var(--text-primary); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 24px rgba(10,10,10,0.3); border: none; cursor: pointer; }
+  .btn-primary { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-sm); text-decoration: none; font-weight: 800; font-size: 15px; display: inline-block; border: none; cursor: pointer; transition: transform var(--transition-fast), box-shadow var(--transition-fast); }
+  .btn-primary:hover { transform: scale(1.04); box-shadow: 0 14px 30px -8px rgba(62,189,121,0.5); }
 
   /* HERO */
   .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
@@ -101,24 +102,39 @@
   .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
   .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 620px; line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); margin-bottom: var(--spacing-2xl); }
   .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; }
+  .jump-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-top: var(--spacing-xl); }
+  .jump-pill { border: 1.5px solid rgba(255,255,255,0.18); border-radius: var(--radius-full); padding: var(--spacing-sm) var(--spacing-xl); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); text-decoration: none; color: rgba(255,255,255,0.8); transition: all var(--transition-fast); }
+  .jump-pill:hover { border-color: var(--color-bright); color: var(--color-bright); }
 
   /* WHO ARE OUR PARTNERS (matches homepage's Who We Are pattern) */
   .who-we-are { padding: var(--spacing-6xl) 0; text-align: center; }
   .who-we-are h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
-  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin: 0 auto var(--spacing-lg); font-family: var(--font-family); text-align: center; }
+
+  /* MENTOR PATHS (two-card split) */
+  .mentor-types { padding: 0 0 var(--spacing-6xl); }
+  .mentor-types-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); }
+  .mentor-type-card { background: var(--color-white); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-xl); padding: var(--spacing-3xl); transition: border-color var(--transition-normal), box-shadow var(--transition-normal); }
+  .mentor-type-card:hover { border-color: var(--color-bright); box-shadow: var(--shadow-lg); }
+  .mentor-type-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2px; color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
+  .mentor-type-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); color: var(--text-primary); font-family: var(--font-family); }
+  .mentor-type-card p { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.65; font-family: var(--font-family); margin-bottom: var(--spacing-xl); }
+  .mentor-type-card .btn-primary { padding: var(--spacing-md) var(--spacing-2xl); font-size: var(--font-size-sm); }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+  .ps-closing { max-width: 740px; margin: var(--spacing-3xl) auto 0; text-align: center; font-size: var(--font-size-base); color: rgba(255,255,255,0.55); line-height: 1.6; font-family: var(--font-family); }
 
   /* WAYS TO GET INVOLVED (matches homepage's Program Structure dark grid) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); }
-  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); }
+  .ps-header { text-align: center; max-width: 640px; margin: 0 auto var(--spacing-5xl); }
   .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
-  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
-  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.65; font-family: var(--font-family); }
-  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
-  .ps-card { background: #04140E; padding: var(--spacing-2xl); transition: background var(--transition-normal); }
-  .ps-card:hover { background: rgba(62,189,121,0.06); }
-  .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-lg); letter-spacing: 1.5px; font-family: var(--font-family); }
-  .ps-card h3 { font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); }
-  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.22; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
+  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.7; font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); }
+  .ps-card { position: relative; overflow: hidden; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-3xl); transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .ps-card:hover { border-color: var(--color-bright); background: rgba(62,189,121,0.05); transform: translateY(-3px); }
+  .ps-num { position: absolute; top: var(--spacing-lg); right: var(--spacing-xl); font-size: 48px; font-weight: var(--font-weight-extrabold); color: rgba(255,255,255,0.06); letter-spacing: 0; line-height: 1; font-family: var(--font-family); pointer-events: none; }
+  .ps-card h3 { position: relative; font-size: var(--font-size-xl); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); max-width: 85%; }
+  .ps-card p { position: relative; font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.7; font-family: var(--font-family); }
   .ps-card p em { color: rgba(255,255,255,0.4); }
 
   .connect-section .section-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-bright-dark); text-align: center; margin-bottom: var(--spacing-md); }
@@ -182,6 +198,8 @@
     .nav-links, .nav-cta-row { display: none; }
     .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
     .ps-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .mentor-types-grid { grid-template-columns: 1fr; }
     .field-row, .help-grid { grid-template-columns: 1fr; }
     .connect-form { padding: var(--spacing-2xl) var(--spacing-lg); }
     .field input[type="text"], .field input[type="email"] { font-size: 16px; }
@@ -212,14 +230,13 @@
         </div>
       </div>
     </div>
-    <a class="disabled-link" title="Coming soon">Resources</a>
-    <a href="/about">Community</a>
-    <a href="/mentor">Mentors</a>
+    <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
     <a href="/partners">Partners</a>
-    <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
-    <a href="/portal" class="nav-login">Log In</a>
+    <a href="https://hub.venturebuiltclub.com" class="nav-login">Log In</a>
     <a href="/apply" class="nav-cta">Apply to join</a>
   </div>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
@@ -242,27 +259,86 @@
       <span class="mobile-nav-accordion-link disabled">Your Campus</span>
     </div>
   </div>
-  <a class="disabled-link" title="Coming soon">Resources</a>
-  <a href="/about">Community</a>
-  <a href="/mentor">Mentors</a>
+  <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
   <a href="/partners">Partners</a>
-  <a href="/join-team">Join the Team</a>
-  <a href="/portal">Log In</a>
+  <a href="https://hub.venturebuiltclub.com">Log In</a>
 </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Partners</div>
-    <h1>Open Real Doors for Africa's Next Founders</h1>
-    <p class="lede">Venture Built partners with companies and organizations who want to help our student founders get their footing. We don't take equity or charge fees, our partners simply help us prepare builders and connect ready teams to the resources that can take them further.</p>
+    <div class="eyebrow">Partners &amp; Mentors</div>
+    <h1>Help Build Africa's Next Founders</h1>
+    <p class="lede">Venture Built works with the people and organizations willing to share what they know, open their networks, and give student founders a real footing. No equity, no fees, just people showing up for the next generation.</p>
     <div class="hero-cta-row">
+      <a href="#mentor-types" class="btn-primary">Become a Mentor</a>
       <a href="#connect" class="btn-primary">Become a Partner</a>
+    </div>
+    <div class="jump-row">
+      <a href="#mentors" class="jump-pill">Mentors</a>
+      <a href="#partners" class="jump-pill">Partners</a>
     </div>
   </div>
 </section>
 
-<section class="who-we-are" id="who-are-our-partners">
+<section class="who-we-are reveal" id="mentors">
+  <div class="wrap">
+    <h2>Who Are Our Mentors</h2>
+    <p>Venture Built mentors are exceptional leaders across industries, seasoned entrepreneurs, operators, specialized professionals, and investors, united by a genuine commitment to helping founders build with clarity, conviction, and speed.</p>
+    <p><strong>Different backgrounds, one thing in common: they're genuinely invested in the founders they work with.</strong></p>
+  </div>
+</section>
+
+<section class="mentor-types reveal" id="mentor-types">
+  <div class="wrap">
+    <div class="mentor-types-grid">
+      <div class="mentor-type-card">
+        <span class="mentor-type-label">Path One</span>
+        <h3>Started Building in School</h3>
+        <p>Founders and operators who began building while they were still students, some right here at Venture Built. They know what it's like to balance a venture with lectures, and can speak directly to the road from a dorm-room idea to something real.</p>
+        <a href="/apply-mentor?path=student" class="btn-primary">Apply to Become a Mentor</a>
+      </div>
+      <div class="mentor-type-card">
+        <span class="mentor-type-label">Path Two</span>
+        <h3>Built Outside the Classroom</h3>
+        <p>Founders and operators who started building after school, in the wider industry. They bring the vantage point of what it takes to scale, raise, hire, and operate once the stakes get bigger.</p>
+        <a href="/apply-mentor?path=operator" class="btn-primary">Apply to Become a Mentor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="program-structure reveal" id="how-you-help">
+  <div class="wrap">
+    <div class="ps-header">
+      <div class="ps-label">How You Help</div>
+      <h2>A Few Hours, However It Fits</h2>
+      <p class="ps-intro">A mentor is anyone with real experience willing to pass some of it on. There's no single way to do that.</p>
+    </div>
+    <div class="phase-grid">
+      <div class="ps-card">
+        <span class="ps-num">01</span>
+        <h3>Lead a Webinar</h3>
+        <p>One hour, once. Tell your story and take questions from our founders, online.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">02</span>
+        <h3>Join as a Pitch Reviewer or Judge</h3>
+        <p>A few hours across Demo Day and the Grand Pitch, giving founders real, honest feedback.</p>
+      </div>
+      <div class="ps-card">
+        <span class="ps-num">03</span>
+        <h3>Mentor</h3>
+        <p>One-on-one conversations, as often as works for you. Flexible, ongoing.</p>
+      </div>
+    </div>
+    <p class="ps-closing">Specific asks, like an hour on a Thursday evening, are sent once you sign up.</p>
+  </div>
+</section>
+
+<section class="who-we-are reveal" id="partners">
   <div class="wrap">
     <h2>Who Are Our Partners</h2>
     <p>Our partners are companies and organizations already close to the work, businesses that have built products, funds that have raised and deployed capital, and institutions that run the programs early founders rely on.</p>
@@ -398,15 +474,14 @@
       <h4>Overview</h4>
       <a href="/">Home</a>
       <a href="/location/oau">OAU Chapter</a>
-      <a class="disabled-link" title="Coming soon">Resources</a>
-      <a href="/about">Community</a>
-      <a href="/mentor">Mentors</a>
+      <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
-      <a href="/portal">Log In</a>
+      <a href="https://hub.venturebuiltclub.com">Log In</a>
       <a href="/apply">Apply to Join</a>
-      <a href="/join-team">Join the Team</a>
       <a href="/partners">Partners</a>
       <a href="#connect">Get in Touch</a>
     </div>

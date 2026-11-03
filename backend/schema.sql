@@ -247,6 +247,29 @@ CREATE TABLE mentor_applications (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Club Applications (year-round, OAU students - separate from the
+-- selective Cohort application above: a short form, reviewed within
+-- a week per the Cohort/Club/Community strategy doc)
+CREATE TABLE IF NOT EXISTS club_applications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) NOT NULL,
+  department VARCHAR(255) NOT NULL,
+  level VARCHAR(50) NOT NULL, -- 100L, 200L, 300L, 400L, 500L, Masters, PhD
+  group_fit VARCHAR(50) NOT NULL, -- builder, problem_spotter, business_owner, technical, curious
+  focus TEXT NOT NULL, -- the problem they care about, or what they're building
+  why TEXT NOT NULL,
+  followed_socials BOOLEAN DEFAULT false,
+
+  stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
+  internal_notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE INDEX IF NOT EXISTS idx_club_applications_stage ON club_applications(stage);
+CREATE INDEX IF NOT EXISTS idx_club_applications_email ON club_applications(email);
+
 -- Create indexes for performance
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_profiles_user_id ON profiles(user_id);

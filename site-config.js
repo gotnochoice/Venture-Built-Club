@@ -1,16 +1,16 @@
 /*
  * Venture Built: homepage configuration
- * Flip these without touching the page markup. Defaults are the safe ones
- * (applications closed, no unverified claims). The HTML itself ships in the
+ * Flip these without touching the page markup. Applications are ON because both forms (/apply and /apply/club) are live.
+ * Set them to false to show "Applications opening soon" instead. The HTML itself ships in the
  * safe state, so the page reads correctly even if this file fails to load.
  */
 window.siteConfig = {
   // false -> button reads "Applications opening soon", disabled, no link
-  cohort: { applicationsOpen: false },
+  cohort: { applicationsOpen: true },
 
   // access "apply" -> "Apply to the Club"; "open" -> "Join the Club".
   // For "apply", applicationsOpen:false shows the disabled "Applications opening soon".
-  club: { access: "apply", applicationsOpen: false },
+  club: { access: "apply", applicationsOpen: true },
 
   features: {
     whatsappFoundersCopy: true,      // false -> "A WhatsApp community for student builders"

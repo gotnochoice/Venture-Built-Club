@@ -26,14 +26,12 @@ Simply open `index.html` in your browser to view the website.
 
 ## Homepage config (`site-config.js`)
 
-The homepage ships in its safe default state (applications closed, no unverified claims). Flip states in `site-config.js`, no markup changes needed:
+The HTML ships in the safe state ("Applications opening soon") and `site-config.js` turns the live forms on. Flip states in `site-config.js`, no markup changes needed:
 
 - `cohort.applicationsOpen` – `false`: "Applications opening soon" (disabled, no link); `true`: "Apply for the Cohort" → `/apply`
 - `club.access` (`"apply"` | `"open"`) and `club.applicationsOpen` – "Apply to the Club" / "Join the Club" → `/apply/club`
 - `features.whatsappFoundersCopy`, `investorIntroductionLine`, `coBuildersSpace`, `hubSharingSpace`
 - `routes.founders | investors | partners | contactEmail`
-
-`/join-us` is currently a temporary redirect to `/#pathways` in `vercel.json`. Remove it when a real page exists.
 
 ## Adding the Hub screenshot
 

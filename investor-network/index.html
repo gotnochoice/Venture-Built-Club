@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Network | Venture Built</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
+<link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="description" content="A curated list of investors actively backing early-stage African founders, from pre-seed angels to institutional VC funds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-black: #0A0A0A;
+    --color-forest: #0F3D2E;
+    --color-forest-light: #1A5C42;
+    --color-forest-lighter: #2A7A5C;
+    --color-white: #FFFFFF;
+    --color-bright: #3EBD79;
+    --color-bright-dark: #2DA863;
+    --color-bright-light: #60D18F;
+    --color-gray-100: #F9FAFB;
+    --color-gray-300: #E5E7EB;
+    --color-gray-400: #D1D5DC;
+    --text-primary: #0A0A0A;
+    --text-secondary: #6B7268;
+    --text-muted: #9CA3AF;
+    --font-family: 'Manrope', sans-serif;
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 15px;
+    --font-size-lg: 16px;
+    --font-size-xl: 18px;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 12px; --spacing-lg: 16px;
+    --spacing-xl: 24px; --spacing-2xl: 32px; --spacing-3xl: 40px; --spacing-4xl: 48px;
+    --spacing-5xl: 60px; --spacing-6xl: 80px;
+    --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-full: 50px;
+    --transition-fast: 0.15s ease; --transition-normal: 0.3s ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-family); background: #FAFBF9; color: var(--text-primary); line-height: 1.5; }
+  h1, h2, h3 { font-family: var(--font-family); font-weight: var(--font-weight-bold); letter-spacing: -0.01em; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--spacing-2xl); }
+  a { color: inherit; }
+  .disabled-link { opacity: 0.45; cursor: default; pointer-events: none; }
+
+  /* NAV */
+  .site-header { position: sticky; top: 0; z-index: 100; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-md) var(--spacing-2xl); background: var(--color-white); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
+  .logo { font-family: var(--font-family); font-weight: var(--font-weight-extrabold); font-size: var(--font-size-lg); letter-spacing: -0.5px; color: var(--text-primary); text-decoration: none; }
+  .logo .logo-built { color: var(--color-bright); }
+  .logo { display: inline-flex; align-items: center; gap: 8px; }
+  .logo img { display: block; flex-shrink: 0; }
+  .nav-links { display: flex; align-items: center; gap: var(--spacing-3xl); }
+  .nav-links a { text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-trigger { display: flex; align-items: center; gap: 5px; background: none; border: none; padding: 0; text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); font-family: var(--font-family); cursor: pointer; }
+  .nav-dropdown-trigger svg { transition: transform var(--transition-fast); }
+  .nav-dropdown:hover .nav-dropdown-trigger svg, .nav-dropdown.open .nav-dropdown-trigger svg { transform: rotate(180deg); }
+  .nav-dropdown-panel { position: absolute; top: calc(100% + 20px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 260px; background: var(--color-white); border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); box-shadow: 0 16px 40px rgba(10,10,10,0.14); padding: var(--spacing-xl); opacity: 0; visibility: hidden; transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast); z-index: 200; }
+  .nav-dropdown:hover .nav-dropdown-panel, .nav-dropdown.open .nav-dropdown-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+  .nav-dropdown-group { margin-bottom: var(--spacing-lg); }
+  .nav-dropdown-group:last-child { margin-bottom: 0; }
+  .nav-dropdown-group-title { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-muted); margin-bottom: var(--spacing-sm); font-family: var(--font-family); }
+  .nav-dropdown-link { display: block; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-primary); text-decoration: none; padding: var(--spacing-sm) 0; font-family: var(--font-family); }
+  .nav-dropdown-link:hover { color: var(--color-bright-dark); }
+  .nav-dropdown-link.disabled { color: var(--text-muted); cursor: default; }
+  .nav-cta { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-sm); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-bold); transition: all var(--transition-fast); display: inline-block; }
+  .nav-cta:hover { transform: translateY(-2px); }
+  .nav-cta-row { display: flex; align-items: center; gap: var(--spacing-md); }
+  .nav-login { border: 1.5px solid var(--color-gray-300); color: var(--text-primary); padding: var(--spacing-sm) var(--spacing-xl); border-radius: var(--radius-sm); text-decoration: none; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); transition: border-color var(--transition-fast), background var(--transition-fast); display: inline-block; }
+  .nav-login:hover { border-color: var(--color-forest); background: var(--color-gray-100); }
+  .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-white); padding: var(--spacing-md); align-items: center; justify-content: center; }
+  .mobile-menu-btn .hidden { display: none !important; }
+  .mobile-nav-panel { display: none; background: linear-gradient(135deg, var(--color-forest) 0%, #1A4D3A 100%); overflow: hidden; max-height: 0; transition: max-height 0.3s ease; }
+  .mobile-nav-panel.open { max-height: calc(100vh - 60px); overflow-y: auto; }
+  .mobile-nav-panel a { display: block; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family); }
+  .mobile-nav-accordion-trigger { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; color: var(--color-white); text-decoration: none; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); padding: var(--spacing-lg) var(--spacing-2xl); border-bottom: 1px solid rgba(255,255,255,0.1); font-family: var(--font-family); cursor: pointer; }
+  .mobile-nav-accordion-trigger svg { transition: transform var(--transition-fast); }
+  .mobile-nav-accordion.open .mobile-nav-accordion-trigger svg { transform: rotate(180deg); }
+  .mobile-nav-accordion-panel { max-height: 0; overflow: hidden; background: rgba(0,0,0,0.15); transition: max-height 0.3s ease; }
+  .mobile-nav-accordion.open .mobile-nav-accordion-panel { max-height: 220px; }
+  .mobile-nav-accordion-label { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); padding: var(--spacing-md) var(--spacing-2xl) var(--spacing-xs); font-family: var(--font-family); }
+  .mobile-nav-accordion-panel a, .mobile-nav-accordion-link { display: block; color: rgba(255,255,255,0.85); text-decoration: none; font-size: var(--font-size-sm); padding: var(--spacing-sm) var(--spacing-2xl); font-family: var(--font-family); border-bottom: none; }
+  .mobile-nav-accordion-link.disabled { color: rgba(255,255,255,0.4); }
+
+  .btn-primary { background: var(--color-bright); color: var(--color-black); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-sm); text-decoration: none; font-weight: var(--font-weight-extrabold); font-size: var(--font-size-base); display: inline-block; transition: transform var(--transition-fast), box-shadow var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; border: none; cursor: pointer; }
+  .btn-primary:hover { transform: scale(1.04); box-shadow: 0 14px 30px -8px rgba(62,189,121,0.5); }
+  .btn-secondary { border: 1.5px solid rgba(255,255,255,0.3); background: transparent; color: var(--color-white); padding: var(--spacing-lg) var(--spacing-3xl); border-radius: var(--radius-sm); text-decoration: none; font-weight: var(--font-weight-bold); font-size: var(--font-size-base); display: inline-block; transition: all var(--transition-fast); font-family: var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .btn-secondary:hover { border-color: var(--color-bright); color: var(--color-bright); }
+  .hero-cta-row { display: flex; gap: var(--spacing-md); flex-wrap: wrap; margin-top: var(--spacing-xl); }
+
+  /* HERO */
+  .hero { background: #04140E; color: var(--color-white); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; padding: var(--spacing-4xl) 0; }
+  .hero > .wrap { position: relative; z-index: 1; text-align: left; display: flex; flex-direction: column; align-items: flex-start; width: 100%; max-width: 900px; margin: 0; }
+  .hero .eyebrow { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-bright); margin-bottom: var(--spacing-lg); }
+  .hero h1 { font-size: clamp(26px, 3.8vw, 44px); font-weight: var(--font-weight-medium); line-height: 1.15; margin-bottom: var(--spacing-lg); font-family: var(--font-family); letter-spacing: -0.03em; text-transform: uppercase; }
+  .hero p.lede { font-size: var(--font-size-base); color: rgba(255,255,255,0.75); max-width: 600px; margin: 0; line-height: 1.65; font-family: var(--font-family); font-weight: var(--font-weight-regular); }
+
+  /* SEARCH + FILTERS */
+  .investor-toolbar { background: var(--color-gray-100); padding: var(--spacing-3xl) 0; border-bottom: 1px solid var(--color-gray-300); scroll-margin-top: 80px; }
+  .investor-search { width: 100%; max-width: 640px; margin: 0 auto var(--spacing-xl); display: block; padding: var(--spacing-lg) var(--spacing-xl); border: 1.5px solid var(--color-gray-300); border-radius: var(--radius-md); font-size: var(--font-size-base); font-family: var(--font-family); color: var(--text-primary); }
+  .investor-search:focus { outline: none; border-color: var(--color-bright); }
+  .filter-row { display: flex; justify-content: center; gap: var(--spacing-sm); flex-wrap: wrap; }
+  .filter-pill { background: var(--color-white); border: 1.5px solid var(--color-gray-300); color: var(--text-secondary); padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--radius-sm); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); font-family: var(--font-family); cursor: pointer; transition: all var(--transition-fast); }
+  .filter-pill.active { background: var(--color-bright); border-color: var(--color-bright); color: var(--color-black); }
+  .filter-pill:hover:not(.active) { border-color: var(--color-bright); }
+
+  /* GRID */
+  .investor-section { padding: var(--spacing-5xl) 0 var(--spacing-6xl); }
+  .investor-count { text-align: center; font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: var(--spacing-2xl); }
+  .investor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+  .investor-card { position: relative; border: 1px solid var(--color-gray-300); border-radius: var(--radius-lg); padding: var(--spacing-xl); transition: border-color var(--transition-normal), transform var(--transition-normal); }
+  .investor-card:hover { border-color: var(--color-bright); transform: translateY(-3px); }
+  .investor-avatar { width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(62,189,121,0.12); border: 1px solid rgba(62,189,121,0.25); display: flex; align-items: center; justify-content: center; font-weight: var(--font-weight-extrabold); font-size: var(--font-size-base); color: var(--color-bright-dark); margin-bottom: var(--spacing-lg); }
+  .investor-card h3 { font-size: var(--font-size-lg); margin-bottom: 2px; }
+  .investor-type { font-size: var(--font-size-xs); color: var(--color-bright-dark); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: var(--spacing-md); display: block; }
+  .investor-card p.desc { font-size: var(--font-size-sm); color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--spacing-lg); }
+  .investor-meta { border-top: 1px solid var(--color-gray-300); padding-top: var(--spacing-md); margin-bottom: var(--spacing-md); }
+  .investor-meta-label { font-size: 11px; font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 4px; }
+  .investor-meta-value { font-size: var(--font-size-sm); color: var(--text-primary); margin-bottom: var(--spacing-sm); }
+  .investor-card a.visit-link { font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); color: var(--color-bright-dark); text-decoration: none; }
+  .investor-card a.visit-link:hover { color: var(--color-bright); }
+  .investor-empty { display: none; text-align: center; padding: var(--spacing-5xl) 0; color: var(--text-muted); font-size: var(--font-size-base); }
+  .investor-empty.visible { display: block; }
+
+  .disclaimer-note { max-width: 760px; margin: var(--spacing-3xl) auto 0; text-align: center; font-size: var(--font-size-xs); color: var(--text-muted); line-height: 1.6; }
+
+  footer { padding: var(--spacing-4xl) 0 var(--spacing-xl); background: var(--color-gray-100); font-family: var(--font-family); }
+  .footer-grid { display: flex; justify-content: space-between; gap: var(--spacing-3xl); max-width: 1080px; margin: 0 auto; flex-wrap: wrap; padding: 0 var(--spacing-2xl); }
+  .footer-brand { max-width: 260px; }
+  .footer-brand .logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: var(--spacing-md); }
+  .footer-brand p { font-size: var(--font-size-xs); color: var(--text-secondary); line-height: 1.6; }
+  .footer-col h4 { font-size: var(--font-size-xs); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--spacing-lg); }
+  .footer-col a { display: block; font-size: var(--font-size-sm); color: var(--text-secondary); text-decoration: none; margin-bottom: var(--spacing-md); }
+  .footer-col a:hover { color: var(--color-forest); }
+  .footer-social { display: flex; gap: var(--spacing-md); margin-top: var(--spacing-sm); }
+  .footer-social a { display: inline-flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: color var(--transition-fast); }
+  .footer-social a:hover { color: var(--color-forest); }
+  .footer-bottom { max-width: 1080px; margin: var(--spacing-3xl) auto 0; padding: var(--spacing-lg) var(--spacing-2xl) 0; border-top: 1px solid var(--color-gray-300); font-size: var(--font-size-xs); color: var(--text-muted); }
+
+  @media (max-width: 1100px) {
+    .wrap { padding: 0 var(--spacing-lg); }
+    nav { padding: var(--spacing-md) var(--spacing-lg); box-shadow: 0 2px 8px rgba(10,10,10,0.06); }
+    .mobile-menu-btn { color: var(--text-primary); }
+    .mobile-nav-panel { display: block; }
+    .logo { font-size: var(--font-size-base); }
+    .nav-links, .nav-cta-row { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .investor-grid { grid-template-columns: 1fr; }
+    .footer-grid { flex-direction: column; gap: var(--spacing-2xl); }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+<nav>
+  <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28"><span class="logo-text">Venture <span class="logo-built">Built</span></span></a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <div class="nav-dropdown" id="locationsDropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false">
+        Locations
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Nigeria</span>
+          <a href="/location/oau" class="nav-dropdown-link">Obafemi Awolowo University</a>
+        </div>
+        <div class="nav-dropdown-group">
+          <span class="nav-dropdown-group-title">Coming Soon</span>
+          <span class="nav-dropdown-link disabled">Your Campus</span>
+        </div>
+      </div>
+    </div>
+    <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
+    <a href="/partners">Partners</a>
+  </div>
+  <div class="nav-cta-row">
+    <a href="https://hub.venturebuiltclub.com" class="nav-login">Log In</a>
+    <a href="/apply" class="nav-cta">Apply to join</a>
+  </div>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
+    <svg class="icon-burger" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    <svg class="icon-close hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+</nav>
+
+<div class="mobile-nav-panel" id="mobileNavPanel">
+  <a href="/">Home</a>
+  <div class="mobile-nav-accordion">
+    <button class="mobile-nav-accordion-trigger" aria-expanded="false">
+      Locations
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div class="mobile-nav-accordion-panel">
+      <span class="mobile-nav-accordion-label">Nigeria</span>
+      <a href="/location/oau">Obafemi Awolowo University</a>
+      <span class="mobile-nav-accordion-label">Coming Soon</span>
+      <span class="mobile-nav-accordion-link disabled">Your Campus</span>
+    </div>
+  </div>
+  <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+  <a href="/investor-network">Investors</a>
+  <a href="/partners">Partners</a>
+  <a href="https://hub.venturebuiltclub.com">Log In</a>
+</div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Investor Network</span>
+    <h1>Meet the Investors Backing African Founders</h1>
+    <p class="lede">A curated list of funds and angels actively investing in early-stage African startups. Search by sector or filter by stage to find who fits where you are.</p>
+    <div class="hero-cta-row">
+      <a href="/apply" class="btn-primary">Apply to Join</a>
+      <a href="#investors" class="btn-secondary">Browse Investors</a>
+    </div>
+  </div>
+</section>
+
+<section class="investor-toolbar" id="investors">
+  <div class="wrap">
+    <input type="text" class="investor-search" id="investorSearch" placeholder="Search investors, sectors, or focus areas...">
+    <div class="filter-row" id="filterRow">
+      <button class="filter-pill active" data-stage="all">All Stages</button>
+      <button class="filter-pill" data-stage="pre-seed">Pre-Seed</button>
+      <button class="filter-pill" data-stage="seed">Seed</button>
+      <button class="filter-pill" data-stage="series-a">Series A</button>
+      <button class="filter-pill" data-stage="angel">Angel</button>
+    </div>
+  </div>
+</section>
+
+<section class="investor-section">
+  <div class="wrap">
+    <p class="investor-count" id="investorCount">34 investors</p>
+    <div class="investor-grid" id="investorGrid">
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="ventures platform pan-african vc pre-seed series a">
+        <div class="investor-avatar">VP</div>
+        <h3>Ventures Platform</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Abuja-based pan-African fund investing pre-seed through Series A. Fund II hit a $64M first close in late 2025, backed in part by the Nigerian government's iDICE programme.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, pre-seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://techcrunch.com/2025/11/06/nigeria-backs-ventures-platform-as-seed-fund-hits-64m-first-close/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed" data-search="microtraction pre-seed pan-african tech">
+        <div class="investor-avatar">MT</div>
+        <h3>Microtraction</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">One of the earliest dedicated pre-seed funds in Africa. $100K for 7% equity, with follow-on up to $350K. Fund II hit a $15M first close in 2025, 98 investments to date.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pre-seed, pan-African tech</div>
+        </div>
+        <a class="visit-link" href="https://techeconomy.ng/microtraction-reaches-15-million-first-close-of-2nd-fund-ventures-into-web3-space" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="ingressive capital early-stage tech nigeria kenya ghana egypt morocco">
+        <div class="investor-avatar">IC</div>
+        <h3>Ingressive Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">$10M fund writing checks up to $500K for early-stage tech across Nigeria, Kenya, Ghana, Egypt and Morocco. 63 deals as of late 2025.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Early-stage tech, multi-country Africa</div>
+        </div>
+        <a class="visit-link" href="https://pipeseed.com/investor/ingressive-capital-211905" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed" data-search="echovc partners underrepresented founders africa">
+        <div class="investor-avatar">EC</div>
+        <h3>EchoVC Partners</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Backs underrepresented founders building across Africa, with a focus on seed-stage companies and a notable portfolio of 18+ active investments.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Underrepresented founders, pan-African</div>
+        </div>
+        <a class="visit-link" href="https://seedtable.com/rankings/investors/country/Nigeria" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed" data-search="greenhouse capital fintech lagos">
+        <div class="investor-avatar">GC</div>
+        <h3>GreenHouse Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Lagos-based fintech-focused fund founded by the Venture Garden Group in 2016, backing seed-stage fintech companies across the continent.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Fintech, Lagos-based</div>
+        </div>
+        <a class="visit-link" href="https://nairametrics.com/2023/01/15/list-of-top-organizations-that-fund-tech-startups-in-nigeria/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed angel" data-search="lagos angel network early-stage pan-african angel">
+        <div class="investor-avatar">LA</div>
+        <h3>Lagos Angel Network</h3>
+        <span class="investor-type">Angel Network</span>
+        <p class="desc">Nigeria's first organized angel network. 110+ angels have backed 100+ startups since inception, and helped seed other investor groups including Rising Tide Africa.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Early-stage, pan-African</div>
+        </div>
+        <a class="visit-link" href="https://lagosangelnetwork.net/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed angel" data-search="rising tide africa women-led early-stage angel">
+        <div class="investor-avatar">RT</div>
+        <h3>Rising Tide Africa</h3>
+        <span class="investor-type">Angel Network</span>
+        <p class="desc">An angel network of women investors backing early-stage, often women-led, African startups. Past investments include Bankly, Eden Life, and Shuttlers.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Women-led, early-stage</div>
+        </div>
+        <a class="visit-link" href="https://digestafrica.com/investors/rising-tide-africa" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="future africa early-stage pan-african fund angel syndicate">
+        <div class="investor-avatar">FA</div>
+        <h3>Future Africa</h3>
+        <span class="investor-type">Fund / Angel Syndicate</span>
+        <p class="desc">Founded in 2020 by Flutterwave/Andela co-founder Iyin Aboyeji. Started as a $50K-per-deal angel syndicate; portfolio includes Moove and Itana.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Early-stage, pan-African</div>
+        </div>
+        <a class="visit-link" href="https://techpoint.africa/insight/heres-what-you-need-to-know-about-iyin-aboyejis-future-africa-fund/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed" data-search="p1 ventures pre-seed nigeria">
+        <div class="investor-avatar">P1</div>
+        <h3>P1 Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Nigeria-focused pre-seed fund, co-led Juicyway's $3M pre-seed round alongside Ventures Platform. Looks for "audacious and exceptional founders."</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pre-seed, Nigeria</div>
+        </div>
+        <a class="visit-link" href="https://dabafinance.com/en/news/ventures-platform-second-fund-64m-raise" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="oui capital early-stage diversity-focused">
+        <div class="investor-avatar">OC</div>
+        <h3>Oui Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Early-stage fund with a diversity-focused investment lens, writing checks in the $250K&ndash;$500K range per public directory listings.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Early-stage, diversity-focused</div>
+        </div>
+        <a class="visit-link" href="#" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="launch africa ventures pan-african 22 countries">
+        <div class="investor-avatar">LV</div>
+        <h3>Launch Africa Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Pan-African fund active across 22 countries, pre-seed and seed. Debut fund closed at $36.3M; now advising Botswana's national tech fund.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, pre-seed/seed</div>
+        </div>
+        <a class="visit-link" href="https://venturecapitaljournal.com/in-brief-launch-africa-ventures-closes-debut-fund-at-36-3m" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="tlcom capital tapsi pan-african seed series a">
+        <div class="investor-avatar">TL</div>
+        <h3>TLcom Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Pan-African fund investing seed through Series A, with a dedicated $5M pre-seed vehicle (TAPSI) writing checks up to $200K. Main fund closed at $154M.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://techgistafrica.com/funding/tlcom-capital-supported-by-the-ifc-raises-154-million-for-seed-and-series-a-startups-in-africa" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="4dx ventures pan-african pre-series a sector agnostic">
+        <div class="investor-avatar">4D</div>
+        <h3>4DX Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Sector-agnostic, pan-African fund focused on pre-Series A. Fund III raising toward an $80M target, with active 2025 deals in Egypt and Senegal.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, pre-Series A</div>
+        </div>
+        <a class="visit-link" href="https://launchbaseafrica.com/2025/09/19/4dx-ventures-tops-up-africa-fund-as-it-continues-dealmaking-spree/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="partech africa pan-african seed series a">
+        <div class="investor-avatar">PA</div>
+        <h3>Partech Africa</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">One of the largest pan-African funds, leaning seed through Series A. Fund II closed at &euro;280M; active 2025 deals in Egypt, Nigeria, and South Africa.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://africaglobalfunds.com/news/private-equity/fundraising/partech-africa-ii-reaches-first-close-above-target" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed" data-search="verod-kepple africa ventures pan-african seed">
+        <div class="investor-avatar">VK</div>
+        <h3>Verod-Kepple Africa Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Tokyo-rooted, pan-African seed fund writing $50K&ndash;$150K checks. Active 2025 deals in Egypt and Morocco.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, seed stage</div>
+        </div>
+        <a class="visit-link" href="https://techgistafrica.com/funding/verod-kepple-africa-ventures-has-successfully-raised-43-million-in-funding" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="africinvest cathay innovation pan-african seed growth">
+        <div class="investor-avatar">AI</div>
+        <h3>AfricInvest</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Pan-African fund spanning seed to growth. Seed tickets up to $1M, growth tickets $1M&ndash;$10M, via the Cathay AfricInvest Innovation vehicle.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, seed to growth</div>
+        </div>
+        <a class="visit-link" href="https://www.briter.co/insights/reports/africa-investment-report-2025" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="angel" data-search="african business angel network aban network of networks">
+        <div class="investor-avatar">AB</div>
+        <h3>African Business Angel Network (ABAN)</h3>
+        <span class="investor-type">Network of Networks</span>
+        <p class="desc">An umbrella network connecting 5,000&ndash;7,000+ angels across 37 countries. A good starting point to find a local angel group rather than a direct-check investor itself.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Pan-African, angel gateway</div>
+        </div>
+        <a class="visit-link" href="https://techcabal.com/?p=164834" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="novastar ventures nairobi east africa education health agri water">
+        <div class="investor-avatar">NV</div>
+        <h3>Novastar Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Nairobi-based fund (also Lagos, London) backing startups serving low-income communities in education, health, agriculture, and water.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">East Africa, seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://www.globalprivatecapital.org/?p=21739" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="kenya climate ventures asili fund climate gender">
+        <div class="investor-avatar">KC</div>
+        <h3>Kenya Climate Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Kenya's first locally licensed climate fund manager, backing climate-smart, gender-inclusive early-stage startups. New Asili Fund writes micro-checks of $10K&ndash;$20K.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Kenya, climate-focused pre-seed/seed</div>
+        </div>
+        <a class="visit-link" href="https://impactalpha.com/?p=127520" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="mest africa accelerator accra ghana nigeria senegal kenya">
+        <div class="investor-avatar">ME</div>
+        <h3>MEST Africa</h3>
+        <span class="investor-type">Accelerator</span>
+        <p class="desc">Accra-based accelerator and seed fund open to founders from Ghana, Nigeria, Senegal, and Kenya. $50K&ndash;$250K for graduating teams, plus a new 2025 pre-seed pilot at $100K.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">West Africa, pre-seed/seed accelerator</div>
+        </div>
+        <a class="visit-link" href="https://meltwater.org/?p=8542" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="golden palm investments accra ghana fintech health marketplace">
+        <div class="investor-avatar">GP</div>
+        <h3>Golden Palm Investments</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Accra-based fund backing fintech, health, and marketplace startups at seed through Series A.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Ghana, seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://seedtable.com/investors/golden-palm-investments" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="cchub growth capital co-creation hub nigeria">
+        <div class="investor-avatar">CC</div>
+        <h3>CcHub Growth Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Co-Creation Hub's investment arm, writing modest &#8358;10M&ndash;30M (~$13K&ndash;$39K) checks at pre-seed/seed. CcHub overall deployed $4.18M in grants in 2025.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Nigeria, pre-seed/seed</div>
+        </div>
+        <a class="visit-link" href="https://techcabal.com/2026/03/10/cchub-deployed-4-18-million-in-grants-in-2025/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="janngo capital francophone west africa gender-equal">
+        <div class="investor-avatar">JC</div>
+        <h3>Janngo Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Self-described gender-equal investor, with 70%+ of capital going to Francophone West Africa. Fund II closed at $78M; led Djamo's $17M round in C&ocirc;te d'Ivoire.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Francophone West Africa</div>
+        </div>
+        <a class="visit-link" href="https://pulse2.com/janngo-capital-pan-african-vc-firm-closes-78-million-fund/amp/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="orange ventures africa corporate vc senegal">
+        <div class="investor-avatar">OV</div>
+        <h3>Orange Ventures Africa</h3>
+        <span class="investor-type">Corporate VC</span>
+        <p class="desc">Senegal-based corporate VC arm of Orange, a &euro;50M Africa/Middle East slice of a larger global vehicle, targeting 100 African startups by 2025.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Francophone Africa, seed/Series A</div>
+        </div>
+        <a class="visit-link" href="https://afrikanheroes.com/?p=39532" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="havaic cape town south africa pre-seed series a">
+        <div class="investor-avatar">HV</div>
+        <h3>HAVA&Iacute;C</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Cape Town fund investing pre-seed through Series A. African Innovation Fund 3 reached a ~$25&ndash;30M second close in mid-2025.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">South Africa, pre-seed to Series A</div>
+        </div>
+        <a class="visit-link" href="https://launchbaseafrica.com/2025/07/29/south-african-venture-capital-firm-havaic-adds-25-million-to-pan-african-tech-fund/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="algebra ventures egypt seed series a">
+        <div class="investor-avatar">AV</div>
+        <h3>Algebra Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Egypt's seed and Series A fund. Fund II had its first close at $100M; active 2025 deals include Sylndr, enza, and EFreshli.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Egypt, seed/Series A</div>
+        </div>
+        <a class="visit-link" href="https://egyptinnovate.com/en/node/12599" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed" data-search="flat6labs f6 group cairo mena accelerator africa seed program">
+        <div class="investor-avatar">F6</div>
+        <h3>Flat6Labs / F6 Group</h3>
+        <span class="investor-type">Accelerator</span>
+        <p class="desc">Cairo-based accelerator and VC across MENA and Africa. Dedicated Africa Seed Program is a $95M fund writing $150K&ndash;$500K checks.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">North Africa, pre-seed/seed</div>
+        </div>
+        <a class="visit-link" href="https://www.wearetech.africa/en/fils-uk/news/flat6labs-rebrands-as-f6-group-in-push-to-bridge-mena-s-startup-funding-gap" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed" data-search="antler nigeria lagos residency accelerator pre-seed">
+        <div class="investor-avatar">AN</div>
+        <h3>Antler Nigeria</h3>
+        <span class="investor-type">Accelerator</span>
+        <p class="desc">8-week in-person Lagos residency program, picking founders before they even have a co-founder or finished idea. First cohort selected 24 founders from 7,500+ applicants.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Nigeria, pre-seed residency</div>
+        </div>
+        <a class="visit-link" href="https://www.antler.co/location/nigeria" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="catalyst fund nairobi climate adaptation africa">
+        <div class="investor-avatar">CF</div>
+        <h3>Catalyst Fund</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Nairobi-based fund investing pre-seed through Series A, Africa-wide, focused on climate adaptation. $30M second close on its debut equity fund, 28 climate startups backed to date.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Africa-wide, climate adaptation</div>
+        </div>
+        <a class="visit-link" href="https://www.thecatalystfund.com/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="pre-seed seed series-a" data-search="enza capital nairobi kenya nigeria south africa ghana">
+        <div class="investor-avatar">EZ</div>
+        <h3>Enza Capital</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Nairobi-based, multi-sector fund investing pre-seed through Series B across Kenya, Nigeria, South Africa, and Ghana. Has tripled its North Africa portfolio in two years.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Multi-country Africa, pre-seed to Series B</div>
+        </div>
+        <a class="visit-link" href="https://techcabal.com/2025/08/11/enza-capital/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="alitheia idf gender-lens nigeria ghana south africa zambia lesotho">
+        <div class="investor-avatar">AL</div>
+        <h3>Alitheia IDF</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Gender-lens fund backing women-led and women-serving SMEs across Nigeria, Ghana, South Africa, Zambia, and Lesotho. $100M final close, recent deals include ALMA Clinics.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Gender-lens, multi-country Africa</div>
+        </div>
+        <a class="visit-link" href="https://thealitheia.com/alitheia-idf-fund/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="accion ventures global nigeria kenya fintech inclusive">
+        <div class="investor-avatar">AC</div>
+        <h3>Accion Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Global fund with strong Nigeria/Kenya fintech focus (rebranded from Accion Venture Lab in 2025). Second fund closed at $61.6M, 76 companies backed across 39 countries since 2012.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Inclusive fintech, Nigeria/Kenya-strong</div>
+        </div>
+        <a class="visit-link" href="https://www.accion.org/news/accion-announces-close-of-61-6m-second-accion-venture-lab-fund-investing-in-early-stage-inclusive-fintech/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="consonance investment managers lagos fintech health education">
+        <div class="investor-avatar">CM</div>
+        <h3>Consonance Investment Managers</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Lagos-based fund (founded 2017) backing fintech, health, education, and other sectors from seed through growth stage.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">Nigeria, seed to growth</div>
+        </div>
+        <a class="visit-link" href="https://www.crunchbase.com/organization/consonance-investment-managers" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+      <div class="investor-card" data-stage="seed series-a" data-search="beyond capital ventures east africa kenya rwanda uganda women-led">
+        <div class="investor-avatar">BC</div>
+        <h3>Beyond Capital Ventures</h3>
+        <span class="investor-type">VC Fund</span>
+        <p class="desc">Women-led impact fund investing seed through Series A across Kenya, Rwanda, and Uganda, focused on healthcare, agriculture, and fintech.</p>
+        <div class="investor-meta">
+          <div class="investor-meta-label">Focus</div>
+          <div class="investor-meta-value">East Africa, seed/Series A, impact</div>
+        </div>
+        <a class="visit-link" href="https://www.get-invest.eu/fund/beyond-capital-ventures/" target="_blank" rel="noopener">Read more &#8594;</a>
+      </div>
+
+    </div>
+    <p class="investor-empty" id="investorEmpty">No investors match that search or filter.</p>
+    <p class="disclaimer-note">This list is researched and updated periodically, not official investor endorsements of Venture Built. Check sizes, focus areas, and open status change often, verify directly with each investor before reaching out. No fund here specifically targets student founders as a category, all generally invest at early stage.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="logo"><img src="/images/favicon/icon-192.png" alt="" width="28" height="28"><span class="logo-text">Venture <span class="logo-built">Built</span></span></a>
+      <p>Student-led venture building chapters on Africa's top campuses, starting at Obafemi Awolowo University.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Overview</h4>
+      <a href="/">Home</a>
+      <a href="/location/oau">OAU Chapter</a>
+      <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="https://hub.venturebuiltclub.com">Log In</a>
+      <a href="/apply">Apply to Join</a>
+      <a href="/partners">Partners</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="mailto:venturebuiltclub@gmail.com">venturebuiltclub@gmail.com</a>
+      <a href="tel:+2348052686184">+234 805 268 6184</a>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/venturebuiltclub" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://www.instagram.com/venturebuiltclub/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg></a>
+        <a href="https://x.com/thevbclub?s=11" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">Venture Built, based in Africa and starting at Obafemi Awolowo University</div>
+</footer>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavPanel = document.getElementById('mobileNavPanel');
+  if (mobileMenuBtn && mobileNavPanel) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileNavPanel.classList.toggle('open');
+      mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+      mobileMenuBtn.querySelector('.icon-burger').classList.toggle('hidden', isOpen);
+      mobileMenuBtn.querySelector('.icon-close').classList.toggle('hidden', !isOpen);
+    });
+    mobileNavPanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavPanel.classList.remove('open');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.querySelector('.icon-burger').classList.remove('hidden');
+        mobileMenuBtn.querySelector('.icon-close').classList.add('hidden');
+      });
+    });
+  }
+  document.querySelectorAll('.nav-dropdown').forEach(dd => {
+    const trigger = dd.querySelector('.nav-dropdown-trigger');
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dd.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav-dropdown.open').forEach(dd => {
+      dd.classList.remove('open');
+      dd.querySelector('.nav-dropdown-trigger').setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.querySelectorAll('.mobile-nav-accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const wrap = trigger.closest('.mobile-nav-accordion');
+      const isOpen = wrap.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen);
+    });
+  });
+
+  const searchInput = document.getElementById('investorSearch');
+  const filterPills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.investor-card');
+  const countEl = document.getElementById('investorCount');
+  const emptyEl = document.getElementById('investorEmpty');
+  let activeStage = 'all';
+
+  function applyFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+    cards.forEach(card => {
+      const stages = card.getAttribute('data-stage').split(' ');
+      const searchText = card.getAttribute('data-search');
+      const stageMatch = activeStage === 'all' || stages.includes(activeStage);
+      const searchMatch = !query || searchText.includes(query);
+      const show = stageMatch && searchMatch;
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    countEl.textContent = visibleCount + (visibleCount === 1 ? ' investor' : ' investors');
+    emptyEl.classList.toggle('visible', visibleCount === 0);
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeStage = pill.getAttribute('data-stage');
+      applyFilters();
+    });
+  });
+  searchInput.addEventListener('input', applyFilters);
+  applyFilters();
+</script>
+
+</body>
+</html>

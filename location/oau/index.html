@@ -216,24 +216,24 @@
   /* WHO WE ARE (centered statement page, matching Antler's "Who Is Antler For?") */
   .who-we-are { padding: var(--spacing-5xl) 0; text-align: center; }
   .who-we-are h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: -0.005em; margin: 0 auto var(--spacing-xl); line-height: 1.25; color: var(--text-primary); max-width: 720px; font-family: var(--font-family); text-align: center; }
-  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.55; max-width: 700px; margin: 0 auto var(--spacing-md); font-family: var(--font-family); text-align: center; }
+  .who-we-are p { font-size: var(--font-size-lg); color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin: 0 auto var(--spacing-lg); font-family: var(--font-family); text-align: center; }
   .who-we-are p.who-we-are-lead-in { margin-bottom: 0; }
   .who-we-are p.who-we-are-emphasis { font-weight: var(--font-weight-bold); color: var(--text-primary); font-size: var(--font-size-lg); margin-top: 0; }
 
   /* PROGRAM STRUCTURE (full-bleed dark break section) */
   .program-structure { background: #04140E; padding: var(--spacing-6xl) 0; color: var(--color-white); position: relative; overflow: hidden; }
-  .ps-header { text-align: center; max-width: 720px; margin: 0 auto var(--spacing-5xl); position: relative; }
+  .ps-header { text-align: center; max-width: 640px; margin: 0 auto var(--spacing-5xl); position: relative; }
   .ps-label { display: inline-block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-bright); margin-bottom: var(--spacing-lg); font-family: var(--font-family); }
-  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.2; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
-  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: var(--line-height-relaxed); font-family: var(--font-family); }
-  .ps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; margin-bottom: var(--spacing-5xl); position: relative; }
-  .ps-card { background: #04140E; padding: var(--spacing-2xl) var(--spacing-xl); transition: background var(--transition-normal); }
-  .ps-card:hover { background: rgba(62,189,121,0.06); }
-  .ps-num { display: block; font-size: var(--font-size-xs); font-weight: var(--font-weight-extrabold); color: var(--color-bright); margin-bottom: var(--spacing-xl); letter-spacing: 1.5px; font-family: var(--font-family); }
-  .ps-card h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; }
-  .ps-card p { font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.65; font-family: var(--font-family); }
+  .ps-header h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: var(--font-weight-bold); line-height: 1.22; margin-bottom: var(--spacing-lg); font-family: var(--font-family); color: var(--color-white); letter-spacing: -0.01em; }
+  .ps-intro { font-size: var(--font-size-lg); color: rgba(255,255,255,0.6); line-height: 1.7; font-family: var(--font-family); }
+  .ps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-lg); margin-bottom: var(--spacing-5xl); position: relative; }
+  .ps-card { position: relative; overflow: hidden; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: var(--spacing-2xl) var(--spacing-xl) var(--spacing-2xl); transition: border-color var(--transition-normal), transform var(--transition-normal), background var(--transition-normal); }
+  .ps-card:hover { border-color: var(--color-bright); background: rgba(62,189,121,0.05); transform: translateY(-3px); }
+  .ps-num { position: absolute; top: var(--spacing-md); right: var(--spacing-lg); font-size: 40px; font-weight: var(--font-weight-extrabold); color: rgba(255,255,255,0.06); letter-spacing: 0; line-height: 1; font-family: var(--font-family); pointer-events: none; }
+  .ps-card h3 { position: relative; font-size: var(--font-size-lg); font-weight: var(--font-weight-extrabold); margin-bottom: var(--spacing-md); font-family: var(--font-family); color: var(--color-white); text-transform: uppercase; letter-spacing: 0.8px; max-width: 85%; }
+  .ps-card p { position: relative; font-size: var(--font-size-sm); color: rgba(255,255,255,0.55); line-height: 1.7; font-family: var(--font-family); }
   .ps-closing { max-width: 740px; margin: 0 auto; text-align: center; font-size: clamp(17px, 1.8vw, 21px); font-weight: var(--font-weight-semibold); color: var(--color-white); line-height: 1.55; font-family: var(--font-family); position: relative; }
-  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); overflow: hidden; }
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
 
   /* HOW TO JOIN (Antler-style full-width tabs + photo card) */
   .process { padding: var(--spacing-6xl) 0; }
@@ -343,14 +343,13 @@
         </div>
       </div>
     </div>
-    <a class="disabled-link" title="Coming soon">Resources</a>
-    <a href="/about">Community</a>
-    <a href="/mentor">Mentors</a>
+    <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
     <a href="/partners">Partners</a>
-    <a href="/join-team">Join the Team</a>
   </div>
   <div class="nav-cta-row">
-    <a href="/portal" class="nav-login">Log In</a>
+    <a href="https://hub.venturebuiltclub.com" class="nav-login">Log In</a>
     <a href="/apply" class="nav-cta">Apply to join</a>
   </div>
   <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false">
@@ -373,12 +372,11 @@
       <span class="mobile-nav-accordion-link disabled">Your Campus</span>
     </div>
   </div>
-  <a class="disabled-link" title="Coming soon">Resources</a>
-  <a href="/about">Community</a>
-  <a href="/mentor">Mentors</a>
+  <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
   <a href="/partners">Partners</a>
-  <a href="/join-team">Join the Team</a>
-  <a href="/portal">Log In</a>
+  <a href="https://hub.venturebuiltclub.com">Log In</a>
 </div>
 </header>
 
@@ -561,16 +559,15 @@
       <div class="footer-col">
         <h4>Overview</h4>
         <a href="/">All Chapters</a>
-        <a class="disabled-link" title="Coming soon">Resources</a>
-        <a href="/about">Community</a>
-        <a href="/mentor">Mentors</a>
+        <a href="/join-us">Join Us</a>
+    <a href="/problems-to-solve">Problems</a>
+    <a href="/investor-network">Investors</a>
         <a href="/partners">Partners</a>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
-        <a href="/portal">Log In</a>
+        <a href="https://hub.venturebuiltclub.com">Log In</a>
         <a href="/apply">Apply to Join</a>
-        <a href="/join-team">Join the Team</a>
         <a href="/#faq">FAQ</a>
       </div>
 
