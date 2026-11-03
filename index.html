@@ -59,7 +59,7 @@
     --fs-lead: clamp(17px, 2vw, 20px);
     --fs-h3: clamp(20px, 2.2vw, 24px);
     --fs-h2: clamp(28px, 4.4vw, 44px);
-    --fs-h1: clamp(38px, 7.2vw, 108px);
+    --fs-h1: clamp(38px, 5.8vw, 104px);
     --fs-num: clamp(40px, 5vw, 56px);
 
     --radius-sm: 4px;      /* buttons (live site) */
@@ -171,13 +171,14 @@
   /* ============ HERO ============ */
   .hero { position: relative; overflow: hidden; min-height: min(92vh, 860px); display: flex; align-items: center; padding: var(--space-8) 0; }
   .hero .wrap { position: relative; z-index: 1; width: 100%; max-width: none; padding-left: clamp(16px, 3.6vw, 64px); padding-right: var(--space-4); }
-  .hero-copy { max-width: 900px; }
+  .hero-copy { max-width: 1100px; }
+  @media (min-width: 900px) { .hero h1 .line:nth-of-type(n+2) { display: inline-block; } }
   .hero h1 { font-size: var(--fs-h1); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; text-transform: uppercase; margin-bottom: var(--space-5); }
   .hero .hero-sub { font-size: var(--fs-lead); color: var(--text-on-dark); line-height: 1.6; max-width: 620px; margin-bottom: var(--space-3); }
   .hero .hero-where { font-size: var(--fs-lead); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-5); }
   .hero .free-badge { margin-bottom: var(--space-6); }
   .hero-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-  .hero-graphic { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); width: min(780px, 44vw); height: auto; opacity: 0.9; pointer-events: none; display: none; }
+  .hero-graphic { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); width: min(780px, 40vw); height: auto; opacity: 0.9; pointer-events: none; display: none; }
   @media (min-width: 900px) { .hero-graphic { display: block; } }
 
   /* ============ VALUES (Grit / Spike / Drive) ============ */
@@ -222,11 +223,12 @@
   .journey-note { margin-top: var(--space-7); text-align: center; font-size: var(--fs-lead); font-weight: 700; color: var(--color-forest); font-style: italic; }
 
   /* ============ HUB ============ */
-  .hub-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-7); align-items: end; margin-bottom: var(--space-7); }
+  .wrap-wide { max-width: 1400px; }
+  .hub-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-7); }
   .hub-intro .section-lead { margin-top: var(--space-4); max-width: 520px; }
-  .hub-list { margin-bottom: var(--space-5); }
-  .hub-list li { position: relative; padding-left: 28px; margin-bottom: var(--space-3); color: var(--text-primary); font-weight: 600; line-height: 1.5; }
-  .hub-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border: 2px solid var(--color-forest); border-radius: 50%; }
+  .hub-notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); margin-top: var(--space-7); }
+  .hub-notes li { position: relative; padding-top: var(--space-4); color: var(--color-white); font-weight: 600; font-size: 16px; line-height: 1.45; border-top: 1px solid rgba(255,255,255,0.18); }
+  .hub-notes li::before { content: ''; position: absolute; left: 0; top: -2px; width: 28px; height: 3px; background: var(--color-bright); }
   .browser-frame { border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-white); box-shadow: 0 16px 40px rgba(15,61,46,0.14); }
   .browser-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--color-gray-100); border-bottom: 1px solid var(--color-line); }
   .browser-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--color-gray-300); }
@@ -234,8 +236,6 @@
   .browser-frame img { display: block; width: 100%; height: auto; }
   .shot-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   @media (max-width: 700px) { .shot-scroll img { width: 820px; max-width: none; } }
-  .hub-shot.reveal { transform: translateY(40px) scale(0.985); }
-  .hub-shot.reveal.visible { transform: none; }
 
   /* ============ BUILDERS ============ */
   .builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
@@ -305,10 +305,10 @@
   .js .hero h1 .line > span { transform: translateY(105%); animation: rise 0.8s var(--ease) forwards; animation-delay: calc(0.1s + var(--i) * 0.12s); }
   .js .hero-rule { transform: scaleX(0); animation: draw 0.8s var(--ease) 0.55s forwards; }
   .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row { opacity: 0; transform: translateY(14px); animation: fadeup 0.7s var(--ease) forwards; }
-  .js .hero .hero-sub { animation-delay: 0.7s; }
+  .js .hero .hero-sub { animation-delay: 0.75s; }
   .js .hero .hero-where { animation-delay: 0.8s; }
   .js .hero .free-badge { animation-delay: 0.9s; }
-  .js .hero .hero-cta-row { animation-delay: 1s; }
+  .js .hero .hero-cta-row { animation-delay: 0.9s; }
   @keyframes rise { to { transform: none; } }
   @keyframes draw { to { transform: scaleX(1); } }
   @keyframes fadeup { to { opacity: 1; transform: none; } }
@@ -317,8 +317,6 @@
   .section-title::after { content: ''; display: block; width: 56px; height: 3px; background: var(--color-forest); margin-top: var(--space-5); transform-origin: left; }
   .dark .section-title::after { background: var(--color-bright); }
   .center .section-title::after { margin-left: auto; margin-right: auto; transform-origin: center; }
-  .js .section-title.reveal::after { transform: scaleX(0); }
-  .js .section-title.reveal.visible::after { transform: scaleX(1); transition: transform 0.8s var(--ease) 0.35s; }
 
   /* Oversized numerals light up once their card has entered */
   .path-num { transition: color 0.8s ease 0.3s; }
@@ -342,6 +340,60 @@
     @keyframes gtravel { 0% { offset-distance: 0%; opacity: 0; } 6% { opacity: 1; } 55% { offset-distance: 100%; opacity: 1; } 62%, 100% { offset-distance: 100%; opacity: 0; } }
   }
 
+
+  /* ============ TYPOGRAPHY: keep phrases together ============ */
+  h1, h2, h3, .section-lead, .hero-sub { text-wrap: balance; }
+  p, li { text-wrap: pretty; }
+  .prose h2 { max-width: 980px; }
+  .section-title .sent { display: inline; }
+  @media (min-width: 900px) { .section-title .sent { display: block; } }
+
+  /* Lighter density without touching the words */
+  .path-list li { font-size: 14.5px; }
+  .path-foot p { font-size: 15px; }
+
+
+  /* Hub on dark: the light screenshot pops */
+  .dark .browser-frame { border-color: rgba(255,255,255,0.16); box-shadow: 0 28px 70px rgba(0,0,0,0.55); }
+  .dark .browser-bar { background: #EEF1EF; }
+  .hub-shot[data-reveal].reveal { transform: translateY(56px) scale(0.965); transition-duration: 0.9s; }
+  .hub-shot[data-reveal].reveal.visible { transform: none; }
+
+
+  /* ============ HERO COMPOSITION ============ */
+  .hero { padding-bottom: 96px; }
+  .hero h1 .dot { color: var(--color-bright); }
+  .hero-body { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid rgba(255,255,255,0.16); max-width: 600px; }
+  .hero-body .hero-sub { font-size: 17px; margin-bottom: var(--space-5); }
+  .hero-meta { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; display: flex; justify-content: space-between; gap: var(--space-3) var(--space-6); flex-wrap: wrap; padding: 18px clamp(16px, 3.6vw, 64px); border-top: 1px solid rgba(255,255,255,0.14); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-white); }
+  .hero-meta .free { color: var(--color-bright); }
+  .js .hero .hero-meta { opacity: 0; animation: fadeup 0.7s var(--ease) 1.15s forwards; }
+
+  /* ============ WHO WE ARE: editorial two-column ============ */
+  .wwa { display: block; }
+  .wwa .section-title { font-size: clamp(28px, 4vw, 54px); line-height: 1.1; margin-bottom: var(--space-7); }
+  .wwa .section-title::after { display: none; }
+  .wwa .s1 { color: var(--text-secondary); }
+  .wwa .s2 { color: var(--text-primary); }
+  .wwa-head .eyebrow { margin-bottom: var(--space-5); }
+  .wwa-body { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-7); padding-top: var(--space-5); border-top: 3px solid var(--color-forest); }
+  .wwa-body p { color: var(--text-secondary); font-size: 17px; line-height: 1.65; margin-bottom: var(--space-4); }
+  .wwa-body .wwa-close { grid-column: 1 / -1; color: var(--text-primary); font-weight: 800; font-size: 19px; margin: var(--space-3) 0 0; }
+
+  /* ============ WHO IT'S FOR: typographic rows ============ */
+  .wif-head { display: grid; grid-template-columns: 1.25fr 1fr; gap: var(--space-8); align-items: end; margin-bottom: var(--space-8); }
+  .wif-head .section-title::after { display: none; }
+  .wif-lead { color: var(--text-secondary); font-size: 17px; line-height: 1.65; }
+  .values-label { text-align: left; margin: 0 0 var(--space-3); }
+  .value-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: end; padding: var(--space-5) 0; border-top: 1px solid rgba(15,61,46,0.3); }
+  .value-row:last-child { border-bottom: 1px solid rgba(15,61,46,0.3); }
+  .value-row h4 { font-size: clamp(48px, 10vw, 136px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; text-transform: uppercase; color: var(--color-forest); }
+  .value-row p { font-size: var(--fs-lead); font-weight: 600; color: var(--text-primary); max-width: 360px; padding-bottom: 0.5em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .value-row { opacity: 0.22; transition: opacity 0.6s var(--ease); }
+    .js .value-row.on { opacity: 1; }
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
     .wrap { padding: 0 var(--space-4); }
@@ -354,8 +406,12 @@
     .path-grid, .builder-grid, .values, .where-list { grid-template-columns: 1fr; }
     .path-grid { row-gap: var(--space-5); }
     .path-card { grid-row: auto; display: flex; }
-    .hub-head { grid-template-columns: 1fr; gap: var(--space-5); align-items: start; margin-bottom: var(--space-6); }
+    .hub-head { align-items: flex-start; margin-bottom: var(--space-6); }
+    .hub-notes { grid-template-columns: 1fr 1fr; }
     .final-row { grid-template-columns: 1fr; max-width: 420px; }
+    .wif-head { grid-template-columns: 1fr; gap: var(--space-6); }
+    .wwa-body { grid-template-columns: 1fr; }
+    .value-row { grid-template-columns: 1fr; gap: var(--space-2); }
     /* vertical journey */
     .steps { grid-template-columns: 1fr; gap: var(--space-6); padding-left: 0; }
     .steps::before { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; }
@@ -365,7 +421,9 @@
   }
   @media (max-width: 600px) {
     .hero-cta-row .btn { width: 100%; }
-    .hero { min-height: auto; padding: var(--space-8) 0; }
+    .hero { min-height: auto; padding: var(--space-8) 0 0; flex-direction: column; align-items: stretch; }
+    .hero .wrap { padding-bottom: var(--space-7); }
+    .hero-meta { position: static; flex-direction: column; }
     .card, .path-card { padding: var(--space-5); }
   }
 
@@ -392,11 +450,7 @@
   .step-num { z-index: 1; transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease); }
   .step.is-done .step-num { background: var(--color-bright); color: var(--text-primary); }
   .step.is-current .step-num { transform: scale(1.12); }
-  .steps::after { content: ''; position: absolute; left: 0; top: 28px; width: 100%; height: 2px; background: var(--color-bright); transform-origin: left; transform: scaleX(var(--p, 0)); }
-  .steps.steps-play { --p: 1; }
-  .steps.steps-play::after { transition: transform 1.6s linear; }
-  .steps.steps-play .step-num { transition-delay: calc(var(--i) * 0.32s); }
-  .steps.steps-play .step-num { background: var(--color-bright); color: var(--text-primary); }
+  .steps::after { transition: transform 0.15s linear; content: ''; position: absolute; left: 0; top: 28px; width: 100%; height: 2px; background: var(--color-bright); transform-origin: left; transform: scaleX(var(--p, 0)); }
 
   /* FAQ: smooth open/close (progressive: instant where unsupported) */
   .faq-list details::details-content { block-size: 0; overflow: clip; transition: block-size 0.3s var(--ease), content-visibility 0.3s allow-discrete; }
@@ -411,8 +465,7 @@
   .nav-links a, .nav-login, .footer-col a, .nav-dropdown-link { transition: color 0.2s, border-color 0.2s, background 0.2s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .js .hero h1 .line > span, .js .hero-rule, .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row { animation: none; opacity: 1; transform: none; }
-    .js .section-title.reveal::after, .js .section-title.reveal.visible::after { transform: none; transition: none; }
+    .js .hero h1 .line > span, .js .hero-rule, .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row, .js .hero .hero-meta { animation: none; opacity: 1; transform: none; }
     .path-num { transition: none; }
     .path-card, .value-card, .builder-card, .btn .arr, .step-num, .steps::after, .site-header nav, .faq-list details::details-content, .faq-list summary::after, .mobile-nav-panel, .mobile-nav-accordion-panel { transition: none !important; }
     .path-card:hover, .path-card:focus-within, .path-card.is-tapped, .value-card:hover, .builder-card:hover, .btn:hover .arr { transform: none; }
@@ -420,8 +473,7 @@
 
   @media (max-width: 900px) {
     .steps::after { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; transform: scaleY(var(--p, 0)); transform-origin: top; }
-    .steps.steps-play::after { transition: none; }
-  }
+    }
 </style>
 </head>
 <body>
@@ -512,43 +564,54 @@
   </svg>
   <div class="wrap">
     <div class="hero-copy">
-      <h1 id="hero-title"><span class="line"><span style="--i:0">Build Beyond</span></span> <span class="line"><span style="--i:1">What You</span></span> <span class="line"><span style="--i:2">Imagine.</span></span></h1>
-      <span class="hero-rule" aria-hidden="true"></span>
-      <p class="hero-sub">Venture Built is an ecosystem discovering exceptional student talent, connecting ambitious minds and equipping the next generation to build category-defining products.</p>
-      <p class="hero-where">Starting at Obafemi Awolowo University.</p>
-      <p class="free-badge">Free to join. No fees. No equity.</p>
-      <div class="hero-cta-row">
-        <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community</a>
-        <button type="button" class="btn btn-secondary" disabled data-cta="cohort" data-label="Apply for the Cohort" data-href="/apply">Applications opening soon</button>
+      <h1 id="hero-title"><span class="line"><span style="--i:0">Build Beyond</span></span> <span class="line"><span style="--i:1">What You</span></span> <span class="line"><span style="--i:2">Imagine<span class="dot">.</span></span></span></h1>
+      <div class="hero-body">
+        <p class="hero-sub">Venture Built is an ecosystem discovering exceptional student talent, connecting ambitious minds and equipping the next generation to build category-defining products.</p>
+        <div class="hero-cta-row">
+          <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community</a>
+          <button type="button" class="btn btn-secondary" disabled data-cta="cohort" data-label="Apply for the Cohort" data-href="/apply">Applications opening soon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="hero-meta">
+    <li>Starting at Obafemi Awolowo University.</li>
+    <li class="free">Free to join. No fees. No equity.</li>
+  </ul>
+</section>
+
+<!-- 2. WHO WE ARE -->
+<section class="light" id="who-we-are" aria-labelledby="who-title">
+  <div class="wrap">
+    <div class="wwa" data-reveal>
+      <div class="wwa-head">
+        <span class="eyebrow">Who we are</span>
+        <h2 class="section-title" id="who-title"><span class="sent s1">Exceptional talent is everywhere.</span> <span class="sent s2">The opportunity to build isn't.</span></h2>
+      </div>
+      <div class="wwa-body">
+        <p>Across African campuses, students have the ability and the ideas. Many don't have the knowledge, the collaborators, or access to people who have built before.</p>
+        <p>Venture Built closes that gap. We bring students together, grow their skills through learning and hands-on building, and connect them with founders, operators and investors.</p>
+        <p class="wwa-close">Start wherever you are, through our Community, Club or Cohort.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 2. WHO WE ARE -->
-<section class="light center" id="who-we-are" aria-labelledby="who-title">
-  <div class="wrap prose">
-    <span class="eyebrow">Who we are</span>
-    <h2 class="section-title" id="who-title">Exceptional talent is everywhere. The opportunity to build isn't.</h2>
-    <p>Across African campuses, students have the ability and the ideas. Many don't have the knowledge, the collaborators, or access to people who have built before.</p>
-    <p>Venture Built closes that gap. We bring students together, grow their skills through learning and hands-on building, and connect them with founders, operators and investors.</p>
-    <p>Start wherever you are, through our Community, Club or Cohort.</p>
-  </div>
-</section>
-
 <!-- 3. WHO IT'S FOR -->
-<section class="tint center" id="who-its-for" aria-labelledby="for-title">
+<section class="tint" id="who-its-for" aria-labelledby="for-title">
   <div class="wrap">
-    <div class="prose">
-      <span class="eyebrow">Who it's for</span>
-      <h2 class="section-title" id="for-title">Potential isn't defined by what you've already built.</h2>
-      <p>You might have an idea, a problem you care about, a skill you want to put to use, or a hunger to understand how ambitious products get built. You don't need a startup, a finished product or a co-founder.</p>
+    <div class="wif-head">
+      <div>
+        <span class="eyebrow">Who it's for</span>
+        <h2 class="section-title" id="for-title">Potential isn't defined by what you've already built.</h2>
+      </div>
+      <p class="wif-lead">You might have an idea, a problem you care about, a skill you want to put to use, or a hunger to understand how ambitious products get built. You don't need a startup, a finished product or a co-founder.</p>
     </div>
     <h3 class="values-label">What we value</h3>
-    <ul class="values">
-      <li class="card value-card"><h3>Grit</h3><p>you keep going when it gets hard.</p></li>
-      <li class="card value-card"><h3>Spike</h3><p>one thing you're unusually good at.</p></li>
-      <li class="card value-card"><h3>Drive</h3><p>you act without waiting to be asked.</p></li>
+    <ul class="value-rows">
+      <li class="value-row"><h4>Grit</h4><p>you keep going when it gets hard.</p></li>
+      <li class="value-row"><h4>Spike</h4><p>one thing you're unusually good at.</p></li>
+      <li class="value-row"><h4>Drive</h4><p>you act without waiting to be asked.</p></li>
     </ul>
   </div>
 </section>
@@ -558,12 +621,12 @@
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Pathways</span>
-      <h2 class="section-title" id="paths-title">Three pathways. One ecosystem.</h2>
+      <h2 class="section-title" id="paths-title"><span class="sent">Three pathways.</span> <span class="sent">One ecosystem.</span></h2>
       <p class="section-lead">Start where you are. You can join any pathway first. None is a required step for another.</p>
     </div>
 
     <div class="path-grid">
-      <article class="path-card" data-tone="community">
+      <article class="path-card" data-reveal data-tone="community">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">01</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14.2c2.4 0 4 1.7 4 4.3"/></svg></span>
@@ -580,7 +643,7 @@
         <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community <span class="arr" aria-hidden="true">→</span></a>
       </article>
 
-      <article class="path-card" data-tone="club">
+      <article class="path-card" data-reveal data-tone="club">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">02</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
@@ -597,7 +660,7 @@
         <button type="button" class="btn btn-primary" disabled data-cta="club" data-href="/apply/club" data-arrow="true">Applications opening soon</button>
       </article>
 
-      <article class="path-card" data-tone="cohort">
+      <article class="path-card" data-reveal data-tone="cohort">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">03</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg></span>
@@ -617,8 +680,6 @@
 
     <div class="path-foot">
       <p class="free-badge">Free to join. No fees. No equity.</p>
-      <p>Every Venture Built pathway is free. We don't charge programme fees or take equity in what you build.</p>
-      <p class="path-note">Didn't get into the Club or Cohort this time? The Community stays open, and you can apply again when applications reopen.</p>
     </div>
   </div>
 </section>
@@ -644,28 +705,26 @@
 
 <!-- 6. THE HUB -->
 <!-- Screenshot: images/hub/hub-screenshot.webp (real Hub, test "Demo" account). Replace that one file to refresh it; update width/height if the new image differs. -->
-<section class="tint" id="hub" aria-labelledby="hub-title">
-  <div class="wrap">
+<section class="dark" id="hub" aria-labelledby="hub-title">
+  <div class="wrap wrap-wide">
     <div class="hub-head">
       <div class="hub-intro">
         <span class="eyebrow">The Hub</span>
         <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
         <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
       </div>
-      <div class="hub-side">
-        <ul class="hub-list">
-          <li>Self-paced startup learning</li>
-          <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
-          <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
-          <li>Full access for Club and Cohort members</li>
-        </ul>
-        <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
-      </div>
+      <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
     </div>
-    <figure class="browser-frame hub-shot">
+    <figure class="browser-frame hub-shot" data-reveal>
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
       <div class="shot-scroll"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."></div>
     </figure>
+    <ul class="hub-notes">
+      <li>Self-paced startup learning</li>
+      <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
+      <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
+      <li>Full access for Club and Cohort members</li>
+    </ul>
   </div>
 </section>
 
@@ -887,7 +946,7 @@
 
   /* ---- Scroll entrances: staggered, one-shot, skipped for reduced motion ---- */
   (function () {
-    var sel = 'main > section:not(.hero) :is(.eyebrow,.section-title,.section-lead,.prose p,.values-label,.value-card,.journey-note,.path-foot > *,.hub-list li,.hub-side .btn,.hub-shot,.where-list li,.where-soon,.faq-title,.final-label,.final-row .btn,.builder-card,.step,.path-card,.faq-list details)';
+    var sel = '[data-reveal]';
     var els = document.querySelectorAll(sel);
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!('IntersectionObserver' in window) || reduce) {
@@ -943,33 +1002,44 @@
     window.addEventListener('scroll', f, { passive: true }); f();
   })();
 
-  /* ---- Journey: desktop plays once in sequence; mobile fills with scroll ---- */
+  /* ---- Who It's For: each value sharpens as it reaches the reader ---- */
+  (function () {
+    var rows = document.querySelectorAll('.value-row');
+    if (!rows.length) return;
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { rows.forEach(function (r) { r.classList.add('on'); }); return; }
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { threshold: 0.55 });
+    rows.forEach(function (r) { io.observe(r); });
+  })();
+
+  /* ---- Journey: the line and numbers follow the scroll ---- */
   (function () {
     var box = document.querySelector('.steps'); if (!box) return;
     var steps = box.querySelectorAll('.step');
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var wide = window.matchMedia('(min-width: 901px)');
-    if (reduce) { box.classList.add('steps-play'); steps.forEach(function (s) { s.classList.add('is-done'); }); return; }
-    function mobile() {
-      var vh = window.innerHeight, r = box.getBoundingClientRect(), mark = vh * 0.65, cur = -1;
-      box.style.setProperty('--p', Math.min(1, Math.max(0, (mark - r.top) / r.height)));
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      box.style.setProperty('--p', 1); steps.forEach(function (s) { s.classList.add('is-done'); }); return;
+    }
+    var ticking = false;
+    function clamp(v) { return Math.min(1, Math.max(0, v)); }
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight, r = box.getBoundingClientRect(), cur = -1, p;
+      if (wide.matches) p = clamp((vh * 0.92 - r.top) / (vh * 0.5));
+      else p = clamp((vh * 0.65 - r.top) / r.height);
+      box.style.setProperty('--p', p);
       steps.forEach(function (s, i) {
-        var done = s.getBoundingClientRect().top < mark;
+        var done = wide.matches ? p >= (i + 0.15) / 5 : s.getBoundingClientRect().top < vh * 0.65;
         s.classList.toggle('is-done', done);
         if (done) cur = i;
       });
       steps.forEach(function (s, i) { s.classList.toggle('is-current', i === cur); });
     }
-    function sync() {
-      if (wide.matches) { box.style.removeProperty('--p'); steps.forEach(function (s) { s.classList.remove('is-done', 'is-current'); }); if (box._seen) box.classList.add('steps-play'); }
-      else { box.classList.remove('steps-play'); mobile(); }
-    }
-    new IntersectionObserver(function (en, io) {
-      if (en[0].isIntersecting && wide.matches) { box._seen = true; box.classList.add('steps-play'); io.disconnect(); }
-    }, { threshold: 0.5 }).observe(box);
-    window.addEventListener('scroll', function () { if (!wide.matches) mobile(); }, { passive: true });
-    window.addEventListener('resize', sync);
-    sync();
+    function req() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', req, { passive: true });
+    window.addEventListener('resize', req);
+    update();
   })();
 </script>
 </body>
