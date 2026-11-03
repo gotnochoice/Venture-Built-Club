@@ -33,16 +33,6 @@ The HTML ships in the safe state ("Applications opening soon") and `site-config.
 - `features.whatsappFoundersCopy`, `investorIntroductionLine`, `coBuildersSpace`, `hubSharingSpace`
 - `routes.founders | investors | partners | contactEmail`
 
-## Adding the Hub screenshot
+## Updating the Hub screenshot
 
-The Hub section is text-only until a real, privacy-safe screenshot is supplied. To add one:
-
-1. Save a WebP/AVIF (under ~200 KB) as `images/hub/hub-screenshot.webp`. Replace this one file when the Hub changes.
-2. In `index.html`, add `has-shot` to `<div class="hub-grid">` and insert after `.hub-copy`:
-
-```html
-<figure class="browser-frame reveal">
-  <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-  <img src="/images/hub/hub-screenshot.webp" width="WIDTH" height="HEIGHT" loading="lazy" alt="Describe what the screenshot shows">
-</figure>
-```
+The Hub section shows `images/hub/hub-screenshot.webp` (a real screenshot taken with a test account). To refresh it, replace that one file, keep it under ~200 KB, and update the `width`/`height` on the `<img>` in the `#hub` section if the dimensions change. Never use a screenshot showing real students' names, photos, messages or contact details.

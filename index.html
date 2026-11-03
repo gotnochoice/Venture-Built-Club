@@ -222,18 +222,20 @@
   .journey-note { margin-top: var(--space-7); text-align: center; font-size: var(--fs-lead); font-weight: 700; color: var(--color-forest); font-style: italic; }
 
   /* ============ HUB ============ */
-  .hub-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-7); align-items: center; }
-  .hub-copy { max-width: var(--measure); }
-  .hub-copy .section-lead { margin: var(--space-4) 0 var(--space-5); }
-  .hub-list { margin-bottom: var(--space-6); }
+  .hub-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-7); align-items: end; margin-bottom: var(--space-7); }
+  .hub-intro .section-lead { margin-top: var(--space-4); max-width: 520px; }
+  .hub-list { margin-bottom: var(--space-5); }
   .hub-list li { position: relative; padding-left: 28px; margin-bottom: var(--space-3); color: var(--text-primary); font-weight: 600; line-height: 1.5; }
   .hub-list li::before { content: ''; position: absolute; left: 0; top: 7px; width: 12px; height: 12px; border: 2px solid var(--color-forest); border-radius: 50%; }
-  /* Screenshot slot: see README ("Adding the Hub screenshot"). Only used when a real screenshot is supplied. */
-  .hub-grid.has-shot { grid-template-columns: 0.9fr 1.3fr; }
-  .browser-frame { border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-white); box-shadow: var(--shadow-card); }
-  .browser-bar { display: flex; gap: 6px; padding: 10px 14px; background: var(--color-gray-100); border-bottom: 1px solid var(--color-line); }
+  .browser-frame { border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-white); box-shadow: 0 16px 40px rgba(15,61,46,0.14); }
+  .browser-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--color-gray-100); border-bottom: 1px solid var(--color-line); }
   .browser-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--color-gray-300); }
+  .browser-bar em { margin-left: var(--space-3); font-style: normal; font-size: var(--fs-label); font-weight: 600; color: var(--text-secondary); background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-full); padding: 3px 14px; }
   .browser-frame img { display: block; width: 100%; height: auto; }
+  .shot-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  @media (max-width: 700px) { .shot-scroll img { width: 820px; max-width: none; } }
+  .hub-shot.reveal { transform: translateY(40px) scale(0.985); }
+  .hub-shot.reveal.visible { transform: none; }
 
   /* ============ BUILDERS ============ */
   .builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
@@ -352,7 +354,7 @@
     .path-grid, .builder-grid, .values, .where-list { grid-template-columns: 1fr; }
     .path-grid { row-gap: var(--space-5); }
     .path-card { grid-row: auto; display: flex; }
-    .hub-grid.has-shot { grid-template-columns: 1fr; }
+    .hub-head { grid-template-columns: 1fr; gap: var(--space-5); align-items: start; margin-bottom: var(--space-6); }
     .final-row { grid-template-columns: 1fr; max-width: 420px; }
     /* vertical journey */
     .steps { grid-template-columns: 1fr; gap: var(--space-6); padding-left: 0; }
@@ -641,15 +643,16 @@
 </section>
 
 <!-- 6. THE HUB -->
-<!-- Screenshot slot: when a real, privacy-safe Hub screenshot is supplied, add class "has-shot" to .hub-grid and
-     insert the .browser-frame figure after .hub-copy (see README: "Adding the Hub screenshot"). Text-only until then. -->
+<!-- Screenshot: images/hub/hub-screenshot.webp (real Hub, test "Demo" account). Replace that one file to refresh it; update width/height if the new image differs. -->
 <section class="tint" id="hub" aria-labelledby="hub-title">
   <div class="wrap">
-    <div class="hub-grid">
-      <div class="hub-copy">
+    <div class="hub-head">
+      <div class="hub-intro">
         <span class="eyebrow">The Hub</span>
         <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
         <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
+      </div>
+      <div class="hub-side">
         <ul class="hub-list">
           <li>Self-paced startup learning</li>
           <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
@@ -659,6 +662,10 @@
         <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
+    <figure class="browser-frame hub-shot">
+      <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
+      <div class="shot-scroll"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."></div>
+    </figure>
   </div>
 </section>
 
@@ -880,7 +887,7 @@
 
   /* ---- Scroll entrances: staggered, one-shot, skipped for reduced motion ---- */
   (function () {
-    var sel = 'main > section:not(.hero) :is(.eyebrow,.section-title,.section-lead,.prose p,.values-label,.value-card,.journey-note,.path-foot > *,.hub-list li,.hub-copy .btn,.where-list li,.where-soon,.faq-title,.final-label,.final-row .btn,.builder-card,.step,.path-card,.faq-list details)';
+    var sel = 'main > section:not(.hero) :is(.eyebrow,.section-title,.section-lead,.prose p,.values-label,.value-card,.journey-note,.path-foot > *,.hub-list li,.hub-side .btn,.hub-shot,.where-list li,.where-soon,.faq-title,.final-label,.final-row .btn,.builder-card,.step,.path-card,.faq-list details)';
     var els = document.querySelectorAll(sel);
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!('IntersectionObserver' in window) || reduce) {
