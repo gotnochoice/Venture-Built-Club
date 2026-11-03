@@ -59,7 +59,7 @@
     --fs-lead: clamp(17px, 2vw, 20px);
     --fs-h3: clamp(20px, 2.2vw, 24px);
     --fs-h2: clamp(28px, 4.4vw, 44px);
-    --fs-h1: clamp(38px, 8.5vw, 84px);
+    --fs-h1: clamp(38px, 7.2vw, 108px);
     --fs-num: clamp(40px, 5vw, 56px);
 
     --radius-sm: 4px;      /* buttons (live site) */
@@ -81,7 +81,7 @@
   a { color: inherit; }
   ul, ol { list-style: none; }
   img, svg { max-width: 100%; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 var(--space-6); }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--space-6); }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .skip-link { position: absolute; left: var(--space-4); top: -60px; background: var(--color-bright); color: var(--text-primary); padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); font-weight: 700; z-index: 300; text-decoration: none; }
   .skip-link:focus { top: var(--space-3); }
@@ -170,14 +170,14 @@
 
   /* ============ HERO ============ */
   .hero { position: relative; overflow: hidden; min-height: min(92vh, 860px); display: flex; align-items: center; padding: var(--space-8) 0; }
-  .hero .wrap { position: relative; z-index: 1; width: 100%; }
-  .hero-copy { max-width: 760px; }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; max-width: none; padding-left: clamp(16px, 3.6vw, 64px); padding-right: var(--space-4); }
+  .hero-copy { max-width: 900px; }
   .hero h1 { font-size: var(--fs-h1); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; text-transform: uppercase; margin-bottom: var(--space-5); }
   .hero .hero-sub { font-size: var(--fs-lead); color: var(--text-on-dark); line-height: 1.6; max-width: 620px; margin-bottom: var(--space-3); }
   .hero .hero-where { font-size: var(--fs-lead); font-weight: 700; color: var(--color-white); margin-bottom: var(--space-5); }
   .hero .free-badge { margin-bottom: var(--space-6); }
   .hero-cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-  .hero-graphic { position: absolute; right: -40px; top: 50%; transform: translateY(-50%); width: min(560px, 48vw); height: auto; opacity: 0.9; pointer-events: none; display: none; }
+  .hero-graphic { position: absolute; right: -20px; top: 50%; transform: translateY(-50%); width: min(780px, 44vw); height: auto; opacity: 0.9; pointer-events: none; display: none; }
   @media (min-width: 900px) { .hero-graphic { display: block; } }
 
   /* ============ VALUES (Grit / Spike / Drive) ============ */
@@ -321,6 +321,24 @@
   /* Oversized numerals light up once their card has entered */
   .path-num { transition: color 0.8s ease 0.3s; }
   .path-card.in-view .path-num { color: rgba(62,189,121,0.55); }
+
+
+  /* Hero graphic: draws itself, nodes pop in, one signal travels the path. Static + fully drawn if motion is reduced. */
+  .g-dot { opacity: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .g-grid { animation: gfade 1.4s ease both; }
+    .g-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: gdraw 1.2s var(--ease) forwards; animation-delay: var(--d); }
+    .g-node { transform-box: fill-box; transform-origin: center; transform: scale(0); animation: gpop 0.5s var(--ease) forwards; animation-delay: var(--d); }
+    .g-ring { transform-box: fill-box; transform-origin: center; opacity: 0; animation: gpulse 3.4s ease-out 2.6s infinite; }
+    @supports (offset-path: path('M0 0')) {
+      .g-dot { offset-path: path('M80 380L200 300L320 220L320 140L440 60'); animation: gtravel 6s linear 2.8s infinite; }
+    }
+    @keyframes gfade { from { opacity: 0; } }
+    @keyframes gdraw { to { stroke-dashoffset: 0; } }
+    @keyframes gpop { to { transform: scale(1); } }
+    @keyframes gpulse { 0% { transform: scale(1); opacity: 0.7; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
+    @keyframes gtravel { 0% { offset-distance: 0%; opacity: 0; } 6% { opacity: 1; } 55% { offset-distance: 100%; opacity: 1; } 62%, 100% { offset-distance: 100%; opacity: 0; } }
+  }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
@@ -469,20 +487,26 @@
 <!-- 1. HERO -->
 <section class="hero dark" aria-labelledby="hero-title">
   <svg class="hero-graphic" viewBox="0 0 560 480" fill="none" aria-hidden="true" focusable="false">
-    <g stroke="#2A7A5C" stroke-width="1" opacity="0.5">
+    <g class="g-grid" stroke="#2A7A5C" stroke-width="1" opacity="0.5">
       <path d="M40 60H520M40 140H520M40 220H520M40 300H520M40 380H520M40 460H520"/>
       <path d="M80 20V470M200 20V470M320 20V470M440 20V470"/>
     </g>
-    <g stroke="#3EBD79" stroke-width="2" opacity="0.8" stroke-linejoin="round">
-      <path d="M80 380L200 300L320 220L320 140L440 60"/>
-      <path d="M200 300L200 140L320 140"/>
-      <path d="M320 220L440 300"/>
+    <g stroke="#3EBD79" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85">
+      <path class="g-line" style="--d:0.4s" pathLength="1" d="M80 380L200 300L320 220L320 140L440 60"/>
+      <path class="g-line" style="--d:1.1s" pathLength="1" d="M200 300L200 140L320 140"/>
+      <path class="g-line" style="--d:1.5s" pathLength="1" d="M320 220L440 300"/>
     </g>
     <g fill="#04140E" stroke="#3EBD79" stroke-width="2">
-      <circle cx="80" cy="380" r="9"/><circle cx="200" cy="300" r="9"/><circle cx="320" cy="220" r="9"/>
-      <circle cx="320" cy="140" r="9"/><circle cx="200" cy="140" r="9"/><circle cx="440" cy="300" r="9"/>
+      <circle class="g-node" style="--d:0.4s" cx="80" cy="380" r="9"/>
+      <circle class="g-node" style="--d:0.8s" cx="200" cy="300" r="9"/>
+      <circle class="g-node" style="--d:1.2s" cx="320" cy="220" r="9"/>
+      <circle class="g-node" style="--d:1.5s" cx="320" cy="140" r="9"/>
+      <circle class="g-node" style="--d:1.7s" cx="200" cy="140" r="9"/>
+      <circle class="g-node" style="--d:1.9s" cx="440" cy="300" r="9"/>
     </g>
-    <circle cx="440" cy="60" r="14" fill="#3EBD79"/>
+    <circle class="g-ring" cx="440" cy="60" r="14" stroke="#3EBD79" stroke-width="2"/>
+    <circle class="g-node g-final" style="--d:1.9s" cx="440" cy="60" r="14" fill="#3EBD79"/>
+    <circle class="g-dot" cx="0" cy="0" r="5" fill="#60D18F"/>
   </svg>
   <div class="wrap">
     <div class="hero-copy">
