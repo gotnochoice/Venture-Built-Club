@@ -222,12 +222,6 @@
   .journey-note { margin-top: var(--space-7); text-align: center; font-size: var(--fs-lead); font-weight: 700; color: var(--color-forest); font-style: italic; }
 
   /* ============ HUB ============ */
-  .wrap-wide { max-width: 1400px; }
-  .hub-head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; margin-bottom: var(--space-7); }
-  .hub-intro .section-lead { margin-top: var(--space-4); max-width: 520px; }
-  .hub-notes { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); margin-top: var(--space-7); }
-  .hub-notes li { position: relative; padding-top: var(--space-4); color: var(--color-white); font-weight: 600; font-size: 16px; line-height: 1.45; border-top: 1px solid rgba(255,255,255,0.18); }
-  .hub-notes li::before { content: ''; position: absolute; left: 0; top: -2px; width: 28px; height: 3px; background: var(--color-bright); }
   .browser-frame { border: 1px solid var(--color-line); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-white); box-shadow: 0 16px 40px rgba(15,61,46,0.14); }
   .browser-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: var(--color-gray-100); border-bottom: 1px solid var(--color-line); }
   .browser-bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--color-gray-300); }
@@ -380,6 +374,60 @@
   .builder-card .btn { width: 100%; white-space: nowrap; padding-left: var(--space-3); padding-right: var(--space-3); font-size: 14px; }
   @media (prefers-reduced-motion: reduce) { .builder-card, .builder-card::before, .step-num, .steps::after { transition: none; } .builder-card:hover { transform: none; } }
 
+
+  /* ============ HERO v3: hollow "Beyond" + line, orbit graphic ============ */
+  .hero h1 .beyond { color: transparent; -webkit-text-stroke: 1.5px var(--color-white); }
+  .hero h1 .beyond-rule { display: none; }
+  @media (min-width: 520px) {
+    .hero h1 { max-width: 780px; }
+    .hero h1 .l1 { display: flex; align-items: center; gap: 0.3em; }
+    .hero h1 .l1 > .beyond-rule { display: block; position: relative; flex: 1; height: 2px; min-width: 40px; background: var(--color-bright); transform-origin: left; }
+    .hero h1 .l1 > .beyond-rule::after { content: ''; position: absolute; right: 0; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: var(--color-bright); }
+  }
+  .hero-graphic { width: min(720px, 44vw); right: -30px; }
+  .o-halo { transform-box: view-box; }
+  .o-spin { transform-box: view-box; transform-origin: 380px 260px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .js .hero h1 .l1 > .beyond-rule { transform: scaleX(0); animation: draw 0.9s var(--ease) 0.8s forwards; }
+    .o-fade { opacity: 0; animation: gfade2 1.2s ease forwards; animation-delay: calc(0.2s + var(--k) * 0.25s); }
+    .o-spin-const { animation: gfade2 1.2s ease 0.9s both, spin 140s linear infinite; }
+    .o-spin-slow { animation: spin 90s linear infinite; }
+    .o-spin-rev { animation: spin 120s linear infinite reverse; }
+    .o-spin-a { animation: spin 16s linear infinite; }
+    .o-spin-b { animation: spin 30s linear infinite reverse; }
+    .o-spin-c { animation: spin 46s linear infinite; }
+    @keyframes draw { to { transform: scaleX(1); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  }
+
+  /* ============ WHO WE ARE: grey first sentence, heading sized to its column, tighter top ============ */
+  #who-we-are { padding-top: clamp(36px, 4.5vw, 60px); }
+  #who-title .sent:first-child { color: var(--text-secondary); }
+  .two-head { container-type: inline-size; }
+  @supports (container-type: inline-size) {
+    #who-title { font-size: min(8.4cqi, 72px); }
+    #for-title { font-size: min(5.8cqi, 58px); }
+  }
+
+  /* ============ HUB v2: copy left, product bleeds off the right edge, phone view overlaps ============ */
+  #hub { overflow: hidden; }
+  .hub-wrap { display: grid; grid-template-columns: 1fr; gap: var(--space-7); max-width: 1240px; }
+  .hub-copy .section-title { font-size: clamp(26px, 3vw, 40px); line-height: 1.12; }
+  .hub-copy .section-lead { margin: var(--space-4) 0 var(--space-6); max-width: 440px; }
+  .hub-notes { counter-reset: n; margin-bottom: var(--space-6); max-width: 460px; }
+  .hub-notes li { counter-increment: n; display: grid; grid-template-columns: 40px 1fr; gap: var(--space-3); padding: var(--space-3) 0; border-top: 1px solid rgba(255,255,255,0.16); color: var(--color-white); font-weight: 500; font-size: 16px; line-height: 1.45; }
+  .hub-notes li:last-child { border-bottom: 1px solid rgba(255,255,255,0.16); }
+  .hub-notes li::before { content: counter(n, decimal-leading-zero); color: var(--color-bright); font-size: 13px; font-weight: 700; letter-spacing: 0.1em; padding-top: 3px; }
+  .hub-stage { position: relative; }
+  .browser-bar em { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @media (min-width: 1000px) { .hub-shot-phone .browser-bar { padding: 8px 10px; } .hub-shot-phone .browser-bar em { font-size: 9px; padding: 2px 8px; margin-left: 6px; } }
+  @media (min-width: 1000px) {
+    .hub-wrap { grid-template-columns: 0.8fr 1.5fr; gap: var(--space-8); align-items: center; }
+    .hub-stage { margin-right: calc(-1 * ((100vw - min(100vw, 1240px)) / 2 + var(--space-6))); padding-bottom: 64px; }
+    .hub-shot-desktop { border-radius: var(--radius-lg) 0 0 var(--radius-lg); border-right: 0; }
+    .hub-shot-phone { display: block; position: absolute; width: 210px; right: 9%; bottom: 0; margin: 0; z-index: 2; }
+  }
+
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
     .wrap { padding: 0 var(--space-4); }
@@ -392,8 +440,6 @@
     .path-grid, .builder-grid, .values, .where-list { grid-template-columns: 1fr; }
     .path-grid { row-gap: var(--space-5); }
     .path-card { grid-row: auto; display: flex; }
-    .hub-head { align-items: flex-start; margin-bottom: var(--space-6); }
-    .hub-notes { grid-template-columns: 1fr 1fr; }
     .final-row { grid-template-columns: 1fr; max-width: 420px; }
     /* vertical journey */
     .steps { grid-template-columns: 1fr; gap: var(--space-6); padding-left: 0; }
@@ -488,39 +534,50 @@
 
 <!-- 1. HERO -->
 <section class="hero dark" aria-labelledby="hero-title">
-  <svg class="hero-graphic" viewBox="0 0 560 480" fill="none" aria-hidden="true" focusable="false">
-    <g class="g-grid" stroke="#2A7A5C" stroke-width="1" opacity="0.45">
-      <path d="M30 110H540M30 240H540M30 370H540"/>
-      <path d="M60 60V420M170 60V420M300 60V420M380 60V420M500 60V420"/>
+  <svg class="hero-graphic" viewBox="0 0 640 520" fill="none" aria-hidden="true" focusable="false">
+    <path class="o-fade" style="--k:1" d="M414.0 260.0L612.0 260.0M412.8 268.8L604.1 320.0M409.4 277.0L580.9 376.0M404.0 284.0L544.0 424.0M397.0 289.4L496.0 460.9M388.8 292.8L440.0 484.1M380.0 294.0L380.0 492.0M371.2 292.8L320.0 484.1M363.0 289.4L264.0 460.9M356.0 284.0L216.0 424.0M350.6 277.0L179.1 376.0M347.2 268.8L155.9 320.0M346.0 260.0L148.0 260.0M347.2 251.2L155.9 200.0M350.6 243.0L179.1 144.0M356.0 236.0L216.0 96.0M363.0 230.6L264.0 59.1M371.2 227.2L320.0 35.9M380.0 226.0L380.0 28.0M388.8 227.2L440.0 35.9M397.0 230.6L496.0 59.1M404.0 236.0L544.0 96.0M409.4 243.0L580.9 144.0M412.8 251.2L604.1 200.0" stroke="#2A7A5C" stroke-width="1" opacity="0.12"/>
+    <g class="o-fade" style="--k:2" stroke="#2A7A5C" stroke-width="1">
+      <circle cx="380" cy="260" r="60" opacity="0.7"/>
+      <circle cx="380" cy="260" r="110" stroke-dasharray="3 9" opacity="0.8"/>
+      <circle class="o-spin o-spin-slow" cx="380" cy="260" r="165" stroke-dasharray="520 60" opacity="0.8"/>
+      <circle class="o-spin o-spin-rev" cx="380" cy="260" r="225" stroke-dasharray="1.5 14" opacity="0.9"/>
+    </g>
+    <g class="o-spin o-spin-const" style="--k:3">
+      <path d="M552.4 115.4L365.6 95.6L185.1 147.5L225.0 316.4L303.0 471.4L486.1 386.4L604.1 279.6" stroke="#2A7A5C" stroke-width="1" opacity="0.5"/>
+      <circle cx="552.4" cy="115.4" r="3.5" fill="#60D18F"/><circle cx="365.6" cy="95.6" r="3.5" fill="#60D18F"/><circle cx="185.1" cy="147.5" r="3.5" fill="#60D18F"/><circle cx="225.0" cy="316.4" r="3.5" fill="#60D18F"/><circle cx="303.0" cy="471.4" r="3.5" fill="#60D18F"/><circle cx="486.1" cy="386.4" r="3.5" fill="#60D18F"/><circle cx="604.1" cy="279.6" r="3.5" fill="#60D18F"/>
+    </g>
+    <g class="o-fade" style="--k:3" fill="#04140E" stroke="#3EBD79" stroke-width="2">
+      <g class="o-spin o-spin-a"><g transform="rotate(30 380 260)"><circle cx="440" cy="260" r="4.5" fill="#3EBD79"/></g></g>
+      <g class="o-spin o-spin-b"><g transform="rotate(100 380 260)"><circle cx="490" cy="260" r="6"/></g><g transform="rotate(280 380 260)"><circle cx="490" cy="260" r="6"/></g></g>
+      <g class="o-spin o-spin-c"><g transform="rotate(210 380 260)"><circle cx="545" cy="260" r="8"/></g></g>
     </g>
     <g class="g-label-set">
-      <text class="g-label" x="60" y="84">Community</text>
-      <text class="g-label" x="60" y="214">Club</text>
-      <text class="g-label" x="60" y="344">Cohort</text>
+      <text class="g-label" x="40" y="88">Community</text>
+      <text class="g-label" x="40" y="238">Club</text>
+      <text class="g-label" x="40" y="388">Cohort</text>
     </g>
-    <g stroke="#3EBD79" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
-      <path class="g-line" style="--d:0.5s" pathLength="1" d="M60 110H170L300 240"/>
-      <path class="g-line" style="--d:0.6s" pathLength="1" d="M60 240H300"/>
-      <path class="g-line" style="--d:0.7s" pathLength="1" d="M60 370H170L300 240"/>
-      <path class="g-line" style="--d:1.3s" pathLength="1" d="M300 240H380L500 120"/>
+    <g stroke="#3EBD79" stroke-width="2" stroke-linecap="round" opacity="0.95">
+      <path class="g-line" style="--d:0.5s" pathLength="1" d="M40 110C200 110 230 252 364 260"/>
+      <path class="g-line" style="--d:0.6s" pathLength="1" d="M40 260H364"/>
+      <path class="g-line" style="--d:0.7s" pathLength="1" d="M40 410C200 410 230 268 364 260"/>
+    </g>
+    <g stroke="#60D18F" stroke-width="3" stroke-linecap="round">
+      <path class="g-beam" style="--bd:2.4s" pathLength="1" d="M40 110C200 110 230 252 364 260"/>
+      <path class="g-beam" style="--bd:3.9s" pathLength="1" d="M40 260H364"/>
+      <path class="g-beam" style="--bd:5.4s" pathLength="1" d="M40 410C200 410 230 268 364 260"/>
     </g>
     <g fill="#04140E" stroke="#3EBD79" stroke-width="2">
-      <circle class="g-node" style="--d:0.3s" cx="60" cy="110" r="9"/>
-      <circle class="g-node" style="--d:0.4s" cx="60" cy="240" r="9"/>
-      <circle class="g-node" style="--d:0.5s" cx="60" cy="370" r="9"/>
-      <circle class="g-node" style="--d:1.2s" cx="300" cy="240" r="9"/>
+      <circle class="g-node" style="--d:0.3s" cx="40" cy="110" r="8"/>
+      <circle class="g-node" style="--d:0.4s" cx="40" cy="260" r="8"/>
+      <circle class="g-node" style="--d:0.5s" cx="40" cy="410" r="8"/>
     </g>
-    <g stroke="#60D18F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path class="g-beam" style="--bd:2.6s" pathLength="1" d="M60 110H170L300 240H380L500 120"/>
-      <path class="g-beam" style="--bd:4.2s" pathLength="1" d="M60 240H380L500 120"/>
-      <path class="g-beam" style="--bd:5.8s" pathLength="1" d="M60 370H170L300 240H380L500 120"/>
-    </g>
-    <circle class="g-ring" cx="500" cy="120" r="14" stroke="#3EBD79" stroke-width="2"/>
-    <circle class="g-node g-final" style="--d:2.3s" cx="500" cy="120" r="14" fill="#3EBD79"/>
+    <circle class="g-ring" cx="380" cy="260" r="18" stroke="#3EBD79" stroke-width="2"/>
+    <circle class="o-halo" cx="380" cy="260" r="30" stroke="#3EBD79" stroke-width="1" opacity="0.5"/>
+    <circle class="g-node g-final" style="--d:1.4s" cx="380" cy="260" r="16" fill="#3EBD79"/>
   </svg>
   <div class="wrap">
     <div class="hero-copy">
-      <h1 id="hero-title"><span class="line"><span style="--i:0">Build Beyond</span></span> <span class="line"><span style="--i:1">What You Imagine.</span></span></h1>
+      <h1 id="hero-title"><span class="line l1"><span style="--i:0">Build <span class="beyond">Beyond</span></span><span class="beyond-rule" aria-hidden="true"></span></span> <span class="line"><span style="--i:1">What You Imagine.</span></span></h1>
       <p class="hero-sub">Venture Built is an ecosystem discovering <strong>exceptional student talent</strong> and equipping them to build <strong>category-defining products</strong>.</p>
       <p class="hero-where">Starting at Obafemi Awolowo University.</p>
       <div class="hero-cta-row">
@@ -657,29 +714,29 @@
 <!-- 6. THE HUB -->
 <!-- Screenshot: images/hub/hub-screenshot.webp (real Hub, test "Demo" account). Replace that one file to refresh it; update width/height if the new image differs. Phones show images/hub/hub-screenshot-mobile.webp instead. -->
 <section class="dark" id="hub" aria-labelledby="hub-title">
-  <div class="wrap wrap-wide">
-    <div class="hub-head">
-      <div class="hub-intro">
-        <span class="eyebrow">The Hub</span>
-        <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
-        <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
-      </div>
+  <div class="wrap hub-wrap">
+    <div class="hub-copy">
+      <span class="eyebrow">The Hub</span>
+      <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
+      <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
+      <ol class="hub-notes">
+        <li>Self-paced startup learning</li>
+        <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
+        <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
+        <li>Full access for Club and Cohort members</li>
+      </ol>
       <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
     </div>
-    <figure class="browser-frame hub-shot hub-shot-desktop reveal">
+    <div class="hub-stage">
+      <figure class="browser-frame hub-shot hub-shot-desktop reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
       <div class="shot-scroll"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."></div>
     </figure>
-    <figure class="browser-frame hub-shot hub-shot-phone reveal">
+      <figure class="browser-frame hub-shot hub-shot-phone reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
       <img src="/images/hub/hub-screenshot-mobile.webp" width="780" height="988" loading="lazy" decoding="async" alt="The Venture Built Hub on a phone, with the menu open: Dashboard, Learn, Member Directory, Events and Sessions, Investor Network, Problems to Solve and Opportunities.">
     </figure>
-    <ul class="hub-notes">
-      <li>Self-paced startup learning</li>
-      <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
-      <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
-      <li>Full access for Club and Cohort members</li>
-    </ul>
+    </div>
   </div>
 </section>
 
