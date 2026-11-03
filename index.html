@@ -348,12 +348,60 @@
     .hero { min-height: auto; padding: var(--space-8) 0; }
     .card, .path-card { padding: var(--space-5); }
   }
+
+  /* ============ INTERACTION STATES ============ */
+  :root { interpolate-size: allow-keywords; }
+  .btn .arr { display: inline-block; margin-left: 0.45em; transition: transform 0.2s var(--ease); }
+  .btn:hover .arr, .path-card:hover .btn .arr, .path-card:focus-within .btn .arr { transform: translateX(5px); }
+  .btn { transition: transform 0.2s var(--ease), background 0.2s, border-color 0.2s, color 0.2s; }
+
+  /* Pathway cards: lift + stronger border on hover/focus/tap. All content stays visible; cards stay equal. */
+  .path-card { transition: transform 0.25s var(--ease), border-color 0.25s, background 0.25s; }
+  .path-card:hover, .path-card:focus-within, .path-card.is-tapped { transform: translateY(-6px); border-color: var(--color-bright); background: rgba(62,189,121,0.07); }
+  .path-card:hover .path-num, .path-card:focus-within .path-num, .path-card.is-tapped .path-num { color: var(--color-bright); }
+  .path-card:hover .path-icon, .path-card.is-tapped .path-icon { background: var(--color-bright); color: var(--text-primary); border-color: var(--color-bright); }
+  .path-icon { transition: background 0.25s, color 0.25s, border-color 0.25s; }
+
+  /* Light-section cards */
+  .value-card, .builder-card { transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
+  .value-card:hover, .builder-card:hover { transform: translateY(-4px); border-color: var(--color-forest); box-shadow: var(--shadow-card); }
+  .value-card h3 { transition: color 0.25s; }
+  .value-card:hover h3 { color: var(--color-forest-light); }
+
+  /* Journey: numbers fill as the line reaches them */
+  .step-num { z-index: 1; transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease); }
+  .step.is-done .step-num { background: var(--color-bright); color: var(--text-primary); }
+  .step.is-current .step-num { transform: scale(1.12); }
+  .steps::after { content: ''; position: absolute; left: 0; top: 28px; width: 100%; height: 2px; background: var(--color-bright); transform-origin: left; transform: scaleX(var(--p, 0)); }
+  .steps.steps-play { --p: 1; }
+  .steps.steps-play::after { transition: transform 1.6s linear; }
+  .steps.steps-play .step-num { transition-delay: calc(var(--i) * 0.32s); }
+  .steps.steps-play .step-num { background: var(--color-bright); color: var(--text-primary); }
+
+  /* FAQ: smooth open/close (progressive: instant where unsupported) */
+  .faq-list details::details-content { block-size: 0; overflow: clip; transition: block-size 0.3s var(--ease), content-visibility 0.3s allow-discrete; }
+  .faq-list details[open]::details-content { block-size: auto; }
+  .faq-list summary::after { content: '+'; transition: transform 0.3s var(--ease), background 0.2s; }
+  .faq-list details[open] summary::after { content: '+'; transform: rotate(45deg); background: var(--color-bright); color: var(--text-primary); }
+
+  /* Sticky nav compacts on scroll */
+  .site-header nav { transition: padding 0.25s var(--ease), box-shadow 0.25s; }
+  .site-header.scrolled nav { padding-top: 4px; padding-bottom: 4px; box-shadow: 0 4px 16px rgba(10,10,10,0.1); }
+  .mobile-nav-panel, .mobile-nav-accordion-panel { transition: max-height 0.35s var(--ease); }
+  .nav-links a, .nav-login, .footer-col a, .nav-dropdown-link { transition: color 0.2s, border-color 0.2s, background 0.2s; }
+
   @media (prefers-reduced-motion: reduce) {
     .js .hero h1 .line > span, .js .hero-rule, .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row { animation: none; opacity: 1; transform: none; }
     .js .section-title.reveal::after, .js .section-title.reveal.visible::after { transform: none; transition: none; }
     .path-num { transition: none; }
+    .path-card, .value-card, .builder-card, .btn .arr, .step-num, .steps::after, .site-header nav, .faq-list details::details-content, .faq-list summary::after, .mobile-nav-panel, .mobile-nav-accordion-panel { transition: none !important; }
+    .path-card:hover, .path-card:focus-within, .path-card.is-tapped, .value-card:hover, .builder-card:hover, .btn:hover .arr { transform: none; }
   }
 
+  @media (max-width: 900px) {
+    .steps::after { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; transform: scaleY(var(--p, 0)); transform-origin: top; }
+    .steps.steps-play::after { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -489,7 +537,7 @@
     </div>
 
     <div class="path-grid">
-      <article class="path-card reveal" data-tone="community">
+      <article class="path-card" data-tone="community">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">01</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14.2c2.4 0 4 1.7 4 4.3"/></svg></span>
@@ -503,10 +551,10 @@
           <li>Find co-builders and share what you're working on</li>
           <li>Hear about events, opportunities and programmes first</li>
         </ul>
-        <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community →</a>
+        <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community <span class="arr" aria-hidden="true">→</span></a>
       </article>
 
-      <article class="path-card reveal" data-tone="club">
+      <article class="path-card" data-tone="club">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">02</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
@@ -523,7 +571,7 @@
         <button type="button" class="btn btn-primary" disabled data-cta="club" data-href="/apply/club" data-arrow="true">Applications opening soon</button>
       </article>
 
-      <article class="path-card reveal" data-tone="cohort">
+      <article class="path-card" data-tone="cohort">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">03</span>
           <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg></span>
@@ -558,11 +606,11 @@
       <p class="section-lead">Everyone starts somewhere different. Go as far as you want.</p>
     </div>
     <ol class="steps">
-      <li class="step reveal"><span class="step-num" aria-hidden="true">01</span><h3>Start with what pulls you.</h3><p>Bring an idea, a problem, a skill or a question.</p></li>
-      <li class="step reveal"><span class="step-num" aria-hidden="true">02</span><h3>Understand the problem.</h3><p>Find out who has it, how they cope today, and whether it's worth solving.</p></li>
-      <li class="step reveal"><span class="step-num" aria-hidden="true">03</span><h3>Shape a solution.</h3><p>Challenge your assumptions, compare approaches and decide what to build.</p></li>
-      <li class="step reveal"><span class="step-num" aria-hidden="true">04</span><h3>Test with real people.</h3><p>Put it in front of users and teammates, and learn what doesn't work.</p></li>
-      <li class="step reveal"><span class="step-num" aria-hidden="true">05</span><h3>Build and share.</h3><p>Turn what works into a product, improve it with feedback and show it publicly.</p></li>
+      <li class="step" style="--i:0"><span class="step-num" aria-hidden="true">01</span><h3>Start with what pulls you.</h3><p>Bring an idea, a problem, a skill or a question.</p></li>
+      <li class="step" style="--i:1"><span class="step-num" aria-hidden="true">02</span><h3>Understand the problem.</h3><p>Find out who has it, how they cope today, and whether it's worth solving.</p></li>
+      <li class="step" style="--i:2"><span class="step-num" aria-hidden="true">03</span><h3>Shape a solution.</h3><p>Challenge your assumptions, compare approaches and decide what to build.</p></li>
+      <li class="step" style="--i:3"><span class="step-num" aria-hidden="true">04</span><h3>Test with real people.</h3><p>Put it in front of users and teammates, and learn what doesn't work.</p></li>
+      <li class="step" style="--i:4"><span class="step-num" aria-hidden="true">05</span><h3>Build and share.</h3><p>Turn what works into a product, improve it with feedback and show it publicly.</p></li>
     </ol>
     <p class="journey-note">Join at any step. Not everyone goes through all five.</p>
   </div>
@@ -584,7 +632,7 @@
           <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
           <li>Full access for Club and Cohort members</li>
         </ul>
-        <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub →</a>
+        <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -599,20 +647,20 @@
       <p class="section-lead">Venture Built connects students to the people who build, back and work with new ventures. If that's you, there's a way in.</p>
     </div>
     <div class="builder-grid">
-      <article class="card builder-card reveal">
+      <article class="card builder-card">
         <h3>Founders and operators</h3>
         <p>Mentor students, share what you've learned, or bring a real problem for students to work on.</p>
-        <a href="/join-us" class="btn btn-outline" data-route="founders">Work with students →</a>
+        <a href="/join-us" class="btn btn-outline" data-route="founders">Work with students <span class="arr" aria-hidden="true">→</span></a>
       </article>
-      <article class="card builder-card reveal">
+      <article class="card builder-card">
         <h3>Investors</h3>
         <p>Meet emerging student talent and see early products as they take shape.</p>
-        <a href="/investor-network" class="btn btn-outline" data-route="investors">Join the investor network →</a>
+        <a href="/investor-network" class="btn btn-outline" data-route="investors">Join the investor network <span class="arr" aria-hidden="true">→</span></a>
       </article>
-      <article class="card builder-card reveal">
+      <article class="card builder-card">
         <h3>Partners</h3>
         <p>Work with us on programmes, events and opportunities that support student innovation.</p>
-        <a href="/partners" class="btn btn-outline" data-route="partners">Partner with us →</a>
+        <a href="/partners" class="btn btn-outline" data-route="partners">Partner with us <span class="arr" aria-hidden="true">→</span></a>
       </article>
     </div>
   </div>
@@ -632,7 +680,7 @@
       <li><strong>Cohort</strong>currently at OAU</li>
     </ul>
     <p class="where-soon">Your campus: coming soon.</p>
-    <a href="/location/oau" class="btn btn-outline">Explore the OAU Chapter →</a>
+    <a href="/location/oau" class="btn btn-outline">Explore the OAU Chapter <span class="arr" aria-hidden="true">→</span></a>
 
     <h3 class="faq-title" id="faq">Frequently asked questions</h3>
     <div class="faq-list" style="text-align:left">
@@ -742,7 +790,7 @@
       var a = document.createElement('a');
       a.className = el.className;
       a.href = el.getAttribute('data-href');
-      a.textContent = label;
+      if (/ →$/.test(label)) { a.appendChild(document.createTextNode(label.slice(0, -2) + ' ')); var ar = document.createElement('span'); ar.className = 'arr'; ar.setAttribute('aria-hidden', 'true'); ar.textContent = '→'; a.appendChild(ar); } else { a.textContent = label; }
       el.replaceWith(a);
     });
 
@@ -845,6 +893,52 @@
     }
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     update();
+  })();
+
+  /* ---- Pathway cards: tap toggles the same emphasis hover gives (touch has no hover) ---- */
+  document.querySelectorAll('.path-card').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a,button')) return;
+      var on = !card.classList.contains('is-tapped');
+      document.querySelectorAll('.path-card.is-tapped').forEach(function (c) { c.classList.remove('is-tapped'); });
+      card.classList.toggle('is-tapped', on);
+    });
+  });
+
+  /* ---- Sticky nav compacts after a short scroll ---- */
+  (function () {
+    var h = document.querySelector('.site-header');
+    function f() { h.classList.toggle('scrolled', window.scrollY > 24); }
+    window.addEventListener('scroll', f, { passive: true }); f();
+  })();
+
+  /* ---- Journey: desktop plays once in sequence; mobile fills with scroll ---- */
+  (function () {
+    var box = document.querySelector('.steps'); if (!box) return;
+    var steps = box.querySelectorAll('.step');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var wide = window.matchMedia('(min-width: 901px)');
+    if (reduce) { box.classList.add('steps-play'); steps.forEach(function (s) { s.classList.add('is-done'); }); return; }
+    function mobile() {
+      var vh = window.innerHeight, r = box.getBoundingClientRect(), mark = vh * 0.65, cur = -1;
+      box.style.setProperty('--p', Math.min(1, Math.max(0, (mark - r.top) / r.height)));
+      steps.forEach(function (s, i) {
+        var done = s.getBoundingClientRect().top < mark;
+        s.classList.toggle('is-done', done);
+        if (done) cur = i;
+      });
+      steps.forEach(function (s, i) { s.classList.toggle('is-current', i === cur); });
+    }
+    function sync() {
+      if (wide.matches) { box.style.removeProperty('--p'); steps.forEach(function (s) { s.classList.remove('is-done', 'is-current'); }); if (box._seen) box.classList.add('steps-play'); }
+      else { box.classList.remove('steps-play'); mobile(); }
+    }
+    new IntersectionObserver(function (en, io) {
+      if (en[0].isIntersecting && wide.matches) { box._seen = true; box.classList.add('steps-play'); io.disconnect(); }
+    }, { threshold: 0.5 }).observe(box);
+    window.addEventListener('scroll', function () { if (!wide.matches) mobile(); }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
   })();
 </script>
 </body>
