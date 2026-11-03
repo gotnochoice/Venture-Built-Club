@@ -234,7 +234,8 @@
   .browser-bar em { margin-left: var(--space-3); font-style: normal; font-size: var(--fs-label); font-weight: 600; color: var(--text-secondary); background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-full); padding: 3px 14px; }
   .browser-frame img { display: block; width: 100%; height: auto; }
   .shot-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  @media (max-width: 700px) { .shot-scroll img { width: 820px; max-width: none; } }
+  .hub-shot-phone { display: none; max-width: 420px; margin: 0 auto; }
+  @media (max-width: 700px) { .hub-shot-desktop { display: none; } .hub-shot-phone { display: block; } }
   .dark .browser-frame { border-color: rgba(255,255,255,0.16); box-shadow: 0 28px 70px rgba(0,0,0,0.55); }
   .dark .browser-bar { background: #EEF1EF; }
   .hub-shot.reveal { transform: translateY(56px) scale(0.965); transition-duration: 0.9s; }
@@ -654,7 +655,7 @@
 </section>
 
 <!-- 6. THE HUB -->
-<!-- Screenshot: images/hub/hub-screenshot.webp (real Hub, test "Demo" account). Replace that one file to refresh it; update width/height if the new image differs. -->
+<!-- Screenshot: images/hub/hub-screenshot.webp (real Hub, test "Demo" account). Replace that one file to refresh it; update width/height if the new image differs. Phones show images/hub/hub-screenshot-mobile.webp instead. -->
 <section class="dark" id="hub" aria-labelledby="hub-title">
   <div class="wrap wrap-wide">
     <div class="hub-head">
@@ -665,9 +666,13 @@
       </div>
       <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
     </div>
-    <figure class="browser-frame hub-shot reveal">
+    <figure class="browser-frame hub-shot hub-shot-desktop reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
       <div class="shot-scroll"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."></div>
+    </figure>
+    <figure class="browser-frame hub-shot hub-shot-phone reveal">
+      <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
+      <img src="/images/hub/hub-screenshot-mobile.webp" width="780" height="988" loading="lazy" decoding="async" alt="The Venture Built Hub on a phone, with the menu open: Dashboard, Learn, Member Directory, Events and Sessions, Investor Network, Problems to Solve and Opportunities.">
     </figure>
     <ul class="hub-notes">
       <li>Self-paced startup learning</li>

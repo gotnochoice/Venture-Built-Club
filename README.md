@@ -35,4 +35,4 @@ The HTML ships in the safe state ("Applications opening soon") and `site-config.
 
 ## Updating the Hub screenshot
 
-The Hub section shows `images/hub/hub-screenshot.webp` (a real screenshot taken with a test account). To refresh it, replace that one file, keep it under ~200 KB, and update the `width`/`height` on the `<img>` in the `#hub` section if the dimensions change. Never use a screenshot showing real students' names, photos, messages or contact details.
+The Hub section shows `images/hub/hub-screenshot.webp` on desktop and `images/hub/hub-screenshot-mobile.webp` on phones (real screenshots; the phone one has the member name, thumbnails and avatar removed or blurred). To refresh it, replace that one file, keep it under ~200 KB, and update the `width`/`height` on the `<img>` in the `#hub` section if the dimensions change. Never use a screenshot showing real students' names, photos, messages or contact details.
