@@ -279,7 +279,7 @@
   .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: -10px; }
 
   /* ============ MOTION (progressive: content visible without JS) ============ */
-  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
   .js .reveal.visible { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -287,6 +287,40 @@
     .btn, .nav-cta, .path-card, .nav-dropdown-panel { transition: none; }
     .btn:hover, .nav-cta:hover { transform: none; }
   }
+
+
+  /* ============ MOTION LANGUAGE ============
+     One easing, three durations: 0.2s (hover), 0.7s (entrances), 0.8s (draws). Transform + opacity only. */
+  :root { --ease: cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+  /* Scroll progress (thin bright-green line) */
+  .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--color-bright); transform-origin: left; transform: scaleX(var(--p, 0)); z-index: 150; pointer-events: none; }
+
+  /* Hero entrance: line-by-line headline, rule draws, supporting content follows */
+  .hero h1 .line { display: block; overflow: hidden; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+  .hero h1 .line > span { display: inline-block; }
+  .hero-rule { display: block; width: 72px; height: 3px; background: var(--color-bright); margin: 0 0 var(--space-5); transform-origin: left; }
+  .js .hero h1 .line > span { transform: translateY(105%); animation: rise 0.8s var(--ease) forwards; animation-delay: calc(0.1s + var(--i) * 0.12s); }
+  .js .hero-rule { transform: scaleX(0); animation: draw 0.8s var(--ease) 0.55s forwards; }
+  .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row { opacity: 0; transform: translateY(14px); animation: fadeup 0.7s var(--ease) forwards; }
+  .js .hero .hero-sub { animation-delay: 0.7s; }
+  .js .hero .hero-where { animation-delay: 0.8s; }
+  .js .hero .free-badge { animation-delay: 0.9s; }
+  .js .hero .hero-cta-row { animation-delay: 1s; }
+  @keyframes rise { to { transform: none; } }
+  @keyframes draw { to { transform: scaleX(1); } }
+  @keyframes fadeup { to { opacity: 1; transform: none; } }
+
+  /* Section title rule draws in under each heading */
+  .section-title::after { content: ''; display: block; width: 56px; height: 3px; background: var(--color-forest); margin-top: var(--space-5); transform-origin: left; }
+  .dark .section-title::after { background: var(--color-bright); }
+  .center .section-title::after { margin-left: auto; margin-right: auto; transform-origin: center; }
+  .js .section-title.reveal::after { transform: scaleX(0); }
+  .js .section-title.reveal.visible::after { transform: scaleX(1); transition: transform 0.8s var(--ease) 0.35s; }
+
+  /* Oversized numerals light up once their card has entered */
+  .path-num { transition: color 0.8s ease 0.3s; }
+  .path-card.in-view .path-num { color: rgba(62,189,121,0.55); }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1100px) {
@@ -314,11 +348,18 @@
     .hero { min-height: auto; padding: var(--space-8) 0; }
     .card, .path-card { padding: var(--space-5); }
   }
+  @media (prefers-reduced-motion: reduce) {
+    .js .hero h1 .line > span, .js .hero-rule, .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row { animation: none; opacity: 1; transform: none; }
+    .js .section-title.reveal::after, .js .section-title.reveal.visible::after { transform: none; transition: none; }
+    .path-num { transition: none; }
+  }
+
 </style>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
+<div class="scroll-progress" aria-hidden="true"></div>
 
 <header class="site-header">
 <nav aria-label="Main">
@@ -397,7 +438,8 @@
   </svg>
   <div class="wrap">
     <div class="hero-copy">
-      <h1 id="hero-title">Build Beyond What You Imagine.</h1>
+      <h1 id="hero-title"><span class="line"><span style="--i:0">Build Beyond</span></span> <span class="line"><span style="--i:1">What You</span></span> <span class="line"><span style="--i:2">Imagine.</span></span></h1>
+      <span class="hero-rule" aria-hidden="true"></span>
       <p class="hero-sub">Venture Built is an ecosystem discovering exceptional student talent, connecting ambitious minds and equipping the next generation to build category-defining products.</p>
       <p class="hero-where">Starting at Obafemi Awolowo University.</p>
       <p class="free-badge">Free to join. No fees. No equity.</p>
@@ -410,7 +452,7 @@
 </section>
 
 <!-- 2. WHO WE ARE -->
-<section class="light center reveal" id="who-we-are" aria-labelledby="who-title">
+<section class="light center" id="who-we-are" aria-labelledby="who-title">
   <div class="wrap prose">
     <span class="eyebrow">Who we are</span>
     <h2 class="section-title" id="who-title">Exceptional talent is everywhere. The opportunity to build isn't.</h2>
@@ -421,7 +463,7 @@
 </section>
 
 <!-- 3. WHO IT'S FOR -->
-<section class="tint center reveal" id="who-its-for" aria-labelledby="for-title">
+<section class="tint center" id="who-its-for" aria-labelledby="for-title">
   <div class="wrap">
     <div class="prose">
       <span class="eyebrow">Who it's for</span>
@@ -532,7 +574,7 @@
 <section class="tint" id="hub" aria-labelledby="hub-title">
   <div class="wrap">
     <div class="hub-grid">
-      <div class="hub-copy reveal">
+      <div class="hub-copy">
         <span class="eyebrow">The Hub</span>
         <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
         <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
@@ -764,19 +806,45 @@
     });
   })();
 
-  /* ---- Subtle reveal (skipped for reduced motion / no IntersectionObserver) ---- */
+  /* ---- Scroll entrances: staggered, one-shot, skipped for reduced motion ---- */
   (function () {
-    var els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      els.forEach(function (el) { el.classList.add('visible'); });
+    var sel = 'main > section:not(.hero) :is(.eyebrow,.section-title,.section-lead,.prose p,.values-label,.value-card,.journey-note,.path-foot > *,.hub-list li,.hub-copy .btn,.where-list li,.where-soon,.faq-title,.final-label,.final-row .btn,.builder-card,.step,.path-card,.faq-list details)';
+    var els = document.querySelectorAll(sel);
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduce) {
+      els.forEach(function (el) { el.classList.add('in-view'); });
       return;
     }
+    var counts = new Map();
+    els.forEach(function (el) {
+      var n = counts.get(el.parentElement) || 0;
+      counts.set(el.parentElement, n + 1);
+      el.style.transitionDelay = Math.min(n, 5) * 80 + 'ms';
+      el.classList.add('reveal');
+    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('visible'); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        var el = en.target; io.unobserve(el);
+        el.classList.add('visible', 'in-view');
+        var d = parseFloat(el.style.transitionDelay) || 0;
+        // hand the element back to its own hover transitions once the entrance is done
+        setTimeout(function () { el.classList.remove('reveal', 'visible'); el.style.transitionDelay = ''; }, 1300 + d);
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
     els.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ---- Scroll progress ---- */
+  (function () {
+    var bar = document.querySelector('.scroll-progress'), ticking = false;
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty('--p', max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
   })();
 </script>
 </body>
