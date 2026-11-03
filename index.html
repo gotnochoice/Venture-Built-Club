@@ -192,17 +192,19 @@
   .path-grid { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: var(--space-5); row-gap: 0; align-items: stretch; }
   .path-card { display: flex; flex-direction: column; grid-row: span 6; border: var(--border-dark); border-radius: var(--radius-lg); padding: var(--space-6); background: rgba(255,255,255,0.025); position: relative; transition: border-color var(--transition), background var(--transition); }
   .path-card:hover { border-color: rgba(62,189,121,0.55); background: rgba(62,189,121,0.05); }
-  .path-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-5); }
+  .path-top { margin-bottom: var(--space-5); }
   .path-num { font-size: var(--fs-num); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: rgba(255,255,255,0.18); }
-  .path-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-bright); border: 1.5px solid currentColor; flex-shrink: 0; }
-  .path-card[data-tone="club"] .path-icon { color: var(--color-bright-light); }
-  .path-card[data-tone="cohort"] .path-icon { color: var(--color-white); }
   .path-card h3 { font-size: var(--fs-h3); line-height: 1.2; margin-bottom: var(--space-3); }
   .path-name { display: block; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: var(--color-white); }
   .path-verb { display: block; font-weight: 600; color: var(--color-bright); margin-top: var(--space-1); }
   .path-tag { display: inline-block; align-self: flex-start; font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.4px; color: var(--text-on-dark); border: var(--border-dark); border-radius: var(--radius-full); padding: var(--space-1) var(--space-3); margin-bottom: var(--space-4); }
   .path-desc { color: var(--text-on-dark); line-height: 1.6; margin-bottom: var(--space-4); }
-  .path-list { margin-bottom: var(--space-6); }
+  .path-points { margin-bottom: var(--space-5); }
+  .path-list { margin-bottom: 0; }
+  .js .path-card:not(.expanded) .path-list li.extra { display: none; }
+  .path-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: var(--space-1); padding: 0; background: none; border: none; color: var(--color-bright); font: 700 14px var(--font-family); letter-spacing: 0.3px; cursor: pointer; }
+  .path-toggle::after { content: '+'; font-size: 18px; line-height: 1; transition: transform 0.25s var(--ease); }
+  .path-card.expanded .path-toggle::after { transform: rotate(45deg); }
   .path-list li { position: relative; padding-left: 20px; color: var(--text-on-dark-soft); font-size: 15px; line-height: 1.55; margin-bottom: var(--space-3); }
   .path-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 8px; height: 2px; background: var(--color-bright); }
   .path-card .btn { margin-top: auto; width: 100%; }
@@ -238,19 +240,27 @@
   @media (max-width: 700px) { .shot-scroll img { width: 820px; max-width: none; } }
 
   /* ============ BUILDERS ============ */
-  .builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-  .builder-card { display: flex; flex-direction: column; }
-  .builder-card h3 { font-size: var(--fs-h3); font-weight: 800; margin-bottom: var(--space-3); color: var(--text-primary); }
-  .builder-card p { color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--space-5); }
-  .builder-card .btn { margin-top: auto; }
+
+  /* ============ BUILDERS: ruled rows ============ */
+  .builder-row { display: grid; grid-template-columns: 1.1fr 1.4fr 280px; gap: var(--space-6); align-items: center; padding: var(--space-6) 0; border-top: 1px solid rgba(15,61,46,0.3); }
+  .builder-row:last-child { border-bottom: 1px solid rgba(15,61,46,0.3); }
+  .builder-row h3 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; color: var(--text-primary); transition: color 0.25s; }
+  .builder-row:hover h3 { color: var(--color-forest-light); }
+  .builder-row .btn { width: 100%; }
+  .builder-row p { color: var(--text-secondary); font-size: 17px; line-height: 1.6; max-width: 460px; }
 
   /* ============ LOCATIONS + FAQ ============ */
-  .where-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin: var(--space-6) 0 var(--space-5); text-align: left; }
-  .where-list li { border: var(--border-light); border-radius: var(--radius-lg); padding: var(--space-5); background: var(--color-bg); color: var(--text-secondary); line-height: 1.5; }
-  .where-list strong { display: block; color: var(--color-forest); font-size: var(--fs-label); letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800; margin-bottom: var(--space-1); }
-  .where-soon { font-weight: 800; font-size: var(--fs-lead); color: var(--text-primary); margin-bottom: var(--space-5); }
-  .faq-title { font-size: var(--fs-h3); font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; margin: var(--space-9) 0 var(--space-5); text-align: center; }
-  .faq-list { max-width: 860px; margin: 0 auto; }
+  /* Where we're building + FAQ */
+  .where-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-8); align-items: center; }
+  .where-copy .section-lead { margin: var(--space-4) 0 var(--space-5); max-width: 520px; }
+  .where-list li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-5); padding: var(--space-4) 0; border-top: 1px solid rgba(15,61,46,0.3); color: var(--text-secondary); font-size: 17px; }
+  .where-list strong { color: var(--text-primary); font-size: var(--fs-h3); font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; }
+  .where-list li.where-soon { margin-top: var(--space-3); padding: var(--space-4) var(--space-5); border: 1.5px dashed var(--color-forest); border-radius: var(--radius-lg); }
+  .where-list li.where-soon strong { color: var(--color-forest); }
+  .where-list li.where-soon span { font-weight: 800; color: var(--text-primary); }
+  .faq-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: var(--space-8); margin-top: var(--space-9); align-items: start; }
+  .faq-title { position: sticky; top: 96px; font-size: var(--fs-h2); font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; text-transform: uppercase; margin: 0; text-wrap: balance; }
+  .faq-list { max-width: 860px; }
   .faq-list details { border: var(--border-light); border-radius: var(--radius-lg); background: var(--color-white); margin-bottom: var(--space-3); transition: border-color var(--transition), background var(--transition); }
   .faq-list details:hover { border-color: var(--color-bright); }
   .faq-list details[open] { background: var(--color-tint); border-color: var(--color-bright); }
@@ -325,13 +335,16 @@
 
   /* Hero graphic: draws itself, nodes pop in, one signal travels the path. Static + fully drawn if motion is reduced. */
   .g-dot { opacity: 0; }
+  .g-label { font: 700 12px var(--font-family); letter-spacing: 0.18em; text-transform: uppercase; fill: rgba(255,255,255,0.72); }
   @media (prefers-reduced-motion: no-preference) {
     .g-grid { animation: gfade 1.4s ease both; }
+    .g-label { opacity: 0; animation: gfade2 0.8s var(--ease) forwards; animation-delay: 0.9s; }
+    @keyframes gfade2 { to { opacity: 1; } }
     .g-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: gdraw 1.2s var(--ease) forwards; animation-delay: var(--d); }
     .g-node { transform-box: fill-box; transform-origin: center; transform: scale(0); animation: gpop 0.5s var(--ease) forwards; animation-delay: var(--d); }
-    .g-ring { transform-box: fill-box; transform-origin: center; opacity: 0; animation: gpulse 3.4s ease-out 2.6s infinite; }
+    .g-ring { transform-box: fill-box; transform-origin: center; opacity: 0; animation: gpulse 3.4s ease-out 3s infinite; }
     @supports (offset-path: path('M0 0')) {
-      .g-dot { offset-path: path('M80 380L200 300L320 220L320 140L440 60'); animation: gtravel 6s linear 2.8s infinite; }
+      .g-dot { offset-path: var(--op); animation: gtravel 7s linear var(--dd) infinite; }
     }
     @keyframes gfade { from { opacity: 0; } }
     @keyframes gdraw { to { stroke-dashoffset: 0; } }
@@ -403,7 +416,7 @@
     .mobile-nav-panel { display: block; }
   }
   @media (max-width: 900px) {
-    .path-grid, .builder-grid, .values, .where-list { grid-template-columns: 1fr; }
+    .path-grid { grid-template-columns: 1fr; }
     .path-grid { row-gap: var(--space-5); }
     .path-card { grid-row: auto; display: flex; }
     .hub-head { align-items: flex-start; margin-bottom: var(--space-6); }
@@ -411,6 +424,10 @@
     .final-row { grid-template-columns: 1fr; max-width: 420px; }
     .wif-head { grid-template-columns: 1fr; gap: var(--space-6); }
     .wwa-body { grid-template-columns: 1fr; }
+    .builder-row { grid-template-columns: 1fr; gap: var(--space-3); padding: var(--space-5) 0; }
+    .builder-row .btn { margin-top: var(--space-2); }
+    .where-grid, .faq-wrap { grid-template-columns: 1fr; gap: var(--space-6); }
+    .faq-title { position: static; }
     .value-row { grid-template-columns: 1fr; gap: var(--space-2); }
     /* vertical journey */
     .steps { grid-template-columns: 1fr; gap: var(--space-6); padding-left: 0; }
@@ -437,8 +454,6 @@
   .path-card { transition: transform 0.25s var(--ease), border-color 0.25s, background 0.25s; }
   .path-card:hover, .path-card:focus-within, .path-card.is-tapped { transform: translateY(-6px); border-color: var(--color-bright); background: rgba(62,189,121,0.07); }
   .path-card:hover .path-num, .path-card:focus-within .path-num, .path-card.is-tapped .path-num { color: var(--color-bright); }
-  .path-card:hover .path-icon, .path-card.is-tapped .path-icon { background: var(--color-bright); color: var(--text-primary); border-color: var(--color-bright); }
-  .path-icon { transition: background 0.25s, color 0.25s, border-color 0.25s; }
 
   /* Light-section cards */
   .value-card, .builder-card { transition: transform 0.25s var(--ease), border-color 0.25s, box-shadow 0.25s; }
@@ -467,8 +482,8 @@
   @media (prefers-reduced-motion: reduce) {
     .js .hero h1 .line > span, .js .hero-rule, .js .hero .hero-sub, .js .hero .hero-where, .js .hero .free-badge, .js .hero .hero-cta-row, .js .hero .hero-meta { animation: none; opacity: 1; transform: none; }
     .path-num { transition: none; }
-    .path-card, .value-card, .builder-card, .btn .arr, .step-num, .steps::after, .site-header nav, .faq-list details::details-content, .faq-list summary::after, .mobile-nav-panel, .mobile-nav-accordion-panel { transition: none !important; }
-    .path-card:hover, .path-card:focus-within, .path-card.is-tapped, .value-card:hover, .builder-card:hover, .btn:hover .arr { transform: none; }
+    .path-card, .value-card, .btn .arr, .step-num, .steps::after, .site-header nav, .faq-list details::details-content, .faq-list summary::after, .mobile-nav-panel, .mobile-nav-accordion-panel { transition: none !important; }
+    .path-card:hover, .path-card:focus-within, .path-card.is-tapped, .btn:hover .arr { transform: none; }
   }
 
   @media (max-width: 900px) {
@@ -541,26 +556,32 @@
 <!-- 1. HERO -->
 <section class="hero dark" aria-labelledby="hero-title">
   <svg class="hero-graphic" viewBox="0 0 560 480" fill="none" aria-hidden="true" focusable="false">
-    <g class="g-grid" stroke="#2A7A5C" stroke-width="1" opacity="0.5">
-      <path d="M40 60H520M40 140H520M40 220H520M40 300H520M40 380H520M40 460H520"/>
-      <path d="M80 20V470M200 20V470M320 20V470M440 20V470"/>
+    <g class="g-grid" stroke="#2A7A5C" stroke-width="1" opacity="0.45">
+      <path d="M30 110H540M30 240H540M30 370H540"/>
+      <path d="M60 60V420M170 60V420M300 60V420M380 60V420M500 60V420"/>
     </g>
-    <g stroke="#3EBD79" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.85">
-      <path class="g-line" style="--d:0.4s" pathLength="1" d="M80 380L200 300L320 220L320 140L440 60"/>
-      <path class="g-line" style="--d:1.1s" pathLength="1" d="M200 300L200 140L320 140"/>
-      <path class="g-line" style="--d:1.5s" pathLength="1" d="M320 220L440 300"/>
+    <g class="g-label-set">
+      <text class="g-label" x="60" y="84">Community</text>
+      <text class="g-label" x="60" y="214">Club</text>
+      <text class="g-label" x="60" y="344">Cohort</text>
+    </g>
+    <g stroke="#3EBD79" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="0.9">
+      <path class="g-line" style="--d:0.5s" pathLength="1" d="M60 110H170L300 240"/>
+      <path class="g-line" style="--d:0.6s" pathLength="1" d="M60 240H300"/>
+      <path class="g-line" style="--d:0.7s" pathLength="1" d="M60 370H170L300 240"/>
+      <path class="g-line" style="--d:1.3s" pathLength="1" d="M300 240H380L500 120"/>
     </g>
     <g fill="#04140E" stroke="#3EBD79" stroke-width="2">
-      <circle class="g-node" style="--d:0.4s" cx="80" cy="380" r="9"/>
-      <circle class="g-node" style="--d:0.8s" cx="200" cy="300" r="9"/>
-      <circle class="g-node" style="--d:1.2s" cx="320" cy="220" r="9"/>
-      <circle class="g-node" style="--d:1.5s" cx="320" cy="140" r="9"/>
-      <circle class="g-node" style="--d:1.7s" cx="200" cy="140" r="9"/>
-      <circle class="g-node" style="--d:1.9s" cx="440" cy="300" r="9"/>
+      <circle class="g-node" style="--d:0.3s" cx="60" cy="110" r="9"/>
+      <circle class="g-node" style="--d:0.4s" cx="60" cy="240" r="9"/>
+      <circle class="g-node" style="--d:0.5s" cx="60" cy="370" r="9"/>
+      <circle class="g-node" style="--d:1.2s" cx="300" cy="240" r="9"/>
     </g>
-    <circle class="g-ring" cx="440" cy="60" r="14" stroke="#3EBD79" stroke-width="2"/>
-    <circle class="g-node g-final" style="--d:1.9s" cx="440" cy="60" r="14" fill="#3EBD79"/>
-    <circle class="g-dot" cx="0" cy="0" r="5" fill="#60D18F"/>
+    <circle class="g-ring" cx="500" cy="120" r="14" stroke="#3EBD79" stroke-width="2"/>
+    <circle class="g-node g-final" style="--d:2.3s" cx="500" cy="120" r="14" fill="#3EBD79"/>
+    <circle class="g-dot" style="--op:path('M60 110H170L300 240H380L500 120');--dd:3.2s" cx="0" cy="0" r="5" fill="#60D18F"/>
+    <circle class="g-dot" style="--op:path('M60 240H380L500 120');--dd:4.4s" cx="0" cy="0" r="5" fill="#60D18F"/>
+    <circle class="g-dot" style="--op:path('M60 370H170L300 240H380L500 120');--dd:5.6s" cx="0" cy="0" r="5" fill="#60D18F"/>
   </svg>
   <div class="wrap">
     <div class="hero-copy">
@@ -629,51 +650,48 @@
       <article class="path-card" data-reveal data-tone="community">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">01</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14.2c2.4 0 4 1.7 4 4.3"/></svg></span>
         </div>
         <h3><span class="path-name">Community</span><span class="visually-hidden">: </span><span class="path-verb">learn and connect</span></h3>
         <p class="path-tag">Open to students anywhere</p>
         <p class="path-desc">An open online community for students interested in building.</p>
-        <ul class="path-list">
+        <div class="path-points"><ul class="path-list">
           <li>Self-paced learning in the Venture Built Hub</li>
           <li data-feature="whatsappFoundersCopy" data-alt="A WhatsApp community for student builders">A WhatsApp community with founders and student builders</li>
           <li>Find co-builders and share what you're working on</li>
           <li>Hear about events, opportunities and programmes first</li>
-        </ul>
+        </ul></div>
         <a href="/community" target="_blank" rel="noopener" class="btn btn-primary">Join the Community <span class="arr" aria-hidden="true">→</span></a>
       </article>
 
       <article class="path-card" data-reveal data-tone="club">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">02</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
         </div>
         <h3><span class="path-name">Club</span><span class="visually-hidden">: </span><span class="path-verb">explore and collaborate</span></h3>
         <p class="path-tag">On campus · Obafemi Awolowo University</p>
         <p class="path-desc">A hands-on campus group for students exploring venture building. No idea needed.</p>
-        <ul class="path-list">
+        <div class="path-points"><ul class="path-list">
           <li>Practical classes and learning sessions</li>
           <li>Work with students who have different skills</li>
           <li>Take on challenges and real problems</li>
           <li>Present your work at the Club showcase</li>
-        </ul>
+        </ul></div>
         <button type="button" class="btn btn-primary" disabled data-cta="club" data-href="/apply/club" data-arrow="true">Applications opening soon</button>
       </article>
 
       <article class="path-card" data-reveal data-tone="cohort">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">03</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg></span>
         </div>
         <h3><span class="path-name">Cohort</span><span class="visually-hidden">: </span><span class="path-verb">build and test</span></h3>
         <p class="path-tag">Flagship programme · Obafemi Awolowo University · selective</p>
         <p class="path-desc">A 12-week in-person programme for students ready to take an idea further.</p>
-        <ul class="path-list">
+        <div class="path-points"><ul class="path-list">
           <li>Learn directly from founders, operators and investors</li>
           <li>Build with complementary teammates</li>
           <li>Test your problem and solution with real users</li>
           <li>Mentorship throughout, and a Cohort demo day at the end</li>
-        </ul>
+        </ul></div>
         <button type="button" class="btn btn-primary" disabled data-cta="cohort" data-label="Apply for the Cohort →" data-href="/apply">Applications opening soon</button>
       </article>
     </div>
@@ -736,18 +754,18 @@
       <h2 class="section-title" id="builders-title">Meet the next builders early</h2>
       <p class="section-lead">Venture Built connects students to the people who build, back and work with new ventures. If that's you, there's a way in.</p>
     </div>
-    <div class="builder-grid">
-      <article class="card builder-card">
+    <div class="builder-rows">
+      <article class="builder-row">
         <h3>Founders and operators</h3>
         <p>Mentor students, share what you've learned, or bring a real problem for students to work on.</p>
         <a href="/join-us" class="btn btn-outline" data-route="founders">Work with students <span class="arr" aria-hidden="true">→</span></a>
       </article>
-      <article class="card builder-card">
+      <article class="builder-row">
         <h3>Investors</h3>
         <p>Meet emerging student talent and see early products as they take shape.</p>
         <a href="/investor-network" class="btn btn-outline" data-route="investors">Join the investor network <span class="arr" aria-hidden="true">→</span></a>
       </article>
-      <article class="card builder-card">
+      <article class="builder-row">
         <h3>Partners</h3>
         <p>Work with us on programmes, events and opportunities that support student innovation.</p>
         <a href="/partners" class="btn btn-outline" data-route="partners">Partner with us <span class="arr" aria-hidden="true">→</span></a>
@@ -757,23 +775,26 @@
 </section>
 
 <!-- 8. WHERE WE'RE BUILDING + FAQ -->
-<section class="white center" id="locations" aria-labelledby="where-title">
+<section class="white" id="locations" aria-labelledby="where-title">
   <div class="wrap">
-    <div class="measure">
-      <span class="eyebrow">Where we're building</span>
-      <h2 class="section-title" id="where-title">Starting at Obafemi Awolowo University.</h2>
-      <p class="section-lead" style="margin-top:16px">Venture Built begins at OAU, with the ambition to connect student talent across Africa.</p>
+    <div class="where-grid">
+      <div class="where-copy">
+        <span class="eyebrow">Where we're building</span>
+        <h2 class="section-title" id="where-title">Starting at Obafemi Awolowo University.</h2>
+        <p class="section-lead">Venture Built begins at OAU, with the ambition to connect student talent across Africa.</p>
+        <a href="/location/oau" class="btn btn-outline">Explore the OAU Chapter <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="where-list">
+        <li><strong>Community</strong><span>open to students anywhere</span></li>
+        <li><strong>Club</strong><span>currently at OAU</span></li>
+        <li><strong>Cohort</strong><span>currently at OAU</span></li>
+        <li class="where-soon"><strong>Your campus</strong><span>coming soon.</span></li>
+      </ul>
     </div>
-    <ul class="where-list">
-      <li><strong>Community</strong>open to students anywhere</li>
-      <li><strong>Club</strong>currently at OAU</li>
-      <li><strong>Cohort</strong>currently at OAU</li>
-    </ul>
-    <p class="where-soon">Your campus: coming soon.</p>
-    <a href="/location/oau" class="btn btn-outline">Explore the OAU Chapter <span class="arr" aria-hidden="true">→</span></a>
 
-    <h3 class="faq-title" id="faq">Frequently asked questions</h3>
-    <div class="faq-list" style="text-align:left">
+    <div class="faq-wrap">
+      <h3 class="faq-title" id="faq">Frequently asked questions</h3>
+      <div class="faq-list">
       <details>
         <summary>Who can join, and do I need an idea or a startup?</summary>
         <p class="faq-answer">Undergraduate and postgraduate students who want to build. You don't need a startup, a finished idea or a co-founder. Bring your curiosity, a skill or a problem you care about.</p>
@@ -802,6 +823,7 @@
         <summary>How can founders, investors and organisations get involved?</summary>
         <p class="faq-answer">We welcome <a href="/join-us" data-route="founders">founders and operators</a> as mentors, <a href="/investor-network" data-route="investors">investors</a> who want to meet emerging talent, and <a href="/partners" data-route="partners">partners</a> who support student innovation.</p>
       </details>
+      </div>
     </div>
   </div>
 </section>
@@ -984,6 +1006,23 @@
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     update();
   })();
+
+  /* ---- Pathway cards: show the key two bullets, "Show all" reveals the rest (all four stay in the page without JS) ---- */
+  document.querySelectorAll('.path-card').forEach(function (card, n) {
+    var pts = card.querySelector('.path-points'), list = pts && pts.querySelector('.path-list');
+    var lis = list ? list.querySelectorAll('li') : [];
+    if (lis.length < 4) return;
+    lis[1].classList.add('extra'); lis[2].classList.add('extra');
+    list.id = 'path-list-' + n;
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'path-toggle'; b.textContent = 'Show all';
+    b.setAttribute('aria-expanded', 'false'); b.setAttribute('aria-controls', list.id);
+    b.addEventListener('click', function () {
+      var on = card.classList.toggle('expanded');
+      b.setAttribute('aria-expanded', on); b.textContent = on ? 'Show less' : 'Show all';
+    });
+    pts.appendChild(b);
+  });
 
   /* ---- Pathway cards: tap toggles the same emphasis hover gives (touch has no hover) ---- */
   document.querySelectorAll('.path-card').forEach(function (card) {
