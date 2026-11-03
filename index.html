@@ -469,6 +469,42 @@
   @media (max-width: 900px) {
     .steps::after { left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto; transform: scaleY(var(--p, 0)); transform-origin: top; }
   }
+
+  /* ============ PATHWAYS: room to breathe ============ */
+  #pathways .wrap { max-width: 1240px; }
+  .path-grid { column-gap: var(--space-6); }
+  .path-card { padding: 44px 40px; background: rgba(255,255,255,0.035); }
+  .path-top { margin-bottom: var(--space-5); }
+  .path-card h3 { margin-bottom: var(--space-4); }
+  .path-tag { margin-bottom: var(--space-5); }
+  .path-desc { font-size: 16px; line-height: 1.65; margin-bottom: var(--space-5); }
+  .path-list { margin-bottom: var(--space-7); }
+  .path-list li { font-size: 15px; line-height: 1.65; margin-bottom: var(--space-4); }
+  .path-list li::before { top: 11px; }
+
+  /* ============ WHO WE ARE / WHO IT'S FOR: balanced sides ============ */
+  .two-head .eyebrow { margin-bottom: var(--space-5); }
+  .two-head .section-title { line-height: 1.16; }
+  .two-head .section-title .sent + .sent { margin-top: 0.85em; }
+  .two-body p { font-size: 15.5px; line-height: 1.65; margin-bottom: var(--space-3); }
+  .two-body .two-close { margin-top: var(--space-4); }
+  @supports (container-type: inline-size) { #for-title { font-size: min(6.2cqi, 54px); } }
+
+  /* ============ HUB v3: quieter text, bigger product, dark phone ============ */
+  .hub-copy .section-title { font-size: clamp(22px, 2.2vw, 30px); line-height: 1.15; }
+  .hub-copy .section-lead { font-size: 16px; margin: var(--space-3) 0 var(--space-5); max-width: 380px; }
+  .hub-notes { max-width: 380px; margin-bottom: var(--space-5); }
+  .hub-notes li { font-size: 14.5px; padding: var(--space-3) 0; grid-template-columns: 32px 1fr; color: var(--text-on-dark); }
+  .hub-notes li::before { font-size: 12px; padding-top: 2px; }
+  .hub-shot-phone { background: #0b130f; border-color: rgba(255,255,255,0.18); }
+  .hub-shot-phone .browser-bar { background: #111a15; border-bottom-color: rgba(255,255,255,0.12); }
+  .hub-shot-phone .browser-bar span { background: rgba(255,255,255,0.22); }
+  .hub-shot-phone .browser-bar em { background: #0b130f; color: #c9d1cc; border-color: rgba(255,255,255,0.16); }
+  @media (min-width: 1000px) {
+    .hub-wrap { grid-template-columns: 0.62fr 1.7fr; gap: var(--space-7); }
+    .hub-shot-phone { width: 230px; right: 7%; }
+  }
+  @media (max-width: 600px) { .path-card { padding: 32px 24px; } }
 </style>
 </head>
 <body>
@@ -640,7 +676,6 @@
       <article class="path-card" data-tone="community">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">01</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14.2c2.4 0 4 1.7 4 4.3"/></svg></span>
         </div>
         <h3><span class="path-name">Community</span><span class="visually-hidden">: </span><span class="path-verb">learn and connect</span></h3>
         <p class="path-tag">Open to students anywhere</p>
@@ -656,7 +691,6 @@
       <article class="path-card" data-tone="club">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">02</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg></span>
         </div>
         <h3><span class="path-name">Club</span><span class="visually-hidden">: </span><span class="path-verb">explore and collaborate</span></h3>
         <p class="path-tag">On campus · Obafemi Awolowo University</p>
@@ -672,7 +706,6 @@
       <article class="path-card" data-tone="cohort">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">03</span>
-          <span class="path-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12l6-6"/></svg></span>
         </div>
         <h3><span class="path-name">Cohort</span><span class="visually-hidden">: </span><span class="path-verb">build and test</span></h3>
         <p class="path-tag">Flagship programme · Obafemi Awolowo University · selective</p>
@@ -734,7 +767,7 @@
     </figure>
       <figure class="browser-frame hub-shot hub-shot-phone reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
-      <img src="/images/hub/hub-screenshot-mobile.webp" width="780" height="988" loading="lazy" decoding="async" alt="The Venture Built Hub on a phone, with the menu open: Dashboard, Learn, Member Directory, Events and Sessions, Investor Network, Problems to Solve and Opportunities.">
+      <img src="/images/hub/hub-screenshot-mobile.webp" width="780" height="988" loading="lazy" decoding="async" alt="The Venture Built Hub on a phone in dark mode, with the menu open: Dashboard, Learn, Member Directory, Events and Sessions, Investor Network, Problems to Solve and Opportunities.">
     </figure>
     </div>
   </div>
