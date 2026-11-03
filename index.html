@@ -34,14 +34,12 @@
     --color-bright-dark: #2DA863;
     --color-bright-light: #60D18F;
     --color-bg: #FAFBF9;              /* page / light sections */
-    --color-tint: #EEF6F1;            /* tinted light sections */
     --color-gray-100: #F9FAFB;
     --color-gray-300: #E5E7EB;
     --color-line: #E0E5E2;
 
     --text-primary: #0A0A0A;
     --text-secondary: #6B7268;        /* body on --color-bg / white */
-    --text-on-tint: #445048;          /* body on --color-tint (keeps AA) */
     --text-on-dark: rgba(255,255,255,0.78);
     --text-on-dark-soft: rgba(255,255,255,0.62);
 
@@ -149,9 +147,7 @@
   section { padding: var(--section-pad) 0; }
   .light { background: var(--color-bg); color: var(--text-primary); }
   .white { background: var(--color-white); color: var(--text-primary); }
-  .tint { background: var(--color-tint); color: var(--text-primary); }
   .dark { background: var(--color-deep); color: var(--color-white); }
-  .tint { --text-secondary: var(--text-on-tint); }
   .light, .white { border-top: 1px solid var(--color-line); }
 
   .eyebrow { display: block; font-size: var(--fs-label); font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--color-forest); margin-bottom: var(--space-4); }
@@ -260,12 +256,12 @@
   .faq-list { max-width: 860px; margin: 0 auto; }
   .faq-list details { border: var(--border-light); border-radius: var(--radius-lg); background: var(--color-white); margin-bottom: var(--space-3); transition: border-color var(--transition), background var(--transition); }
   .faq-list details:hover { border-color: var(--color-bright); }
-  .faq-list details[open] { background: var(--color-tint); border-color: var(--color-bright); }
+  .faq-list details[open] { background: var(--color-bg); border-color: var(--color-bright); }
   .faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); min-height: 56px; padding: var(--space-4) var(--space-5); font-weight: 700; font-size: 17px; line-height: 1.35; color: var(--text-primary); }
   .faq-list summary::-webkit-details-marker { display: none; }
   .faq-list summary::after { content: '+'; flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--color-forest); color: var(--color-white); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; line-height: 1; }
   .faq-list details[open] summary::after { content: '\2212'; background: var(--color-bright); color: var(--text-primary); }
-  .faq-answer { padding: 0 var(--space-5) var(--space-5); color: var(--text-on-tint); line-height: 1.7; }
+  .faq-answer { padding: 0 var(--space-5) var(--space-5); color: var(--text-secondary); line-height: 1.7; }
   .faq-answer a { color: var(--color-forest); font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
   /* ============ FINAL CTA ============ */
@@ -342,23 +338,26 @@
   /* ============ TWO-SIDED SECTIONS ============ */
   .two { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--space-8); align-items: start; }
   .two-head .eyebrow { margin-bottom: var(--space-4); }
-  .two-head .section-title { font-size: clamp(22px, 2.5vw, 34px); line-height: 1.18; }
+  .two-head .section-title { font-size: clamp(26px, 3.5vw, 50px); line-height: 1.08; letter-spacing: -0.02em; }
+  .two-head .section-title .ln { display: block; white-space: nowrap; }
+  .two-head .section-title .sent + .sent { margin-top: 0.4em; }
   .two-head .section-title::after { margin-left: 0; transform-origin: left; }
-  @media (min-width: 1200px) { .two-head .section-title .sent { white-space: nowrap; } }
   .two-body { padding-top: var(--space-5); border-top: 3px solid var(--color-forest); }
   .two-body p { color: var(--text-secondary); font-size: 16px; line-height: 1.7; margin-bottom: var(--space-4); }
   .two-body .two-close { color: var(--text-primary); font-weight: 700; margin-bottom: 0; }
 
-  /* Values: animated rows */
-  .values-label { text-align: left; margin: var(--space-8) 0 var(--space-3); font-size: var(--fs-label); font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-forest); }
-  .value-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: end; padding: var(--space-5) 0; border-top: 1px solid rgba(15,61,46,0.3); }
-  .value-row:last-child { border-bottom: 1px solid rgba(15,61,46,0.3); }
-  .value-row h4 { font-size: clamp(40px, 6vw, 76px); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; text-transform: uppercase; color: var(--color-forest); }
-  .value-row p { font-size: var(--fs-lead); font-weight: 500; color: var(--text-primary); max-width: 360px; padding-bottom: 0.4em; }
+  /* Values: three columns; each word starts as an outline and fills in left to right */
+  .values-label { text-align: left; margin: var(--space-8) 0 var(--space-4); font-size: var(--fs-label); font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-forest); }
+  .value-rows { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  .value-row { padding-top: var(--space-4); border-top: 2px solid var(--color-forest); }
+  .value-row:nth-child(2) { --d: 0.25s; }
+  .value-row:nth-child(3) { --d: 0.5s; }
+  .value-row h4 { font-size: clamp(40px, 6.4vw, 92px); font-weight: 700; line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; color: var(--color-forest); }
+  .value-row p { margin-top: var(--space-4); font-size: var(--fs-lead); font-weight: 500; color: var(--text-primary); max-width: 300px; }
   @media (prefers-reduced-motion: no-preference) {
-    .js .value-row h4 { opacity: 0.18; transform: translateX(-28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
-    .js .value-row p { opacity: 0; transform: translateY(8px); transition: opacity 0.7s var(--ease) 0.2s, transform 0.7s var(--ease) 0.2s; }
-    .js .value-row.on h4 { opacity: 1; transform: none; }
+    .js .value-row h4 { color: transparent; -webkit-text-stroke: 1.5px var(--color-forest); background: linear-gradient(90deg, var(--color-forest) 50%, transparent 50%) 100% 0 / 200% 100% no-repeat; -webkit-background-clip: text; background-clip: text; transition: background-position 0.9s var(--ease) var(--d, 0s); }
+    .js .value-row.on h4 { background-position: 0 0; }
+    .js .value-row p { opacity: 0; transform: translateY(8px); transition: opacity 0.6s var(--ease) calc(var(--d, 0s) + 0.5s), transform 0.6s var(--ease) calc(var(--d, 0s) + 0.5s); }
     .js .value-row.on p { opacity: 1; transform: none; }
   }
 
@@ -411,8 +410,9 @@
     .two { grid-template-columns: 1fr; gap: var(--space-6); text-align: center; }
     .two-head .section-title::after { margin-left: auto; margin-right: auto; transform-origin: center; }
     .values-label { text-align: center; }
-    .value-row { grid-template-columns: 1fr; gap: var(--space-2); text-align: center; }
-    .value-row p { margin: 0 auto; }
+    .value-rows { grid-template-columns: 1fr; gap: var(--space-5); }
+    .value-row { text-align: center; }
+    .value-row p { margin-left: auto; margin-right: auto; }
   }
   @media (max-width: 600px) {
     .hero-cta-row .btn { width: 100%; }
@@ -537,7 +537,7 @@
     <div class="two">
       <div class="two-head">
         <span class="eyebrow">Who we are</span>
-        <h2 class="section-title" id="who-title"><span class="sent">Exceptional talent is everywhere.</span> <span class="sent">The opportunity to build isn't.</span></h2>
+        <h2 class="section-title" id="who-title"><span class="sent"><span class="ln">Exceptional talent</span> <span class="ln">is everywhere.</span></span> <span class="sent"><span class="ln">The opportunity</span> <span class="ln">to build isn't.</span></span></h2>
       </div>
       <div class="two-body">
         <p>Across African campuses, students have the ability and the ideas. Many don't have the knowledge, the collaborators, or access to people who have built before.</p>
@@ -549,7 +549,7 @@
 </section>
 
 <!-- 3. WHO IT'S FOR -->
-<section class="tint" id="who-its-for" aria-labelledby="for-title">
+<section class="white" id="who-its-for" aria-labelledby="for-title">
   <div class="wrap">
     <div class="two">
       <div class="two-head">
@@ -679,7 +679,7 @@
 </section>
 
 <!-- 7. MEET THE NEXT BUILDERS EARLY -->
-<section class="tint" id="get-involved" aria-labelledby="builders-title">
+<section class="light" id="get-involved" aria-labelledby="builders-title">
   <div class="wrap">
     <div class="section-head center">
       <span class="eyebrow">Get involved</span>
