@@ -502,9 +502,42 @@
   .hub-shot-phone .browser-bar em { background: #0b130f; color: #c9d1cc; border-color: rgba(255,255,255,0.16); }
   @media (min-width: 1000px) {
     .hub-wrap { grid-template-columns: 0.62fr 1.7fr; gap: var(--space-7); }
+    .hub-stage { padding-bottom: 190px; }
     .hub-shot-phone { width: 230px; right: 7%; }
   }
   @media (max-width: 600px) { .path-card { padding: 32px 24px; } }
+
+  /* ============ PATHWAYS v3: each path gets its own abstract illustration ============ */
+  .path-top { position: relative; height: 136px; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; background: rgba(255,255,255,0.03); overflow: hidden; margin-bottom: var(--space-6); }
+  .path-num { position: absolute; left: 16px; top: 12px; z-index: 1; font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: var(--color-bright); }
+  .path-card:hover .path-num, .path-card:focus-within .path-num { color: var(--color-bright); }
+  .path-art { display: block; width: 100%; height: 100%; }
+  .path-art circle, .path-art rect, .path-art line { transition: fill 0.35s ease, stroke 0.35s ease; }
+  .pi-sq { fill: rgba(255,255,255,0.03); stroke: #2A7A5C; stroke-width: 1.2; }
+  .pi-sq-f { fill: #12392A; }
+  .pi-sq-b { fill: #3EBD79; stroke: #3EBD79; }
+  .path-card:hover .pi-net line { stroke: #3EBD79; }
+  .path-card:hover .pi-sq-f { fill: #1A5C42; transition-delay: calc(var(--i) * 40ms); }
+  .path-card:hover .pi-sq { stroke: #3EBD79; transition-delay: calc(var(--i) * 40ms); }
+  .path-card:hover .pi-dot { fill: #3EBD79; transition-delay: calc(var(--i) * 45ms); }
+  @media (prefers-reduced-motion: reduce) { .path-art circle, .path-art rect, .path-art line { transition: none !important; } }
+
+  /* ============ HUB v4: bullets drive the real screenshot ============ */
+  .hub-viewport { position: relative; overflow: hidden; }
+  .hub-zoom { position: relative; transform-origin: 0 0; }
+  .hub-zoom img { display: block; width: 100%; height: auto; }
+  .hub-hl { position: absolute; display: none; border: 2px solid var(--color-bright); border-radius: 8px; box-shadow: 0 0 0 100vmax rgba(4,20,14,0.55); pointer-events: none; }
+  .hub-interactive .hub-hl { display: block; }
+  .hub-interactive .hub-zoom { transition: transform 0.9s var(--ease); }
+  .hub-interactive .hub-hl { transition: left 0.6s var(--ease), top 0.6s var(--ease), width 0.6s var(--ease), height 0.6s var(--ease); }
+  .hub-notes.hub-interactive li { cursor: pointer; transition: color 0.25s, padding-left 0.25s; }
+  .hub-notes.hub-interactive li:hover { padding-left: 6px; }
+  .hub-notes.hub-interactive li.on { color: var(--color-white); }
+  .hub-notes.hub-interactive li.on::before { color: var(--color-white); }
+  .hub-notes.hub-interactive li:not(.on) { color: var(--text-on-dark-soft); }
+  .hub-notes.hub-interactive li:focus-visible { outline: 2px solid var(--color-bright); outline-offset: 2px; }
+  .hub-notes.hub-interactive li.on { border-top-color: var(--color-bright); }
+  @media (prefers-reduced-motion: reduce) { .hub-interactive .hub-zoom, .hub-interactive .hub-hl { transition: none; } }
 </style>
 </head>
 <body>
@@ -676,6 +709,7 @@
       <article class="path-card" data-tone="community">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">01</span>
+          <svg class="path-art" viewBox="0 0 320 130" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false"><g class="pi-net" stroke="#2A7A5C" stroke-width="1.2"><line x1="30" y1="95" x2="70" y2="40"/><line x1="70" y1="40" x2="110" y2="85"/><line x1="70" y1="40" x2="150" y2="30"/><line x1="110" y1="85" x2="190" y2="70"/><line x1="150" y1="30" x2="190" y2="70"/><line x1="150" y1="30" x2="235" y2="35"/><line x1="190" y1="70" x2="235" y2="35"/><line x1="190" y1="70" x2="270" y2="90"/><line x1="235" y1="35" x2="295" y2="50"/><line x1="270" y1="90" x2="295" y2="50"/><line x1="110" y1="85" x2="130" y2="115"/><line x1="190" y1="70" x2="215" y2="110"/><line x1="270" y1="90" x2="215" y2="110"/></g><circle cx="30" cy="95" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="70" cy="40" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="110" cy="85" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-bright" cx="150" cy="30" r="5.5" fill="#3EBD79"/><circle cx="190" cy="70" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="235" cy="35" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-bright" cx="270" cy="90" r="5.5" fill="#3EBD79"/><circle cx="295" cy="50" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="130" cy="115" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="215" cy="110" r="3.8" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/></svg>
         </div>
         <h3><span class="path-name">Community</span><span class="visually-hidden">: </span><span class="path-verb">learn and connect</span></h3>
         <p class="path-tag">Open to students anywhere</p>
@@ -691,6 +725,7 @@
       <article class="path-card" data-tone="club">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">02</span>
+          <svg class="path-art" viewBox="0 0 320 130" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false"><rect class="pi-sq" style="--i:0" x="34" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-f" style="--i:1" x="66" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-f" style="--i:2" x="98" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:3" x="130" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:4" x="162" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:5" x="194" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:6" x="226" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:7" x="258" y="34" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:1" x="34" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:2" x="66" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-f" style="--i:3" x="98" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-b" style="--i:4" x="130" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:5" x="162" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-b" style="--i:6" x="194" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:7" x="226" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:8" x="258" y="65" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:2" x="34" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:3" x="66" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:4" x="98" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-f" style="--i:5" x="130" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq pi-sq-b" style="--i:6" x="162" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:7" x="194" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:8" x="226" y="96" width="20" height="20" rx="3.5"/><rect class="pi-sq" style="--i:9" x="258" y="96" width="20" height="20" rx="3.5"/></svg>
         </div>
         <h3><span class="path-name">Club</span><span class="visually-hidden">: </span><span class="path-verb">explore and collaborate</span></h3>
         <p class="path-tag">On campus · Obafemi Awolowo University</p>
@@ -706,6 +741,7 @@
       <article class="path-card" data-tone="cohort">
         <div class="path-top">
           <span class="path-num" aria-hidden="true">03</span>
+          <svg class="path-art" viewBox="0 0 320 130" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true" focusable="false"><path d="M30.0 100.0L53.6 94.8L77.2 89.6L100.8 84.4L124.4 79.2L148.0 74.0L171.6 68.8L195.2 63.6L218.8 58.4L242.4 53.2L266.0 48.0L289.6 42.8" stroke="#2A7A5C" stroke-width="1.4"/><circle class="pi-dot" style="--i:0" cx="30.0" cy="100.0" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:1" cx="53.6" cy="94.8" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:2" cx="77.2" cy="89.6" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:3" cx="100.8" cy="84.4" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:4" cx="124.4" cy="79.2" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:5" cx="148.0" cy="74.0" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:6" cx="171.6" cy="68.8" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:7" cx="195.2" cy="63.6" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:8" cx="218.8" cy="58.4" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:9" cx="242.4" cy="53.2" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle class="pi-dot" style="--i:10" cx="266.0" cy="48.0" r="3.6" fill="#04140E" stroke="#3EBD79" stroke-width="1.6"/><circle cx="289.6" cy="42.8" r="15" stroke="#3EBD79" stroke-width="1.2" opacity="0.6"/><circle class="pi-bright" cx="289.6" cy="42.8" r="8" fill="#3EBD79"/></svg>
         </div>
         <h3><span class="path-name">Cohort</span><span class="visually-hidden">: </span><span class="path-verb">build and test</span></h3>
         <p class="path-tag">Flagship programme · Obafemi Awolowo University · selective</p>
@@ -753,17 +789,17 @@
       <h2 class="section-title" id="hub-title">The Venture Built Hub: your home base</h2>
       <p class="section-lead">Learn, find your people and share your progress in one place. Hub access is free.</p>
       <ol class="hub-notes">
-        <li>Self-paced startup learning</li>
-        <li data-feature="coBuildersSpace">A Co-Builders space to find teammates with the skills you're missing</li>
-        <li data-feature="hubSharingSpace">A place to share what you're working on and get seen</li>
-        <li>Full access for Club and Cohort members</li>
+        <li data-region="498,294,280,61">Self-paced startup learning</li>
+        <li data-feature="coBuildersSpace" data-region="776,578,290,86">A Co-Builders space to find teammates with the skills you're missing</li>
+        <li data-feature="hubSharingSpace" data-region="473,696,1199,119">A place to share what you're working on and get seen</li>
+        <li data-region="0,120,247,704">Full access for Club and Cohort members</li>
       </ol>
       <a href="https://hub.venturebuiltclub.com" class="btn btn-primary">Explore the Hub <span class="arr" aria-hidden="true">→</span></a>
     </div>
     <div class="hub-stage">
       <figure class="browser-frame hub-shot hub-shot-desktop reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
-      <div class="shot-scroll"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."></div>
+      <div class="hub-viewport"><div class="hub-zoom"><img src="/images/hub/hub-screenshot.webp" width="1896" height="824" loading="lazy" decoding="async" alt="The Venture Built Hub dashboard: a welcome message, a Get started checklist, an events card, activity counters, and a sidebar with Curriculum, Member Directory, Events and Sessions, Resources, Investor Network, Problems to Solve, My Journey, Leaderboard, Community and Messages."><span class="hub-hl" aria-hidden="true"></span></div></div>
     </figure>
       <figure class="browser-frame hub-shot hub-shot-phone reveal">
       <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><em>hub.venturebuiltclub.com</em></div>
@@ -1045,6 +1081,46 @@
     window.addEventListener('scroll', req, { passive: true });
     window.addEventListener('resize', req);
     update();
+  })();
+
+  /* ---- Hub: the bullets drive the real screenshot (zoom + highlight). Desktop only; static otherwise. ---- */
+  (function () {
+    var stage = document.querySelector('.hub-shot-desktop');
+    var items = document.querySelectorAll('.hub-notes li[data-region]');
+    if (!stage || !items.length) return;
+    var vp = stage.querySelector('.hub-viewport'), zoom = stage.querySelector('.hub-zoom'), hl = stage.querySelector('.hub-hl'), img = zoom.querySelector('img');
+    var NW = parseInt(img.getAttribute('width'), 10), NH = parseInt(img.getAttribute('height'), 10);
+    var mq = window.matchMedia('(min-width: 1000px)'), cur = 0;
+    function show(i) {
+      cur = i;
+      items.forEach(function (li, k) { li.classList.toggle('on', k === i); li.setAttribute('aria-pressed', k === i); });
+      var r = items[i].getAttribute('data-region').split(',').map(Number), W = vp.clientWidth, H = vp.clientHeight, u = W / NW;
+      hl.style.left = (r[0] / NW * 100) + '%'; hl.style.top = (r[1] / NH * 100) + '%';
+      hl.style.width = (r[2] / NW * 100) + '%'; hl.style.height = (r[3] / NH * 100) + '%';
+      var sc = Math.min(1.45, Math.max(1.2, 0.34 * W / (r[2] * u)));
+      var cx = (r[0] + r[2] / 2) * u * sc, cy = (r[1] + r[3] / 2) * u * sc;
+      var tx = Math.min(0, Math.max(W - W * sc, W / 2 - cx)), ty = Math.min(0, Math.max(H - H * sc, H / 2 - cy));
+      zoom.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + sc + ')';
+    }
+    function on() {
+      stage.classList.add('hub-interactive');
+      items.forEach(function (li, k) {
+        li.tabIndex = 0; li.setAttribute('role', 'button');
+        li.onclick = function () { show(k); };
+        li.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(k); } };
+      });
+      document.querySelector('.hub-notes').classList.add('hub-interactive');
+      show(cur);
+    }
+    function off() {
+      stage.classList.remove('hub-interactive'); document.querySelector('.hub-notes').classList.remove('hub-interactive');
+      zoom.style.transform = ''; items.forEach(function (li) { li.classList.remove('on'); li.removeAttribute('tabindex'); li.removeAttribute('role'); li.onclick = li.onkeydown = null; });
+    }
+    function sync() { if (mq.matches) on(); else off(); }
+    if (mq.addEventListener) mq.addEventListener('change', sync); else mq.addListener(sync);
+    window.addEventListener('resize', function () { if (mq.matches) show(cur); });
+    if (img.complete) sync(); else img.addEventListener('load', sync);
+    sync();
   })();
 </script>
 </body>
