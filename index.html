@@ -574,7 +574,8 @@
     .hub-copy .section-title { order: 2; margin-bottom: var(--space-3); }
     .hub-copy .section-lead { order: 3; margin: 0 0 var(--space-5); }
     .hub-stage { order: 4; margin-bottom: var(--space-6); }
-    .hub-notes { order: 5; margin-bottom: var(--space-5); }
+    .hub-notes { order: 5; margin-bottom: var(--space-3); }
+    .hub-toggle { order: 5; }
     .hub-copy .btn { order: 6; justify-self: stretch; width: 100%; }
 
     /* Get involved: icon beside the title, tighter cards */
@@ -624,6 +625,21 @@
     .prose p { margin-bottom: var(--space-3); }
   }
   @media (min-width: 701px) { .swipe-hint { display: none; } }
+
+  /* ============ MOBILE v3: journey swipe row, Hub bullets toggle ============ */
+  @media (max-width: 700px) {
+    .steps { display: flex; overflow-x: auto; scroll-padding: 0 var(--space-4); scroll-snap-type: x mandatory; gap: var(--space-3); margin: 0 calc(-1 * var(--space-4)); padding: 0 var(--space-4) var(--space-3); scrollbar-width: none; }
+    .steps::-webkit-scrollbar { display: none; }
+    .steps::before, .steps::after { display: none; }
+    .step { flex: 0 0 74%; scroll-snap-align: start; display: block; padding: 18px; background: var(--color-white); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
+    .step-num { width: 40px; height: 40px; font-size: 14px; margin-bottom: var(--space-3); background: var(--color-bright); color: var(--text-primary); box-shadow: none; transform: none !important; }
+    .step h3 { font-size: 17px; }
+    .journey-note { margin-top: var(--space-4); }
+    .hub-notes.is-collapsed li:nth-child(n+2) { display: none; }
+    .hub-toggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0; margin: 0 0 var(--space-4); background: none; border: 0; color: var(--color-bright); font: 600 14px var(--font-family); cursor: pointer; order: 5; }
+    .hub-toggle::after { content: '+'; font-size: 18px; transition: transform .25s var(--ease); }
+    .hub-toggle[aria-expanded="true"]::after { transform: rotate(45deg); }
+  }
 </style>
 </head>
 <body>
@@ -863,6 +879,7 @@
       <li class="step"><span class="step-num" aria-hidden="true">04</span><h3>Test with real people.</h3><p>Put it in front of users and teammates, and learn what doesn't work.</p></li>
       <li class="step"><span class="step-num" aria-hidden="true">05</span><h3>Build and share.</h3><p>Turn what works into a product, improve it with feedback and show it publicly.</p></li>
     </ol>
+    <p class="swipe-hint" aria-hidden="true">Swipe ←→</p>
     <p class="journey-note">Join at any step. Not everyone goes through all five.</p>
   </div>
 </section>
@@ -1209,6 +1226,19 @@
     window.addEventListener('resize', function () { if (mq.matches) show(cur); });
     if (img.complete) sync(); else img.addEventListener('load', sync);
     sync();
+  })();
+
+  /* ---- Hub bullets: phones show the first, "More" reveals the rest (all present without JS) ---- */
+  (function () {
+    var list = document.querySelector('.hub-notes'); if (!list) return;
+    var mq = window.matchMedia('(max-width: 700px)');
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'hub-toggle'; b.setAttribute('aria-expanded', 'false'); b.textContent = 'What\'s inside';
+    list.id = list.id || 'hub-notes'; b.setAttribute('aria-controls', list.id);
+    b.addEventListener('click', function () { var on = list.classList.toggle('is-collapsed') === false; b.setAttribute('aria-expanded', on); });
+    list.insertAdjacentElement('afterend', b);
+    function sync() { if (mq.matches) { list.classList.add('is-collapsed'); b.style.display = ''; b.setAttribute('aria-expanded', 'false'); } else { list.classList.remove('is-collapsed'); b.style.display = 'none'; } }
+    if (mq.addEventListener) mq.addEventListener('change', sync); sync();
   })();
 </script>
 </body>
