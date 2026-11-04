@@ -538,6 +538,60 @@
   .hub-notes.hub-interactive li:focus-visible { outline: 2px solid var(--color-bright); outline-offset: 2px; }
   .hub-notes.hub-interactive li.on { border-top-color: var(--color-bright); }
   @media (prefers-reduced-motion: reduce) { .hub-interactive .hub-zoom, .hub-interactive .hub-hl { transition: none; } }
+
+  /* ============ MOBILE (phones): compact, intentional, thumb-friendly ============ */
+  @media (max-width: 700px) {
+    :root { --section-pad: 44px; }
+    .section-head { margin-bottom: var(--space-6); }
+
+    /* Hero: bigger headline, graphic comes back as a compact banner under the buttons */
+    .hero { padding-top: 36px; padding-bottom: 28px; flex-direction: column; align-items: stretch; justify-content: flex-start; min-height: 0; }
+    .hero h1 { font-size: clamp(30px, 8.8vw, 44px); }
+    .hero .wrap { order: 1; padding-bottom: var(--space-5); }
+    .hero-graphic { display: block; order: 2; position: static; transform: none; right: auto; top: auto; width: 100%; max-width: 380px; height: 250px; margin: 0 auto; opacity: 1; }
+    .g-label { font-size: 26px; letter-spacing: 0.14em; }
+
+    /* Who it's for / values */
+    .values-label { margin-top: var(--space-7); }
+    .value-row h4 { font-size: clamp(40px, 12vw, 56px); }
+
+    /* Pathways: shorter cards */
+    #pathways .wrap { padding-left: var(--space-4); padding-right: var(--space-4); }
+    .path-grid { row-gap: var(--space-4); }
+    .path-card { padding: 22px 20px 24px; }
+    .path-top { height: auto; aspect-ratio: 320 / 124; margin-bottom: var(--space-4); }
+    .path-card h3 { margin-bottom: var(--space-3); }
+    .path-tag { margin-bottom: var(--space-4); font-size: 12.5px; }
+    .path-desc { margin-bottom: var(--space-4); }
+    .path-list { margin-bottom: var(--space-5); }
+    .path-list li { margin-bottom: 10px; }
+    .path-foot { margin-top: var(--space-6); }
+
+    /* Hub: image first, then the bullets */
+    .hub-wrap { display: grid; grid-template-columns: 1fr; gap: 0; }
+    .hub-copy { display: contents; }
+    .hub-copy .eyebrow { order: 1; }
+    .hub-copy .section-title { order: 2; margin-bottom: var(--space-3); }
+    .hub-copy .section-lead { order: 3; margin: 0 0 var(--space-5); }
+    .hub-stage { order: 4; margin-bottom: var(--space-6); }
+    .hub-notes { order: 5; margin-bottom: var(--space-5); }
+    .hub-copy .btn { order: 6; justify-self: stretch; width: 100%; }
+
+    /* Get involved: icon beside the title, tighter cards */
+    .builder-grid { gap: var(--space-4); }
+    .builder-card { display: grid; grid-template-columns: 44px 1fr; column-gap: var(--space-4); align-items: center; padding: 22px 20px; }
+    .bc-icon { grid-row: 1; width: 44px; height: 44px; margin: 0; }
+    .builder-card h3 { grid-row: 1; margin: 0; font-size: 20px; }
+    .builder-card p, .builder-card .btn { grid-column: 1 / -1; }
+    .builder-card p { margin: var(--space-4) 0 var(--space-4); }
+
+    /* Footer: link columns side by side */
+    footer { padding-top: var(--space-6); }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-4); }
+    .footer-brand, .footer-grid > div.footer-col:last-child { grid-column: 1 / -1; }
+    .footer-brand { max-width: none; }
+    .footer-col h4 { margin-bottom: var(--space-2); }
+  }
 </style>
 </head>
 <body>
