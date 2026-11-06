@@ -57,6 +57,13 @@
   .view-tab.active { color: var(--forest); border-bottom-color: var(--bright); }
   .view-tab:hover:not(.active) { color: var(--ink); }
 
+  .export-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: -8px 0 20px; }
+  .export-bar label { font-size: 12.5px; font-weight: 600; color: var(--slate); }
+  .export-bar select { font-family: var(--font-body); font-size: 13px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--r-btn); background: var(--paper); }
+  .export-btn { font-family: var(--font-body); font-size: 13px; font-weight: 700; padding: 9px 14px; border-radius: var(--r-btn); border: 1.5px solid var(--forest); background: var(--forest); color: #fff; cursor: pointer; }
+  .export-btn.secondary { background: var(--paper); color: var(--forest); }
+  .export-btn:hover { opacity: .9; }
+  .export-msg { font-size: 12.5px; color: var(--slate); }
   .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: start; }
   .column { background: var(--paper-2); border-radius: var(--r-card); padding: 14px; min-height: 200px; }
   .column-header { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 0 4px; }
@@ -149,6 +156,20 @@
       <button class="view-tab" data-view="team" id="tabTeam">Team Applications</button>
       <button class="view-tab" data-view="mentor" id="tabMentor">Mentor Applications</button>
       <button class="view-tab" data-view="club" id="tabClub">Club Applications</button>
+    </div>
+
+    <div class="export-bar" id="exportBar">
+      <label for="exportStage">Export</label>
+      <select id="exportStage" aria-label="Which stage to export">
+        <option value="">All stages</option>
+        <option value="applied">Applied</option>
+        <option value="interview">Interview</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+      <button type="button" class="export-btn" id="exportCsvBtn">Download CSV</button>
+      <button type="button" class="export-btn secondary" id="exportSheetsBtn">Copy for Google Sheets</button>
+      <span class="export-msg" id="exportMsg" role="status" aria-live="polite"></span>
     </div>
 
     <div id="cohortBoard" class="board">
@@ -881,7 +902,9 @@
   document.getElementById('tabMentor').addEventListener('click', () => switchView('mentor'));
   document.getElementById('tabClub').addEventListener('click', () => switchView('club'));
 
+  let currentView = 'cohort';
   function switchView(view) {
+    currentView = view;
     document.getElementById('tabCohort').classList.toggle('active', view === 'cohort');
     document.getElementById('tabTeam').classList.toggle('active', view === 'team');
     document.getElementById('tabMentor').classList.toggle('active', view === 'mentor');
@@ -1246,6 +1269,67 @@
     } catch (error) {
       console.error('Failed to save', error);
     }
+  });
+
+  /* ---------- Export to CSV / Google Sheets (runs in the browser on the already-loaded admin data) ---------- */
+  const EXPORT_SOURCES = {
+    cohort: { label: 'cohort-applications', rows: () => applications },
+    club: { label: 'club-applications', rows: () => clubApplications },
+    team: { label: 'team-applications', rows: () => teamApplications },
+    mentor: { label: 'mentor-applications', rows: () => mentorApplications },
+  };
+  const EXPORT_FIRST = ['created_at', 'stage', 'full_name', 'email', 'phone', 'department', 'level'];
+  const EXPORT_LAST = ['internal_notes', 'updated_at', 'id'];
+
+  function exportCell(v) {
+    if (v === null || v === undefined) return '';
+    if (Array.isArray(v)) v = v.join('; ');
+    else if (typeof v === 'boolean') v = v ? 'Yes' : 'No';
+    else if (v instanceof Date) v = v.toISOString();
+    v = String(v).replace(/\r?\n/g, ' ').trim();
+    // stop spreadsheets from treating text as a formula
+    if (/^[=+\-@\t]/.test(v) && !/^[+-]?\d[\d\s().,-]*$/.test(v)) v = "'" + v;
+    return v;
+  }
+  function exportHeader(k) {
+    return k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+  function buildExport(view, stage) {
+    const src = EXPORT_SOURCES[view];
+    const rows = src.rows().filter(r => !stage || r.stage === stage);
+    if (!rows.length) return null;
+    const keys = [];
+    rows.forEach(r => Object.keys(r).forEach(k => { if (!keys.includes(k)) keys.push(k); }));
+    const ordered = [].concat(EXPORT_FIRST.filter(k => keys.includes(k)),
+      keys.filter(k => !EXPORT_FIRST.includes(k) && !EXPORT_LAST.includes(k)),
+      EXPORT_LAST.filter(k => keys.includes(k)));
+    const table = [ordered.map(exportHeader)].concat(rows.map(r => ordered.map(k => (k === 'phone' && r[k]) ? '\u0001' + exportCell(r[k]) : exportCell(r[k]))));
+    return { table, count: rows.length, name: src.label + (stage ? '-' + stage : '') };
+  }
+  function exportMessage(t) {
+    const el = document.getElementById('exportMsg');
+    el.textContent = t;
+    setTimeout(() => { if (el.textContent === t) el.textContent = ''; }, 5000);
+  }
+  document.getElementById('exportCsvBtn').addEventListener('click', () => {
+    const out = buildExport(currentView, document.getElementById('exportStage').value);
+    if (!out) return exportMessage('Nothing to export yet. Open the tab and let it load first.');
+    const csv = out.table.map(r => r.map(c => c.charAt(0) === '\u0001' ? '="' + c.slice(1).replace(/"/g, '') + '"' : '"' + c.replace(/"/g, '""') + '"').join(',')).join('\r\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = out.name + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    exportMessage('Downloaded ' + out.count + ' rows. In Google Sheets: File, Import, Upload.');
+  });
+  document.getElementById('exportSheetsBtn').addEventListener('click', () => {
+    const out = buildExport(currentView, document.getElementById('exportStage').value);
+    if (!out) return exportMessage('Nothing to export yet. Open the tab and let it load first.');
+    const tsv = out.table.map(r => r.map(c => (c.charAt(0) === '\u0001' ? "'" + c.slice(1) : c).replace(/\t/g, ' ')).join('\t')).join('\n');
+    navigator.clipboard.writeText(tsv).then(
+      () => exportMessage('Copied ' + out.count + ' rows. Click cell A1 in a Google Sheet and paste.'),
+      () => exportMessage('Copy was blocked by the browser. Use Download CSV instead.'));
   });
 </script>
 
