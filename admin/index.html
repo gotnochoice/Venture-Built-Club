@@ -70,6 +70,7 @@
   .card-copy-btn { position: absolute; top: 12px; right: 12px; }
   .app-card .meta { font-size: 11.5px; color: var(--slate-light); margin-bottom: 8px; }
   .app-card .snippet { font-size: 12.5px; color: var(--slate); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .app-card .applied-date { font-size: 11px; color: var(--slate-light); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
   .empty-column { text-align: center; padding: 24px 8px; color: var(--slate-light); font-size: 12.5px; }
 
   /* MODAL */
@@ -361,6 +362,10 @@
       </div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Applied</div>
+      <div class="detail-value"><span id="modalAppliedDate">—</span></div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Department / Level</div>
       <div class="detail-value" id="modalDept">—</div>
     </div>
@@ -439,6 +444,10 @@
       </div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Applied</div>
+      <div class="detail-value"><span id="teamModalAppliedDate">—</span></div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Department / Level</div>
       <div class="detail-value" id="teamModalDept">—</div>
     </div>
@@ -509,6 +518,10 @@
       </div>
     </div>
     <div class="detail-row">
+      <div class="detail-label">Applied</div>
+      <div class="detail-value"><span id="mentorModalAppliedDate">—</span></div>
+    </div>
+    <div class="detail-row">
       <div class="detail-label">Mentor Path</div>
       <div class="detail-value" id="mentorModalPath">—</div>
     </div>
@@ -573,6 +586,10 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-label">Applied</div>
+      <div class="detail-value"><span id="clubModalAppliedDate">—</span></div>
     </div>
     <div class="detail-row">
       <div class="detail-label">Department &amp; Level</div>
@@ -721,6 +738,7 @@
           <h3>${escapeHtml(app.full_name)}</h3>
           <div class="meta">${escapeHtml(app.department || 'No department')}${app.level ? ' · ' + escapeHtml(app.level) : ''}</div>
           <div class="snippet">${escapeHtml(app.what_building)}</div>
+          <div class="applied-date">${formatAppliedDate(app.created_at)}</div>
         </div>
       `).join('');
     });
@@ -740,6 +758,17 @@
     const div = document.createElement('div');
     div.textContent = str || '';
     return div.innerHTML;
+  }
+
+  // "Applied Nov 3, 2026 · 2:14 PM" - the exact moment they applied,
+  // not a relative "2 days ago" that goes stale the moment you read it.
+  function formatAppliedDate(isoString) {
+    if (!isoString) return '';
+    const date = new Date(isoString);
+    if (isNaN(date.getTime())) return '';
+    const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    return `Applied ${dateStr} · ${timeStr}`;
   }
 
   function copyToClipboard(text, btn) {
@@ -787,6 +816,7 @@
 
     document.getElementById('modalName').textContent = app.full_name;
     document.getElementById('modalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('modalAppliedDate').textContent = formatAppliedDate(app.created_at) || '—';
     document.getElementById('modalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('modalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('modalWhoAreYou').textContent = app.who_are_you;
@@ -938,6 +968,7 @@
           <h3>${escapeHtml(app.full_name)}</h3>
           <div class="meta">${escapeHtml(app.role || 'No role')}</div>
           <div class="snippet">${escapeHtml(app.why_role)}</div>
+          <div class="applied-date">${formatAppliedDate(app.created_at)}</div>
         </div>
       `).join('');
     });
@@ -961,6 +992,7 @@
 
     document.getElementById('teamModalName').textContent = app.full_name;
     document.getElementById('teamModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('teamModalAppliedDate').textContent = formatAppliedDate(app.created_at) || '—';
     document.getElementById('teamModalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('teamModalDept').textContent = `${app.department || '—'}${app.level ? ' · ' + app.level : ''}`;
     document.getElementById('teamModalReferredBy').textContent = app.referred_by || '—';
@@ -1057,6 +1089,7 @@
           <h3>${escapeHtml(app.full_name)}</h3>
           <div class="meta">${escapeHtml(app.role_title || 'No role')}</div>
           <div class="snippet">${escapeHtml(app.built_or_backed)}</div>
+          <div class="applied-date">${formatAppliedDate(app.created_at)}</div>
         </div>
       `).join('');
     });
@@ -1080,6 +1113,7 @@
 
     document.getElementById('mentorModalName').textContent = app.full_name;
     document.getElementById('mentorModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('mentorModalAppliedDate').textContent = formatAppliedDate(app.created_at) || '—';
     document.getElementById('mentorModalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('mentorModalPath').textContent = app.mentor_path || '—';
     document.getElementById('mentorModalRole').textContent = app.role_title || '—';
@@ -1177,6 +1211,7 @@
           <div class="meta">${escapeHtml(app.department || '')}${app.level ? ' · ' + escapeHtml(app.level) : ''}</div>
           <div class="meta">${escapeHtml(CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '')}</div>
           <div class="snippet">${escapeHtml(app.focus)}</div>
+          <div class="applied-date">${formatAppliedDate(app.created_at)}</div>
         </div>
       `).join('');
     });
@@ -1200,6 +1235,7 @@
 
     document.getElementById('clubModalName').textContent = app.full_name;
     document.getElementById('clubModalContact').textContent = `${app.email}${app.phone ? ' · ' + app.phone : ''}`;
+    document.getElementById('clubModalAppliedDate').textContent = formatAppliedDate(app.created_at) || '—';
     document.getElementById('clubModalCopyEmailBtn').dataset.email = app.email;
     document.getElementById('clubModalDeptLevel').textContent = [app.department, app.level].filter(Boolean).join(' · ') || '—';
     document.getElementById('clubModalGroupFit').textContent = CLUB_GROUP_LABEL[app.group_fit] || app.group_fit || '—';
