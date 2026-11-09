@@ -73,6 +73,29 @@
   .app-card .applied-date { font-size: 11px; color: var(--slate-light); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
   .empty-column { text-align: center; padding: 24px 8px; color: var(--slate-light); font-size: 12.5px; }
 
+  /* SCORE SHEET */
+  .scores-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+  .scores-toolbar .sub { color: var(--slate); font-size: 13px; line-height: 1.5; max-width: 680px; }
+  .btn-primary-sm { background: var(--forest); color: var(--paper); border: none; padding: 9px 16px; border-radius: var(--r-btn); font-size: 13px; font-weight: 700; cursor: pointer; font-family: var(--font-body); white-space: nowrap; transition: background 0.15s; }
+  .btn-primary-sm:hover { background: var(--forest-light); }
+  .scores-table-wrap { overflow-x: auto; background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-card); }
+  .scores-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .scores-table th { text-align: left; padding: 12px 14px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: var(--slate); background: var(--paper-2); border-bottom: 1.5px solid var(--border); cursor: pointer; white-space: nowrap; user-select: none; }
+  .scores-table th:hover { color: var(--forest); }
+  .scores-table th.sorted::after { content: ' \2193'; }
+  .scores-table th.sorted.asc::after { content: ' \2191'; }
+  .scores-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .scores-table tr:last-child td { border-bottom: none; }
+  .scores-table tr:hover td { background: var(--paper-2); }
+  .score-input { width: 42px; padding: 5px 6px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13px; font-family: var(--font-body); text-align: center; background: var(--paper); }
+  .score-input:focus { outline: none; border-color: var(--bright); box-shadow: 0 0 0 3px rgba(62,189,121,0.12); }
+  .score-total { font-weight: 700; color: var(--forest); }
+  .stage-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: capitalize; }
+  .stage-pill.applied { background: #EEF1EF; color: var(--slate); }
+  .stage-pill.interview { background: #FEF3C7; color: #92400E; }
+  .stage-pill.accepted { background: var(--forest-tint); color: var(--forest); }
+  .stage-pill.rejected { background: #FEF2F2; color: #B91C1C; }
+
   /* MODAL */
   .modal-backdrop { position: fixed; inset: 0; background: rgba(10,10,10,0.5); display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 200; }
   .modal { background: var(--paper); border-radius: var(--r-card); max-width: 560px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 32px; }
@@ -150,6 +173,7 @@
       <button class="view-tab" data-view="team" id="tabTeam">Team Applications</button>
       <button class="view-tab" data-view="mentor" id="tabMentor">Mentor Applications</button>
       <button class="view-tab" data-view="club" id="tabClub">Club Applications</button>
+      <button class="view-tab" data-view="scores" id="tabScores">Cohort Score Sheet</button>
     </div>
 
     <div id="cohortBoard" class="board">
@@ -337,6 +361,32 @@
           </button>
         </div>
         <div id="col-club-rejected"></div>
+      </div>
+    </div>
+
+    <!-- COHORT SCORE SHEET -->
+    <div id="scoresBoard" class="scores-wrap hidden">
+      <div class="scores-toolbar">
+        <p class="sub">Score each cohort applicant 1&ndash;5 on four criteria. Click a column header to sort, click a score cell to edit it. Sorted by Total by default, so the strongest applicants surface first.</p>
+        <button type="button" class="btn-primary-sm" id="exportScoresBtn">Download CSV</button>
+      </div>
+      <div class="scores-table-wrap">
+        <table class="scores-table">
+          <thead>
+            <tr>
+              <th data-sort="full_name">Name</th>
+              <th data-sort="department">Dept / Level</th>
+              <th data-sort="score_idea" title="Idea &amp; problem clarity">Idea</th>
+              <th data-sort="score_conviction" title="Founder conviction">Conviction</th>
+              <th data-sort="score_commitment" title="Commitment &amp; availability">Commitment</th>
+              <th data-sort="score_builder" title="Builder / execution potential">Builder</th>
+              <th data-sort="total">Total</th>
+              <th data-sort="stage">Stage</th>
+              <th data-sort="created_at">Applied</th>
+            </tr>
+          </thead>
+          <tbody id="scoresTableBody"></tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -712,6 +762,9 @@
       if (response.ok) {
         applications = data.data;
         renderBoard();
+        if (!document.getElementById('scoresBoard').classList.contains('hidden')) {
+          renderScoresTable();
+        }
       }
     } catch (error) {
       console.error('Failed to load applications', error);
@@ -753,6 +806,142 @@
       });
     });
   }
+
+  // SCORE SHEET (cohort applications only)
+  const SCORE_CRITERIA = ['score_idea', 'score_conviction', 'score_commitment', 'score_builder'];
+  let scoresSortKey = 'total';
+  let scoresSortDir = 'desc';
+
+  function computeTotal(app) {
+    const vals = SCORE_CRITERIA.map(k => app[k]).filter(v => v != null);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) : null;
+  }
+
+  function renderScoresTable() {
+    const tbody = document.getElementById('scoresTableBody');
+    const rows = [...applications];
+
+    rows.sort((a, b) => {
+      let av, bv;
+      if (scoresSortKey === 'total') {
+        av = computeTotal(a);
+        bv = computeTotal(b);
+      } else {
+        av = a[scoresSortKey];
+        bv = b[scoresSortKey];
+      }
+      const aMissing = av == null || av === '';
+      const bMissing = bv == null || bv === '';
+      if (aMissing && bMissing) return 0;
+      if (aMissing) return 1;
+      if (bMissing) return -1;
+      if (av < bv) return scoresSortDir === 'asc' ? -1 : 1;
+      if (av > bv) return scoresSortDir === 'asc' ? 1 : -1;
+      return 0;
+    });
+
+    if (rows.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:32px; color:var(--slate-light);">No cohort applications yet.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = rows.map(app => {
+      const total = computeTotal(app);
+      return `
+        <tr data-id="${app.id}">
+          <td>${escapeHtml(app.full_name)}</td>
+          <td>${escapeHtml(app.department || '—')}${app.level ? ' &middot; ' + escapeHtml(app.level) : ''}</td>
+          <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_idea" value="${app.score_idea ?? ''}"></td>
+          <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_conviction" value="${app.score_conviction ?? ''}"></td>
+          <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_commitment" value="${app.score_commitment ?? ''}"></td>
+          <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_builder" value="${app.score_builder ?? ''}"></td>
+          <td class="score-total">${total != null ? total + '/20' : '—'}</td>
+          <td><span class="stage-pill ${escapeHtml(app.stage)}">${escapeHtml(app.stage)}</span></td>
+          <td>${app.created_at ? new Date(app.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}</td>
+        </tr>
+      `;
+    }).join('');
+
+    tbody.querySelectorAll('.score-input').forEach(input => {
+      input.addEventListener('change', async (e) => {
+        const row = e.target.closest('tr');
+        const id = row.dataset.id;
+        const field = e.target.dataset.field;
+        const raw = e.target.value.trim();
+        let value = raw === '' ? null : parseInt(raw, 10);
+
+        if (value != null && (isNaN(value) || value < 1 || value > 5)) {
+          alert('Score must be a whole number between 1 and 5');
+          const app = applications.find(a => a.id === id);
+          e.target.value = app ? (app[field] ?? '') : '';
+          return;
+        }
+
+        const app = applications.find(a => a.id === id);
+        if (!app) return;
+        app[field] = value;
+        row.querySelector('.score-total').textContent = (() => {
+          const t = computeTotal(app);
+          return t != null ? t + '/20' : '—';
+        })();
+
+        const payloadKey = { score_idea: 'scoreIdea', score_conviction: 'scoreConviction', score_commitment: 'scoreCommitment', score_builder: 'scoreBuilder' }[field];
+        const token = localStorage.getItem('adminToken');
+        try {
+          const response = await fetch(`${API_URL}/admin/applications`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ id, [payloadKey]: value })
+          });
+          if (!response.ok) throw new Error('Save failed');
+        } catch (error) {
+          console.error('Failed to save score', error);
+          e.target.style.borderColor = '#B91C1C';
+          setTimeout(() => { e.target.style.borderColor = ''; }, 1500);
+        }
+      });
+    });
+  }
+
+  document.querySelectorAll('.scores-table th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      if (scoresSortKey === key) {
+        scoresSortDir = scoresSortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        scoresSortKey = key;
+        scoresSortDir = (key === 'full_name' || key === 'department') ? 'asc' : 'desc';
+      }
+      document.querySelectorAll('.scores-table th[data-sort]').forEach(h => h.classList.remove('sorted', 'asc'));
+      th.classList.add('sorted');
+      if (scoresSortDir === 'asc') th.classList.add('asc');
+      renderScoresTable();
+    });
+  });
+
+  document.getElementById('exportScoresBtn').addEventListener('click', () => {
+    const headers = ['Name', 'Email', 'Department', 'Level', 'Idea', 'Conviction', 'Commitment', 'Builder', 'Total', 'Stage', 'Applied'];
+    const rows = applications.map(app => {
+      const total = computeTotal(app);
+      return [
+        app.full_name, app.email, app.department || '', app.level || '',
+        app.score_idea ?? '', app.score_conviction ?? '', app.score_commitment ?? '', app.score_builder ?? '',
+        total ?? '', app.stage, app.created_at ? new Date(app.created_at).toISOString() : ''
+      ];
+    });
+    const csv = [headers, ...rows]
+      .map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `cohort-applications-scores-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  });
 
   function escapeHtml(str) {
     const div = document.createElement('div');
@@ -910,16 +1099,19 @@
   document.getElementById('tabTeam').addEventListener('click', () => switchView('team'));
   document.getElementById('tabMentor').addEventListener('click', () => switchView('mentor'));
   document.getElementById('tabClub').addEventListener('click', () => switchView('club'));
+  document.getElementById('tabScores').addEventListener('click', () => switchView('scores'));
 
   function switchView(view) {
     document.getElementById('tabCohort').classList.toggle('active', view === 'cohort');
     document.getElementById('tabTeam').classList.toggle('active', view === 'team');
     document.getElementById('tabMentor').classList.toggle('active', view === 'mentor');
     document.getElementById('tabClub').classList.toggle('active', view === 'club');
+    document.getElementById('tabScores').classList.toggle('active', view === 'scores');
     document.getElementById('cohortBoard').classList.toggle('hidden', view !== 'cohort');
     document.getElementById('teamBoard').classList.toggle('hidden', view !== 'team');
     document.getElementById('mentorBoard').classList.toggle('hidden', view !== 'mentor');
     document.getElementById('clubBoard').classList.toggle('hidden', view !== 'club');
+    document.getElementById('scoresBoard').classList.toggle('hidden', view !== 'scores');
     if (view === 'team' && !teamLoaded) {
       loadTeamApplications();
     }
@@ -928,6 +1120,9 @@
     }
     if (view === 'club' && !clubLoaded) {
       loadClubApplications();
+    }
+    if (view === 'scores') {
+      renderScoresTable();
     }
   }
 
