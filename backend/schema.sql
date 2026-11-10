@@ -181,6 +181,10 @@ CREATE TABLE applications (
   score_builder SMALLINT CHECK (score_builder BETWEEN 1 AND 5),
   score_notes TEXT,
 
+  -- Decision: is this applicant going to the cohort? NULL = undecided, true = yes, false = no.
+  -- Independent of scoring, so you can decide even if you never score.
+  cohort_pick BOOLEAN,
+
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

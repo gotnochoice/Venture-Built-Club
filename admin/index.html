@@ -103,6 +103,18 @@
   .score-input { width: 42px; padding: 5px 6px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13px; font-family: var(--font-body); text-align: center; background: var(--paper); }
   .score-input:focus { outline: none; border-color: var(--bright); box-shadow: 0 0 0 3px rgba(62,189,121,0.12); }
   .score-total { font-weight: 700; color: var(--forest); }
+  .pick { display: inline-flex; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .pick button { font-family: var(--font-body); font-size: 12.5px; font-weight: 700; padding: 7px 14px; min-width: 48px; border: 0; background: var(--paper); color: var(--slate); cursor: pointer; }
+  .pick button + button { border-left: 1.5px solid var(--border); }
+  .pick button:hover { background: var(--paper-2); }
+  .pick button.yes.on { background: var(--bright); color: var(--ink); }
+  .pick button.no.on { background: #B91C1C; color: #fff; }
+  .pick button:focus-visible { outline: 2px solid var(--forest); outline-offset: -2px; }
+  .scores-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-bottom: 14px; font-size: 13px; }
+  .scores-summary .chip { padding: 6px 12px; border-radius: 999px; background: var(--paper); border: 1px solid var(--border); font-weight: 700; }
+  .scores-summary .chip.yes { border-color: var(--bright); color: var(--forest); }
+  .scores-summary select { font-family: var(--font-body); font-size: 13px; padding: 7px 10px; border: 1px solid var(--border); border-radius: var(--r-btn); background: var(--paper); }
+  .scores-summary .hint { color: var(--slate); }
   .stage-pill { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: capitalize; }
   .stage-pill.applied { background: #EEF1EF; color: var(--slate); }
   .stage-pill.interview { background: #FEF3C7; color: #92400E; }
@@ -397,6 +409,14 @@
         <p class="sub">Score each cohort applicant 1&ndash;5 on four criteria. Click a column header to sort, click a score cell to edit it. Sorted by Total by default, so the strongest applicants surface first.</p>
         <button type="button" class="btn-primary-sm" id="exportScoresBtn">Download CSV</button>
       </div>
+      <div class="scores-summary">
+        <span class="chip yes" id="pickYesCount">0 going to cohort</span>
+        <span class="chip" id="pickNoCount">0 not</span>
+        <span class="chip" id="pickOpenCount">0 undecided</span>
+        <label for="pickFilter" class="hint">Show</label>
+        <select id="pickFilter"><option value="">Everyone</option><option value="yes">Going to cohort</option><option value="no">Not going</option><option value="open">Undecided</option></select>
+        <span class="hint" id="pickMsg" role="status" aria-live="polite"></span>
+      </div>
       <div class="scores-table-wrap">
         <table class="scores-table">
           <thead>
@@ -411,6 +431,7 @@
               <th data-sort="total">Total</th>
               <th data-sort="stage">Stage</th>
               <th data-sort="created_at">Applied</th>
+              <th data-sort="cohort_pick" title="Is this applicant going to the cohort?">Take to cohort?</th>
             </tr>
           </thead>
           <tbody id="scoresTableBody"></tbody>
@@ -847,13 +868,21 @@
 
   function renderScoresTable() {
     const tbody = document.getElementById('scoresTableBody');
-    const rows = [...applications];
+    const filter = document.getElementById('pickFilter').value;
+    const rows = applications.filter(a => !filter || (filter === 'yes' ? a.cohort_pick === true : filter === 'no' ? a.cohort_pick === false : a.cohort_pick == null));
+    const nYes = applications.filter(a => a.cohort_pick === true).length, nNo = applications.filter(a => a.cohort_pick === false).length;
+    document.getElementById('pickYesCount').textContent = nYes + ' going to cohort';
+    document.getElementById('pickNoCount').textContent = nNo + ' not';
+    document.getElementById('pickOpenCount').textContent = (applications.length - nYes - nNo) + ' undecided';
 
     rows.sort((a, b) => {
       let av, bv;
       if (scoresSortKey === 'total') {
         av = computeTotal(a);
         bv = computeTotal(b);
+      } else if (scoresSortKey === 'cohort_pick') {
+        av = a.cohort_pick == null ? null : (a.cohort_pick ? 2 : 1);
+        bv = b.cohort_pick == null ? null : (b.cohort_pick ? 2 : 1);
       } else {
         av = a[scoresSortKey];
         bv = b[scoresSortKey];
@@ -869,7 +898,7 @@
     });
 
     if (rows.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:32px; color:var(--slate-light);">No cohort applications yet.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="11" style="text-align:center; padding:32px; color:var(--slate-light);">No cohort applications yet.</td></tr>';
       return;
     }
 
@@ -890,9 +919,40 @@
           <td class="score-total">${total != null ? total + '/20' : '—'}</td>
           <td><span class="stage-pill ${escapeHtml(app.stage)}">${escapeHtml(app.stage)}</span></td>
           <td>${app.created_at ? new Date(app.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}</td>
+          <td><div class="pick" role="group" aria-label="Take ${escapeHtml(app.full_name)} to the cohort?">
+            <button type="button" class="yes${app.cohort_pick === true ? ' on' : ''}" data-pick="yes" aria-pressed="${app.cohort_pick === true}">Yes</button>
+            <button type="button" class="no${app.cohort_pick === false ? ' on' : ''}" data-pick="no" aria-pressed="${app.cohort_pick === false}">No</button>
+          </div></td>
         </tr>
       `;
     }).join('');
+
+    tbody.querySelectorAll('.pick button').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const row = btn.closest('tr'), id = row.dataset.id;
+        const app = applications.find(a => a.id === id);
+        if (!app) return;
+        const want = btn.dataset.pick === 'yes' ? true : false;
+        const next = app.cohort_pick === want ? null : want;   // clicking the active choice clears it
+        const prev = app.cohort_pick;
+        app.cohort_pick = next;
+        const token = localStorage.getItem('adminToken');
+        try {
+          const response = await fetch(`${API_URL}/admin/applications`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            body: JSON.stringify({ id, cohortPick: next })
+          });
+          if (!response.ok) throw new Error('Save failed');
+          renderScoresTable();
+        } catch (error) {
+          console.error('Failed to save decision', error);
+          app.cohort_pick = prev;
+          document.getElementById('pickMsg').textContent = 'Could not save. If this keeps happening, the database needs the cohort_pick column (see backend/migrations-cohort-pick.sql).';
+          renderScoresTable();
+        }
+      });
+    });
 
     tbody.querySelectorAll('.building-cell').forEach(cell => {
       cell.addEventListener('click', () => {
@@ -959,14 +1019,17 @@
     });
   });
 
+  document.getElementById('pickFilter').addEventListener('change', () => renderScoresTable());
+
   document.getElementById('exportScoresBtn').addEventListener('click', () => {
-    const headers = ['Name', 'Email', 'Department', 'Level', 'What They\'re Building', 'Idea', 'Conviction', 'Commitment', 'Builder', 'Total', 'Stage', 'Applied'];
+    const headers = ['Name', 'Email', 'Department', 'Level', 'What They\'re Building', 'Idea', 'Conviction', 'Commitment', 'Builder', 'Total', 'Stage', 'Applied', 'Take to cohort'];
     const rows = applications.map(app => {
       const total = computeTotal(app);
       return [
         app.full_name, app.email, app.department || '', app.level || '', app.what_building || '',
         app.score_idea ?? '', app.score_conviction ?? '', app.score_commitment ?? '', app.score_builder ?? '',
-        total ?? '', app.stage, app.created_at ? new Date(app.created_at).toISOString() : ''
+        total ?? '', app.stage, app.created_at ? new Date(app.created_at).toISOString() : '',
+        app.cohort_pick === true ? 'Yes' : app.cohort_pick === false ? 'No' : ''
       ];
     });
     const csv = [headers, ...rows]
@@ -1528,7 +1591,7 @@
     team: { label: 'team-applications', rows: () => teamApplications },
     mentor: { label: 'mentor-applications', rows: () => mentorApplications },
   };
-  const EXPORT_FIRST = ['created_at', 'stage', 'full_name', 'email', 'phone', 'department', 'level'];
+  const EXPORT_FIRST = ['created_at', 'stage', 'cohort_pick', 'full_name', 'email', 'phone', 'department', 'level'];
   const EXPORT_LAST = ['internal_notes', 'updated_at', 'id'];
 
   function exportCell(v) {
@@ -1545,7 +1608,7 @@
     return k.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   }
   function buildExport(view, stage) {
-    const src = EXPORT_SOURCES[view];
+    const src = EXPORT_SOURCES[view === 'scores' ? 'cohort' : view];
     const rows = src.rows().filter(r => !stage || r.stage === stage);
     if (!rows.length) return null;
     const keys = [];
