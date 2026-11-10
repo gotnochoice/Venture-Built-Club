@@ -87,6 +87,7 @@
   .scores-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .scores-table tr:last-child td { border-bottom: none; }
   .scores-table tr:hover td { background: var(--paper-2); }
+  .building-cell { max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--slate); }
   .score-input { width: 42px; padding: 5px 6px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 13px; font-family: var(--font-body); text-align: center; background: var(--paper); }
   .score-input:focus { outline: none; border-color: var(--bright); box-shadow: 0 0 0 3px rgba(62,189,121,0.12); }
   .score-total { font-weight: 700; color: var(--forest); }
@@ -376,6 +377,7 @@
             <tr>
               <th data-sort="full_name">Name</th>
               <th data-sort="department">Dept / Level</th>
+              <th data-sort="what_building">What They're Building</th>
               <th data-sort="score_idea" title="Idea &amp; problem clarity">Idea</th>
               <th data-sort="score_conviction" title="Founder conviction">Conviction</th>
               <th data-sort="score_commitment" title="Commitment &amp; availability">Commitment</th>
@@ -841,7 +843,7 @@
     });
 
     if (rows.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:32px; color:var(--slate-light);">No cohort applications yet.</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding:32px; color:var(--slate-light);">No cohort applications yet.</td></tr>';
       return;
     }
 
@@ -851,6 +853,7 @@
         <tr data-id="${app.id}">
           <td>${escapeHtml(app.full_name)}</td>
           <td>${escapeHtml(app.department || '—')}${app.level ? ' &middot; ' + escapeHtml(app.level) : ''}</td>
+          <td class="building-cell" title="${escapeHtml(app.what_building || '')}">${escapeHtml(app.what_building || '—')}</td>
           <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_idea" value="${app.score_idea ?? ''}"></td>
           <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_conviction" value="${app.score_conviction ?? ''}"></td>
           <td><input type="number" min="1" max="5" step="1" class="score-input" data-field="score_commitment" value="${app.score_commitment ?? ''}"></td>
@@ -910,7 +913,7 @@
         scoresSortDir = scoresSortDir === 'asc' ? 'desc' : 'asc';
       } else {
         scoresSortKey = key;
-        scoresSortDir = (key === 'full_name' || key === 'department') ? 'asc' : 'desc';
+        scoresSortDir = (key === 'full_name' || key === 'department' || key === 'what_building') ? 'asc' : 'desc';
       }
       document.querySelectorAll('.scores-table th[data-sort]').forEach(h => h.classList.remove('sorted', 'asc'));
       th.classList.add('sorted');
@@ -920,11 +923,11 @@
   });
 
   document.getElementById('exportScoresBtn').addEventListener('click', () => {
-    const headers = ['Name', 'Email', 'Department', 'Level', 'Idea', 'Conviction', 'Commitment', 'Builder', 'Total', 'Stage', 'Applied'];
+    const headers = ['Name', 'Email', 'Department', 'Level', 'What They\'re Building', 'Idea', 'Conviction', 'Commitment', 'Builder', 'Total', 'Stage', 'Applied'];
     const rows = applications.map(app => {
       const total = computeTotal(app);
       return [
-        app.full_name, app.email, app.department || '', app.level || '',
+        app.full_name, app.email, app.department || '', app.level || '', app.what_building || '',
         app.score_idea ?? '', app.score_conviction ?? '', app.score_commitment ?? '', app.score_builder ?? '',
         total ?? '', app.stage, app.created_at ? new Date(app.created_at).toISOString() : ''
       ];
