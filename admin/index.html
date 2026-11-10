@@ -547,7 +547,7 @@
       const data = await response.json();
 
       if (response.ok) {
-        if (data.user.role !== 'admin') {
+        if (!['admin', 'super_admin', 'chapter_admin'].includes(data.user.role)) {
           showError('loginError', 'This account does not have admin access.');
           return;
         }
