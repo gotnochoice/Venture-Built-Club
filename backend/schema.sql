@@ -172,6 +172,15 @@ CREATE TABLE applications (
 
   stage VARCHAR(50) DEFAULT 'applied', -- applied, interview, accepted, rejected
   internal_notes TEXT,
+
+  -- Score Sheet: four 1-5 criteria an admin fills in while reviewing.
+  -- Nullable - unscored applicants just show as "-" until someone scores them.
+  score_idea SMALLINT CHECK (score_idea BETWEEN 1 AND 5),
+  score_conviction SMALLINT CHECK (score_conviction BETWEEN 1 AND 5),
+  score_commitment SMALLINT CHECK (score_commitment BETWEEN 1 AND 5),
+  score_builder SMALLINT CHECK (score_builder BETWEEN 1 AND 5),
+  score_notes TEXT,
+
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
