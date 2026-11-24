@@ -640,6 +640,15 @@
     .hub-toggle::after { content: '+'; font-size: 18px; transition: transform .25s var(--ease); }
     .hub-toggle[aria-expanded="true"]::after { transform: rotate(45deg); }
   }
+
+  /* Now-hiring strip under Get involved */
+  .team-strip { display: flex; align-items: center; gap: var(--space-4) var(--space-5); flex-wrap: wrap; margin-top: var(--space-6); padding: var(--space-4) var(--space-5); border: 1.5px solid var(--color-forest); border-radius: var(--radius-lg); background: var(--color-white); text-decoration: none; color: var(--text-primary); transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s var(--ease); }
+  .team-strip:hover { border-color: var(--color-bright); box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .team-strip-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; background: var(--color-bright); color: var(--text-primary); }
+  .team-strip-text { flex: 1 1 280px; font-weight: 600; line-height: 1.45; }
+  .team-strip-go { font-weight: 700; color: var(--color-forest); white-space: nowrap; min-height: 44px; display: inline-flex; align-items: center; }
+  @media (max-width: 700px) { .team-strip { flex-direction: column; align-items: flex-start; gap: var(--space-3); } }
+  @media (prefers-reduced-motion: reduce) { .team-strip { transition: none; } .team-strip:hover { transform: none; } }
 </style>
 </head>
 <body>
@@ -942,6 +951,11 @@
       </article>
     </div>
     <p class="swipe-hint" aria-hidden="true">Swipe ←→</p>
+    <a class="team-strip" href="/join-team">
+      <span class="team-strip-tag">Now hiring</span>
+      <span class="team-strip-text">Two student leadership roles are open: Head of Growth and Community Builder Head.</span>
+      <span class="team-strip-go">See open roles <span aria-hidden="true">→</span></span>
+    </a>
   </div>
 </section>
 
@@ -1023,6 +1037,7 @@
         <h4>Overview</h4>
         <a href="/location/oau">OAU Chapter</a>
         <a href="/join-us">Join Us</a>
+        <a href="/join-team">Join the Team</a>
         <a href="/problems-to-solve">Problems</a>
         <a href="/investor-network" data-route="investors">Investors</a>
         <a href="/partners" data-route="partners">Partners</a>
