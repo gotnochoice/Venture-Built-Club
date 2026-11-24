@@ -563,7 +563,7 @@
       <div class="detail-value" id="teamModalRole">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">Have you led a team or project before?</div>
+      <div class="detail-label" id="teamLblLed">Have you led a team or project before?</div>
       <div class="detail-value" id="teamModalLedBefore">—</div>
     </div>
     <div class="detail-row">
@@ -571,11 +571,11 @@
       <div class="detail-value" id="teamModalWhyRole">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">What would you do in your first month?</div>
+      <div class="detail-label" id="teamLblFirst">What would you do in your first month?</div>
       <div class="detail-value" id="teamModalFirstMonth">—</div>
     </div>
     <div class="detail-row">
-      <div class="detail-label">Anything else</div>
+      <div class="detail-label" id="teamLblExtra">Anything else</div>
       <div class="detail-value" id="teamModalAdditional">—</div>
     </div>
     <div class="detail-row">
@@ -1300,6 +1300,10 @@
       ? `<a href="${escapeHtml(app.linkedin_url)}" target="_blank" rel="noopener">${escapeHtml(app.linkedin_url)}</a>`
       : '—';
     document.getElementById('teamModalRole').textContent = app.role || '—';
+    const isCommunity = app.role === 'Community Builder Head';
+    document.getElementById('teamLblLed').textContent = isCommunity ? 'Community built or grown (platform, size, people added, period)' : 'Have you led a team or project before?';
+    document.getElementById('teamLblFirst').textContent = isCommunity ? 'How would they grow Hub usage? (first month)' : 'What would you do in your first month?';
+    document.getElementById('teamLblExtra').textContent = isCommunity ? 'How would they keep WhatsApp active?' : 'Anything else';
     document.getElementById('teamModalLedBefore').textContent = app.led_before || '—';
     document.getElementById('teamModalWhyRole').textContent = app.why_role || '—';
     document.getElementById('teamModalFirstMonth').textContent = app.first_month_plan || '—';

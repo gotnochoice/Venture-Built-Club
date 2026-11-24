@@ -184,6 +184,7 @@
     <div class="notice-title">Before you apply</div>
     <p>This is for former exco members, student leaders with a real track record, people genuinely pulled toward the startup or VC world, not just curious about it. You don't need startup experience. You need to have led something before, and want to build something bigger now.</p>
     <p>Only two roles are open right now: Head of Growth and Community Builder Head. Tell us honestly which one fits you and why.</p>
+    <p>Applying for Community Builder Head? We'll ask for real numbers: how many people you've added to a community, and how you kept it active.</p>
   </div>
 
   <div id="formWrap">
@@ -252,6 +253,7 @@
             <input type="radio" name="role" id="role-community" value="Community Builder Head">
             <label for="role-community">
               <span class="role-title">Community Builder Head</span>
+              <span class="role-desc">Growing the community, getting students into the Hub, and keeping WhatsApp active.</span>
             </label>
           </div>
         </div>
@@ -262,25 +264,25 @@
         <div class="section-title-row"><div class="section-badge">03</div><div class="section-heading">Leadership</div></div>
 
         <div class="field-group">
-          <div class="q-label">1. What have you led before? Tell us about a group, project, or team you were responsible for, and what your role actually was.</div>
+          <div class="q-label" id="q1Label">1. What have you led before? Tell us about a group, project, or team you were responsible for, and what your role actually was.</div>
           <textarea id="ledBefore" required></textarea>
-          <div class="q-counter">Recommended 100–300 words</div>
+          <div class="q-counter" id="q1Hint">Recommended 100–300 words</div>
         </div>
 
         <div class="field-group">
-          <div class="q-label">2. Why this role specifically? What about how you work fits what it needs?</div>
+          <div class="q-label" id="q2Label">2. Why this role specifically? What about how you work fits what it needs?</div>
           <textarea id="whyRole" required></textarea>
           <div class="q-counter">Recommended 100–300 words</div>
         </div>
 
         <div class="field-group">
-          <div class="q-label">3. If you got this role, what would you actually do in your first month?</div>
+          <div class="q-label" id="q3Label">3. If you got this role, what would you actually do in your first month?</div>
           <textarea id="firstMonthPlan" required></textarea>
           <div class="q-counter">Recommended 100–300 words</div>
         </div>
 
         <div class="field-group">
-          <div class="q-label">4. Anything else we should know? <span class="hint">optional</span></div>
+          <div class="q-label" id="q4Label">4. Anything else we should know? <span class="hint">optional</span></div>
           <textarea id="additionalInfo"></textarea>
         </div>
       </div>
@@ -314,6 +316,40 @@
 
 <script>
   const API_URL = '/api';
+
+
+  /* Role-specific questions. The answers are stored in the same four fields for every role,
+     so the database does not change; the admin and email labels follow the role. */
+  const QUESTIONS = {
+    default: {
+      q1: '1. What have you led before? Tell us about a group, project, or team you were responsible for, and what your role actually was.',
+      q1hint: 'Recommended 100–300 words',
+      q2: '2. Why this role specifically? What about how you work fits what it needs?',
+      q3: '3. If you got this role, what would you actually do in your first month?',
+      q4: '4. Anything else we should know? <span class="hint">optional</span>',
+      q4required: false,
+    },
+    'Community Builder Head': {
+      q1: '1. Tell us about a community you have built or grown. Which platform, how big did it get, how many people did you personally add, over what period, and how did you measure it?',
+      q1hint: 'Real numbers help. Recommended 100–300 words',
+      q2: '2. Why this role specifically? What about how you work fits what it needs?',
+      q3: '3. How would you grow usage of the Venture Built Hub? What would you do in your first month?',
+      q4: '4. How would you keep a student WhatsApp community active and engaged? Give an example of something that worked for you.',
+      q4required: true,
+    },
+  };
+  function applyQuestions() {
+    const sel = document.querySelector('input[name="role"]:checked');
+    const q = QUESTIONS[sel ? sel.value : ''] || QUESTIONS.default;
+    document.getElementById('q1Label').textContent = q.q1;
+    document.getElementById('q1Hint').textContent = q.q1hint;
+    document.getElementById('q2Label').textContent = q.q2;
+    document.getElementById('q3Label').textContent = q.q3;
+    document.getElementById('q4Label').innerHTML = q.q4;
+    document.getElementById('additionalInfo').required = q.q4required;
+  }
+  document.querySelectorAll('input[name="role"]').forEach(r => r.addEventListener('change', applyQuestions));
+  applyQuestions();
 
   function setupFileBox(inputId, boxId) {
     const input = document.getElementById(inputId);

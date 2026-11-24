@@ -7,6 +7,8 @@ const { v4: uuidv4 } = require('uuid');
 // An empty list closes applications on the server too.
 const VALID_ROLES = ['Head of Growth', 'Community Builder Head'];
 
+const COMMUNITY_ROLE = 'Community Builder Head';
+
 module.exports = async (req, res) => {
   if (applyCors(req, res)) return;
 
@@ -27,6 +29,10 @@ module.exports = async (req, res) => {
     }
     if (!VALID_ROLES.includes(role)) {
       return respondError(res, 400, 'Please select a valid role');
+    }
+    // Community Builder Head has a fourth, required question (stored in additional_info).
+    if (role === COMMUNITY_ROLE && !additionalInfo) {
+      return respondError(res, 400, 'Please answer how you would keep the WhatsApp community active');
     }
 
     const applicationId = uuidv4();
@@ -61,10 +67,10 @@ module.exports = async (req, res) => {
           <p><strong>Referred By:</strong> ${referredBy || '—'}</p>
           <p><strong>LinkedIn:</strong> ${linkedin || '—'}</p>
           <p><strong>Role Applied For:</strong> ${role}</p>
-          <p><strong>Led Before:</strong><br>${ledBefore}</p>
+          <p><strong>${role === COMMUNITY_ROLE ? 'Community Built or Grown (platform, size, people added, period)' : 'Led Before'}:</strong><br>${ledBefore}</p>
           <p><strong>Why This Role:</strong><br>${whyRole}</p>
-          <p><strong>First Month Plan:</strong><br>${firstMonthPlan}</p>
-          <p><strong>Additional Info:</strong><br>${additionalInfo || '—'}</p>
+          <p><strong>${role === COMMUNITY_ROLE ? 'Plan to Grow Hub Usage (first month)' : 'First Month Plan'}:</strong><br>${firstMonthPlan}</p>
+          <p><strong>${role === COMMUNITY_ROLE ? 'Keeping WhatsApp Active' : 'Additional Info'}:</strong><br>${additionalInfo || '—'}</p>
           <p><strong>CV:</strong> <a href="${cvUrl}">${cvUrl}</a></p>
         `,
       });
