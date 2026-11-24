@@ -3,7 +3,9 @@ const { respondError, respondSuccess, applyCors } = require('../../lib/auth');
 const { sendCopyEmail } = require('../../lib/mailer');
 const { v4: uuidv4 } = require('uuid');
 
-const VALID_ROLES = ['Head of Programs', 'Head of Talent', 'Head of Growth', 'Head of Finance/Operations'];
+// Roles currently open for applications. Keep in sync with /apply-team and /join-team.
+// An empty list closes applications on the server too.
+const VALID_ROLES = ['Head of Growth', 'Community Builder Head'];
 
 module.exports = async (req, res) => {
   if (applyCors(req, res)) return;

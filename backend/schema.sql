@@ -224,7 +224,7 @@ CREATE TABLE team_applications (
   referred_by VARCHAR(255),
   linkedin_url VARCHAR(500),
 
-  role VARCHAR(50) NOT NULL, -- Head of Programs, Head of Talent, Head of Growth, Head of Finance/Operations
+  role VARCHAR(50) NOT NULL, -- e.g. Head of Growth, Community Builder Head (earlier rounds: Programs, Talent, Finance/Operations)
   led_before TEXT NOT NULL,
   why_role TEXT NOT NULL,
   first_month_plan TEXT NOT NULL,
