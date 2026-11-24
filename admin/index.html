@@ -1300,10 +1300,14 @@
       ? `<a href="${escapeHtml(app.linkedin_url)}" target="_blank" rel="noopener">${escapeHtml(app.linkedin_url)}</a>`
       : '—';
     document.getElementById('teamModalRole').textContent = app.role || '—';
-    const isCommunity = app.role === 'Community Builder Head';
-    document.getElementById('teamLblLed').textContent = isCommunity ? 'Community built or grown (platform, size, people added, period)' : 'Have you led a team or project before?';
-    document.getElementById('teamLblFirst').textContent = isCommunity ? 'How would they grow Hub usage? (first month)' : 'What would you do in your first month?';
-    document.getElementById('teamLblExtra').textContent = isCommunity ? 'How would they keep WhatsApp active?' : 'Anything else';
+    const TEAM_LABELS = {
+      'Head of Growth': ['Grown or promoted (what, size, people brought in, period)', 'How would they grow Venture Built? (first month)', 'How would they fill the Summit?'],
+      'Community Builder Head': ['Community built or grown (platform, size, people added, period)', 'How would they grow Hub usage? (first month)', 'How would they keep WhatsApp active?'],
+    };
+    const tl = TEAM_LABELS[app.role] || ['Have you led a team or project before?', 'What would you do in your first month?', 'Anything else'];
+    document.getElementById('teamLblLed').textContent = tl[0];
+    document.getElementById('teamLblFirst').textContent = tl[1];
+    document.getElementById('teamLblExtra').textContent = tl[2];
     document.getElementById('teamModalLedBefore').textContent = app.led_before || '—';
     document.getElementById('teamModalWhyRole').textContent = app.why_role || '—';
     document.getElementById('teamModalFirstMonth').textContent = app.first_month_plan || '—';
