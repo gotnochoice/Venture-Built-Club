@@ -3,7 +3,7 @@ const { respondError, respondSuccess, applyCors } = require('../../lib/auth');
 const { sendCopyEmail } = require('../../lib/mailer');
 const { v4: uuidv4 } = require('uuid');
 
-const VALID_ROLES = ['Head of Programs', 'Head of Talent', 'Head of Growth', 'Head of Finance/Operations'];
+const VALID_ROLES = ['Head of Programs', 'Head of Talent', 'Head of Growth', 'Head of Finance/Operations', 'Head of Hub'];
 
 module.exports = async (req, res) => {
   if (applyCors(req, res)) return;
